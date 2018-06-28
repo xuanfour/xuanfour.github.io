@@ -1,9 +1,17 @@
-# HuxBlog Boilerplate
+# 我走我看
 
-##### This is the boilerplate of [Hux Blog](https://github.com/Huxpro/huxpro.github.io), all documents is over there!
+## 老轩的博客
 
-#### [View Boilerplate &rarr;](http://huangxuan.me/huxblog-boilerplate/)
+### 最新说明
 
-#### [View Live Hux Blog &rarr;](http://huangxuan.me)
+    手欠啊！！！
+    脑子被猫吃了，几年的文档被自己误删除后又覆盖拷贝，不抱希望了，在大脑反应前，小手指轻轻的按了下回车键，剁手中……
 
-## If you like Hux Blog, Please star [huxpro.github.io repo](https://github.com/Huxpro/huxpro.github.io) instead of this! Thank you!
+## 概述
+
+[轩四的博客](https://xuanfour.github.io) 记录了我的学习和生活的经历过程，既为了再次查询时的备忘，也想留下了一路走过的痕迹。
+
+## 版权说明
+
+* 本网站所有作品，除明确申明作者为他人以外，版权为本人所有，以商业盈利目的使用需经本人授权同意。
+* 非商业盈利目的使用，在不侵犯法律赋予的著作权人享有的权利，并指明作者姓名、作品名称，作品出处后，允许转载使用。
