@@ -32,7 +32,7 @@ anchorjs: true                          # if you want to customize anchor. check
 
 # Gems
 # from PR#40, to support local preview for Jekyll 3.0
-plugins: [jekyll-paginate]
+gems: [jekyll-paginate]
 
 
 
@@ -81,11 +81,10 @@ featured-condition-size: 1              # A tag will be featured if the size of 
 
 # Friends
 friends: [
-    {
-        title: "Hux Blog",
-        href: "http://huangxuan.me"
-    }
-#     ,{
+#     {
+#         title: "Hux Blog",
+#         href: "http://huangxuan.me"
+#     },{
 #         title: "Foo",
 #         href: "#"
 #     },{
