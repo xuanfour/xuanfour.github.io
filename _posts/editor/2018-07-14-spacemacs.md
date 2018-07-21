@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Spacemacs 学习"
-date:       2018-07-14
+date:       2015-07-14
 categories: editor
 author:     "xuanfour"
 header-img: "img/post-bg-unix-linux.jpg"
