@@ -18,6 +18,7 @@ tags:
 ## 目录
 
 * [layout](#layout)
+* [References](#references)
 
 ## layout
 
@@ -26,5 +27,9 @@ tags:
 * 用 SPC l w 1, 2, 3... 切换工作区，如果数字没有对应的工作区，就会自动创建一个。工作区默认是匿名的。
 * 用 SPC 1, 2, 3... 切换窗口
 * modeline 最左侧显示 layout 名，然后是工作区（子 layout），最后是窗口号。
+
+> [返回目录](#目录)
+
+## References
 
 > [返回目录](#目录)
