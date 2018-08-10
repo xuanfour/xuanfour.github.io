@@ -53,7 +53,7 @@ tags:
     * [使用 visual lines 导航](#使用-visual-lines-导航)
 * [杂项](#杂项)
   * [project 设置](#project-设置)
-  * [### Layout 和 Workspace](#layout-和-workspace)
+  * [Layout 和 Workspace](#layout-和-workspace)
 * [References](#references)
 
 ## 快捷键
@@ -463,7 +463,7 @@ touch .projectile
 
 ### Layout 和 Workspace
 
-其实 Layouts、Layout、Prespective、Workspace 这几个英文名称和他们在 Spacemacs 里所代表的具体含义是有差异的。太容易混淆大家的理解了，经过多方查询资料，和自己的实际测试，我觉得真正的含义应该如下列说明。
+Layouts、Layout、Prespective、Workspace 这几个英文名称和他们在 Spacemacs 里所代表的具体含义是有差异的，太容易混淆大家的理解了。经过多方查询资料，和自己的实际测试，我觉得真正的含义应该如下列说明。
 
 #### Layouts
 
