@@ -79,23 +79,24 @@ tags:
 
 ### 普通快捷键
 
-| 模式             | Leader | 控制键  | 其他键     | 说明                               |
-| ----             | ------ | ------  | ------     | ----                               |
-|                  | L-tr   |         |            | 切换显示相对行号                   |
-|                  | L-ft   |         |            | 切换 neotree                       |
-|                  | L-sc   |         |            | 清除搜索高亮                       |
-|                  |        |         | %          | 跳转到对应位置                     |
-|                  |        |         | `[<space>` | 增加行上空行                       |
-|                  |        |         | `]<space>` | 增加行上空行                       |
-|                  |        |         | ]]         | 在当前位置换行                     |
-|                  |        | C-x ;   |            | 设置注释列                         |
-|                  |        | C-x C-; |            | 注释当前行                         |
-|                  |        | C-o/i   |            | 向上/下跳转到上次移动位置          |
-| major            |        |         | ,          | major mode                         |
-| lisp-interaction | L-meb  |         | ,eb        | 执行当前 buffer                    |
-| lisp-interaction | L-mee  | C-x C-e | ,ee        | 执行最后一条表达式，结果在小窗显示 |
-| lisp-interaction |        | C-j     |            | 在光标处打印最后一条表达式结果     |
-|                  |        |         |            |                                    |
+| 模式             | Leader      | 控制键  | 其他键     | 说明                                          |
+| ----             | ------      | ------  | ------     | ----                                          |
+|                  | L-tr        |         |            | 切换显示相对行号                              |
+|                  | L-ft        |         |            | 切换 neotree                                  |
+|                  | L-sc        |         |            | 清除搜索高亮                                  |
+|                  |             |         | %          | 跳转到对应位置                                |
+|                  | L-jj {char} |         |            | 检索 {char}，键入屏幕显示的自符跳转到对应位置 |
+|                  |             |         | `[<space>` | 增加行上空行                                  |
+|                  |             |         | `]<space>` | 增加行上空行                                  |
+|                  |             |         | ]]         | 在当前位置换行                                |
+|                  |             | C-x ;   |            | 设置注释列                                    |
+|                  |             | C-x C-; |            | 注释当前行                                    |
+|                  |             | C-o/i   |            | 向上/下跳转到上次移动位置                     |
+| major            |             |         | ,          | major mode                                    |
+| lisp-interaction | L-meb       |         | ,eb        | 执行当前 buffer                               |
+| lisp-interaction | L-mee       | C-x C-e | ,ee        | 执行最后一条表达式，结果在小窗显示            |
+| lisp-interaction |             | C-j     |            | 在光标处打印最后一条表达式结果                |
+|                  |             |         |            |                                               |
 
 ## 从 Vim 迁移到 Spacemacs
 
@@ -467,11 +468,11 @@ Layouts、Layout、Prespective、Workspace 这几个英文名称和他们在 Spa
 
 #### Layouts
 
-Layouts 是一个命名的工作空间，用户通过 Layouts 名称保存一批相关的工作文件。可以打开项目，使用 `<leader>pl` 另存为 layouts，或者使用 `<leader>ls` 保存 layouts。
+Layouts 是一个命名的工作空间，用户通过 Layouts 名称保存一批相关的工作文件。可以使用 `<leader>ls` 保存 layouts后，使用 `<leader>lL` 输入名称来打开一个 Layouts。
 
 #### Layout 和 Prespective
 
-Layouts 工作空间中可以分为多组 buffers， 每一组就是每一个 Layout/Prespective，两个词其实是一个含义，代表工作空间里的工作组，表达的意思应该是可以通过不同的 Prespective 去操控具体的 Layout。可以使用 `<leader>ll` 或者 `<leader>l[1-9]` 选择或者新建一个 Layout。
+Layouts 工作空间中可以分为多组 buffers， 每一组就是每一个 Layout/Prespective，两个词其实是一个含义，代表工作空间里的工作组，表达的意思应该是可以通过不同的 Prespective 去操控具体的 Layout。可以使用 `<leader>pl` 将 project 切换为 layout，也可以使用 `<leader>ll` 或者 `<leader>l[1-9]` 选择或者新建一个 Layout。
 Layouts 默认有一个 `Default` 名称的缺省 Layout，包含所有的 buffer。
 
 #### Workspace
