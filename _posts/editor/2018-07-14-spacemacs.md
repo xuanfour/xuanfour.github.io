@@ -17,6 +17,7 @@ tags:
 
 ## 目录
 
+* [快捷键](#快捷键)
 * [从 Vim 迁移到 Spacemacs](#从-vim-迁移到-spacemacs)
   * [本文档的目的](#本文档的目的)
   * [哲学](#哲学)
@@ -37,7 +38,7 @@ tags:
     * [.spacemacs 文件](#.spacemacs-文件)
     * [Emacs Lisp](#emacs-lisp)
     * [变量](#变量)
-    * [快捷键](#快捷键)
+    * [定义快捷键](#定义快捷键)
     * [函数](#函数)
     * [激活一个层](#激活一个层)
     * [创建一个层](#创建一个层)
@@ -50,8 +51,51 @@ tags:
     * [非高亮搜索](#非高亮搜索)
     * [会话](#会话)
     * [使用 visual lines 导航](#使用-visual-lines-导航)
-* [layout](#layout)
+* [杂项](#杂项)
+  * [project 设置](#project-设置)
+  * [### Layout 和 Workspace](#layout-和-workspace)
 * [References](#references)
+
+## 快捷键
+
+### 快捷键定义
+
+| 快捷键   | MacOS   | Windows |
+| ------   | -----   | ------- |
+| S(U)per  | Command | Win     |
+| (C)trl   | Control | Ctrl    |
+| (M)eta   | Option  | Alt     |
+| (S)hift  | Shift   | Shift   |
+| (L)eader | custom  | custom  |
+
+### Spacemacs 快捷键配置
+
+| 快捷键    | 配置选项                                 | 说明                                    |
+| ------    | -----                                    | -------                                 |
+| `<space>` | dotspacemacs-leader-key                  | vim 按键风格下的 leader 键              |
+| ,         | dotspacemacs-major-mode-leader-key       | vim 按键风格下的 major-mode-leader 键   |
+| M-m       | dotspacemacs-emacs-leader-key            | emacs 按键风格下的 leader 键            |
+| C-M-m     | dotspacemacs-major-mode-emacs-leader-key | emacs 按键风格下的 major-mode-leader 键 |
+
+### 普通快捷键
+
+| 模式             | Leader | 控制键  | 其他键     | 说明                               |
+| ----             | ------ | ------  | ------     | ----                               |
+|                  | L-tr   |         |            | 切换显示相对行号                   |
+|                  | L-ft   |         |            | 切换 neotree                       |
+|                  | L-sc   |         |            | 清除搜索高亮                       |
+|                  |        |         | %          | 跳转到对应位置                     |
+|                  |        |         | `[<space>` | 增加行上空行                       |
+|                  |        |         | `]<space>` | 增加行上空行                       |
+|                  |        |         | ]]         | 在当前位置换行                     |
+|                  |        | C-x ;   |            | 设置注释列                         |
+|                  |        | C-x C-; |            | 注释当前行                         |
+|                  |        | C-o/i   |            | 向上/下跳转到上次移动位置          |
+| major            |        |         | ,          | major mode                         |
+| lisp-interaction | L-meb  |         | ,eb        | 执行当前 buffer                    |
+| lisp-interaction | L-mee  | C-x C-e | ,ee        | 执行最后一条表达式，结果在小窗显示 |
+| lisp-interaction |        | C-j     |            | 在光标处打印最后一条表达式结果     |
+|                  |        |         |            |                                    |
 
 ## 从 Vim 迁移到 Spacemacs
 
@@ -101,16 +145,16 @@ Spacemacs 在一个延迟之后使用 which-key 来显示可用的键位绑定�
 
 在 Emacs 和 vim 中缓冲区本质上是相同的。缓冲区的快捷键都具有 SPC b 前缀。
 
-| 快捷键 | 功能 |
-| ----- | --- |
+| 快捷键                  | 功能                                    |
+| ----------------------- | --------------------------------------- |
 | SPC b b `<buffer-name>` | 创建一个名为 `<buffer-name>` 的缓冲区。 |
-| SPC b b                 | 通过打开缓冲区和最近的文件搜索。 |
-| SPC b n 或 :bnext       | 切换到下一个缓冲区。(参见特殊缓冲区) |
-| SPC b p 或 :bprevious   | 切换到前一个缓冲区。 (参见特殊缓冲区) |
-| SPC b d 或 :bdelete     | 结束当前缓冲区。 |
-| SPC b k                 | 查找并结束一个缓冲区。 |
-| SPC b K                 | 结束除当前缓冲区的所有其他缓冲区。 |
-| SPC b .                 | 缓冲区微状态。 |
+| SPC b b                 | 通过打开缓冲区和最近的文件搜索。        |
+| SPC b n 或 :bnext       | 切换到下一个缓冲区。(参见特殊缓冲区)    |
+| SPC b p 或 :bprevious   | 切换到前一个缓冲区。 (参见特殊缓冲区)   |
+| SPC b d 或 :bdelete     | 结束当前缓冲区。                        |
+| SPC b k                 | 查找并结束一个缓冲区。                  |
+| SPC b K                 | 结束除当前缓冲区的所有其他缓冲区。      |
+| SPC b .                 | 缓冲区微状态。                          |
 
 ##### 特殊缓冲区
 
@@ -120,35 +164,35 @@ Emacs 默认会创建大量缓冲区，这些缓冲区很多人从来都不会�
 
 窗口就像 vim 中的分割。它们在一次编辑多个文件时相当有用。所有的快捷键都有 SPC w 前缀。
 
-| 快捷键 | 功能 |
-| ----- | --- |
+| 快捷键             | 功能                     |
+| ------------------ | ------------------------ |
 | SPC w v 或 :vsplit | 在右侧打开一个垂直分割。 |
 | SPC w s 或 :split  | 在下部打开一个水平分割。 |
-| SPC w h/j/k/l      | 在窗口间导航。 |
-| SPC w H/J/K/L      | 移动当前窗口。 |
-| SPC w .            | 窗口微状态。 |
+| SPC w h/j/k/l      | 在窗口间导航。           |
+| SPC w H/J/K/L      | 移动当前窗口。           |
+| SPC w .            | 窗口微状态。             |
 
 #### 文件
 
 Spacemacs 中所有文件命令都有 SPC f 前缀。
 
-| 快捷键 | 功能 |
-| ----- | --- |
-| SPC f f        | 打开一个缓冲区搜索当前目录中的文件。 |
+| 快捷键         | 功能                                   |
+| -------------- | ----                                   |
+| SPC f f        | 打开一个缓冲区搜索当前目录中的文件。   |
 | SPC f r        | 打开一个缓冲区在最近打开的文件中搜索。 |
-| SPC f s 或 :w   | 保存当前文件。 |
-| :x             | 保存当前文件并退出。 |
-| :e `<file>`    | 打开 `<file>` |
+| SPC f s 或 :w  | 保存当前文件。                         |
+| :x             | 保存当前文件并退出。                   |
+| :e `<file>`    | 打开 `<file>`                          |
 
 #### 帮助系统
 
 Emacs 具有一个可扩展的帮助系统。所有的快捷键都有SPC h d 前缀，以允许便捷地访问帮助系统。最重要的快捷键是 SPC h d f, SPC h d k, 和 SPC h d v。同样还有 `SPC <f1>` 允许用户搜索文档。
 
-| 快捷键 | 功能 |
-| ----- | --- |
-| SPC h d f  | 对一个功能提示并显示其文档。 |
-| SPC h d k  | 对一个快捷键提示并显示其绑定的内容。 |
-| SPC h d v  | 对一个变量提示并显示其文档和当前值。 |
+| 快捷键     | 功能                                         |
+| ---------- | ----                                         |
+| SPC h d f  | 对一个功能提示并显示其文档。                 |
+| SPC h d k  | 对一个快捷键提示并显示其绑定的内容。         |
+| SPC h d v  | 对一个变量提示并显示其文档和当前值。         |
 | SPC `<f1>` | 搜索一个命令，功能，变量或接口，并显示其文档 |
 
 不论何时，你遇到怪异的行为或想知道是什么东西做的，这些功能是你应该首先查阅的。
@@ -157,10 +201,10 @@ Emacs 具有一个可扩展的帮助系统。所有的快捷键都有SPC h d 前
 
 有几种方式可以探索 Spacemacs 的功能。一个是阅读 Github 上的源代码。你可以开始了解 Emacs Lisp，并能知道 Spacemacs 是怎样工作的。你还能通过如下快捷键来探索：
 
-| 快捷键 | 功能 |
-| ----- | --- |
+| 快捷键    | 功能                               |
+| --------- | ----                               |
 | SPC f e h | 列出所有层并允许你浏览层上的文件。 |
-| SPC ?     | 列出所有快捷键。 |
+| SPC ?     | 列出所有快捷键。                   |
 
 ### 自定义
 
@@ -175,9 +219,9 @@ Emacs 具有一个可扩展的帮助系统。所有的快捷键都有SPC h d 前
 * dotspacemacs/user-init 函数也是在其他程序运行前运行，并包含用户特定配置。
 * dotspacemacs/user-config 函数是你用到最多的函数。 在这里，你可以定义任何用户配置。
 
-| 快捷键 | 功能 |
-| ----- | --- |
-| SPC f e d | 打开你的 .spacemacs |
+| 快捷键    | 功能                                          |
+| --------- | ---                                           |
+| SPC f e d | 打开你的 .spacemacs                           |
 | SPC f e D | 使用 diff 通过默认模版手动更新你的 .spacemacs |
 
 #### Emacs Lisp
@@ -196,7 +240,7 @@ Emacs 具有一个可扩展的帮助系统。所有的快捷键都有SPC h d 前
       variable3 '("A" "list" "of" "things"))
 ```
 
-#### 快捷键
+#### 定义快捷键
 
 定义快捷键是几乎每个人都想做的事情，最好的方式就是使用内置的 `define-key` 函数。
 
@@ -402,17 +446,53 @@ Spacemacs 使用 vim 默认 actual lines 导航，即使它们被包装了。如
 (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 ```
 
-## layout
+> [返回目录](#目录)
 
-* 用 SPC p l 创建基于项目的 layout
-* 用 SPC l 1, 2, 3... 切换 layout，或者用 SPC l TAB 切换为上一个 layout
-* 用 SPC l w 1, 2, 3... 切换工作区，如果数字没有对应的工作区，就会自动创建一个。工作区默认是匿名的。
-* 用 SPC 1, 2, 3... 切换窗口
-* modeline 最左侧显示 layout 名，然后是工作区（子 layout），最后是窗口号。
+## 杂项
+
+### project 设置
+
+如果是 git 项目，spacemacs 发现有 .git 目录，就会认为是一个 spacemacs project。
+如果没有 .git 目录，就需要手动创建一个 .projectile 空文件，告诉 spacmeacs 此处是 project 根目录。
+
+```bash
+touch .projectile
+```
+
+> [返回目录](#目录)
+
+### Layout 和 Workspace
+
+其实 Layouts、Layout、Prespective、Workspace 这几个英文名称和他们在 Spacemacs 里所代表的具体含义是有差异的。太容易混淆大家的理解了，经过多方查询资料，和自己的实际测试，我觉得真正的含义应该如下列说明。
+
+#### Layouts
+
+Layouts 是一个命名的工作空间，用户通过 Layouts 名称保存一批相关的工作文件。可以打开项目，使用 `<leader>pl` 另存为 layouts，或者使用 `<leader>ls` 保存 layouts。
+
+#### Layout 和 Prespective
+
+Layouts 工作空间中可以分为多组 buffers， 每一组就是每一个 Layout/Prespective，两个词其实是一个含义，代表工作空间里的工作组，表达的意思应该是可以通过不同的 Prespective 去操控具体的 Layout。可以使用 `<leader>ll` 或者 `<leader>l[1-9]` 选择或者新建一个 Layout。
+Layouts 默认有一个 `Default` 名称的缺省 Layout，包含所有的 buffer。
+
+#### Workspace
+
+Workspace 是在 Layout 中可通过多个 Window 视角展示工作。使用 `<leader>lwc` 或者 `<leader>lw[1-9]` 选择或者新建一个 Workspace。
+Workspace 默认有一个号码为 `1` 的缺省 Workspace。
+
+#### 显示与切换
+
+Modeline 最左侧向右依次显示 Layout 名称、Workspace 名称/号码（如果只有一个则不显示）、窗口号。
+
+* 用 `<leader>[1-9]` 切换 Window。
+* 用 `<leader>l[1-9]` 切换 Layout。
+* 用 `<leader>lw[1-9]` 切换 Workspace。
 
 > [返回目录](#目录)
 
 ## References
+
+> 本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+> 笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
 
 * <https://www.oschina.net/translate/migrating-from-vim>
 
