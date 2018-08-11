@@ -57,19 +57,19 @@ tags:
 
 ## 快捷键
 
-### 快捷键定义
+### 控制键定义
 
-| 快捷键   | MacOS   | Windows |
+| 控制键   | MacOS   | Windows |
 | ------   | -----   | ------- |
-| S(U)per  | Command | Win     |
 | (C)trl   | Control | Ctrl    |
 | (M)eta   | Option  | Alt     |
 | (S)hift  | Shift   | Shift   |
+| (s)uper  | Command | Win     |
 | (L)eader | custom  | custom  |
 
-### Spacemacs 快捷键配置
+### Spacemacs 引导键配置
 
-| 快捷键    | 配置选项                                 | 说明                                    |
+| 引导键    | 配置选项                                 | 说明                                    |
 | ------    | -----                                    | -------                                 |
 | `<space>` | dotspacemacs-leader-key                  | vim 按键风格下的 leader 键              |
 | ,         | dotspacemacs-major-mode-leader-key       | vim 按键风格下的 major-mode-leader 键   |
@@ -77,10 +77,39 @@ tags:
 | M-m       | dotspacemacs-emacs-leader-key            | emacs 按键风格下的 leader 键            |
 | C-M-m     | dotspacemacs-major-mode-emacs-leader-key | emacs 按键风格下的 major-mode-leader 键 |
 
+### 重要快捷键
+
+| 快捷键                         | 说明                             |
+| ------                         | ----                             |
+| C-g                            | 停止当前运行/输入的命令          |
+| C-x u                          | 撤销前一个命令                   |
+| `M-x revert-buffer <Return>`   | 撤销上次存盘后所有改动           |
+| `M-x recover-file <Return>`    | 从自动存盘文件恢复               |
+| `M-x recover-session <Return>` | 如果你编辑了几个文件, 用这个恢复 |
+
+### 帮助快捷键
+
+| 快捷键  | 说明                           |
+| ------  | ----                           |
+| C-h c   | 显示快捷键绑定的命令           |
+| C-h k   | 显示快捷键绑定的命令和它的作用 |
+| C-h l   | 显示最后 100 个键入的内容      |
+| C-h w   | 显示命令被绑定到哪些快捷键上   |
+| C-h f   | 显示函数的功能                 |
+| C-h v   | 显示变量的含义和值             |
+| C-h m   | 显示当前缓冲区模式的帮助文档   |
+| C-h b   | 显示当前缓冲区所有可用的快捷键 |
+| C-h t   | 打开 emacs 教程                |
+| C-h i   | 打开 info 阅读器               |
+| C-h C-f | 显示 emacs FAQ                 |
+| C-h p   | 显示本机 Elisp 包的信息        |
+
 ### 普通快捷键
 
 | 模式             | Leader      | 控制键  | 其他键     | 说明                                          |
 | ----             | ------      | ------  | ------     | ----                                          |
+|                  | `L-<Space>` | M-x     |            | M-x                                           |
+|                  | `L-<Tab>`   |         |            | 切换到上一个 buffer                              |
 |                  | L-tr        |         |            | 切换显示相对行号                              |
 |                  | L-ft        |         |            | 切换 neotree                                  |
 |                  | L-sc        |         |            | 清除搜索高亮                                  |
