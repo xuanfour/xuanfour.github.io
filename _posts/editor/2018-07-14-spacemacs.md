@@ -52,8 +52,7 @@ tags:
     * [会话](#会话)
     * [使用 visual lines 导航](#使用-visual-lines-导航)
 * [杂项](#杂项)
-  * [project 设置](#project-设置)
-  * [Layout 和 Workspace](#layout-和-workspace)
+  * [Project 设置](#project-设置)
 * [References](#references)
 
 ## 快捷键
@@ -74,6 +73,7 @@ tags:
 | ------    | -----                                    | -------                                 |
 | `<space>` | dotspacemacs-leader-key                  | vim 按键风格下的 leader 键              |
 | ,         | dotspacemacs-major-mode-leader-key       | vim 按键风格下的 major-mode-leader 键   |
+| :         | dotspacemacs-ex-command-key              | vim 按键风格下的扩展命令键              |
 | M-m       | dotspacemacs-emacs-leader-key            | emacs 按键风格下的 leader 键            |
 | C-M-m     | dotspacemacs-major-mode-emacs-leader-key | emacs 按键风格下的 major-mode-leader 键 |
 
@@ -451,7 +451,7 @@ Spacemacs 使用 vim 默认 actual lines 导航，即使它们被包装了。如
 
 ## 杂项
 
-### project 设置
+### Project 设置
 
 如果是 git 项目，spacemacs 发现有 .git 目录，就会认为是一个 spacemacs project。
 如果没有 .git 目录，就需要手动创建一个 .projectile 空文件，告诉 spacmeacs 此处是 project 根目录。
@@ -459,34 +459,6 @@ Spacemacs 使用 vim 默认 actual lines 导航，即使它们被包装了。如
 ```bash
 touch .projectile
 ```
-
-> [返回目录](#目录)
-
-### Layout 和 Workspace
-
-Layouts、Layout、Prespective、Workspace 这几个英文名称和他们在 Spacemacs 里所代表的具体含义是有差异的，太容易混淆大家的理解了。经过多方查询资料，和自己的实际测试，我觉得真正的含义应该如下列说明。
-
-#### Layouts
-
-Layouts 是一个命名的工作空间，用户通过 Layouts 名称保存一批相关的工作文件。可以使用 `<leader>ls` 保存 layouts后，使用 `<leader>lL` 输入名称来打开一个 Layouts。
-
-#### Layout 和 Prespective
-
-Layouts 工作空间中可以分为多组 buffers， 每一组就是每一个 Layout/Prespective，两个词其实是一个含义，代表工作空间里的工作组，表达的意思应该是可以通过不同的 Prespective 去操控具体的 Layout。可以使用 `<leader>pl` 将 project 切换为 layout，也可以使用 `<leader>ll` 或者 `<leader>l[1-9]` 选择或者新建一个 Layout。
-Layouts 默认有一个 `Default` 名称的缺省 Layout，包含所有的 buffer。
-
-#### Workspace
-
-Workspace 是在 Layout 中可通过多个 Window 视角展示工作。使用 `<leader>lwc` 或者 `<leader>lw[1-9]` 选择或者新建一个 Workspace。
-Workspace 默认有一个号码为 `1` 的缺省 Workspace。
-
-#### 显示与切换
-
-Modeline 最左侧向右依次显示 Layout 名称、Workspace 名称/号码（如果只有一个则不显示）、窗口号。
-
-* 用 `<leader>[1-9]` 切换 Window。
-* 用 `<leader>l[1-9]` 切换 Layout。
-* 用 `<leader>lw[1-9]` 切换 Workspace。
 
 > [返回目录](#目录)
 
