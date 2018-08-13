@@ -491,6 +491,16 @@ touch .projectile
 
 > [返回目录](#目录)
 
+### 中英文混排空格 pangu-spacing
+
+需要在中英文混排的时候，在英文两边增加空格，可以增加 chinese layer，这个 layer 里包括一个 pangu-spacing 包，是用来更好地显示中英文混排的，默认情况下，中英文混排会在英文前后添加 1 个空格分割显示，保存的也时候也会写入到文件当中。
+
+* 如果想在某个模式里禁用，可以在配置文件里把模式加入 pangu-spacing-inhibit-mode-alist。
+* 如果想在当前buffer里切换，可以使用命令pangu-spacing-mode。
+* 如果想全局禁用，可以设置global-pangu-spacing-mode。
+
+> [返回目录](#目录)
+
 ## References
 
 > 本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
