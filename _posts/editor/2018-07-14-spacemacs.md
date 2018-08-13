@@ -109,10 +109,12 @@ tags:
 | 模式             | Leader      | 控制键  | 其他键     | 说明                                          |
 | ----             | ------      | ------  | ------     | ----                                          |
 |                  | `L-<Space>` | M-x     |            | M-x                                           |
-|                  | `L-<Tab>`   |         |            | 切换到上一个 buffer                              |
+|                  | `L-<Tab>`   |         |            | 切换到上一个 buffer                           |
 |                  | L-tr        |         |            | 切换显示相对行号                              |
 |                  | L-ft        |         |            | 切换 neotree                                  |
 |                  | L-sc        |         |            | 清除搜索高亮                                  |
+|                  | L-sj        |         |            | 检索并跳转到内部函数                          |
+|                  | L-ji        |         |            | 检索并跳转到内部函数                          |
 |                  |             |         | %          | 跳转到对应位置                                |
 |                  | L-jj {char} |         |            | 检索 {char}，键入屏幕显示的自符跳转到对应位置 |
 |                  |             |         | `[<space>` | 增加行上空行                                  |
@@ -498,6 +500,7 @@ touch .projectile
 * 如果想在某个模式里禁用，可以在配置文件里把模式加入 pangu-spacing-inhibit-mode-alist。
 * 如果想在当前buffer里切换，可以使用命令pangu-spacing-mode。
 * 如果想全局禁用，可以设置global-pangu-spacing-mode。
+* 这个设置并不会真正在文件中插入空白，如果你希望这样，配置 (setq pangu-spacing-real-insert-separtor t)
 
 > [返回目录](#目录)
 
