@@ -17,43 +17,60 @@ tags:
 
 ## 目录
 
-* [快捷键](#快捷键)
-* [从 Vim 迁移到 Spacemacs](#从-vim-迁移到-spacemacs)
-  * [本文档的目的](#本文档的目的)
-  * [哲学](#哲学)
-  * [基本介绍](#基本介绍)
-    * [术语](#术语)
-    * [模式和状态](#模式和状态)
-    * [层](#层)
-    * [微状态)](#微状态)
-    * [键位绑定约定](#键位绑定约定)
-    * [运行命令](#运行命令)
-    * [缓冲区和窗口管理](#缓冲区和窗口管理)
-      * [缓冲区](#缓冲区)
-      * [窗口](#窗口)
-    * [文件](#文件)
-    * [帮助系统](#帮助系统)
-    * [探索](#探索)
-  * [自定义](#自定义)
-    * [.spacemacs 文件](#.spacemacs-文件)
-    * [Emacs Lisp](#emacs-lisp)
-    * [变量](#变量)
-    * [定义快捷键](#定义快捷键)
-    * [函数](#函数)
-    * [激活一个层](#激活一个层)
-    * [创建一个层](#创建一个层)
-  * [安装一个单独的包](#安装一个单独的包)
-    * [加载一个包](#加载一个包)
-    * [卸载一个包](#卸载一个包)
-  * [常见调整](#常见调整)
-    * [变更 escape 键](#变更-escape-键)
-    * [变更配色方案](#变更配色方案)
-    * [非高亮搜索](#非高亮搜索)
-    * [会话](#会话)
-    * [使用 visual lines 导航](#使用-visual-lines-导航)
-* [杂项](#杂项)
-  * [Project 设置](#project-设置)
-* [References](#references)
+<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
+**Table of Contents**
+
+- [Spacemacs 学习](#spacemacs-学习)
+    - [目录](#目录)
+    - [快捷键](#快捷键)
+        - [控制键定义](#控制键定义)
+        - [Spacemacs 引导键配置](#spacemacs-引导键配置)
+        - [重要快捷键](#重要快捷键)
+        - [命令快捷键](#命令快捷键)
+        - [帮助快捷键](#帮助快捷键)
+        - [普通快捷键](#普通快捷键)
+        - [M-x 命令](#m-x-命令)
+    - [从 Vim 迁移到 Spacemacs](#从-vim-迁移到-spacemacs)
+        - [本文档的目的](#本文档的目的)
+        - [哲学](#哲学)
+        - [基本介绍](#基本介绍)
+            - [术语](#术语)
+            - [模式和状态](#模式和状态)
+            - [层](#层)
+            - [微状态](#微状态)
+            - [键位绑定约定](#键位绑定约定)
+            - [运行命令](#运行命令)
+            - [缓冲区和窗口管理](#缓冲区和窗口管理)
+                - [缓冲区](#缓冲区)
+                - [特殊缓冲区](#特殊缓冲区)
+                - [窗口](#窗口)
+            - [文件](#文件)
+            - [帮助系统](#帮助系统)
+            - [探索](#探索)
+        - [自定义](#自定义)
+            - [.spacemacs 文件](#spacemacs-文件)
+            - [Emacs Lisp](#emacs-lisp)
+            - [变量](#变量)
+            - [定义快捷键](#定义快捷键)
+            - [函数](#函数)
+            - [激活一个层](#激活一个层)
+            - [创建一个层](#创建一个层)
+        - [安装一个单独的包](#安装一个单独的包)
+            - [加载一个包](#加载一个包)
+            - [卸载一个包](#卸载一个包)
+        - [常见调整](#常见调整)
+            - [变更 escape 键](#变更-escape-键)
+            - [变更配色方案](#变更配色方案)
+            - [非高亮搜索](#非高亮搜索)
+            - [会话](#会话)
+            - [使用 visual lines 导航](#使用-visual-lines-导航)
+    - [杂项](#杂项)
+        - [Project 设置](#project-设置)
+        - [中英文混排空格 PanGu-Spacing](#中英文混排空格-pangu-spacing)
+        - [设置缺省路径](#设置缺省路径)
+    - [References](#references)
+
+<!-- markdown-toc end -->
 
 ## 快捷键
 
@@ -86,6 +103,14 @@ tags:
 | `M-x revert-buffer <Return>`   | 撤销上次存盘后所有改动           |
 | `M-x recover-file <Return>`    | 从自动存盘文件恢复               |
 | `M-x recover-session <Return>` | 如果你编辑了几个文件, 用这个恢复 |
+
+### 命令快捷键
+
+| 快捷键      | 说明                                         |
+| ------      | ----                                         |
+| :! command  | 执行 shell 命令，backspace 最小化 shell 窗格 |
+| :r! command | 执行 shell 命令，同时将结果粘贴到光标处      |
+|             |                                              |
 
 ### 帮助快捷键
 
@@ -127,7 +152,15 @@ tags:
 | lisp-interaction | L-meb       |         | ,eb        | 执行当前 buffer                               |
 | lisp-interaction | L-mee       | C-x C-e | ,ee        | 执行最后一条表达式，结果在小窗显示            |
 | lisp-interaction |             | C-j     |            | 在光标处打印最后一条表达式结果                |
+| web-beautify     | L-m=        |         | ,=         | 格式化代码                                    |
 |                  |             |         |            |                                               |
+
+### M-x 命令
+
+| 命令 | 说明         |
+| ---- | ----         |
+| cd   | 选择当前路径 |
+|      |              |
 
 ## 从 Vim 迁移到 Spacemacs
 
@@ -218,7 +251,7 @@ Spacemacs 中所有文件命令都有 SPC f 前缀。
 
 #### 帮助系统
 
-Emacs 具有一个可扩展的帮助系统。所有的快捷键都有SPC h d 前缀，以允许便捷地访问帮助系统。最重要的快捷键是 SPC h d f, SPC h d k, 和 SPC h d v。同样还有 `SPC <f1>` 允许用户搜索文档。
+Emacs 具有一个可扩展的帮助系统。所有的快捷键都有 SPC h d 前缀，以允许便捷地访问帮助系统。最重要的快捷键是 SPC h d f, SPC h d k, 和 SPC h d v。同样还有 `SPC <f1>` 允许用户搜索文档。
 
 | 快捷键     | 功能                                         |
 | ---------- | ----                                         |
@@ -372,13 +405,13 @@ Packages.el 文件包含你可以在 `<layer-name>-packages` 变量中安装的�
 ```viml
 (setq layer-name-packages '(example-package
                             ;;这个层通过设置:excluded 属性
-                            ;;为真(t)来卸载example-package-2
+                            ;;为真(t)来卸载 example-package-2
                             (example-package-2 :excluded t)))
 (defun layer-name/post-init-package ()
   ;;在这里添加另一个层的包的配置
   )
 (defun layer-name/init-example-package ()
-  ;;在这里配置example-package
+  ;;在这里配置 example-package
   )
 ```
 
@@ -388,7 +421,7 @@ Packages.el 文件包含你可以在 `<layer-name>-packages` 变量中安装的�
 
 确保你添加了你的层到你的 .spacemacs 文件中，并重启 spacemacs 以激活。
 
-关于层的加载过程和层的工作原理的详细描述可以参考LAYERS.org。
+关于层的加载过程和层的工作原理的详细描述可以参考 LAYERS.org。
 
 ### 安装一个单独的包
 
@@ -493,14 +526,22 @@ touch .projectile
 
 > [返回目录](#目录)
 
-### 中英文混排空格 pangu-spacing
+### 中英文混排空格 PanGu-Spacing
 
 需要在中英文混排的时候，在英文两边增加空格，可以增加 chinese layer，这个 layer 里包括一个 pangu-spacing 包，是用来更好地显示中英文混排的，默认情况下，中英文混排会在英文前后添加 1 个空格分割显示，保存的也时候也会写入到文件当中。
 
 * 如果想在某个模式里禁用，可以在配置文件里把模式加入 pangu-spacing-inhibit-mode-alist。
-* 如果想在当前buffer里切换，可以使用命令pangu-spacing-mode。
-* 如果想全局禁用，可以设置global-pangu-spacing-mode。
+* 如果想在当前 buffer 里切换，可以使用命令 pangu-spacing-mode。
+* 如果想全局禁用，可以设置 global-pangu-spacing-mode。
 * 这个设置并不会真正在文件中插入空白，如果你希望这样，配置 (setq pangu-spacing-real-insert-separtor t)
+
+> [返回目录](#目录)
+
+### 设置缺省路径
+
+* 增加 `(cd "/some/dir/")` 到配置文件的 `user-init` 方法。
+* 使用钩子函数 `(add-hook 'find-file-hook #'(lambda () (setq default-directory (expand-file-name "/some/dir/"))))`。
+* 在查找文件之前调用自定义函数 `(cd "/some/dir/")`。
 
 > [返回目录](#目录)
 
