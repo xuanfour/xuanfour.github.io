@@ -17,7 +17,7 @@ tags:
 
 Spacemacs 的工作空间功能其实挺强的，完全可以满足大多数程序猿和攻城狮的使用。只是 Layouts、Layout、Perspectives、Perspective、Workspace 这几个英文名称和他们在 Spacemacs 里所代表的具体含义是有差异的，太容易混淆大家的理解了。
 
-经过多方查询资料，和自己的实际测试，我觉得真正的含义其实很简单： Layout/Perspective 和 Workspace 的实际含义和各自的英文语义正好是相反的！
+经过多方查询资料，和自己的实际测试，我觉得真正的含义其实很简单：Layout/Perspective 和 Workspace 的实际含义和各自的英文语义正好是相反的！
 
 ## 工作组 Layout 和 Perspective
 
@@ -30,7 +30,7 @@ Layouts 默认有一个名称为 `Default` 号码为 `1` 的缺省 Layout，包�
 
 Layouts/Perspectives 是将多个工作组集合在一起的命名工作空间。
 
-可以使用 `<leader>ls` 保存 layouts后，使用 `<leader>lL` 输入名称来打开一个 Layouts。
+可以使用 `<leader>ls` 保存 layouts 后，使用 `<leader>lL` 输入名称来打开一个 Layouts。
 
 ## 编辑视角 Workspace
 
@@ -49,4 +49,4 @@ Modeline 最左侧向右依次显示 Layout 名称、Workspace 名称/号码（�
 * `<leader>lw[1-9]` 切换编辑视角（Workspace）。
 * `<leader>[1-9]`   切换编辑窗口（Window）。
 
-> [返回目录](#目录)
+> [返回顶端](#spacemacs-的工作空间)
