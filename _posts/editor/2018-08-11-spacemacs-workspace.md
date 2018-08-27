@@ -21,14 +21,14 @@ Spacemacs 的工作空间功能其实挺强的，完全可以满足大多数程�
 
 ## 工作组 Layout 和 Perspective
 
-Layout/Perspective，两个词其实是同一概念，表示一组相关联的 buffer 命名工作组。
+Layout/Perspective，两个词在本编辑器里其实是同一概念，表示一组相关联的 buffer 命名工作组。
 
-可以使用 `<leader>pl` 将 project 切换为 layout，也可以使用 `<leader>ll` 或者 `<leader>l[1-9]` 选择或者新建一个 Layout。
+可以使用 `<leader>pl` 将一个 project 切换为 layout，也可以使用 `<leader>ll` 或者 `<leader>l[1-9]` 选择或者新建一个 Layout。
 Layouts 默认有一个名称为 `Default` 号码为 `1` 的缺省 Layout，包含所有的 buffer。
 
 ## 工作空间 Layouts 和 Perspectives
 
-Layouts/Perspectives 是将多个工作组集合在一起的命名工作空间。
+Layouts/Perspectives 是将上述的多个工作组集合在一起的命名工作空间。
 
 可以使用 `<leader>ls` 保存 layouts 后，使用 `<leader>lL` 输入名称来打开一个 Layouts。
 

@@ -545,6 +545,13 @@ touch .projectile
 
 > [返回目录](#目录)
 
+### 环境变量
+
+可以通过 `~/.spacemacs.d/.spacemacs.env` 设置环境变量文件。
+
+* 快捷键 `<leader>fee` 编辑环境变量文件。
+* 快捷键 `<leader>fe C-e` 强制初始化环境变量文件。
+
 ## References
 
 > 本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
