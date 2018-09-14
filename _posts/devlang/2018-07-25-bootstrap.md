@@ -563,6 +563,60 @@ line breaks.
 
 > [返回目录](#目录)
 
+### Bootstrap4 信息提示
+
+提示框可以使用 .alert 类, 后面加上 .alert-success, .alert-info, .alert-warning, .alert-danger, .alert-primary, .alert-secondary, .alert-light 或 .alert-dark 类来实现:
+
+| link            | info | color |
+| ----            | ---- | ----- |
+| alert-success   | 成功 | 绿色  |
+| alert-info      | 信息 | 浅蓝  |
+| alert-warning   | 警告 | 黄色  |
+| alert-danger    | 错误 | 红色  |
+| alert-primary   | 首选 | 深蓝  |
+| alert-secondary | 次要 | 浅灰  |
+| alert-light     | 高亮 | 亮白  |
+| calert-dark     | 深灰 | 深灰  |
+
+``` html
+<div class="alert alert-success">
+  <strong>成功!</strong> 指定操作成功提示信息。
+</div>
+```
+
+#### 提示框添加链接 ####
+
+提示框中在链接的标签上添加 alert-link 类来设置匹配提示框颜色的链接：
+
+``` html
+<div class="alert alert-success">
+  <strong>成功!</strong> 你应该认真阅读 <a href="#" class="alert-link">这条信息</a>。
+</div>
+```
+
+#### 关闭提示框 ####
+
+我们可以在提示框中的 div 中添加 .alert-dismissable 类，然后在关闭按钮的链接上添加 class="close" 和 data-dismiss="alert" 类来设置提示框的关闭操作。
+
+``` html
+<div class="alert alert-success alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>成功!</strong> 指定操作成功提示信息。
+</div>
+```
+
+提示: &times; (×) 是 HTML 实体字符，来表示关闭操作，而不是字母 "x"。
+
+#### 提示框动画 ####
+
+.fade 和 .show 类用于设置提示框在关闭时的淡出和淡入效果：
+
+``` html
+<div class="alert alert-danger alert-dismissable fade show">
+```
+
+> [返回目录](#目录)
+
 ### Bootstrap4 按钮
 
 Bootstrap 4 提供了不同样式的按钮。
