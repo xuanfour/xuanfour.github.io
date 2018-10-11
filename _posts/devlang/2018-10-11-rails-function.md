@@ -17,7 +17,7 @@ tags:
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [Ruby on Rails 常用方法函数](#ruby-on-rails-常用方法函数)
+- [Ruby and Rails 常用方法函数](#ruby-and-rails-常用方法函数)
     - [目录](#目录)
     - [常用方法](#常用方法)
         - [`String.split`](#stringsplit)

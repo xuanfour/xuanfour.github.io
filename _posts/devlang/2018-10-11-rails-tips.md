@@ -17,7 +17,7 @@ tags:
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [Ruby on Rails Tips](#ruby-on-rails-tips)
+- [Ruby and Rails Tips](#ruby-and-rails-tips)
     - [目录](#目录)
     - [logger](#logger)
         - [层级](#层级)
