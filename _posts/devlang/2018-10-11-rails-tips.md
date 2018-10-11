@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Ruby on Rails Tips"
+title:      "Ruby and Rails Tips"
 date:       2018-10-11
 categories: devlang
 author:     "xuanfour"
@@ -10,7 +10,7 @@ tags:
     - rails
 ---
 
-# Ruby on Rails Tips #
+# Ruby and Rails Tips #
 
 ## 目录
 

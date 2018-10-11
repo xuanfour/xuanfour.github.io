@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Ruby on Rails 常用方法函数"
+title:      "Ruby and Rails 常用方法函数"
 date:       2018-10-11
 categories: devlang
 author:     "xuanfour"
@@ -10,7 +10,7 @@ tags:
     - rails
 ---
 
-# Ruby on Rails 常用方法函数 #
+# Ruby and Rails 常用方法函数 #
 
 ## 目录
 
