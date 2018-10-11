@@ -545,6 +545,14 @@ touch .projectile
 
 > [返回目录](#目录)
 
+### 中文乱码 ###
+
+emacs 打开文件后常常因为默认编码与文档编码不同而显示为乱码。此时不用惊慌，只需 `C-x <RET> r ( M-x revert-buffer-with-coding-system)` 来用指定的编码重新读入这个文件即可。一般乱码都是因为 emacs 下使用 latin 或者 utf8，而打开的文档是 gb2312 编码。如果不记得编码类型就试一下，基本上 gb2312 都能解决。询问编码时记得用 tab 补齐比较方便。
+
+另一种更方便的方法是使用 unicad，下载 unicad.el 保存到相应目录（譬如.emacs 中配置 my-elisp 文件夹为存放目录），然后在.emacs 中声明 `(require ‘unicad)` 即可。这样下次打开文档时会自动判断编码类型，非常方便。
+
+> [返回目录](#目录)
+
 ### 环境变量
 
 可以通过 `~/.spacemacs.d/.spacemacs.env` 设置环境变量文件。
