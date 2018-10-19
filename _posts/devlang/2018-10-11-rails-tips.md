@@ -20,27 +20,61 @@ tags:
 - [Ruby and Rails Tips](#ruby-and-rails-tips)
     - [目录](#目录)
     - [logger](#logger)
-        - [层级](#层级)
     - [Puma 服务器支持 SSL](#puma-服务器支持-ssl)
     - [require 引用文件路径方法与问题总结](#require-引用文件路径方法与问题总结)
         - [引用一个文件](#引用一个文件)
         - [引用一个目录下所有文件](#引用一个目录下所有文件)
     - [format.json](#formatjson)
     - [RESTful API 配置 CORS 实现跨域请求](#restful-api-配置-cors-实现跨域请求)
-    - [其他](#其他)
     - [References](#references)
 
 <!-- markdown-toc end -->
 
 ## logger ##
 
-### 层级 ###
+日志的层级：
 
 - debug
 - info
 - warn
 - error
 - fatal
+
+``` rails
+def show
+  @cart = current_cart
+  logger.debug "Hello world! #{@cart.to_yaml}"
+  # debug, info, warn, error, fatal
+end
+```
+
+可以在 environment.rb 里配置 Logger 的消息格式:
+
+``` rails
+class Logger
+  def format_message(level, time, progname, msg)
+    "#{time.to_s(:db)} #{level} -- #{msg}\n"
+  end
+end
+```
+
+可以在 environments/production.rb 里配置 log_level
+
+``` rails
+config.log_level = :debug
+```
+
+使用 rails log:clear 可以清空旧日志
+在 .irbrc 里也可以设置 Logger:
+
+``` rails
+if ENV.include?('RAILS_ENV') && !Object.const_defined?('RAILS_DEFAULT_LOGGER')
+  require 'logger'
+  Object.const_set('RAILS_DEFAULT_LOGGER', Logger.new(STDOUT))
+end
+```
+
+这样在 script/console 里的 Model 操作就会直接 in place 显示在 console 里。
 
 ## Puma 服务器支持 SSL ##
 
@@ -160,10 +194,6 @@ end
 ``` rails
 match 'controller', to: 'controller#action', via: [:options] ＃ 添加此行
 ```
-
-## 其他 ##
-
-- 左值不能省略 self
 
 > [返回目录](#目录)
 
