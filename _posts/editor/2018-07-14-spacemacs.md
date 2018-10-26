@@ -6,8 +6,6 @@ categories: editor
 author:     "xuanfour"
 header-img: "img/post-bg-unix-linux.jpg"
 tags:
-    - editor
-    - emacs
     - spacemacs
 ---
 
@@ -24,50 +22,33 @@ tags:
     - [目录](#目录)
     - [快捷键](#快捷键)
         - [控制键定义](#控制键定义)
-        - [Spacemacs 引导键配置](#spacemacs-引导键配置)
+        - [引导键配置](#引导键配置)
         - [重要快捷键](#重要快捷键)
+        - [自定义快捷键](#自定义快捷键)
         - [命令快捷键](#命令快捷键)
-        - [帮助快捷键](#帮助快捷键)
-        - [普通快捷键](#普通快捷键)
-        - [M-x 命令](#m-x-命令)
-    - [从 Vim 迁移到 Spacemacs](#从-vim-迁移到-spacemacs)
-        - [本文档的目的](#本文档的目的)
-        - [哲学](#哲学)
-        - [基本介绍](#基本介绍)
-            - [术语](#术语)
-            - [模式和状态](#模式和状态)
-            - [层](#层)
-            - [微状态](#微状态)
-            - [键位绑定约定](#键位绑定约定)
-            - [运行命令](#运行命令)
-            - [缓冲区和窗口管理](#缓冲区和窗口管理)
-                - [缓冲区](#缓冲区)
-                - [特殊缓冲区](#特殊缓冲区)
-                - [窗口](#窗口)
-            - [文件](#文件)
-            - [帮助系统](#帮助系统)
-            - [探索](#探索)
-        - [自定义](#自定义)
-            - [.spacemacs 文件](#spacemacs-文件)
-            - [Emacs Lisp](#emacs-lisp)
-            - [变量](#变量)
-            - [定义快捷键](#定义快捷键)
-            - [函数](#函数)
-            - [激活一个层](#激活一个层)
-            - [创建一个层](#创建一个层)
-        - [安装一个单独的包](#安装一个单独的包)
-            - [加载一个包](#加载一个包)
-            - [卸载一个包](#卸载一个包)
-        - [常见调整](#常见调整)
-            - [变更 escape 键](#变更-escape-键)
-            - [变更配色方案](#变更配色方案)
-            - [非高亮搜索](#非高亮搜索)
-            - [会话](#会话)
-            - [使用 visual lines 导航](#使用-visual-lines-导航)
+        - [help 快捷键](#help-快捷键)
+        - [text 快捷键](#text-快捷键)
+        - [expand region 快捷键](#expand-region-快捷键)
+        - [search/symbol 快捷键](#searchsymbol-快捷键)
+            - [默认输入](#默认输入)
+            - [命令](#命令)
+            - [检索工具](#检索工具)
+            - [作用域](#作用域)
+            - [在当前文件中搜索](#在当前文件中搜索)
+            - [搜索](#搜索)
+        - [jump/join/split 快捷键](#jumpjoinsplit-快捷键)
+        - [files 快捷键](#files-快捷键)
+        - [toggles 快捷键](#toggles-快捷键)
+        - [major-mode-cmd 快捷键](#major-mode-cmd-快捷键)
+        - [other 快捷键](#other-快捷键)
+    - [M-x 命令](#m-x-命令)
+        - [进入命令的快捷键](#进入命令的快捷键)
     - [杂项](#杂项)
         - [Project 设置](#project-设置)
         - [中英文混排空格 PanGu-Spacing](#中英文混排空格-pangu-spacing)
         - [设置缺省路径](#设置缺省路径)
+        - [中文乱码](#中文乱码)
+        - [环境变量](#环境变量)
     - [References](#references)
 
 <!-- markdown-toc end -->
@@ -76,15 +57,15 @@ tags:
 
 ### 控制键定义
 
-| 控制键   | MacOS   | Windows |
-| ------   | -----   | ------- |
-| (C)trl   | Control | Ctrl    |
-| (M)eta   | Option  | Alt     |
-| (S)hift  | Shift   | Shift   |
-| (s)uper  | Command | Win     |
-| (L)eader | custom  | custom  |
+| 控制键   | MacOS    | Windows  | 说明                            |
+| -------- | -------- | -------- | ------------------------------- |
+| (C)trl   | Control  | Ctrl     |                                 |
+| (M)eta   | Option   | Alt      |                                 |
+| (S)hift  | Shift    | Shift    |                                 |
+| (s)uper  | Command  | Win      |                                 |
+| (L)eader | custom   | custom   | Spacemacs 中一般为 <SPC> 空格键 |
 
-### Spacemacs 引导键配置
+### 引导键配置
 
 | 引导键    | 配置选项                                 | 说明                            |
 | ------    | -----                                    | -------                         |
@@ -110,30 +91,50 @@ tags:
 | ------ | ------------- | -------- |
 | Q      | normal/visual | 查找替换 |
 
-### 命令快捷键
+### shell 快捷键
 
-| 快捷键      | 说明                                         |
-| ------      | ----                                         |
-| :! command  | 执行 shell 命令，backspace 最小化 shell 窗格 |
-| :r! command | 执行 shell 命令，同时将结果粘贴到光标处      |
-|             |                                              |
+| 快捷键       | 说明                                         |
+| ------------ | -------------------------------------------- |
+| :! command   | 执行 shell 命令，backspace 最小化 shell 窗格 |
+| :r! command  | 执行 shell 命令，同时将结果粘贴到光标处      |
+| L-!          | 执行 shell 命令，结果在小窗显示              |
+| L-'          | 打开 shell 窗口                              |
 
 ### help 快捷键
 
-| Leader | 控制键 | 其他键  | 说明                           |
-| ------ | ------ | ------  | ----                           |
-|        |        | C-h c   | 显示快捷键绑定的命令           |
-|        |        | C-h k   | 显示快捷键绑定的命令和它的作用 |
-|        |        | C-h l   | 显示最后 100 个键入的内容      |
-|        |        | C-h w   | 显示命令被绑定到哪些快捷键上   |
-|        |        | C-h f   | 显示函数的功能                 |
-|        |        | C-h v   | 显示变量的含义和值             |
-|        |        | C-h m   | 显示当前缓冲区模式的帮助文档   |
-|        |        | C-h b   | 显示当前缓冲区所有可用的快捷键 |
-|        |        | C-h t   | 打开 emacs 教程                |
-|        |        | C-h i   | 打开 info 阅读器               |
-|        |        | C-h C-f | 显示 emacs FAQ                 |
-|        |        | C-h p   | 显示本机 Elisp 包的信息        |
+| Leader | 控制键  | 其他键 | 说明                           |
+| ------ | ------  | ------ | ----                           |
+|        | C-h c   |        | 显示快捷键绑定的命令           |
+| L-hdk  | C-h k   |        | 显示快捷键绑定的命令和它的作用 |
+|        | C-h l   |        | 显示最后 100 个键入的内容      |
+|        | C-h w   |        | 显示命令被绑定到哪些快捷键上   |
+| L-hdf  | C-h f   |        | 显示函数的功能                 |
+| L-hdv  | C-h v   |        | 显示变量的含义和值             |
+|        | C-h m   |        | 显示当前缓冲区模式的帮助文档   |
+|        | C-h b   |        | 显示当前缓冲区所有可用的快捷键 |
+|        | C-h t   |        | 打开 emacs 教程                |
+|        | C-h i   |        | 打开 info 阅读器               |
+|        | C-h C-f |        | 显示 emacs FAQ                 |
+|        | C-h p   |        | 显示本机 Elisp 包的信息        |
+
+### text 快捷键
+
+| Leader | 控制键 | 其他键 | 说明 |
+| ------ | ------ | ------ | ---- |
+| L-xU   |        |        | 大写 |
+| L-xu   |        |        | 小写 |
+
+### expand region 快捷键
+
+| Leader | 控制键 | 其他键 | 说明                       |
+| ------ | ------ | ------ | ----                       |
+| L-vv   |        |        | 扩展文字区域               |
+| L-vV   |        |        | 收缩文字区域               |
+| L-vr   |        |        | 重置                       |
+| L-ve   |        |        | 编辑                       |
+| L-v/   |        |        | 从项目中检索文字区域       |
+| L-vf   |        |        | 从文件中检索文字区域       |
+| L-vb   |        |        | 从所有缓冲区中检索文字区域 |
 
 ### search/symbol 快捷键
 
@@ -233,361 +234,14 @@ Leader s 检索工具 作用域
 |             | C-j     |            | 在光标处打印最后一条表达式结果                |
 |             |         | =          | 格式化选择区域代码                            |
 
-### M-x 命令
+## M-x 命令 ##
 
-| 命令 | 说明         |
-| ---- | ----         |
-| cd   | 选择当前路径 |
-|      |              |
+### 进入命令的快捷键 ###
 
-## 从 Vim 迁移到 Spacemacs
+- M-x
+- LL
 
-### 本文档的目的
-
-本文旨在通过跨越 vim 和 Spacemacs 之间的差距，以补充 Spacemacs 文档。虽然有些信息可能被复制，但这并不能代替 Spacemacs 文档。建议您阅读这两个文件，充分认识 Spacemacs。
-
-### 哲学
-
-很多 vim 都有的误解是，Spacemacs 是 vim 的 Emacs 克隆。Spacemacs 没有完全模仿 vim 的行为，它只有在编辑的时候才这样。你不能指望每个 vim 指令都可用，尽管很多都是可用的。你不能用 Vimscript 配置 Spacemacs，反正没人喜欢 Vimscript。重要的是，Spacemacs 旨在使用 vim 高级编辑模式以及 Emacs 更好的配置语言来改善 vim 和 Emacs 两者。
-
-### 基本介绍
-
-#### 术语
-
-Spacemacs 使用与 vim 不同的术语，可能会使新用户感到困惑。本节试图厘清这些困惑。
-
-#### 模式和状态
-
-在 vim 中，你具有多种编辑模式如插入模式和可视模式来处理文本。在 Emacs 中，我们使用的是状态。它们等同于 vim 的模式。例如 evil-insert-state 与 vim 中的 insert-mode 相同。
-
-Emacs 中的 minor-mode 就像是激活一项功能。例如：aggressive-indent-mode 就是一个 minor-mode，它可以在你输入的同时自动缩进代码。需要知道的是，在一个缓冲区中可以激活多个 minor-modes。许多 Emacs 包通过提供一个 minor-mode 进行工作。Major-mode 确定 Emacs 在当前缓冲区的行为。通常每个文件类型对应一个 major-mode。一个 major-mode 的例子如 python-mode，它对 python 文件提供针对 python 的设置。每个缓冲区只有一个 major-mode。
-
-#### 层
-
-Spacemacs 具有层的概念。层类似于 vim 中的插件。它们提供可以在 Spacemacs 中使用的新功能。但是层通常是由数个相互整合良好的包组成。例如，python 层包括自动补齐支持，文档查找，测试和其它由不同的包提供的功能。这使你不需要考虑安装什么包，只需要考虑你想要什么功能。关于层的更多内容可以参考自定义章节和官方文档。同时还有一个关于编写层的更深入的指南。
-
-#### 微状态
-
-Spacemacs 提供一个称为微状态的特殊功能。微状态允许相似的命令连续执行，不需要重复按键。微状态通常由使用如下模式的键位绑定触发：`<Leader> <group>` 这里的 group 是微状态从属的目录。当处于一个微状态时，你将会在窗口的底部看到说明文档。要退出微状态，按 q 键。
-
-#### 键位绑定约定
-
-Spacemacs 使用 SPC 作为它的 `<Leader>` 键。本文档也使用 SPC 作为 `<Leader>` 键。所有的键位绑定都采用助记方式，并由 `<Leader>` 键组织。例如，语言指定命令的键位绑定通常使用 SPC m 前缀。Spacemacs 使用的约定如下 表. 注意所有的键位绑定都可以更改。
-
-Spacemacs 在一个延迟之后使用 which-key 来显示可用的键位绑定：
-
-#### 运行命令
-
-可以使用 SPC：运行 Emacs 命令。这将会弹出一个使用 Helm 的缓冲区。这个缓冲区中可以运行任意的 Emacs 命令。你同样可以使用：运行许多外部命令，就跟 vim 中一样。
-
-注意：你可以使用: 运行 Emacs 交互命令，但是不能使用 SPC : 运行外部命令。
-
-#### 缓冲区和窗口管理
-
-##### 缓冲区
-
-在 Emacs 和 vim 中缓冲区本质上是相同的。缓冲区的快捷键都具有 SPC b 前缀。
-
-| 快捷键                  | 功能                                    |
-| ----------------------- | --------------------------------------- |
-| SPC b b `<buffer-name>` | 创建一个名为 `<buffer-name>` 的缓冲区。 |
-| SPC b b                 | 通过打开缓冲区和最近的文件搜索。        |
-| SPC b n 或 :bnext       | 切换到下一个缓冲区。(参见特殊缓冲区)    |
-| SPC b p 或 :bprevious   | 切换到前一个缓冲区。 (参见特殊缓冲区)   |
-| SPC b d 或 :bdelete     | 结束当前缓冲区。                        |
-| SPC b k                 | 查找并结束一个缓冲区。                  |
-| SPC b K                 | 结束除当前缓冲区的所有其他缓冲区。      |
-| SPC b .                 | 缓冲区微状态。                          |
-
-##### 特殊缓冲区
-
-Emacs 默认会创建大量缓冲区，这些缓冲区很多人从来都不会使用到，就像 *Messages*。Spacemacs 会在使用这些快捷键时自动忽略这些缓冲区。可以在这里找到更多相关信息。
-
-##### 窗口
-
-窗口就像 vim 中的分割。它们在一次编辑多个文件时相当有用。所有的快捷键都有 SPC w 前缀。
-
-| 快捷键             | 功能                     |
-| ------------------ | ------------------------ |
-| SPC w v 或 :vsplit | 在右侧打开一个垂直分割。 |
-| SPC w s 或 :split  | 在下部打开一个水平分割。 |
-| SPC w h/j/k/l      | 在窗口间导航。           |
-| SPC w H/J/K/L      | 移动当前窗口。           |
-| SPC w .            | 窗口微状态。             |
-
-#### 文件
-
-Spacemacs 中所有文件命令都有 SPC f 前缀。
-
-| 快捷键         | 功能                                   |
-| -------------- | ----                                   |
-| SPC f f        | 打开一个缓冲区搜索当前目录中的文件。   |
-| SPC f r        | 打开一个缓冲区在最近打开的文件中搜索。 |
-| SPC f s 或 :w  | 保存当前文件。                         |
-| :x             | 保存当前文件并退出。                   |
-| :e `<file>`    | 打开 `<file>`                          |
-
-#### 帮助系统
-
-Emacs 具有一个可扩展的帮助系统。所有的快捷键都有 SPC h d 前缀，以允许便捷地访问帮助系统。最重要的快捷键是 SPC h d f, SPC h d k, 和 SPC h d v。同样还有 `SPC <f1>` 允许用户搜索文档。
-
-| 快捷键     | 功能                                         |
-| ---------- | ----                                         |
-| SPC h d f  | 对一个功能提示并显示其文档。                 |
-| SPC h d k  | 对一个快捷键提示并显示其绑定的内容。         |
-| SPC h d v  | 对一个变量提示并显示其文档和当前值。         |
-| SPC `<f1>` | 搜索一个命令，功能，变量或接口，并显示其文档 |
-
-不论何时，你遇到怪异的行为或想知道是什么东西做的，这些功能是你应该首先查阅的。
-
-#### 探索
-
-有几种方式可以探索 Spacemacs 的功能。一个是阅读 Github 上的源代码。你可以开始了解 Emacs Lisp，并能知道 Spacemacs 是怎样工作的。你还能通过如下快捷键来探索：
-
-| 快捷键    | 功能                               |
-| --------- | ----                               |
-| SPC f e h | 列出所有层并允许你浏览层上的文件。 |
-| SPC ?     | 列出所有快捷键。                   |
-
-### 自定义
-
-#### .spacemacs 文件
-
-首次启动 spacemacs 时，会提示你选择编辑样式。如果你现在正读到这里，你可能会选择 vim 样式。这样将会使用选择的相应样式创建一个  .spacemacs   文件。大多数琐碎的配置都在这个文件中。
-
-在这个文件中有四个顶级函数：`dotspacemacs/layers`、`dotspacemacs/init`、`dotspacemacs/user-init`、`dotspacemacs/user-config`。
-
-* dotspacemacs/layers 函数仅用于启用和禁用层和包。
-* dotspacemacs/init  函数是在启动过程中，在其他东西运行前运行，并且包含 Spacemacs 设置。 除非你需要更改默认 Spacemacs 设置，否则你不用动这个函数。
-* dotspacemacs/user-init 函数也是在其他程序运行前运行，并包含用户特定配置。
-* dotspacemacs/user-config 函数是你用到最多的函数。 在这里，你可以定义任何用户配置。
-
-| 快捷键    | 功能                                          |
-| --------- | ---                                           |
-| SPC f e d | 打开你的 .spacemacs                           |
-| SPC f e D | 使用 diff 通过默认模版手动更新你的 .spacemacs |
-
-#### Emacs Lisp
-
-这个部分介绍几个 配置 Spacemacs 需要的 Emacs Lisp 函数。如需详细了解这个语言，请查看次链接。如果你很想了解 emacs lisp 的一切，请使用 `SPC h i elisp RET` 上的信息页面
-
-#### 变量
-
-设置变量是定制 Spacemacs 行为最常见的方式。语法很简单：
-
-```viml
-(setq variable value) ; Syntax
-;; Setting variables example
-(setq variable1 t ; True
-      variable2 nil ; False
-      variable3 '("A" "list" "of" "things"))
-```
-
-#### 定义快捷键
-
-定义快捷键是几乎每个人都想做的事情，最好的方式就是使用内置的 `define-key` 函数。
-
-```viml
-(define-key map new-keybinding function) ; Syntax
-;; Map H to go to the previous buffer in normal mode
-(define-key evil-normal-state-map (kbd "H") 'spacemacs/previous-useful-buffer)
-;; Mapping keybinding to another keybinding
-(define-key evil-normal-state-map (kbd "H") (kbd "^")) ; H goes to beginning of the line
-```
-
-map 是你想要绑定键位到的 keymap。大多数情况下你会使用 `evil-<state-name>-state-map`。其对应不同的 `evil-mode` 状态。例如，使用 `evil-insert-state-map` 映射用于插入模式的快捷键。
-
-使用 evil-leader/set-key 函数来映射 `<Leader>` 快捷键。
-
-```viml
-(evil-leader/set-key key function) ; Syntax
-;; Map killing a buffer to `<Leader> b c`
-(evil-leader/set-key "bc" 'kill-this-buffer)
-;; Map opening a link to `<Leader>` o l only in org-mode
-(evil-leader/set-key-for-mode 'org-mode
-  "ol" 'org-open-at-point)
-```
-
-#### 函数
-
-你可能偶尔想要定义一个函数做更复杂的定制，语法很简单：
-
-```viml
-(defun func-name (arg1 arg2)
-  "docstring"
-  ;; Body
-  )
-;; Calling a function
-(func-name arg1 arg1)
-```
-
-这里有个现实可用的示例函数：
-
-```viml
-;; This snippet allows you to run clang-format before saving
-;; given the current file as the correct filetype.
-;; This relies on the c-c++ layer being enabled.
-(defun clang-format-for-filetype ()
-  "Run clang-format if the current file has a file extensions
-in the filetypes list."
-  (let ((filetypes '("c" "cpp")))
-    (when (member (file-name-extension (buffer-file-name)) filetypes)
-      (clang-format-buffer))))
-;; See http://www.gnu.org/software/emacs/manual/html_node/emacs/Hooks.html for
-;; what this line means
-(add-hook 'before-save-hook 'clang-format-for-filetype)
-```
-
-#### 激活一个层
-
-正如上文术语那段所说，层提供一个简单的方式来添加特性。可在 .spacemacs 文件中激活一个层。在文件中找到 `dotspacemacs-configuration-layers` 变量，默认情况下，它看起来应该是这样的：
-
-```viml
-(defun dotspacemacs/layers ()
-  (setq-default
-   ;; ...
-   dotspacemacs-configuration-layers '(;; auto-completion
-                                       ;; better-defaults
-                                       emacs-lisp
-                                       ;; (git :variables
-                                       ;;      git-gutter-use-fringe t)
-                                       ;; markdown
-                                       ;; org
-                                       ;; syntax-checking
-                                       )))
-```
-
-你可以通过删除分号来取消注释这些建议的层，开箱即用。要添加一个层，就把它的名字添加到列表中并重启 Emacs 或按 `SPC f e R`。使用 `SPC f e h` 来显示所有的层和他们的文档。
-
-#### 创建一个层
-
-为了将配置分组或当配置与你的 .spacemacs 文件之间不匹配时，你可以创建一个配置层。Spacemacs 提供了一个内建命令用于生成层的样板文件：`SPC :configuration-layer/create-layer`。这条命令将会生成一个如下的文件夹：
-
-```text
-[layer-name]
-  |__ [local]*
-  | |__ [example-mode-1]
-  | |     ...
-  | |__ [example-mode-n]
-  |__ config.el*
-  |__ funcs.el*
-  |__ keybindings.el*
-  |__ packages.el
-
-[] = 文件夹
-* = 不是命令生成的文件
-```
-
-Packages.el 文件包含你可以在 `<layer-name>-packages` 变量中安装的包的列表。所有 MELPA 仓库中的包都可以添加到这个列表中。还可以使用 :excludedt 特性将包包含在列表中。每个包都需要一个函数来初始化。这个函数必须以这种模式命名：`<layer-name>/init-<package-name>`。这个函数包含了包的配置。同时还有一个 `pre/post-init` 函数来在包加载之前或之后运行代码。它看起来想这个样子：
-
-```viml
-(setq layer-name-packages '(example-package
-                            ;;这个层通过设置:excluded 属性
-                            ;;为真(t)来卸载 example-package-2
-                            (example-package-2 :excluded t)))
-(defun layer-name/post-init-package ()
-  ;;在这里添加另一个层的包的配置
-  )
-(defun layer-name/init-example-package ()
-  ;;在这里配置 example-package
-  )
-```
-
-**注意**：只有一个层可以具有一个对于包的 `init` 函数。如果你想覆盖另一个层对一个包的配置，请使用 `use-package hooks` 中的 `<layer-name>/pre-init` 函数。
-
-如果 MELPA 中没有你想要的包，你必须是由一个本地包或一个包源。关于此的更多信息可以从层的剖析处获得。
-
-确保你添加了你的层到你的 .spacemacs 文件中，并重启 spacemacs 以激活。
-
-关于层的加载过程和层的工作原理的详细描述可以参考 LAYERS.org。
-
-### 安装一个单独的包
-
-有时创建一个层会有点大材小用了，也许你仅仅想要一个包而不想维持整个层。Spacemacs 在 .spacemacs 文件中的 `dotspacemacs/layers` 函数里提供了一个叫做 `dotspacemacs-additional-packages` 的变量，只要在列表中添加一个包名，它就会在你重启的时候被安装。下一段来说明如何加载这个包。
-
-#### 加载一个包
-
-有没有想过 Spacemacs 如何可以在仅仅几秒钟之内加载超过 100 个包呢？如此低的加载时间必须需要某种难以理解的黑魔法吧。还好这不是真的，多亏有了 `use-package`。它是一个可以轻松实现对包进行延迟加载和配置的包。以下是它的基础用法：
-
-```viml
-;; Basic form of use-package declaration. The :defer t tells use-package to
-;; try to lazy load the package.
-(use-package package-name
-  :defer t)
-;; The :init section is run before the package loads The :config section is
-;; run after the package loads
-(use-package package-name
-  :defer t
-  :init
-  (progn
-    ;; Change some variables
-    (setq variable1 t variable2 nil)
-    ;; Define a function
-    (defun foo ()
-      (message "%s" "Hello, World!")))
-  :config
-  (progn
-    ;; Calling a function that is defined when the package loads
-    (function-defined-when-package-loads)))
-```
-
-这只是 `use-package` 的一个非常基本的概述。它还有许多其他的方式来控制包的加载，就不在这里介绍了。
-
-#### 卸载一个包
-
-Spacemacs 在 .spacemacs 文件中的 `dotspacemacs/init` 函数里提供了一个叫做 `dotspacemacs-excluded-packages` 的变量。只要在列表中添加一个包名，它就会在你重启的时候被卸载。
-
-### 常见调整
-
-本段是为了想要做更多调整的人所写的。除非另有说明，所有这些设置都去你的 .spacemacs 文件中的 `dotspacemacs/user-config` 函数里完成。
-
-#### 变更 escape 键
-
- Spacemacs 使用 [evil-escape](https://github.com/syl20bnr/evil-escape) 来允许从许多拥有一个快捷键的 major-modes 中跳出。你可以在你的 `dotspacemacs/user-config` 函数中像这样定制变量：
-
-```viml
-(defun dotspacemacs/user-config ()
-  ;; ...
-  ;; Set escape keybinding to "jk"
-  (setq-default evil-escape-key-sequence "jk"))
-```
-
-更多的文档可以在 evil-escape README 中找到。
-
-#### 变更配色方案
-
-.spacemacs 文件的 `dotspacemacs/init` 函数中有一个 `dotspacemacs-themes` 变量。这是一个可以用 `SPC T n` 键循环的主题的列表。列表中的第一个主题是在启动时加载的主题。以下为示例：
-
-```viml
-(defun dotspacemacs/init
-    ;; Darktooth theme is the default theme
-    ;; Each theme is automatically installed.
-    ;; Note that we drop the -theme from the package name.
-    ;; Ex. darktooth-theme -> darktooth
-    (setq-default dotspacemacs-themes '(darktooth
-                                        soothe
-                                        gotham)))
-```
-
-可以使用 SPC T h 键列出和选择所有已安装的主题。
-
-#### 非高亮搜索
-
-Spacemacs 模仿了默认的 vim 行为，会高亮显示搜索结果，尽管你不在它们之间进行导航。你可以使用 `SPC s c` 或 `:nohlsearch` 来关闭搜索结果高亮。
-若再也不需要自动高亮结果，你可以卸载 `evil-search-highlight-persist` 包。
-
-#### 会话
-
-当你打开 Spacemacs 时，它不会自动恢复窗口和缓冲区。如果你常使用 vim 会话，你可能要在你的 .spacemacs 文件中的 `dotspacemacs/user-config` 里添加 `(desktop-save-mode t)`，然后你就可以使用 `SPC :desktop-read` 加载已被保存的会话。桌面文件的位置可以使用 `desktop-dirname` 变量设置。要自动加载一个会话，就在你的 .spacemacs 文件中添加 `(desktop-read)`。
-
-#### 使用 visual lines 导航
-
-Spacemacs 使用 vim 默认 actual lines 导航，即使它们被包装了。如果你想要让 `j` 和 `k` 的行为如 `gj` 和 `gk` 一般，将一下代码添加到你的 .spacemacs 文件：
-
-```viml
-(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
-```
+- cd: 选择当前路径
 
 > [返回目录](#目录)
 
@@ -641,8 +295,6 @@ emacs 打开文件后常常因为默认编码与文档编码不同而显示为�
 ## References
 
 > 本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
-> 笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
-
-* <https://www.oschina.net/translate/migrating-from-vim>
+> 笔记内容摘录于下列文章，相应权利归属原作者，如有未列出或不妥，请联系我立即增补或删除。
 
 > [返回目录](#目录)
