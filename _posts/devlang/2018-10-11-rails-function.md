@@ -56,6 +56,14 @@ tags:
 
 返回大写字符串。
 
+### `String.camelize`
+
+字符串蛇式转驼峰式，需 `ActiveSupport` 支持。
+
+### `String.underscore`
+
+字符串驼峰式转蛇式，需 `ActiveSupport` 支持。
+
 ### `String.reverse`
 
 反转字符串内容。
@@ -159,11 +167,28 @@ params = {'bar' => 'baz'}
 foo(params) #  ArgumentError: wrong number of arguments (1 for 0)
 ```
 
-所以需要将 HashWithIndifferentAccess 转换成以 Symbol 作为 key
+所以创建 HashWithIndifferentAccess
 
 ``` rails
-params = {bar: 'baz'}.with_indifferent_access
-foo(params.symbolize_keys) #  'baz'
+hash = {bar: 'baz'}
+params = hash.with_indifferent_access
+# 或者
+params = HashWithIndifferentAccess.new(hash)
+```
+
+再转换成以 Symbol key 或 String key
+
+``` rails
+foo(params.stringify_keys)      #  'baz'
+foo(params.deep_stringify_keys) #  'baz'
+foo(params.symbolize_keys)      #  :baz
+foo(params.deep_symbolize_keys) #  :baz
+```
+
+也可以尝试不安全的转换
+
+``` rails
+hash = eval("{a: 'aaa', b: 'bbb'}")
 ```
 
 > [返回目录](#目录)

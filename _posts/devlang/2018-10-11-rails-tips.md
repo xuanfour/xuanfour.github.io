@@ -26,6 +26,9 @@ tags:
         - [引用一个目录下所有文件](#引用一个目录下所有文件)
     - [format.json](#formatjson)
     - [RESTful API 配置 CORS 实现跨域请求](#restful-api-配置-cors-实现跨域请求)
+    - [Turoblinks 导致 action 执行两次](#turoblinks-导致-action-执行两次)
+        - [从项目中删除 turbolinks](#从项目中删除-turbolinks)
+        - [新建项目时跳过 turbolinks](#新建项目时跳过-turbolinks)
     - [References](#references)
 
 <!-- markdown-toc end -->
@@ -193,6 +196,151 @@ end
 
 ``` rails
 match 'controller', to: 'controller#action', via: [:options] ＃ 添加此行
+```
+
+> [返回目录](#目录)
+
+## Turoblinks 导致 action 执行两次 ##
+
+Turoblinks 导致 action 的某些内容被执行两次，如：`redirct_to 外部网址`。
+和 `application.html.erb` 中的下列语句相关:
+
+``` html+erb
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+```
+
+### 在项目的指定视图禁用 turbolinks ###
+
+编辑 `/app/views/layouts/application.html.erb`， 替换标签 `<body>` 为以下内容：
+
+``` html+erb
+<body
+  <% if content_for?(:body_attributes) %>
+    <%= yield(:body_attributes) %>
+  <% end %>
+>
+```
+
+现在，如果需要在指定视图中禁用 turbolinks，可以将以下内容增加到视图文件中：
+
+for Rails 4
+
+``` html+erb
+<% content_for(:body_attributes) do %>
+  data-no-turbolink="true"
+<% end %>
+```
+
+实际会展现为：
+
+``` html+erb
+<body data-no-turbolink="true">
+```
+
+for Rails 5
+
+``` html+erb
+<% content_for(:body_attributes) do %>
+  data-turbolinks="false"
+<% end %>
+```
+
+实际会展现为：
+
+``` html+erb
+<body data-turbolinks="false">
+```
+
+### 在指定链接中禁用 turbolinks ###
+
+可以禁用单独的链接或者批量禁用某个区块内部所有链接的 Turbolinks 功能。
+
+``` html+erb
+<a href="/" data-turbolinks="false">Disabled</a>
+
+<div data-turbolinks="false">
+  <a href="/">Disabled</a>
+</div>
+
+ <%= link_to 'Disabled', dis_path(@dis),
+             data: { turbolinks: false } %>
+```
+
+被禁用的区块中，可以为单独链接启用 Turbolinks。
+
+``` html+erb
+<div data-turbolinks="false">
+  <a href="/" data-turbolinks="true">Enabled</a>
+</div>
+```
+
+注意：`redirct_to` 重复调用的问题受调用重定向的链接元素影响，而不是重定向本身。
+
+### 从项目中删除 turbolinks ###
+
+- 从 Gemfile 中删除 gem 'turbolinks'行。
+- 从 app/assets/javascripts/application.js 中删除//= require turbolinks。
+- 从 app/views/layouts/application.html.erb 中删除两个"data-turbolinks-track" => true 哈希键/值对。
+
+### 新建项目时跳过 turbolinks ###
+
+``` bash
+rails new my_app --skip-turbolinks
+```
+
+### 错误 ###
+
+- `
+ActionView::Template::Error (The asset "application.css" is not present in the asset pipeline.):
+`
+
+回答：
+
+``` shell
+RAILS_ENV=production rails assets:precompile
+```
+
+编辑下面文件内容，或设置 `ENV['RAILS_SERVE_STATIC_FILES']` 为 true。
+
+``` ruby
+`# config/environments/production.rb
+config.public_file_server.enabled = true
+```
+
+- `bin/rails server` 报错：`Could not find a JavaScript runtime`
+
+回答：
+
+安装 `nodejs` 或者在 Gemfile 中添加
+
+``` text
+gem 'execjs'
+gem 'therubyracer'
+```
+
+> [返回目录](#目录)
+
+## 利用文件夹的方式来管理本地语言包 locale ##
+
+``` ruby
+# config/application.rb
+config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**',
+        '*.{rb,yml}').to_s]
+config.i18n.default_locale = :"zh-CN"
+```
+
+按照 rails 风格，config/locales 就是放置语言包的地方，不建议更改。然后我们就可以利用这样的风格来管理语言包了。
+
+``` text
++locales--
+ |+zh-CN
+  |default.yml
+  |devise.yml
+  |..
+ |+en
+  |default.yml
+  |devise.yml
+  |..
 ```
 
 > [返回目录](#目录)
