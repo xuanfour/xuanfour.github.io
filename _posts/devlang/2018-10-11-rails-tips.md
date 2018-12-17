@@ -26,6 +26,9 @@ tags:
         - [引用一个目录下所有文件](#引用一个目录下所有文件)
     - [format.json](#formatjson)
     - [RESTful API 配置 CORS 实现跨域请求](#restful-api-配置-cors-实现跨域请求)
+    - [Turoblinks 导致 action 执行两次](#turoblinks-导致-action-执行两次)
+        - [从项目中删除 turbolinks](#从项目中删除-turbolinks)
+        - [新建项目时跳过 turbolinks](#新建项目时跳过-turbolinks)
     - [References](#references)
 
 <!-- markdown-toc end -->
@@ -193,6 +196,96 @@ end
 
 ``` rails
 match 'controller', to: 'controller#action', via: [:options] ＃ 添加此行
+```
+
+> [返回目录](#目录)
+
+## Turoblinks 导致 action 执行两次 ##
+
+Turoblinks 导致 action 的某些内容被执行两次，如：`redirct_to 外部网址`。
+和 `application.html.erb` 中的下列语句相关:
+
+``` html+erb
+<%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+```
+
+### 在项目的指定视图禁用 turbolinks ###
+
+编辑 `/app/views/layouts/application.html.erb`， 替换标签 `<body>` 为以下内容：
+
+``` html+erb
+<body
+  <% if content_for?(:body_attributes) %>
+    <%= yield(:body_attributes) %>
+  <% end %>
+>
+```
+
+现在，如果需要在指定视图中禁用 turbolinks，可以将以下内容增加到视图文件中：
+
+for Rails 4
+
+``` html+erb
+<% content_for(:body_attributes) do %>
+  data-no-turbolink="true"
+<% end %>
+```
+
+实际会展现为：
+
+``` html+erb
+<body data-no-turbolink="true">
+```
+
+for Rails 5
+
+``` html+erb
+<% content_for(:body_attributes) do %>
+  data-turbolinks="false"
+<% end %>
+```
+
+实际会展现为：
+
+``` html+erb
+<body data-turbolinks="false">
+```
+
+### 在指定链接中禁用 turbolinks ###
+
+可以禁用单独的链接或者批量禁用某个区块内部所有链接的 Turbolinks 功能。
+
+``` html+erb
+<a href="/" data-turbolinks="false">Disabled</a>
+
+<div data-turbolinks="false">
+  <a href="/">Disabled</a>
+</div>
+
+ <%= link_to 'Disabled', dis_path(@dis),
+             data: { turbolinks: false } %>
+```
+
+被禁用的区块中，可以为单独链接启用 Turbolinks。
+
+``` html+erb
+<div data-turbolinks="false">
+  <a href="/" data-turbolinks="true">Enabled</a>
+</div>
+```
+
+注意：`redirct_to` 重复调用的问题受调用重定向的链接元素影响，而不是重定向本身。
+
+### 从项目中删除 turbolinks ###
+
+- 从 Gemfile 中删除 gem 'turbolinks'行。
+- 从 app/assets/javascripts/application.js 中删除//= require turbolinks。
+- 从 app/views/layouts/application.html.erb 中删除两个"data-turbolinks-track" => true 哈希键/值对。
+
+### 新建项目时跳过 turbolinks ###
+
+``` bash
+rails new my_app --skip-turbolinks
 ```
 
 > [返回目录](#目录)
