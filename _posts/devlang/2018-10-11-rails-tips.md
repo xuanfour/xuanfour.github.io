@@ -288,6 +288,64 @@ for Rails 5
 rails new my_app --skip-turbolinks
 ```
 
+<<<<<<< HEAD
+=======
+### 错误 ###
+
+- `
+ActionView::Template::Error (The asset "application.css" is not present in the asset pipeline.):
+`
+
+回答：
+
+``` shell
+RAILS_ENV=production rails assets:precompile
+```
+
+编辑下面文件内容，或设置 `ENV['RAILS_SERVE_STATIC_FILES']` 为 true。
+
+``` ruby
+`# config/environments/production.rb
+config.public_file_server.enabled = true
+```
+
+- `bin/rails server` 报错：`Could not find a JavaScript runtime`
+
+回答：
+
+安装 `nodejs` 或者在 Gemfile 中添加
+
+``` text
+gem 'execjs'
+gem 'therubyracer'
+```
+
+> [返回目录](#目录)
+
+## 利用文件夹的方式来管理本地语言包 locale ##
+
+``` ruby
+# config/application.rb
+config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**',
+        '*.{rb,yml}').to_s]
+config.i18n.default_locale = :"zh-CN"
+```
+
+按照 rails 风格，config/locales 就是放置语言包的地方，不建议更改。然后我们就可以利用这样的风格来管理语言包了。
+
+``` text
++locales--
+ |+zh-CN
+  |default.yml
+  |devise.yml
+  |..
+ |+en
+  |default.yml
+  |devise.yml
+  |..
+```
+
+>>>>>>> 246057b41feb2511b092cb1c49e04f52acb65cbd
 > [返回目录](#目录)
 
 ## References ##

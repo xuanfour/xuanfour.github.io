@@ -236,6 +236,22 @@ Leader s 检索工具 作用域
 | Leader | 控制键 | 其他键 | 说明         |
 | ------ | ------ | ------ | ----         |
 | L-ft   |        |        | 切换 neotree |
+<<<<<<< HEAD
+=======
+
+### window 快捷键
+
+| Leader    | 控制键 | 其他键 | 说明                       |
+| ------    | ------ | ------ | ----                       |
+| L-1..9    |        |        | 切换 window                |
+| L-w[hjkl] |        |        | 切换到上下左右 window      |
+| L-w[HJKL] |        |        | 当前 window 移动到上下左右 |
+| L-w-      |        |        | 上下分割 window            |
+| L-w/      |        |        | 左右分割 window            |
+| L-wd      |        |        | 关闭 window                |
+| L-wb      |        |        | 切换到 minibuffer          |
+|           |        |        |                            |
+>>>>>>> 246057b41feb2511b092cb1c49e04f52acb65cbd
 
 ### toggles 快捷键
 

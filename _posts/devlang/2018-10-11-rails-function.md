@@ -56,6 +56,14 @@ tags:
 
 返回大写字符串。
 
+### `String.camelize`
+
+字符串蛇式转驼峰式，需 `ActiveSupport` 支持。
+
+### `String.underscore`
+
+字符串驼峰式转蛇式，需 `ActiveSupport` 支持。
+
 ### `String.reverse`
 
 反转字符串内容。
