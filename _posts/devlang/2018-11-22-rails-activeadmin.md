@@ -109,7 +109,7 @@ User.first.has_role? :admin
 如果第二行返回为 true， 则表示角色设置成功了。另外需要再添加一个普通用户作为测试，同样在 rails console 环境下处理
 
 ``` ruby
-User.create({email: "general@example.com", password: "password"})
+User.create!(email: 'general@example.com', password: 'password', password_confirmation: 'password')
 ```
 
 ### 本地化 ###
@@ -169,7 +169,7 @@ config.on_unauthorized_access = :access_denied
 ``` ruby
 # app/controller/application_controller.rb
 def access_denied(exception)
-  redirect_to users_path, alert: exception.message
+  redirect_to(users_path, alert: exception.message)
 end
 ```
 
@@ -292,40 +292,38 @@ menu 有 4 个选项可以用：
 ### 添加自定义的 menu ###
 
 ``` ruby
-config/initializers/active_admin.rb
+# config/initializers/active_admin.rb
 
-  config.namespace :admin do |admin|
-    admin.build_menu do |menu|
-      menu.add label: "The Application", url: "/", priority: 0
+config.namespace :admin do |admin|
+  admin.build_menu do |menu|
+    menu.add label: "The Application", url: "/", priority: 0
 
-      menu.add label: "Sites" do |sites|
-        sites.add label: "Google",
-                  url: "http://google.com",
-                  html_options: { target: :blank }
-        sites.add label: "Github",
-                  url: "http://github.com"
-      end
+    menu.add label: "Sites" do |sites|
+      sites.add label: "Google",
+                url: "http://google.com",
+                html_options: { target: :blank }
+      sites.add label: "Github",
+                url: "http://github.com"
     end
   end
+end
 ```
 
 ### 自定义 resource 的 index 页面 ###
 
-提供 4 中样式，Block,Blog,Grid,Table，一般我们用的是 table,也是默认的样式。这里只介绍 table.
-
+提供 4 中样式，Block，Blog，Grid，Table，一般我们用的是 table，也是默认的样式。这里只介绍 table。
 默认的，index 页面会展示对应的 model 的所以字段，可供查看，修改，删除。
-
 如果要自定义字段，可以用：
 
 ``` ruby
 index do
   selectable_column
   column :title
-  column "My custom name" ,:name
+  column "My custom name", :name
 end
 ```
 
-这些自定的字段要被 index 包裹
+这些自定的字段要被 index 包裹：
 
 - selectable_column 显示勾选框，用于批量操作
 - column 显示什么字段，该字段必须是 model 的字段名，可以给这个字段另取一个别名
@@ -413,7 +411,7 @@ form title: 'A custom title' do |f|
 link_to path 中的 path 指定的方式是
 
 1. 命名空间_model 的复数形式_path
-2. controller 名_方法名_path
+2. controller 名称_方法名_path
 
 ``` ruby
 action_item only: :index do
