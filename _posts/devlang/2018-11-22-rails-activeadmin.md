@@ -74,8 +74,8 @@ gem 'activeadmin'
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
-# gem 'draper'
-# gem 'pundit'
+gem 'draper'
+gem 'pundit'
 ```
 
 ``` shell
@@ -176,6 +176,24 @@ end
 ``` ruby
 # config/routes.rb
 root to: 'admin/dashboard#index'
+```
+
+### 配置邮件服务器 ###
+
+在开发环境下，需要配置下列内容：
+
+``` ruby
+# config/environments/development.rb:
+config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+```
+
+### 配置信息提示页面 ###
+
+``` ruby
+# app/views/layouts/application.html.erb
+
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 ```
 
 ### 启动服务 ###
@@ -573,12 +591,100 @@ rails generate active_admin:assets
 如果提示：uninitialized constant Admin::DashboardController
 这个时候，需要 dashboard view（app/admin/dashboards.rb）和初始化的时候一样。
 
+## Rails Activeadmin 界面构成方法解析 ##
+
+以一个 PMS 系统中的供应商界面的功能来做例子，并没有将界面与后台代码解偶，而是绑定在了一起。controller 是这个文件，view 也是这个界面，只有 model 是另外的文件，这是 rails 的要求。该界面数据和数据库的一张表，或者说一个 model 相对应。一个界面就和一张数据表绑定，非绑定数据界面另放 view 中 render。理解这一点才能更好的理解功能的实现。
+
+``` ruby
+#supplier.rb 文件：
+ActiveAdmin.register Supplier do
+
+#permit_params:允许数据库传到界面的参数
+  permit_params :supplier_code, :supplier_type, :supplier_name, :supplier_simple, :company_address, :company_tel, :company_fax, :supplier_status, :company_account,
+                :account_name, :company_tax, :supplier_order, :contact_count, :attachment_count, :material_count, :remark, :operator_id, :payment_term
+#分页开启，和每页数据量
+  config.paginate = true
+  config.per_page = 20
+  #默认排序
+  config.sort_order = 'supplier_order'
+
+  #禁用功能
+  config.filters = false
+  config.batch_actions = false
+
+#绑定的数据表的信息展示,将展示的信息做处理，如果不写这段，数据表中的数据仍然会显示，　但是会显示所有字段，并且显示的列名为数据表的字段名，从网页显示的角度来说并不美观
+index :title => '供应商列表' do
+    selectable_column
+    #id_column
+    column "编码", :supplier_code
+    column "类别", :supplier_type_name
+    column "名称", :supplier_name
+    column "公司地址", :company_address
+    column "状态", :supplier_status_name
+    column "备注", :remark
+    column "属性" do |f|
+
+      if f.attachment_count > 0
+        span  do
+          image_tag "/assets/icons/address.png", height: '20', width: '20', title: "有附件"
+        end
+      end
+    end
+    actions
+  end
+
+#界面方法，如非绑定数据界面的后台方法的
+ collection_action :get_users, :method => :post do
+    supplier_id = params[:id]
+    render json: SupplierContact.format_contact_data(supplier_id)
+  end
+
+  collection_action :save_contact, :method => :post do
+    render json: SupplierContact.save_contact_data(params)
+  end
+
+＃form 表单显示　和 index 一样是一种数据展示的方式，其他的还有 grid,Table,blog,Blocks
+＃
+form do |f|
+    f.inputs "供应商信息" do
+
+      #只有新建时才更新
+      if resource.supplier_code.present?
+        supplier_code = resource.supplier_code
+      else
+        supplier_code = Base.get_model_code('GYS', 4, 'supplier')
+      end
+
+      f.input :supplier_code, :hint => "供应商唯一编号", :input_html => { :value => supplier_code, :readonly => true}, :label=> "供应商编号"
+
+      f.input :supplier_name, :label=> "供应商全称", :required => true
+      f.input :supplier_simple, :label=> "简称"
+      f.input :supplier_type, :as => :select, :collection =>  resource.supplier_type_ary, :include_blank => false, :label=> "供应商类别"
+      f.input :supplier_status, :as => :select, :collection =>  resource.supplier_status_ary, :include_blank => false, :label=> "供应商状态"
+      f.input :company_address, :label=> "公司地址"
+      f.input :company_tel, :label=> "公司座机"
+      f.input :company_fax, :label=> "公司传真"
+      f.input :company_account, :label=> "公司账户"
+      f.input :account_name, :label=> "账户名称"
+      f.input :company_tax, :label=> "税号"
+      f.input :payment_term, :label=> "付款周期"
+      f.input :remark, :input_html => { :rows => "5"}, :label=> "备注"
+      f.input :operator_id, :as => :hidden, :input_html => {:value => current_active_admin_user.id}
+    end
+    f.actions
+  end
+
+
+ end
+```
+
 ## 相关资源 ##
 
 - GitHub:   <https://github.com/activeadmin/activeadmin>
 - 官方文档：<https://activeadmin.info/index.html>
 - 示例网址：<https://demo.activeadmin.info>
 - 邮箱列表：<https://groups.google.com/group/activeadmin>
+- 其他相关：http://blog.csdn.net/feng88724/article/details/49124281
 
 > [返回目录](#目录)
 
@@ -589,5 +695,6 @@ rails generate active_admin:assets
 
 - https://www.jianshu.com/p/0512a168733d
 - https://blog.csdn.net/feng88724/article/details/49101487
+- https://blog.csdn.net/life_is_crazy/article/details/72778227
 
 > [返回目录](#目录)
