@@ -64,18 +64,20 @@ rails new auth
 
 添加下面的 Gem 到 Gemfile
 
-- activeadmin 必须
-- devise 用户登录验证，必须
-- cancancan 权限管理
-- rolify 角色管理
+- activeadmin 后台管理
+- devise：负责用户注册、登录、退出、找回密码等操作。
+- cancancan：负责角色建立、对角色授权、在页面中根据授权是否显示元素，以及模型中超出授权时抛出异常。
+- rolify：负责将用户与角色关联。
+- draper：model 装饰，添加一个面向对象的表示逻辑层，增强性 helper。
+- pundit：针对用户和类的权限管理。
 
 ``` ruby
 gem 'activeadmin'
 gem 'devise'
 gem 'cancancan'
 gem 'rolify'
-gem 'draper'
-gem 'pundit'
+# gem 'draper'
+# gem 'pundit'
 ```
 
 ``` shell
@@ -676,6 +678,51 @@ form do |f|
 
 
  end
+```
+
+## 增加全局错误信息提示 ##
+
+### 定义错误 ###
+
+``` ruby
+class User < ActiveRecord::Base
+  before_destroy :before_destroy_check
+
+  def before_destroy_check
+    errors.add(:base, '不能删除管理员') if id < 2
+    throw :abort if errors.anyblank?
+  end
+end
+```
+
+### 显示错误 ###
+
+``` ruby
+form do |f|
+  f.semantic_errors *f.object.errors.keys
+  # ...
+end
+```
+
+或者直接打补丁
+
+``` ruby
+config/initializers/active_admin_patches.rb.
+
+class ActiveAdmin::ResourceController
+  def check_model_errors(object)
+      return unless object.errors.any?
+      flash[:error] ||= []
+      flash[:error].concat(object.errors.full_messages)
+  end
+end
+
+class ActiveAdmin::ResourceDSL
+  alias_method :old_run_registration_block, :run_registration_block
+  def run_registration_block(&block)
+    old_run_registration_block(&block)
+    instance_exec { after_destroy :check_model_errors }
+  end
 ```
 
 ## 相关资源 ##
