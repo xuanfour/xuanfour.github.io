@@ -67,13 +67,13 @@ tags:
 
 ### 引导键配置
 
-| 引导键    | 配置选项                                 | 说明                            |
-| ------    | -----                                    | -------                         |
-| `<space>` | dotspacemacs-leader-key                  | vim 按键 leader 键              |
-| ,         | dotspacemacs-major-mode-leader-key       | vim 按键 major-mode-leader 键   |
-| :         | dotspacemacs-ex-command-key              | vim 按键扩展命令键              |
-| M-m       | dotspacemacs-emacs-leader-key            | emacs 按键 leader 键            |
-| C-M-m     | dotspacemacs-major-mode-emacs-leader-key | emacs 按键 major-mode-leader 键 |
+| 引导键  | 配置选项                                 | 说明                            |
+| ------  | -----                                    | -------                         |
+| <space> | dotspacemacs-leader-key                  | vim 按键 leader 键              |
+| ,       | dotspacemacs-major-mode-leader-key       | vim 按键 major-mode-leader 键   |
+| :       | dotspacemacs-ex-command-key              | vim 按键扩展命令键              |
+| M-m     | dotspacemacs-emacs-leader-key            | emacs 按键 leader 键            |
+| C-M-m   | dotspacemacs-major-mode-emacs-leader-key | emacs 按键 major-mode-leader 键 |
 
 ### 重要快捷键
 
@@ -81,9 +81,9 @@ tags:
 | ------------------------------ | -------------------------------- |
 | C-g                            | 停止当前运行/输入的命令          |
 | C-x u                          | 撤销前一个命令                   |
-| `M-x revert-buffer <Return>`   | 撤销上次存盘后所有改动           |
-| `M-x recover-file <Return>`    | 从自动存盘文件恢复               |
-| `M-x recover-session <Return>` | 如果你编辑了几个文件, 用这个恢复 |
+| M-x recover-file <Return>      | 从自动存盘文件恢复               |
+| M-x revert-buffer <Return>     | 撤销上次存盘后所有改动           |
+| M-x recover-session <Return>   | 如果你编辑了几个文件, 用这个恢复 |
 
 ### 自定义快捷键
 
@@ -272,29 +272,29 @@ Leader s 检索工具 作用域
 
 ### major-mode-cmd 快捷键
 
-| Leader      | 控制键  | 其他键     | 说明                                          |
-| ------      | ------  | ------     | ----                                          |
-|             |         | ,          | major mode                                    |
-| L-meb       |         | ,eb        | 执行当前 buffer                               |
-| L-mee       | C-x C-e | ,ee        | 执行最后一条表达式，结果在小窗显示            |
-| L-m=        |         | ,=         | 格式化代码                                    |
+| Leader | 控制键  | 其他键 | 说明                               |
+| ------ | ------  | ------ | ----                               |
+|        |         | ,      | major mode                         |
+| L-meb  |         | ,eb    | 执行当前 buffer                    |
+| L-mee  | C-x C-e | ,ee    | 执行最后一条表达式，结果在小窗显示 |
+| L-m=   |         | ,=     | 格式化代码                         |
 
 ### other 快捷键
 
-| Leader      | 控制键  | 其他键     | 说明                                          |
-| ------      | ------  | ------     | ----                                          |
-| `L-<Space>` | M-x     |            | M-x                                           |
-| `L-<Tab>`   |         |            | 切换到上一个 buffer                           |
-|             |         | `[<space>` | 增加行上空行                                  |
-|             |         | `]<space>` | 增加行上空行                                  |
-|             |         | ]]         | 在当前位置换行                                |
-|             | C-x ;   |            | 设置注释列                                    |
-| L-;;        | C-x C-; |            | 注释当前行                                    |
-| L-;         |         |            | 注释选择行                                    |
-|             | C-o/i   |            | 向上/下跳转到上次移动位置                     |
-|             |         | ,          | major mode                                    |
-|             | C-j     |            | 在光标处打印最后一条表达式结果                |
-|             |         | =          | 格式化选择区域代码                            |
+| Leader      | 控制键  | 其他键     | 说明                           |
+| ------      | ------  | ------     | ----                           |
+| `L-<Space>` | M-x     |            | M-x                            |
+| `L-<Tab>`   |         |            | 切换到上一个 buffer            |
+|             |         | `[<space>` | 增加行上空行                   |
+|             |         | `]<space>` | 增加行上空行                   |
+|             |         | ]]         | 在当前位置换行                 |
+|             | C-x ;   |            | 设置注释列                     |
+| L-;;        | C-x C-; |            | 注释当前行                     |
+| L-;         |         |            | 注释选择行                     |
+|             | C-o/i   |            | 向上/下跳转到上次移动位置      |
+|             |         | ,          | major mode                     |
+|             | C-j     |            | 在光标处打印最后一条表达式结果 |
+|             |         | =          | 格式化选择区域代码             |
 
 ## M-x 命令 ##
 
