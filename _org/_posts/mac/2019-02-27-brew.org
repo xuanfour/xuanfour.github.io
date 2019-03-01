@@ -1,5 +1,3 @@
-#+language: zh-CN
-#+options: toc:nil
 #+begin_export html
 ---
 layout: post
@@ -12,12 +10,6 @@ keywords: ""
 header-img: "img/post-bg-unix-linux.jpg"
 ---
 #+end_export
-
-#+begin_quote
-#<<top>>
-#+end_quote
-
-#+toc: headlines 5
 
 * brew 命令简述
 
@@ -170,7 +162,3 @@ git remote set-url origin https://github.com/Homebrew/homebrew-cask
 - 若不满意 ~brew~ 的下载速度，中断下载，查看缓存目录，会发现里面有 ~xxx.incomplete~ 文件。
 - 将通过其他方式获得安装包重命名为去除 ~.incomplete~ 后缀的文件名，删除缓存文件后将安装包拷贝到缓存目录。
 - 重新运行 ~brew cask install xxx~ 。
-
-#+begin_quote
-[[top][Return Top]]
-#+end_quote

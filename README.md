@@ -1,15 +1,35 @@
-## 我走我看 | 老轩的博客
+# NexT
 
-### 最新说明
+> 精于心，简于形
 
-    手欠啊！！！
-    脑子被猫吃了，几年的文档被自己误删除后又覆盖拷贝，不抱希望了，在大脑反应前，小手指轻轻的按了下回车键，剁手中……
+NexT 是由 [Hexo NexT](https://github.com/iissnan/hexo-theme-next) 移植而来的 Jekyll 主题。<!--commit: f951075d9b739d26b42472431995fa68d08796aa-->
 
-## 概述
+<a href="http://simpleyyt.github.io/jekyll-theme-next/" target="_blank">在线预览 Preview</a> | <a href="http://simpleyyt.com" target="_blank">Yitao's Blog</a> | <a href="http://theme-next.simpleyyt.com" target="_blank">NexT 使用文档</a> |  [English Documentation](README.en.md)
 
-[轩四的博客](https://xuanfour.github.io) 记录了我的学习和生活的经历过程，既为了再次查询时的备忘，也想留下了一路走过的痕迹。
+[![Join the chat at https://gitter.im/simpleyyt/jekyll-theme-next](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/jekyll-theme-next/lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-## 版权说明
+![NexT Schemes](http://iissnan.com/nexus/next/next-schemes.jpg)
 
-* 本网站所有作品，除明确申明作者为他人以外，版权为本人所有，以商业盈利目的使用需经本人授权同意。
-* 非商业盈利目的使用，在不侵犯法律赋予的著作权人享有的权利，并指明作者姓名、作品名称，作品出处后，允许转载使用。
+
+## 浏览器支持 Browser support
+
+![Browser support](http://iissnan.com/nexus/next/browser-support.png)
+
+
+## 贡献 Contributing
+
+欢迎提交问题与需求，修复代码。
+
+
+## 开发 Development
+
+NexT 主旨在于简洁优雅且易于使用，所以首先要尽量确保 NexT 的简洁易用性。
+
+NexT is built for easily use with elegant appearance. First things first, always keep things simple.
+
+
+## 捐赠
+
+支付宝捐赠链接还是要有的，万一真的有人捐呢。
+
+![支付宝扫码捐赠](http://7lryc0.com1.z0.glb.clouddn.com/a6x049034plyvjm1rvn4h28%20%281%29.png)
