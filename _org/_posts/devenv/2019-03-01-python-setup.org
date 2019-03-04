@@ -3,11 +3,12 @@
 layout: post
 title: "Python 安装配置"
 date: 2019-03-01
-categories: dev
-tags: [python, pyenv]
+categories: 研发环境
+tags:
+    - Python
+    - pyenv
 excerpt:
 keywords: ""
-header-img: "img/post-bg-unix-linux.jpg"
 ---
 #+end_export
 
