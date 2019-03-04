@@ -84,6 +84,8 @@ tags:
 | M-x recover-file <Return>      | 从自动存盘文件恢复               |
 | M-x revert-buffer <Return>     | 撤销上次存盘后所有改动           |
 | M-x recover-session <Return>   | 如果你编辑了几个文件, 用这个恢复 |
+| Tab                            | 代码补全                         |
+| M-/                            | 代码片段                         |
 
 ### 自定义快捷键
 
@@ -387,6 +389,59 @@ emacs 打开文件后常常因为默认编码与文档编码不同而显示为�
 
 * 快捷键 `<leader>fee` 编辑环境变量文件。
 * 快捷键 `<leader>fe C-e` 强制初始化环境变量文件。
+
+## YASnippet 代码片段
+
+### 添加 snippet ###
+
+`M-x` 然后输入 `yas-new-snippet` 回车 RET，会出现一个新的 buffer
+
+    ``` text
+    # -*- mode: snippet -*-
+    # name:
+    # key:
+    # --
+    ```
+
+在出现的 buffer 中填写相应的数据
+
+    ``` text
+    # -*- mode: snippet -*-
+    # name: vard
+    # key: vard
+    # --
+    echo '<pre>';
+    var_dump($0);
+    die;
+    ```
+
+`c-x c-s` 保存
+
+可以保存到两个地方：
+
+``` shell
+~/.emacs.d/private/snippets/modename-mode/
+~/.spacemacs.d/snippets/modename-mode/
+```
+
+代码片段中的 `$0` 表示代码片段填充之后光标最后停的地方，`$1 $2 $3...` 表示按 TAB 之后光标停的地方。这些变量我们叫做 tab stop
+
+在已存在的代码片段上创建 snippet  `helm-yas-create-snippet-on-region`
+
+### 使用 snippet ###
+
+打开一个 buffer
+M-/ spacemacs 的 TAB 按键被自动补全使用了，所以这里使用了 M-/ 来触发。
+如果有多个 tab stop 可以使用 TAB 进行跳转
+
+### 与 auto-completion 整合 ###
+
+``` emacs-lisp
+;; 让 auto-completion 在提示的时候加上 snippets
+(setq-default dotspacemacs-configuration-layers
+              '((auto-completion :variables
+                                 auto-completion-enable-snippets-in-popup t)))
+```
 
 ## References
 
