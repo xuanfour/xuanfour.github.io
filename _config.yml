@@ -441,9 +441,6 @@ changyan:
 # Support for gitalk comments system.
 gitalk:
   enable: true
-  # clientID: 39dfd5218aa1a7c001c3
-  # clientSecret: c3bbb5dfbdcb9820d5dd4eae446bca4b7439b17a
-  # repo: blog.wozouwokan.com
   clientID: '102de867c3c0627f1b37'
   clientSecret: 'cce64a4bee077dc607060f4ac8c2d4d7cd8bfeab'
   repo: 'xuanfour.github.io'
