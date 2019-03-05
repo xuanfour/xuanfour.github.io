@@ -1,0 +1,139 @@
+#+begin_export html
+---
+layout: post
+title:  "Mac 安装使用"
+date:   2017-07-26
+categories: MacOS
+tags:
+    - MacOS
+excerpt:
+keywords: ""
+---
+#+end_export
+
+* 常用工具
+
+- Karabiner 键盘自定义
+- Hammerspoon 快捷键设置
+- Alfred 快速启动工具
+- Jietu 截图工具
+- Lantern 蓝灯 VPN 软件
+- Parallels Desktop 虚拟机系统
+- Enpass 密码管理工具
+
+* 文本编辑
+
+** Spacemacs 安装以及基本配置
+
+#+begin_src shell
+brew install ag
+brew install grep
+brew tap d12frosted/emacs-plus
+brew install emacs-plus
+# 安装完毕之后，链接我的 spacemacs 配置
+$XCFG/editor/emacs/spacemacs/linkspac.sh
+# 输入 emacs 进行初始化，如果你可以正常访问 Github 的话时间在半小时之内。
+emacs
+#+end_src
+
+** Pandoc 安装以及基本配置
+
+#+begin_src shell
+brew install pandoc
+# 分析器安装
+brew install pandoc-citeproc
+# 组件安装
+brew install librsvg homebrew/cask/basictex
+# 如果警告缺少字体
+tlmgr install collection-fontsrecommended
+#+end_src
+
+> [返回目录](#目录)
+
+* 多媒体
+
+** 安装视频播放器
+
+*** iina
+
+#+begin_src shell
+brew cask install iina
+#+end_src
+
+> [返回目录](#目录)
+
+* Terminal
+
+** locate
+
+#+begin_src shell
+# mac 下更新数据库命令是
+sudo /usr/libexec/locate.updatedb
+# mac 下使用不要使用通配符，locate 自动将包含关键字的文件都检索
+locate temp
+#+end_src
+
+** lszrz
+
+- 不论是发送还是接收，，都是在服务器端输入命令执行的。
+- 无法传输大于 4G 的文件。
+- 使用 tmux 或其他多路终端屏幕可能会失败，尝试在服务器上增加 -e 选项以强制在传输过程中转义更多字符。
+- 使用 expect 或 rlogin 可能会失败，因为它期望双方之间的大多数干净的 8 位连接。
+
+--注：本人在 mac + zsh + iterm2 环境里使用成功，但尝试在 tmux 环境中使用未成功！--
+
+*** 安装 lrzsz
+
+#+begin_src shell
+brew install lrzsz
+#+end_src
+
+*** 下载 iTerm2 支持脚本
+
+#+begin_src shell
+cd /usr/local/bin
+sudo curl -O https://raw.githubusercontent.com/mmastrac/iterm2-zmodem/master/iterm2-recv-zmodem.sh
+sudo curl -O https://raw.githubusercontent.com/mmastrac/iterm2-zmodem/master/iterm2-send-zmodem.sh
+sudo chmod +x iterm2-
+#+end_src
+
+*** 设置 iTerm2 Trigger
+
+在 iTerm2 的 Preferences 中，选择 `Profiles—>Default—>Advanced—>Triggers—>Edit`，设置如下 trigger
+
+#+end_srctext
+Regular expression: rz waiting to receive.\-\-B0100
+Action: Run Silent Coprocess
+Parameters: /usr/local/bin/iterm2-send-zmodem.sh
+Instant: checked
+
+Regular expression: \-\-B00000000000000
+Action: Run Silent Coprocess
+Parameters: /usr/local/bin/iterm2-recv-zmodem.sh
+Instant: checked
+#+end_src
+
+*** 发送文件到远端服务器
+
+- 在远端服务器执行 `rz`
+- 本地选择文件传输
+- 等待传输指示消失
+
+*** 接收远端服务器的文件
+
+- 在远端服务器执行 `sz filename1 filename2 … filenameN`
+- 本地选择目录保存
+- 等待传输指示消失
+
+* Tips
+
+** 应用
+
+*** 取消下载应用
+
+- 在启动台按住 option 键，点击应用图标上端的叉号删除 App Store 正在下载的应用。
+
+*** 删除应用
+
+- 在应用程序文件夹中直接删除应用。
+- 在启动台按住 option 键，点击应用图标上端的叉号删除 App Store 下载的应用。

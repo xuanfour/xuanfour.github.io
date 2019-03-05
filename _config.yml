@@ -440,12 +440,12 @@ changyan:
 
 # Support for gitalk comments system.
 gitalk:
-  enable: false
-  clientID: # 39dfd5218aa1a7c001c3
-  clientSecret: # c3bbb5dfbdcb9820d5dd4eae446bca4b7439b17a
-  repo: # xuanfour.github.io
-  owner: # xuanfour
-  admin: # xuanfour
+  enable: true
+  clientID: 39dfd5218aa1a7c001c3
+  clientSecret: c3bbb5dfbdcb9820d5dd4eae446bca4b7439b17a
+  repo: xuanfour.github.io
+  owner: xuanfour
+  admin: xuanfour
 
 # Baidu Share
 # Available value:
