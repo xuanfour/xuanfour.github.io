@@ -1,0 +1,224 @@
+---
+layout: post
+title:  "Mac 安装使用"
+date:   2017-07-26
+categories: MacOS
+tags:
+    - MacOS
+excerpt:
+keywords: ""
+---
+
+<div id="outline-container-orgce56aa5" class="outline-2">
+<h2 id="orgce56aa5"><span class="section-number-2">1</span> 常用工具</h2>
+<div class="outline-text-2" id="text-1">
+<ul class="org-ul">
+<li>Karabiner 键盘自定义</li>
+<li>Hammerspoon 快捷键设置</li>
+<li>Alfred 快速启动工具</li>
+<li>Jietu 截图工具</li>
+<li>Lantern 蓝灯 VPN 软件</li>
+<li>Parallels Desktop 虚拟机系统</li>
+<li>Enpass 密码管理工具</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org76931f5" class="outline-2">
+<h2 id="org76931f5"><span class="section-number-2">2</span> 文本编辑</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgc660776" class="outline-3">
+<h3 id="orgc660776"><span class="section-number-3">2.1</span> Spacemacs 安装以及基本配置</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-shell">brew install ag
+brew install grep
+brew tap d12frosted/emacs-plus
+brew install emacs-plus
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23433;&#35013;&#23436;&#27605;&#20043;&#21518;&#65292;&#38142;&#25509;&#25105;&#30340; spacemacs &#37197;&#32622;</span>
+$<span style="color: #7590db;">XCFG</span>/editor/emacs/spacemacs/linkspac.sh
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36755;&#20837; emacs &#36827;&#34892;&#21021;&#22987;&#21270;&#65292;&#22914;&#26524;&#20320;&#21487;&#20197;&#27491;&#24120;&#35775;&#38382; Github &#30340;&#35805;&#26102;&#38388;&#22312;&#21322;&#23567;&#26102;&#20043;&#20869;&#12290;</span>
+emacs
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5ff4230" class="outline-3">
+<h3 id="org5ff4230"><span class="section-number-3">2.2</span> Pandoc 安装以及基本配置</h3>
+<div class="outline-text-3" id="text-2-2">
+<div class="org-src-container">
+<pre class="src src-shell">brew install pandoc
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20998;&#26512;&#22120;&#23433;&#35013;</span>
+brew install pandoc-citeproc
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32452;&#20214;&#23433;&#35013;</span>
+brew install librsvg homebrew/cask/basictex
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#35686;&#21578;&#32570;&#23569;&#23383;&#20307;</span>
+tlmgr install collection-fontsrecommended
+</pre>
+</div>
+
+<p>
+&gt; [返回目录](#目录)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org953ef33" class="outline-2">
+<h2 id="org953ef33"><span class="section-number-2">3</span> 多媒体</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org33ad9fb" class="outline-3">
+<h3 id="org33ad9fb"><span class="section-number-3">3.1</span> 安装视频播放器</h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-org1aa66f3" class="outline-4">
+<h4 id="org1aa66f3"><span class="section-number-4">3.1.1</span> iina</h4>
+<div class="outline-text-4" id="text-3-1-1">
+<div class="org-src-container">
+<pre class="src src-shell">brew cask install iina
+</pre>
+</div>
+
+<p>
+&gt; [返回目录](#目录)
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org99afb6e" class="outline-2">
+<h2 id="org99afb6e"><span class="section-number-2">4</span> Terminal</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org0cfcf48" class="outline-3">
+<h3 id="org0cfcf48"><span class="section-number-3">4.1</span> locate</h3>
+<div class="outline-text-3" id="text-4-1">
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">mac &#19979;&#26356;&#26032;&#25968;&#25454;&#24211;&#21629;&#20196;&#26159;</span>
+sudo /usr/libexec/locate.updatedb
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">mac &#19979;&#20351;&#29992;&#19981;&#35201;&#20351;&#29992;&#36890;&#37197;&#31526;&#65292;locate &#33258;&#21160;&#23558;&#21253;&#21547;&#20851;&#38190;&#23383;&#30340;&#25991;&#20214;&#37117;&#26816;&#32034;</span>
+locate temp
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3e22956" class="outline-3">
+<h3 id="org3e22956"><span class="section-number-3">4.2</span> lszrz</h3>
+<div class="outline-text-3" id="text-4-2">
+<ul class="org-ul">
+<li>不论是发送还是接收，，都是在服务器端输入命令执行的。</li>
+<li>无法传输大于 4G 的文件。</li>
+<li>使用 tmux 或其他多路终端屏幕可能会失败，尝试在服务器上增加 -e 选项以强制在传输过程中转义更多字符。</li>
+<li>使用 expect 或 rlogin 可能会失败，因为它期望双方之间的大多数干净的 8 位连接。</li>
+</ul>
+
+<p>
+&#x2013;注：本人在 mac + zsh + iterm2 环境里使用成功，但尝试在 tmux 环境中使用未成功！&#x2013;
+</p>
+</div>
+
+<div id="outline-container-org7aa10e7" class="outline-4">
+<h4 id="org7aa10e7"><span class="section-number-4">4.2.1</span> 安装 lrzsz</h4>
+<div class="outline-text-4" id="text-4-2-1">
+<div class="org-src-container">
+<pre class="src src-shell">brew install lrzsz
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd90e2f2" class="outline-4">
+<h4 id="orgd90e2f2"><span class="section-number-4">4.2.2</span> 下载 iTerm2 支持脚本</h4>
+<div class="outline-text-4" id="text-4-2-2">
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #4f97d7;">cd</span> /usr/local/bin
+sudo curl -O https://raw.githubusercontent.com/mmastrac/iterm2-zmodem/master/iterm2-recv-zmodem.sh
+sudo curl -O https://raw.githubusercontent.com/mmastrac/iterm2-zmodem/master/iterm2-send-zmodem.sh
+sudo chmod +x iterm2-
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org89e7fb6" class="outline-4">
+<h4 id="org89e7fb6"><span class="section-number-4">4.2.3</span> 设置 iTerm2 Trigger</h4>
+<div class="outline-text-4" id="text-4-2-3">
+<p>
+在 iTerm2 的 Preferences 中，选择 `Profiles—&gt;Default—&gt;Advanced—&gt;Triggers—&gt;Edit`，设置如下 trigger
+</p>
+
+<p>
+#+end<sub>srctext</sub>
+Regular expression: rz waiting to receive.&#x00ad;&#x00ad;B0100
+Action: Run Silent Coprocess
+Parameters: /usr/local/bin/iterm2-send-zmodem.sh
+Instant: checked
+</p>
+
+<p>
+Regular expression: &#x00ad;&#x00ad;B00000000000000
+Action: Run Silent Coprocess
+Parameters: /usr/local/bin/iterm2-recv-zmodem.sh
+Instant: checked
+#+end<sub>src</sub>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3344c29" class="outline-4">
+<h4 id="org3344c29"><span class="section-number-4">4.2.4</span> 发送文件到远端服务器</h4>
+<div class="outline-text-4" id="text-4-2-4">
+<ul class="org-ul">
+<li>在远端服务器执行 `rz`</li>
+<li>本地选择文件传输</li>
+<li>等待传输指示消失</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge188c12" class="outline-4">
+<h4 id="orge188c12"><span class="section-number-4">4.2.5</span> 接收远端服务器的文件</h4>
+<div class="outline-text-4" id="text-4-2-5">
+<ul class="org-ul">
+<li>在远端服务器执行 `sz filename1 filename2 … filenameN`</li>
+<li>本地选择目录保存</li>
+<li>等待传输指示消失</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org410c189" class="outline-2">
+<h2 id="org410c189"><span class="section-number-2">5</span> Tips</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-org22851a8" class="outline-3">
+<h3 id="org22851a8"><span class="section-number-3">5.1</span> 应用</h3>
+<div class="outline-text-3" id="text-5-1">
+</div>
+<div id="outline-container-orgdae1bc7" class="outline-4">
+<h4 id="orgdae1bc7"><span class="section-number-4">5.1.1</span> 取消下载应用</h4>
+<div class="outline-text-4" id="text-5-1-1">
+<ul class="org-ul">
+<li>在启动台按住 option 键，点击应用图标上端的叉号删除 App Store 正在下载的应用。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf11aca4" class="outline-4">
+<h4 id="orgf11aca4"><span class="section-number-4">5.1.2</span> 删除应用</h4>
+<div class="outline-text-4" id="text-5-1-2">
+<ul class="org-ul">
+<li>在应用程序文件夹中直接删除应用。</li>
+<li>在启动台按住 option 键，点击应用图标上端的叉号删除 App Store 下载的应用。</li>
+</ul>
+</div>
+</div>
+</div>
+</div>

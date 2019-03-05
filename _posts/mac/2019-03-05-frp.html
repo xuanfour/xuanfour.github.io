@@ -1,0 +1,56 @@
+---
+layout: post
+title: "frp"
+date: 2019-03-05
+categories: MacOS
+tags:
+    - MacOS
+excerpt:
+keywords: ""
+---
+
+<div id="outline-container-org925e1f5" class="outline-2">
+<h2 id="org925e1f5"><span class="section-number-2">1</span> 安装 frp</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+frp 是一个可用于内网穿透的高性能的反向代理应用，支持 tcp, udp, http, https 协议。
+</p>
+
+<p>
+安装 frp 工具，可以直接访问 `<a href="https://github.com/fatedier/frp%60%EF%BC%8C%E4%B8%8B%E8%BD%BD%E7%9B%B8%E5%BA%94%E5%B9%B3%E5%8F%B0%E7%9A%84">https://github.com/fatedier/frp`，下载相应平台的</a> release 版本。详细配置参考帮助文档。
+</p>
+
+<p>
+frp 支持根据请求的 URL 路径路由转发到不同的后端服务。可以将 `/client` 路径设置到另一个 web 服务来同时在本地测试两个服务。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgad5f305" class="outline-2">
+<h2 id="orgad5f305"><span class="section-number-2">2</span> 配置 frp</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-conf">[<span style="color: #ce537a; font-weight: bold;">common</span>]
+<span style="color: #7590db;">bind_port</span> = 7000
+<span style="color: #7590db;">vhost_http_port</span> = 80
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">frpc.ini</span>
+[<span style="color: #ce537a; font-weight: bold;">common</span>]
+<span style="color: #7590db;">server_addr</span> = 47.94.210.246
+<span style="color: #7590db;">server_port</span> = 7000
+
+[<span style="color: #ce537a; font-weight: bold;">web01</span>]
+<span style="color: #7590db;">type</span> = http
+<span style="color: #7590db;">local_port</span> = 3000
+<span style="color: #7590db;">custom_domains</span> = cas.wozouwokan.com
+<span style="color: #7590db;">locations</span> = /
+
+[<span style="color: #ce537a; font-weight: bold;">web02</span>]
+<span style="color: #7590db;">type</span> = http
+<span style="color: #7590db;">local_port</span> = 3001
+<span style="color: #7590db;">custom_domains</span> = cas.wozouwokan.com
+<span style="color: #7590db;">locations</span> = /client
+</pre>
+</div>
+</div>
+</div>
