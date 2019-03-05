@@ -6,13 +6,11 @@ categories: 研发环境
 tags:
     - Python
     - pyenv
-excerpt:
-keywords: ""
 ---
 
 <div id="outline-container-orgd3b667c" class="outline-2">
-<h2 id="orgd3b667c"><span class="section-number-2">1</span> 安装 pyenv 和 python</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="orgd3b667c">安装 pyenv 和 python</h2>
+<div class="outline-text-2" id="text-orgd3b667c">
 <p>
 可以用 brew 来安装 pyenv 的最新版本，而且会自动下载依赖包：
 </p>
@@ -40,8 +38,8 @@ pyenv help
 </div>
 
 <div id="outline-container-orgf850c64" class="outline-2">
-<h2 id="orgf850c64"><span class="section-number-2">2</span> 安装 zlib 依赖</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="orgf850c64">安装 zlib 依赖</h2>
+<div class="outline-text-2" id="text-orgf850c64">
 <div class="org-src-container">
 <pre class="src src-shell">brew install zlib
 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#32534;&#35793;&#31243;&#24207;&#26377;&#38382;&#39064;&#65292;&#23581;&#35797;&#19979;&#21015;&#25805;&#20316;</span>
@@ -61,8 +59,8 @@ ln -s /usr/local/opt/zlib/lib/pkgconfig/* /usr/local/lib/pkgconfig
 </div>
 
 <div id="outline-container-org0fbedb6" class="outline-2">
-<h2 id="org0fbedb6"><span class="section-number-2">3</span> pyenv 使用指南</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org0fbedb6">pyenv 使用指南</h2>
+<div class="outline-text-2" id="text-org0fbedb6">
 <p>
 pyenv versions 查看系统的上安装的 Python 版本。 `*` 表示当前目录正在使用的版本,其中 的 system 表示系统自带的 Python 版本：
 </p>
@@ -105,8 +103,8 @@ trusted-host=mirrors.aliyun.com
 </div>
 
 <div id="outline-container-org9b3bde8" class="outline-2">
-<h2 id="org9b3bde8"><span class="section-number-2">4</span> pyenv 的其他操作</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org9b3bde8">pyenv 的其他操作</h2>
+<div class="outline-text-2" id="text-org9b3bde8">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21368;&#36733;&#25351;&#23450;&#30340;&#21253;&#65306;</span>
 pyenv uninstall <span style="color: #a45bad;">3.7.0</span>
@@ -133,8 +131,8 @@ python version
 </div>
 
 <div id="outline-container-org5b8964f" class="outline-2">
-<h2 id="org5b8964f"><span class="section-number-2">5</span> pyenv 命令</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="org5b8964f">pyenv 命令</h2>
+<div class="outline-text-2" id="text-org5b8964f">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -190,12 +188,12 @@ python version
 </div>
 
 <div id="outline-container-org18f786b" class="outline-2">
-<h2 id="org18f786b"><span class="section-number-2">6</span> pyenv-virtualenv 安装</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org18f786b">pyenv-virtualenv 安装</h2>
+<div class="outline-text-2" id="text-org18f786b">
 </div>
 <div id="outline-container-org7a626d1" class="outline-3">
-<h3 id="org7a626d1"><span class="section-number-3">6.1</span> 安装 pyenv-virtualenv</h3>
-<div class="outline-text-3" id="text-6-1">
+<h3 id="org7a626d1">安装 pyenv-virtualenv</h3>
+<div class="outline-text-3" id="text-org7a626d1">
 <div class="org-src-container">
 <pre class="src src-shell">brew install pyenv-virtualenv
 </pre>
@@ -213,8 +211,8 @@ python version
 </div>
 
 <div id="outline-container-org823fdcd" class="outline-3">
-<h3 id="org823fdcd"><span class="section-number-3">6.2</span> 使用 pyenv-virtualenv</h3>
-<div class="outline-text-3" id="text-6-2">
+<h3 id="org823fdcd">使用 pyenv-virtualenv</h3>
+<div class="outline-text-3" id="text-org823fdcd">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21019;&#24314;&#34394;&#25311;&#29615;&#22659;</span>
 pyenv virtualenv <span style="color: #a45bad;">2.7.15</span> env27

@@ -6,13 +6,11 @@ categories: MacOS
 tags:
     - MacOS
     - Homebrew
-excerpt:
-keywords: ""
 ---
 
 <div id="outline-container-org112ebc4" class="outline-2">
-<h2 id="org112ebc4"><span class="section-number-2">1</span> brew 命令简述</h2>
-<div class="outline-text-2" id="text-1">
+<h2 id="org112ebc4">brew 命令简述</h2>
+<div class="outline-text-2" id="text-org112ebc4">
 <ul class="org-ul">
 <li><code>brew</code> 主要用来下载一些不带界面的命令行下的工具和第三方库来进行二次开发</li>
 <li><code>brew cask</code> 主要用来下载一些带界面的应用软件，下载好后会自动安装，并能在 mac 中直接运行使用</li>
@@ -26,8 +24,8 @@ keywords: ""
 </div>
 
 <div id="outline-container-orgec778e3" class="outline-2">
-<h2 id="orgec778e3"><span class="section-number-2">2</span> 安装 brew</h2>
-<div class="outline-text-2" id="text-2">
+<h2 id="orgec778e3">安装 brew</h2>
+<div class="outline-text-2" id="text-orgec778e3">
 <p>
 我们可以用 brew 命令来更新 OSX 系统，brew 命令类似于 RHEL 的 yum 和 ubuntu 的 apt-get 命令，OSX 没有自带 brew，登陆 Homebrew 网站，找到 ruby 代码来安装 brew：
 </p>
@@ -40,8 +38,8 @@ keywords: ""
 </div>
 
 <div id="outline-container-org7d23465" class="outline-2">
-<h2 id="org7d23465"><span class="section-number-2">3</span> 更新 brew</h2>
-<div class="outline-text-2" id="text-3">
+<h2 id="org7d23465">更新 brew</h2>
+<div class="outline-text-2" id="text-org7d23465">
 <p>
 要获取最新的包的列表，首先得更新 Homebrew 自己。这可以用 <code>brew update</code> 办到。
 </p>
@@ -54,8 +52,8 @@ keywords: ""
 </div>
 
 <div id="outline-container-org288a96c" class="outline-2">
-<h2 id="org288a96c"><span class="section-number-2">4</span> 更新包</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="org288a96c">更新包</h2>
+<div class="outline-text-2" id="text-org288a96c">
 <p>
 要获取最新的包的列表，首先得更新 Homebrew 自己。这可以用 <code>brew update</code> 办到。
 </p>
@@ -68,8 +66,8 @@ keywords: ""
 </div>
 
 <div id="outline-container-orgb3c231b" class="outline-2">
-<h2 id="orgb3c231b"><span class="section-number-2">5</span> 更新需要更新的包</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="orgb3c231b">更新需要更新的包</h2>
+<div class="outline-text-2" id="text-orgb3c231b">
 <div class="org-src-container">
 <pre class="src src-shell">brew upgrade             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26356;&#26032;&#25152;&#26377;&#30340;&#21253;</span>
 brew upgrade package     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26356;&#26032;&#25351;&#23450;&#30340;&#21253;</span>
@@ -79,8 +77,8 @@ brew upgrade package     <span style="color: #2aa1ae; background-color: #292e34;
 </div>
 
 <div id="outline-container-org167e0ae" class="outline-2">
-<h2 id="org167e0ae"><span class="section-number-2">6</span> 清理旧版本</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org167e0ae">清理旧版本</h2>
+<div class="outline-text-2" id="text-org167e0ae">
 <p>
 一般情况下，新版本安装了，旧版本就不需要了。我会用 <code>brew cleanup</code> 清理旧版本和缓存文件。Homebrew 只会清除比当前安装的包更老的版本，所以不用担心有些包没更新但被删了。
 </p>
@@ -95,8 +93,8 @@ brew cleanup -n          <span style="color: #2aa1ae; background-color: #292e34;
 </div>
 
 <div id="outline-container-org49ed22e" class="outline-2">
-<h2 id="org49ed22e"><span class="section-number-2">7</span> 锁定不想更新的包</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="org49ed22e">锁定不想更新的包</h2>
+<div class="outline-text-2" id="text-org49ed22e">
 <p>
 如果经常更新的话， <code>brew update</code> 一次更新所有的包是非常方便的。但我们有时候会担心自动升级把一些不希望更新的包更新了。数据库就属于这一类，尤其是 PostgreSQL 跨 minor 版本升级都要迁移数据库的。我们更希望找个时间单独处理它。这时可用 <code>brew pin</code> 去锁定这个包，然后 <code>brew update</code> 就会略过它了。
 </p>
@@ -110,8 +108,8 @@ brew unpin package     <span style="color: #2aa1ae; background-color: #292e34;">
 </div>
 
 <div id="outline-container-org3bc13d3" class="outline-2">
-<h2 id="org3bc13d3"><span class="section-number-2">8</span> 其他几个常用命令</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="org3bc13d3">其他几个常用命令</h2>
+<div class="outline-text-2" id="text-org3bc13d3">
 <p>
 <code>brew info</code> 可以查看包的相关信息，最有用的应该是包依赖和相应的命令。比如 Nginx 会提醒你怎么加 launchctl，PostgreSQL 会告诉你如何迁移数据库。这些信息会在包安装完成后自动显示，如果忘了的话可以用这个命令很方便地查看。
 </p>
@@ -128,16 +126,16 @@ brew deps --installed --tree <span style="color: #2aa1ae; background-color: #292
 </div>
 
 <div id="outline-container-org57e786d" class="outline-2">
-<h2 id="org57e786d"><span class="section-number-2">9</span> 修改 brew 国内源</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="org57e786d">修改 brew 国内源</h2>
+<div class="outline-text-2" id="text-org57e786d">
 <p>
 因为 Homebrew 默认的源是 GitHub 源，在国内因为你懂的原因，下载速度堪忧，顾考虑更换国内源，幸好中科大和清华都提供了 brew 源，因此我们考虑更换为这两个学校的 brew 源
 </p>
 </div>
 
 <div id="outline-container-org8bb9eb5" class="outline-3">
-<h3 id="org8bb9eb5"><span class="section-number-3">9.1</span> 步骤</h3>
-<div class="outline-text-3" id="text-9-1">
+<h3 id="org8bb9eb5">步骤</h3>
+<div class="outline-text-3" id="text-org8bb9eb5">
 <p>
 替换 brew.git
 </p>
@@ -161,8 +159,8 @@ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
 </div>
 
 <div id="outline-container-org794348f" class="outline-3">
-<h3 id="org794348f"><span class="section-number-3">9.2</span> 替换 Homebrew Bottles 源</h3>
-<div class="outline-text-3" id="text-9-2">
+<h3 id="org794348f">替换 Homebrew Bottles 源</h3>
+<div class="outline-text-3" id="text-org794348f">
 <p>
 对于 bash 用户
 </p>
@@ -186,8 +184,8 @@ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
 </div>
 
 <div id="outline-container-orge5693a7" class="outline-3">
-<h3 id="orge5693a7"><span class="section-number-3">9.3</span> 切换回官方源</h3>
-<div class="outline-text-3" id="text-9-3">
+<h3 id="orge5693a7">切换回官方源</h3>
+<div class="outline-text-3" id="text-orge5693a7">
 <p>
 重置 brew.git
 </p>
@@ -216,12 +214,12 @@ git remote set-url origin https://github.com/Homebrew/homebrew-core.git
 </div>
 
 <div id="outline-container-orgc8db2c4" class="outline-2">
-<h2 id="orgc8db2c4"><span class="section-number-2">10</span> Homebrew Cask 更换国内源</h2>
-<div class="outline-text-2" id="text-10">
+<h2 id="orgc8db2c4">Homebrew Cask 更换国内源</h2>
+<div class="outline-text-2" id="text-orgc8db2c4">
 </div>
 <div id="outline-container-orgf73bc17" class="outline-3">
-<h3 id="orgf73bc17"><span class="section-number-3">10.1</span> 替换为 USTC 镜像：</h3>
-<div class="outline-text-3" id="text-10-1">
+<h3 id="orgf73bc17">替换为 USTC 镜像：</h3>
+<div class="outline-text-3" id="text-orgf73bc17">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #4f97d7;">cd</span> <span style="color: #2d9574;">"$(brew --repo)"</span>/Library/Taps/homebrew/homebrew-cask
 git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
@@ -231,8 +229,8 @@ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
 </div>
 
 <div id="outline-container-org9bbb9f8" class="outline-3">
-<h3 id="org9bbb9f8"><span class="section-number-3">10.2</span> 重置为官方地址：</h3>
-<div class="outline-text-3" id="text-10-2">
+<h3 id="org9bbb9f8">重置为官方地址：</h3>
+<div class="outline-text-3" id="text-org9bbb9f8">
 <div class="org-src-container">
 <pre class="src src-shell"><span style="color: #4f97d7;">cd</span> <span style="color: #2d9574;">"$(brew --repo)"</span>/Library/Taps/homebrew/homebrew-cask
 git remote set-url origin https://github.com/Homebrew/homebrew-cask
@@ -247,8 +245,8 @@ git remote set-url origin https://github.com/Homebrew/homebrew-cask
 </div>
 
 <div id="outline-container-org3a929d2" class="outline-2">
-<h2 id="org3a929d2"><span class="section-number-2">11</span> 使用指定本地安装包</h2>
-<div class="outline-text-2" id="text-11">
+<h2 id="org3a929d2">使用指定本地安装包</h2>
+<div class="outline-text-2" id="text-org3a929d2">
 <ul class="org-ul">
 <li>执行 <code>brew cask doctor</code> 命令，查看缓存目录位置。</li>
 <li>执行 <code>brew cask install xxx</code> 命令。</li>

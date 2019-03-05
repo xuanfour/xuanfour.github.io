@@ -7,159 +7,157 @@ categories: MacOS
 tags:
     - MacOS
     - Homebrew
-excerpt:
-keywords: ""
 ---
 #+end_export
 
 * brew 命令简述
 
-- ~brew~ 主要用来下载一些不带界面的命令行下的工具和第三方库来进行二次开发
-- ~brew cask~ 主要用来下载一些带界面的应用软件，下载好后会自动安装，并能在 mac 中直接运行使用
-- ~brew install curl~ 可以安装 curl 第三方库，这样你在开发时就可以使用它的库来进行开发
-- ~brew cask install chrome~ 可以安装谷歌浏览器应用程序，可直接运行
-- ~brew~ 偏管理第三方库和命令行工具方面的东东
-- ~brew cask~ 可以看作是苹果官方 app store 的补充，是一个众多贡献者们维护的非苹果官方软件商店，你也可以在这里下 mac 软件用
-- ~brew tap~ 没有参数会自动更新已经存在的 tap 并列出当前已经 tapped 的仓库
+  - ~brew~ 主要用来下载一些不带界面的命令行下的工具和第三方库来进行二次开发
+  - ~brew cask~ 主要用来下载一些带界面的应用软件，下载好后会自动安装，并能在 mac 中直接运行使用
+  - ~brew install curl~ 可以安装 curl 第三方库，这样你在开发时就可以使用它的库来进行开发
+  - ~brew cask install chrome~ 可以安装谷歌浏览器应用程序，可直接运行
+  - ~brew~ 偏管理第三方库和命令行工具方面的东东
+  - ~brew cask~ 可以看作是苹果官方 app store 的补充，是一个众多贡献者们维护的非苹果官方软件商店，你也可以在这里下 mac 软件用
+  - ~brew tap~ 没有参数会自动更新已经存在的 tap 并列出当前已经 tapped 的仓库
 
 * 安装 brew
 
-我们可以用 brew 命令来更新 OSX 系统，brew 命令类似于 RHEL 的 yum 和 ubuntu 的 apt-get 命令，OSX 没有自带 brew，登陆 Homebrew 网站，找到 ruby 代码来安装 brew：
+  我们可以用 brew 命令来更新 OSX 系统，brew 命令类似于 RHEL 的 yum 和 ubuntu 的 apt-get 命令，OSX 没有自带 brew，登陆 Homebrew 网站，找到 ruby 代码来安装 brew：
 
-#+begin_src shell
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-#+end_src
+  #+begin_src shell
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  #+end_src
 
 * 更新 brew
 
-要获取最新的包的列表，首先得更新 Homebrew 自己。这可以用 ~brew update~ 办到。
+  要获取最新的包的列表，首先得更新 Homebrew 自己。这可以用 ~brew update~ 办到。
 
-#+begin_src shell
-brew update
-#+end_src
+  #+begin_src shell
+    brew update
+  #+end_src
 
 * 更新包
 
-要获取最新的包的列表，首先得更新 Homebrew 自己。这可以用 ~brew update~ 办到。
+  要获取最新的包的列表，首先得更新 Homebrew 自己。这可以用 ~brew update~ 办到。
 
-#+begin_src shell
-brew outdated
-#+end_src
+  #+begin_src shell
+    brew outdated
+  #+end_src
 
 * 更新需要更新的包
 
-#+begin_src shell
-brew upgrade             # 更新所有的包
-brew upgrade package     # 更新指定的包
-#+end_src
+  #+begin_src shell
+    brew upgrade             # 更新所有的包
+    brew upgrade package     # 更新指定的包
+  #+end_src
 
 * 清理旧版本
 
-一般情况下，新版本安装了，旧版本就不需要了。我会用 ~brew cleanup~ 清理旧版本和缓存文件。Homebrew 只会清除比当前安装的包更老的版本，所以不用担心有些包没更新但被删了。
+  一般情况下，新版本安装了，旧版本就不需要了。我会用 ~brew cleanup~ 清理旧版本和缓存文件。Homebrew 只会清除比当前安装的包更老的版本，所以不用担心有些包没更新但被删了。
 
-#+begin_src shell
-brew cleanup             # 清理所有包的旧版本
-brew cleanup package     # 清理指定包的旧版本
-brew cleanup -n          # 查看可清理的旧版本包，不执行实际操作
-#+end_src
+  #+begin_src shell
+    brew cleanup             # 清理所有包的旧版本
+    brew cleanup package     # 清理指定包的旧版本
+    brew cleanup -n          # 查看可清理的旧版本包，不执行实际操作
+  #+end_src
 
 * 锁定不想更新的包
 
-如果经常更新的话， ~brew update~ 一次更新所有的包是非常方便的。但我们有时候会担心自动升级把一些不希望更新的包更新了。数据库就属于这一类，尤其是 PostgreSQL 跨 minor 版本升级都要迁移数据库的。我们更希望找个时间单独处理它。这时可用 ~brew pin~ 去锁定这个包，然后 ~brew update~ 就会略过它了。
+  如果经常更新的话， ~brew update~ 一次更新所有的包是非常方便的。但我们有时候会担心自动升级把一些不希望更新的包更新了。数据库就属于这一类，尤其是 PostgreSQL 跨 minor 版本升级都要迁移数据库的。我们更希望找个时间单独处理它。这时可用 ~brew pin~ 去锁定这个包，然后 ~brew update~ 就会略过它了。
 
-#+begin_src shell
-brew pin package       # 锁定某个包
-brew unpin package     # 取消锁定
-#+end_src
+  #+begin_src shell
+    brew pin package       # 锁定某个包
+    brew unpin package     # 取消锁定
+  #+end_src
 
 * 其他几个常用命令
 
-~brew info~ 可以查看包的相关信息，最有用的应该是包依赖和相应的命令。比如 Nginx 会提醒你怎么加 launchctl，PostgreSQL 会告诉你如何迁移数据库。这些信息会在包安装完成后自动显示，如果忘了的话可以用这个命令很方便地查看。
+  ~brew info~ 可以查看包的相关信息，最有用的应该是包依赖和相应的命令。比如 Nginx 会提醒你怎么加 launchctl，PostgreSQL 会告诉你如何迁移数据库。这些信息会在包安装完成后自动显示，如果忘了的话可以用这个命令很方便地查看。
 
-#+begin_src shell
-brew info package     # 显示某个包的信息
-brew info             # 显示安装了包数量，文件数量，和总占用空间
+  #+begin_src shell
+    brew info package     # 显示某个包的信息
+    brew info             # 显示安装了包数量，文件数量，和总占用空间
 
-brew deps # 可以显示包的依赖关系，我常用它来查看已安装的包的依赖，然后判断哪些包是可以安全删除的。
-brew deps --installed --tree # 查看已安装的包的依赖，树形显示
-#+end_src
+    brew deps # 可以显示包的依赖关系，我常用它来查看已安装的包的依赖，然后判断哪些包是可以安全删除的。
+    brew deps --installed --tree # 查看已安装的包的依赖，树形显示
+  #+end_src
 
 * 修改 brew 国内源
 
-因为 Homebrew 默认的源是 GitHub 源，在国内因为你懂的原因，下载速度堪忧，顾考虑更换国内源，幸好中科大和清华都提供了 brew 源，因此我们考虑更换为这两个学校的 brew 源
+  因为 Homebrew 默认的源是 GitHub 源，在国内因为你懂的原因，下载速度堪忧，顾考虑更换国内源，幸好中科大和清华都提供了 brew 源，因此我们考虑更换为这两个学校的 brew 源
 
 ** 步骤
 
-替换 brew.git
+   替换 brew.git
 
-#+begin_src shell
-cd "$(brew --repo)"
-git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
-#+end_src
+   #+begin_src shell
+     cd "$(brew --repo)"
+     git remote set-url origin https://mirrors.ustc.edu.cn/brew.git
+   #+end_src
 
-替换 homebrew-core.git
+   替换 homebrew-core.git
 
-#+begin_src shell
-cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
-git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
-#+end_src
+   #+begin_src shell
+     cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+     git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
+   #+end_src
 
 ** 替换 Homebrew Bottles 源
 
-对于 bash 用户
+   对于 bash 用户
 
-#+begin_src shell
-echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' >> ~/.bash_profile
-source ~/.bash_profile
-#+end_src
+   #+begin_src shell
+     echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' >> ~/.bash_profile
+     source ~/.bash_profile
+   #+end_src
 
-对于 zsh 用户
+   对于 zsh 用户
 
-#+begin_src shell
-echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' >> ~/.zshrc
-source ~/.zshrc
-#+end_src
+   #+begin_src shell
+     echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles' >> ~/.zshrc
+     source ~/.zshrc
+   #+end_src
 
 ** 切换回官方源
 
-重置 brew.git
+   重置 brew.git
 
-#+begin_src shell
-cd "$(brew --repo)"
-git remote set-url origin https://github.com/Homebrew/brew.git
-#+end_src
+   #+begin_src shell
+     cd "$(brew --repo)"
+     git remote set-url origin https://github.com/Homebrew/brew.git
+   #+end_src
 
-重置 homebrew-core.git
+   重置 homebrew-core.git
 
-#+begin_src shell
-cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
-git remote set-url origin https://github.com/Homebrew/homebrew-core.git
-#+end_src
+   #+begin_src shell
+     cd "$(brew --repo)/Library/Taps/homebrew/homebrew-core"
+     git remote set-url origin https://github.com/Homebrew/homebrew-core.git
+   #+end_src
 
-注释掉 bash 配置文件里的有关 Homebrew Bottles 即可恢复官方源。重启 bash 或让 bash 重读配置文件。
+   注释掉 bash 配置文件里的有关 Homebrew Bottles 即可恢复官方源。重启 bash 或让 bash 重读配置文件。
 
 * Homebrew Cask 更换国内源
 
 ** 替换为 USTC 镜像：
 
-#+begin_src shell
-cd "$(brew --repo)"/Library/Taps/homebrew/homebrew-cask
-git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
-#+end_src
+   #+begin_src shell
+     cd "$(brew --repo)"/Library/Taps/homebrew/homebrew-cask
+     git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-cask.git
+   #+end_src
 
 ** 重置为官方地址：
 
-#+begin_src shell
-cd "$(brew --repo)"/Library/Taps/homebrew/homebrew-cask
-git remote set-url origin https://github.com/Homebrew/homebrew-cask
-#+end_src
+   #+begin_src shell
+     cd "$(brew --repo)"/Library/Taps/homebrew/homebrew-cask
+     git remote set-url origin https://github.com/Homebrew/homebrew-cask
+   #+end_src
 
-注：Caskroom 的 Git 地址在 2018 年 5 月 25 日从 <https://github.com/caskroom/homebrew-cask> 迁移到了 <https://github.com/Homebrew/homebrew-cask> 。
+   注：Caskroom 的 Git 地址在 2018 年 5 月 25 日从 <https://github.com/caskroom/homebrew-cask> 迁移到了 <https://github.com/Homebrew/homebrew-cask> 。
 
 * 使用指定本地安装包
 
-- 执行 ~brew cask doctor~ 命令，查看缓存目录位置。
-- 执行 ~brew cask install xxx~ 命令。
-- 若不满意 ~brew~ 的下载速度，中断下载，查看缓存目录，会发现里面有 ~xxx.incomplete~ 文件。
-- 将通过其他方式获得安装包重命名为去除 ~.incomplete~ 后缀的文件名，删除缓存文件后将安装包拷贝到缓存目录。
-- 重新运行 ~brew cask install xxx~ 。
+  - 执行 ~brew cask doctor~ 命令，查看缓存目录位置。
+  - 执行 ~brew cask install xxx~ 命令。
+  - 若不满意 ~brew~ 的下载速度，中断下载，查看缓存目录，会发现里面有 ~xxx.incomplete~ 文件。
+  - 将通过其他方式获得安装包重命名为去除 ~.incomplete~ 后缀的文件名，删除缓存文件后将安装包拷贝到缓存目录。
+  - 重新运行 ~brew cask install xxx~ 。

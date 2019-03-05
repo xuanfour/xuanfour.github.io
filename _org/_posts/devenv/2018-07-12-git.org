@@ -1,0 +1,669 @@
+#+begin_export html
+---
+layout: post
+title:      "Git 学习"
+date:       2015-07-12
+categories: 研发环境
+tags:
+    - git
+---
+#+end_export
+
+* Git
+
+** 配置
+
+*** 列出当前配置
+
+    #+begin_src shell
+      git config --list
+    #+end_src
+
+*** 列出 repository 配置
+
+    #+begin_src shell
+      git config --local --list
+    #+end_src
+
+*** 列出全局配置
+
+    #+begin_src shell
+      git config --global --list
+    #+end_src
+
+*** 列出系统配置
+
+    #+begin_src shell
+      git config --system --list
+    #+end_src
+
+*** 设置用户名
+
+    #+begin_src shell
+      git config --global user.name “[firstname lastname]”
+    #+end_src
+
+*** 设置用户邮箱
+
+    #+begin_src shell
+      git config --global user.email “[valid-email]”
+    #+end_src
+
+*** 设置 git 命令输出为彩色
+
+    #+begin_src shell
+      git config --global color.ui auto
+    #+end_src
+
+*** 设置 git 使用的文本编辑器设
+
+    #+begin_src shell
+      git config --global core.editor vi
+    #+end_src
+
+** 配置文件
+
+*** Repository 配置对应的配置文件路径[--local]
+
+    #+begin_src shell
+      <repo>/.git/config
+    #+end_src
+
+*** 用户全局配置对应的配置文件路径[--global]
+
+    #+begin_src shell
+      ~/.gitconfig
+    #+end_src
+
+*** 系统配置对应的配置文件路径[--local]
+
+    #+begin_src shell
+      /etc/gitconfig
+    #+end_src
+
+** 创建
+
+*** 复制一个已创建的仓库:
+
+    #+begin_src shell
+      # 通过 SSH
+      git clone ssh://user@domain.com/repo.git
+      #通过 HTTP
+      git clone http://domain.com/user/repo.git
+    #+end_src
+
+*** 创建一个新的本地仓库:
+
+    #+begin_src shell
+      git init
+    #+end_src
+
+** 本地修改
+
+*** 显示工作路径下已修改的文件
+
+    #+begin_src shell
+      git status
+    #+end_src
+
+*** 显示与上次提交版本文件的不同
+
+    #+begin_src shell
+      git diff
+    #+end_src
+
+*** 把当前所有修改添加到下次提交中
+
+    #+begin_src shell
+      git add .
+    #+end_src
+
+*** 把对某个文件的修改添加到下次提交中
+
+    #+begin_src shell
+      git add -p <file>
+    #+end_src
+
+*** 提交本地的所有修改
+
+    #+begin_src shell
+      git commit -a
+    #+end_src
+
+*** 提交之前已标记的变化
+
+    #+begin_src shell
+      git commit
+    #+end_src
+
+*** 附加消息提交
+
+    #+begin_src shell
+      git commit -m 'message here'
+    #+end_src
+
+*** 提交，并将提交时间设置为之前的某个日期:
+
+    #+begin_src shell
+      git commit --date="`date --date='n day ago'`" -am "Commit Message"
+    #+end_src
+
+*** 修改上次提交
+
+    =请勿修改已发布的提交记录!=
+
+    #+begin_src shell
+      git commit --amend
+    #+end_src
+
+*** 修改上次提交的 committer date
+
+    #+begin_src shell
+      GIT_COMMITTER_DATE="date" git commit --amend
+    #+end_src
+
+*** 修改上次提交的 author date
+
+    #+begin_src shell
+      git commit --amend --date="date"
+    #+end_src
+
+*** 把当前分支中未提交的修改移动到其他分支
+
+    #+begin_src shell
+      git stash
+      git checkout branch2
+      git stash pop
+    #+end_src
+
+*** 将 stashed changes 应用到当前分支
+
+    #+begin_src shell
+      git stash apply
+    #+end_src
+
+*** 删除最新一次的 stashed changes
+
+    #+begin_src shell
+      git stash drop
+    #+end_src
+
+** 搜索
+
+*** 从当前目录的所有文件中查找文本内容
+
+    #+begin_src shell
+      git grep "Hello"
+    #+end_src
+
+*** 在某一版本中搜索文本
+
+    #+begin_src shell
+      git grep "Hello" v2.5
+    #+end_src
+
+** 提交历史
+
+*** 从最新提交开始，显示所有的提交记录（显示 hash， 作者信息，提交的标题和时间）
+
+    #+begin_src shell
+      git log
+    #+end_src
+
+*** 显示所有提交（仅显示提交的 hash 和 message）
+
+    #+begin_src shell
+      git log --oneline
+    #+end_src
+
+*** 显示某个用户的所有提交
+
+    #+begin_src shell
+      git log --author="username"
+    #+end_src
+
+*** 显示某个文件的所有修改
+
+    #+begin_src shell
+      git log -p <file>
+    #+end_src
+
+*** 仅显示远端<remote/master>分支与远端<origin/master>分支提交记录的差集
+
+    #+begin_src shell
+      git log --oneline <origin/master>..<remote/master> --left-right
+    #+end_src
+
+*** 谁，在什么时间，修改了文件的什么内容
+
+    #+begin_src shell
+      git blame <file>
+    #+end_src
+
+*** 显示 reflog
+
+    #+begin_src shell
+      git reflog show
+    #+end_src
+
+*** 删除 reflog
+
+    #+begin_src shell
+      git reflog delete
+    #+end_src
+
+** 分支与标签
+
+*** 列出所有的分支
+
+    #+begin_src shell
+      git branch
+    #+end_src
+
+*** 列出所有的远端分支
+
+    #+begin_src shell
+      git branch -r
+    #+end_src
+
+*** 切换分支
+
+    #+begin_src shell
+      git checkout <branch>
+    #+end_src
+
+*** 创建并切换到新分支
+
+    #+begin_src shell
+      git checkout -b <branch>
+    #+end_src
+
+*** 基于当前分支创建新分支
+
+    #+begin_src shell
+      git branch <new-branch>
+    #+end_src
+
+*** 基于远程分支创建新的可追溯的分支
+
+    #+begin_src shell
+      git branch --track <new-branch> <remote-branch>
+    #+end_src
+
+*** 删除本地分支
+
+    #+begin_src shell
+      git branch -d <branch>
+    #+end_src
+
+*** 强制删除一个本地分支
+
+    =将会丢失未合并的修改！=
+
+    #+begin_src shell
+      git branch -D <branch>
+    #+end_src
+
+*** 查看标签
+
+    #+begin_src shell
+      git tag
+      git tag -l 'v0.1.-'
+      git show v0.1
+    #+end_src
+
+*** 给当前版本打标签
+
+    #+begin_src shell
+      git tag <tag-name>
+    #+end_src
+
+*** 给当前版本打标签并附加消息
+
+    #+begin_src shell
+      git tag -a <tag-name>
+      git tag -a <tag-name> -m 'my version'
+    #+end_src
+
+** 更新与发布
+
+*** 列出当前配置的远程端
+
+    #+begin_src shell
+      git remote -v
+    #+end_src
+
+*** 显示远程端的信息
+
+    #+begin_src shell
+      git remote show <remote>
+    #+end_src
+
+*** 添加新的远程端
+
+    #+begin_src shell
+      git remote add <remote> <url>
+    #+end_src
+
+*** 下载远程端版本，但不合并到 HEAD 中
+
+    #+begin_src shell
+      git fetch <remote>
+    #+end_src
+
+*** 下载远程端版本，并自动与 HEAD 版本合并
+
+    #+begin_src shell
+      git remote pull <remote> <url>
+    #+end_src
+
+*** 将远程端版本合并到本地版本中
+
+    #+begin_src shell
+      git pull origin master
+    #+end_src
+
+*** 以 rebase 方式将远端分支与本地合并
+
+    #+begin_src shell
+      git pull --rebase <remote> <branch>
+    #+end_src
+
+*** 将本地版本发布到远程端
+
+    #+begin_src shell
+      git push remote <remote> <branch>
+    #+end_src
+
+*** 删除远程端分支
+
+    #+begin_src shell
+      git push <remote> :<branch> (since Git v1.5.0)
+      # 或者
+      git push <remote> --delete <branch> (since Git v1.7.0)
+    #+end_src
+
+*** 发布标签:
+
+    #+begin_src shell
+      git push --tags
+    #+end_src
+
+** 合并与重置(Rebase)
+
+*** 将分支合并到当前 HEAD 中
+
+    #+begin_src shell
+      git merge <branch>
+    #+end_src
+
+*** 将当前 HEAD 版本重置到分支中
+
+    =请勿重置已发布的提交!=
+
+    #+begin_src shell
+      git rebase <branch>
+    #+end_src
+
+*** 退出重置
+
+    #+begin_src shell
+      git rebase --abort
+    #+end_src
+
+*** 解决冲突后继续重置
+
+    #+begin_src shell
+      git rebase --continue
+    #+end_src
+
+*** 使用配置好的 merge tool 解决冲突
+
+    #+begin_src shell
+      git mergetool
+    #+end_src
+
+*** 在编辑器中手动解决冲突后，标记文件为 `已解决冲突`
+
+    #+begin_src shell
+      git add <resolved-file>
+      git rm <resolved-file>
+    #+end_src
+
+*** 合并提交
+
+    #+begin_src shell
+      git rebase -i <commit-just-before-first>
+    #+end_src
+
+    把下面两段命令的上段内容替换为下段内容
+
+    =原内容=
+    #+begin_src shell
+      pick <commit_id>
+      pick <commit_id2>
+      pick <commit_id3>
+    #+end_src
+
+    =替换为=
+    #+begin_src shell
+      pick <commit_id>
+      squash <commit_id2>
+      squash <commit_id3>
+    #+end_src
+
+** 撤销
+
+*** 放弃工作目录下的所有修改
+
+    #+begin_src shell
+      git reset --hard HEAD
+    #+end_src
+
+*** 移除缓存区的所有文件（i.e. 撤销上次 `git add`）
+
+    #+begin_src shell
+      git reset HEAD
+    #+end_src
+
+*** 放弃某个文件的所有本地修改
+
+    #+begin_src shell
+      git checkout HEAD <file>
+    #+end_src
+
+*** 重置一个提交（通过创建一个截然不同的新提交）
+
+    #+begin_src shell
+      git revert <commit>
+    #+end_src
+
+*** 将 HEAD 重置到指定的版本，并抛弃该版本之后的所有修改
+
+    #+begin_src shell
+      git reset --hard <commit>
+    #+end_src
+
+*** 用远端分支强制覆盖本地分支
+
+    #+begin_src shell
+      git reset --hard <remote/branch> e.g., upstream/master, origin/my-feature
+    #+end_src
+
+*** 将 HEAD 重置到上一次提交的版本，并将之后的修改标记为未添加到缓存区的修改
+
+    #+begin_src shell
+      git reset <commit>
+    #+end_src
+
+*** 将 HEAD 重置到上一次提交的版本，并保留未提交的本地修改
+
+    #+begin_src shell
+      git reset --keep <commit>
+    #+end_src
+
+*** 删除添加`.gitignore`文件前错误提交的文件
+
+    #+begin_src shell
+      git rm -r --cached .
+      git add .
+      git commit -m "remove xyz file"
+    #+end_src
+
+* Git-Flow
+
+** 安装
+
+   - 你需要有一个可以工作的 git 作为前提。
+   - Git flow 可以工作在 OSX, Linux 和 Windows 之下
+
+*** OSX Homebrew:
+
+    #+begin_src shell
+      brew install git-flow
+    #+end_src
+
+*** OSX Macports:
+
+    #+begin_src shell
+      port install git-flow
+    #+end_src
+
+*** Linux
+
+    #+begin_src shell
+      apt-get install git-flow
+    #+end_src
+
+*** Windows (Cygwin)
+
+    安装 git-flow, 你需要 wget 和 util-linux。
+
+    #+begin_src shell
+      wget -q -O - --no-check-certificate https://github.com/nvie/gitflow/raw/develop/contrib/gitflow-installer.sh | bash
+    #+end_src
+
+** 开始
+
+   - 为了自定义你的项目，Git flow 需要初始化过程。
+   - 使用 git-flow，从初始化一个现有的 git 库内开始。
+
+*** 创建本地新的 dev 分支
+
+    #+begin_src shell
+      git branch dev  # 创建本地分支
+      git branch  # 查看分支
+      # 这是会看到 master 和 dev，而且 master 上会有一个星号
+      # 这个时候 dev 是一个本地分支，远程仓库不知道它的存在
+      # 本地分支可以不同步到远程仓库，我们可以在 dev 开发，然后 merge 到 master，
+      # 使用 master 同步代码，当然也可以同步
+    #+end_src
+
+*** 发布 dev 分支
+
+    发布 dev 分支指的是同步 dev 分支的代码到远程服务器
+
+    #+begin_src shell
+      git push origin dev:dev  # 这样远程仓库也有一个 dev 分支了
+    #+end_src
+
+*** 在 dev 分支开发代码
+
+    #+begin_src shell
+      git checkout dev  # 切换到 dev 分支进行开发
+      # 开发代码之后，我们有两个选择
+      # 第一个：如果功能开发完成了，可以合并主分支
+      git checkout master  # 切换到主分支
+      git merge dev  # 把 dev 分支的更改和 master 合并
+      git push  # 提交主分支代码远程
+      git checkout dev  # 切换到 dev 远程分支
+      git push  # 提交 dev 分支到远程
+      # 第二个：如果功能没有完成，可以直接推送
+      git push  # 提交到 dev 远程分支
+      # 注意：在分支切换之前最好先 commit 全部的改变，除非你真的知道自己在做什么
+    #+end_src
+
+*** 删除分支
+
+    #+begin_src shell
+      # 删除远程 dev 分支，危险命令哦
+      git push origin --delete <branchName>
+      # 可以使用这种语法，推送一个空分支到远程分支，其实就相当于删除远程分支
+      git push origin :dev
+      # 下面两条是删除本地分支
+      git checkout master  # 切换到 master 分支
+      git branch -d dev  # 删除本地 dev 分支
+    #+end_src
+
+** 追踪分支
+
+   追踪分支是用与联系本地分支和远程分支的. 如果你在追踪分支(Tracking Branches)上执行推送(push)或拉取(pull)时,　它会自动推送(push)或拉取(pull)到关联的远程分支上。
+
+   如果你经常要从远程仓库里拉取(pull)分支到本地,并且不想很麻烦的使用 `git pull` 这种格式; 那么就应当使用追踪分支(Tracking Branches)。
+
+   `git clone` 命令会自动在本地建立一个 master 分支，它是 origin/master 的追踪分支。 而 origin/master 就是被克隆(clone)仓库的'master'分支。
+
+   译者注: origin 一般是指原始仓库地址的别名。
+
+   可以在使用 `git branch` 命令时加上 `--track` 参数, 来手动创建一个追踪分支。
+
+   #+begin_src shell
+     git branch --track experimental origin/experimental
+     # 或者
+     git checkout --track origin/experimental
+   #+end_src
+
+   当你运行下命令时:
+
+   #+begin_src shell
+     git pull experimental
+   #+end_src
+
+   它会自动从 `origin` 抓取(fetch)内容，再把远程的 `origin/experimental` 分支合并进(merge)本地的 experimental 分支。
+
+   当要把修改推送(push)到 origin 时, 它会将你本地的 experimental 分支中的修改推送到 origin 的 experimental 分支里,　而无需指定它(origin)。
+
+
+* Tips
+
+** 查看某文件的修改历史 **
+
+   先进入此文件所在的目录下
+
+   1. 查看 fileName 相关的 commit 记录：`git log filename`
+   2. 显示每次提交的 diff：`git log -p filename`
+   3. 查看某次提交中的某个文件变化，可以直接加上 fileName：`git show commit-id filename`
+   4. 根据 commit-id 查看某个提交：`git show -s --pretty=raw ca53e82`
+
+** git log 的常用选项
+
+   | 选项             | 说明                                                              |
+   |------------------+-------------------------------------------------------------------|
+   | -p               | 按补丁格式显示每个更新之间的差异。                                |
+   | --stat           | 显示每次更新的文件修改统计信息。                                  |
+   | --shortstat      | 只显示 –stat 中最后的行数修改添加移除统计。                       |
+   | --name-only      | 仅在提交信息后显示已修改的文件清单。                              |
+   | --name-status    | 显示新增、修改、删除的文件清单。                                  |
+   | --abbrev-commit  | 仅显示 SHA-1 的前几个字符，而非所有的 40 个字符。                 |
+   | --relative-date  | 使用较短的相对时间显示（比如，“2 weeks ago”）。                   |
+   | --graph          | 显示 ASCII 图形表示的分支合并历史。                               |
+   | --pretty         | 使用其他格式显示历史提交信息。                                    |
+   |                  | 可用选项 oneline，short，full，fuller 和 format（后跟指定格式）。 |
+   | -(n)             | 仅显示最近的 n 条提交                                             |
+   | --since,--after  | 仅显示指定时间之后的提交。                                        |
+   | --until,--before | 仅显示指定时间之前的提交。                                        |
+   | --author         | 仅显示指定作者相关的提交。                                        |
+   | --committer      | 仅显示指定提交者相关的提交。                                      |
+   | --grep           | 仅显示含指定关键字的提交                                          |
+   | -S               | 仅显示添加或移除了某个关键字的提交                                |
+
+
+* References
+
+  #+begin_quote
+  本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+
+  笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+
+  - <https://github.com/arslanbilal/git-cheat-sheet/blob/master/other-sheets/git-cheat-sheet-zh.md>
+  #+end_quote

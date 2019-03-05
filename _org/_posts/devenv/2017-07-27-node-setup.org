@@ -7,61 +7,58 @@ categories: 研发环境
 tags:
     - NVM
     - NodeJs
-excerpt:
-keywords: ""
 ---
 #+end_export
 
-
 * 安装 nvm
 
-#+begin_src shell
-# 安装 nvm
-curl https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
-执行配置
-source ~/.bashrc
-# 或者重开一个终端
-nvm --version
+  #+begin_src shell
+    # 安装 nvm
+    curl https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+    执行配置
+    source ~/.bashrc
+    # 或者重开一个终端
+    nvm --version
 
-# 查看 node 可安装版本
-nvm ls-remote node
-# 查看长期支持版本
-nvm ls-remote --lts
-#安装最新稳定版
-nvm install stable
-# 安装指定版本 node/npm
-nvm install v10.6.0
-node -v
+    # 查看 node 可安装版本
+    nvm ls-remote node
+    # 查看长期支持版本
+    nvm ls-remote --lts
+    #安装最新稳定版
+    nvm install stable
+    # 安装指定版本 node/npm
+    nvm install v10.6.0
+    node -v
 
-# 切换版本
-nvm use node 10.6.0
-# 查看当前使用的版本
-nvm current
-# 查看当前已经安装的版本
-nvm ls
-# 显示的内容如下，是 nvm 的内置的几个固定的别名（alias）。
-# default nvm 默认使用的版本
-# node 和 stable 当前安装的 node 的最新的稳定版本
-# iojs iojs 的最新稳定版本
-# lts/* node lts 系列最新的稳定版本
+    # 切换版本
+    nvm use node 10.6.0
+    # 查看当前使用的版本
+    nvm current
+    # 查看当前已经安装的版本
+    nvm ls
+    # 显示的内容如下，是 nvm 的内置的几个固定的别名（alias）。
+    # default nvm 默认使用的版本
+    # node 和 stable 当前安装的 node 的最新的稳定版本
+    # iojs iojs 的最新稳定版本
+    # lts/* node lts 系列最新的稳定版本
 
-# 设置别名
-nvm alias default 10.6.0
+    # 设置别名
+    nvm alias default 10.6.0
 
-# 使用 cnpm 和淘宝源
-npm install -g cnpm --registry=https://registry.npm.taobao.org
-#+end_src
+    # 使用 cnpm 和淘宝源
+    npm install -g cnpm --registry=https://registry.npm.taobao.org
+  #+end_src
 
 * 安装常用包
 
-#+begin_src shell
-npm install -g restify
-npm install -g grunt-cli
-npm install -g tern
-npm install -g vmd
-npm install -g js-beautify
-npm install -g jshint
-npm install -g coffee-script
-npm install -g gitbook-cli
-#npm install -g hexo-cli
-#+end_src
+  #+begin_src shell
+    npm install -g restify
+    npm install -g grunt-cli
+    npm install -g tern
+    npm install -g vmd
+    npm install -g js-beautify
+    npm install -g jshint
+    npm install -g coffee-script
+    npm install -g gitbook-cli
+    #npm install -g hexo-cli
+  #+end_src
