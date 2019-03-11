@@ -6,7 +6,7 @@ date: 2019-03-11
 categories: 文本编辑
 tags:
     - Spacemacs
-    - MaGit
+    - Git
 ---
 #+end_export
 
