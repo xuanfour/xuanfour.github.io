@@ -27,7 +27,7 @@ tags:
     #安装最新稳定版
     nvm install stable
     # 安装指定版本 node/npm
-    nvm install v10.6.0
+    nvm install 10.6.0
     node -v
 
     # 切换版本
@@ -42,7 +42,7 @@ tags:
     # iojs iojs 的最新稳定版本
     # lts/* node lts 系列最新的稳定版本
 
-    # 设置别名
+    # 设置默认的版本别名
     nvm alias default 10.6.0
 
     # 使用 cnpm 和淘宝源

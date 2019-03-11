@@ -1,0 +1,228 @@
+---
+layout: post
+title:      "GitFlow 学习"
+date:       2015-07-12
+categories: 研发环境
+tags:
+    - Git
+    - GitFlow
+---
+
+<div id="outline-container-org3797d8c" class="outline-2">
+<h2 id="org3797d8c"><span class="section-number-2">1</span> Git-Flow</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Gitflow 工作流程围绕项目发布定义了严格的分支模型。尽管它比 Feature Branch Workflow 更复杂一些，但它也为管理更大规模的项目提供了坚实的框架。
+</p>
+
+<p>
+与 Feature Branch Workflow 比起来，Gitflow 流程并没有增加任何新的概念或命令。其特色在于，它为不同的分支分配了非常明确的角色，并且定义了使用场景和用法。除了用于功能开发的分支，它还使用独立的分支进行发布前的准备、记录以及后期维护。当然，你还是能充分利用 Feature Branch Workflow 的好处：拉拽请求（Pull Request）、隔离的试验以及更高效率的合作。
+</p>
+</div>
+
+<div id="outline-container-orga0fb86d" class="outline-3">
+<h3 id="orga0fb86d"><span class="section-number-3">1.1</span> 工作原理</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+流程仍然使用一个中央代码仓库，它是所有开发者的信息交流中心。跟其他的工作流程一样，开发者在本地完成开发，然后再将分支代码推送到中央仓库。唯一不同的是项目中分支的结构。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbf2b8c9" class="outline-3">
+<h3 id="orgbf2b8c9"><span class="section-number-3">1.2</span> 安装</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>你需要有一个可以工作的 git 作为前提。</li>
+<li>Git flow 可以工作在 OSX, Linux 和 Windows 之下</li>
+</ul>
+</div>
+
+<div id="outline-container-orgdc6d7c9" class="outline-4">
+<h4 id="orgdc6d7c9"><span class="section-number-4">1.2.1</span> OSX Homebrew:</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<div class="org-src-container">
+<pre class="src src-shell">brew install git-flow
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4a76b9d" class="outline-4">
+<h4 id="org4a76b9d"><span class="section-number-4">1.2.2</span> OSX Macports:</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<div class="org-src-container">
+<pre class="src src-shell">port install git-flow
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7272920" class="outline-4">
+<h4 id="org7272920"><span class="section-number-4">1.2.3</span> Linux</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<div class="org-src-container">
+<pre class="src src-shell">apt-get install git-flow
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga1482ac" class="outline-4">
+<h4 id="orga1482ac"><span class="section-number-4">1.2.4</span> Windows (Cygwin)</h4>
+<div class="outline-text-4" id="text-1-2-4">
+<p>
+安装 git-flow, 你需要 wget 和 util-linux。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">wget -q -O - --no-check-certificate https://github.com/nvie/gitflow/raw/develop/contrib/gitflow-installer.sh | bash
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org854da87" class="outline-3">
+<h3 id="org854da87"><span class="section-number-3">1.3</span> 开始</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>为了自定义你的项目，Git flow 需要初始化过程。</li>
+<li>使用 git-flow，从初始化一个现有的 git 库内开始。</li>
+</ul>
+</div>
+
+<div id="outline-container-org1394e37" class="outline-4">
+<h4 id="org1394e37"><span class="section-number-4">1.3.1</span> 创建本地新的 dev 分支</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<div class="org-src-container">
+<pre class="src src-shell">git branch dev  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21019;&#24314;&#26412;&#22320;&#20998;&#25903;</span>
+git branch  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#20998;&#25903;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#26159;&#20250;&#30475;&#21040; master &#21644; dev&#65292;&#32780;&#19988; master &#19978;&#20250;&#26377;&#19968;&#20010;&#26143;&#21495;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#20010;&#26102;&#20505; dev &#26159;&#19968;&#20010;&#26412;&#22320;&#20998;&#25903;&#65292;&#36828;&#31243;&#20179;&#24211;&#19981;&#30693;&#36947;&#23427;&#30340;&#23384;&#22312;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26412;&#22320;&#20998;&#25903;&#21487;&#20197;&#19981;&#21516;&#27493;&#21040;&#36828;&#31243;&#20179;&#24211;&#65292;&#25105;&#20204;&#21487;&#20197;&#22312; dev &#24320;&#21457;&#65292;&#28982;&#21518; merge &#21040; master&#65292;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; master &#21516;&#27493;&#20195;&#30721;&#65292;&#24403;&#28982;&#20063;&#21487;&#20197;&#21516;&#27493;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcd4d948" class="outline-4">
+<h4 id="orgcd4d948"><span class="section-number-4">1.3.2</span> 发布 dev 分支</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<p>
+发布 dev 分支指的是同步 dev 分支的代码到远程服务器
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">git push origin dev:dev  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#26679;&#36828;&#31243;&#20179;&#24211;&#20063;&#26377;&#19968;&#20010; dev &#20998;&#25903;&#20102;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdf492fb" class="outline-4">
+<h4 id="orgdf492fb"><span class="section-number-4">1.3.3</span> 在 dev 分支开发代码</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<div class="org-src-container">
+<pre class="src src-shell">git checkout dev  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040; dev &#20998;&#25903;&#36827;&#34892;&#24320;&#21457;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24320;&#21457;&#20195;&#30721;&#20043;&#21518;&#65292;&#25105;&#20204;&#26377;&#20004;&#20010;&#36873;&#25321;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31532;&#19968;&#20010;&#65306;&#22914;&#26524;&#21151;&#33021;&#24320;&#21457;&#23436;&#25104;&#20102;&#65292;&#21487;&#20197;&#21512;&#24182;&#20027;&#20998;&#25903;</span>
+git checkout master  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040;&#20027;&#20998;&#25903;</span>
+git merge dev  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25226; dev &#20998;&#25903;&#30340;&#26356;&#25913;&#21644; master &#21512;&#24182;</span>
+git push  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25552;&#20132;&#20027;&#20998;&#25903;&#20195;&#30721;&#36828;&#31243;</span>
+git checkout dev  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040; dev &#36828;&#31243;&#20998;&#25903;</span>
+git push  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25552;&#20132; dev &#20998;&#25903;&#21040;&#36828;&#31243;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31532;&#20108;&#20010;&#65306;&#22914;&#26524;&#21151;&#33021;&#27809;&#26377;&#23436;&#25104;&#65292;&#21487;&#20197;&#30452;&#25509;&#25512;&#36865;</span>
+git push  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25552;&#20132;&#21040; dev &#36828;&#31243;&#20998;&#25903;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27880;&#24847;&#65306;&#22312;&#20998;&#25903;&#20999;&#25442;&#20043;&#21069;&#26368;&#22909;&#20808; commit &#20840;&#37096;&#30340;&#25913;&#21464;&#65292;&#38500;&#38750;&#20320;&#30495;&#30340;&#30693;&#36947;&#33258;&#24049;&#22312;&#20570;&#20160;&#20040;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3217667" class="outline-4">
+<h4 id="org3217667"><span class="section-number-4">1.3.4</span> 删除分支</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<div class="org-src-container">
+<pre class="src src-shell"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#36828;&#31243; dev &#20998;&#25903;&#65292;&#21361;&#38505;&#21629;&#20196;&#21734;</span>
+git push origin --delete &lt;branchName&gt;
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21487;&#20197;&#20351;&#29992;&#36825;&#31181;&#35821;&#27861;&#65292;&#25512;&#36865;&#19968;&#20010;&#31354;&#20998;&#25903;&#21040;&#36828;&#31243;&#20998;&#25903;&#65292;&#20854;&#23454;&#23601;&#30456;&#24403;&#20110;&#21024;&#38500;&#36828;&#31243;&#20998;&#25903;</span>
+git push origin :dev
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19979;&#38754;&#20004;&#26465;&#26159;&#21024;&#38500;&#26412;&#22320;&#20998;&#25903;</span>
+git checkout master  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040; master &#20998;&#25903;</span>
+git branch -d dev  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#26412;&#22320; dev &#20998;&#25903;</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3c93b90" class="outline-3">
+<h3 id="org3c93b90"><span class="section-number-3">1.4</span> 追踪分支</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+追踪分支是用与联系本地分支和远程分支的. 如果你在追踪分支(Tracking Branches)上执行推送(push)或拉取(pull)时,　它会自动推送(push)或拉取(pull)到关联的远程分支上。
+</p>
+
+<p>
+如果你经常要从远程仓库里拉取(pull)分支到本地,并且不想很麻烦的使用 <code>git pull</code> 这种格式; 那么就应当使用追踪分支(Tracking Branches)。
+</p>
+
+<p>
+<code>git clone</code> 命令会自动在本地建立一个 master 分支，它是 origin/master 的追踪分支。 而 origin/master 就是被克隆(clone)仓库的'master'分支。
+</p>
+
+<p>
+译者注: origin 一般是指原始仓库地址的别名。
+</p>
+
+<p>
+可以在使用 <code>git branch</code> 命令时加上 <code>--track</code> 参数, 来手动创建一个追踪分支。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">git branch --track experimental origin/experimental
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25110;&#32773;</span>
+git checkout --track origin/experimental
+</pre>
+</div>
+
+<p>
+当你运行下命令时:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">git pull experimental
+</pre>
+</div>
+
+<p>
+它会自动从 <code>origin</code> 抓取(fetch)内容，再把远程的 <code>origin/experimental</code> 分支合并进(merge)本地的 experimental 分支。
+</p>
+
+<p>
+当要把修改推送(push)到 origin 时, 它会将你本地的 experimental 分支中的修改推送到 origin 的 experimental 分支里,　而无需指定它(origin)。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org768af95" class="outline-2">
+<h2 id="org768af95"><span class="section-number-2">2</span> References</h2>
+<div class="outline-text-2" id="text-2">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+</p>
+
+<p>
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+<ul class="org-ul">
+<li><a href="https://www.cnblogs.com/lcngu/p/5770288.html">https://www.cnblogs.com/lcngu/p/5770288.html</a></li>
+<li><a href="https://github.com/arslanbilal/git-cheat-sheet/blob/master/other-sheets/git-cheat-sheet-zh.md">https://github.com/arslanbilal/git-cheat-sheet/blob/master/other-sheets/git-cheat-sheet-zh.md</a></li>
+</ul>
+</blockquote>
+</div>
+</div>

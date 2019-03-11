@@ -20,6 +20,7 @@ tags:
 * 配置 frp
 
   #+begin_src conf
+    # frps.ini
     [common]
     bind_port = 7000
     vhost_http_port = 80

@@ -6,7 +6,7 @@ date: 2017-07-27
 categories: 研发环境
 tags:
     - Python
-    - pyenv
+    - PyEnv
 ---
 #+end_export
 
@@ -108,15 +108,15 @@ trusted-host=mirrors.aliyun.com
 
 * pyenv 命令
 
-  | 命令                  | 说明                                                           |
-  |-----------------------+----------------------------------------------------------------|
-  | pyenv version         | 查看当前系统使用的 python 版本                                 |
-  | pyenv versions        | 查看当前系统拥有的 python 版本                                 |
-  | pyenv install 3.4.1   | 安装 3.4.1，可使用 -v 参数查看详细输出                         |
-  | pyenv uninstall 3.4.1 | 卸载 3.4.1                                                     |
-  | pyenv local 3.4.1     | local 仅对当前目录及子目录生效，告诉当前目录使用版本 2.7.5，   |
-  | pyenv global          | 全局使用某个版本，不建议使用 global 设置全局版本               |
-  | pyenv rehash          | 重建环境，每次增删版本或带可执行文件的包（如 pip）后，都应执行 |
+  | 命令                  | 说明                                                         |
+  |-----------------------+--------------------------------------------------------------|
+  | pyenv version         | 查看当前系统使用的 python 版本                               |
+  | pyenv versions        | 查看当前系统拥有的 python 版本                               |
+  | pyenv install 3.4.1   | 安装 3.4.1，可使用 -v 参数查看详细输出                       |
+  | pyenv uninstall 3.4.1 | 卸载 3.4.1                                                   |
+  | pyenv local 3.4.1     | local 仅对当前目录及子目录生效，告诉当前目录使用版本 2.7.5， |
+  | pyenv global          | 全局使用某个版本，不建议使用 global 设置全局版本             |
+  | pyenv rehash          | 重建环境，增删版本或可执行文件的包（如 pip）后都应执行       |
 
 * pyenv-virtualenv 安装
 

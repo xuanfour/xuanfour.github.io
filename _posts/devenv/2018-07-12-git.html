@@ -4,19 +4,19 @@ title:      "Git 学习"
 date:       2015-07-12
 categories: 研发环境
 tags:
-    - git
+    - Git
 ---
 
 <div id="outline-container-org6968fce" class="outline-2">
 <h2 id="org6968fce"><span class="section-number-2">1</span> Git</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org8b807ec" class="outline-3">
-<h3 id="org8b807ec"><span class="section-number-3">1.1</span> 配置</h3>
+<div id="outline-container-org2aa8e28" class="outline-3">
+<h3 id="org2aa8e28"><span class="section-number-3">1.1</span> Git 配置</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-orgc0034b8" class="outline-4">
-<h4 id="orgc0034b8"><span class="section-number-4">1.1.1</span> 列出当前配置</h4>
+<div id="outline-container-orgb2cb3e8" class="outline-4">
+<h4 id="orgb2cb3e8"><span class="section-number-4">1.1.1</span> 列出 git 当前配置</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <div class="org-src-container">
 <pre class="src src-shell">git config --list
@@ -25,8 +25,8 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-org4494872" class="outline-4">
-<h4 id="org4494872"><span class="section-number-4">1.1.2</span> 列出 repository 配置</h4>
+<div id="outline-container-orgc172fed" class="outline-4">
+<h4 id="orgc172fed"><span class="section-number-4">1.1.2</span> 列出本地配置</h4>
 <div class="outline-text-4" id="text-1-1-2">
 <div class="org-src-container">
 <pre class="src src-shell">git config --local --list
@@ -96,12 +96,12 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-org9ff62f3" class="outline-3">
-<h3 id="org9ff62f3"><span class="section-number-3">1.2</span> 配置文件</h3>
+<div id="outline-container-org482c925" class="outline-3">
+<h3 id="org482c925"><span class="section-number-3">1.2</span> Git 配置文件</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-orgf9be890" class="outline-4">
-<h4 id="orgf9be890"><span class="section-number-4">1.2.1</span> Repository 配置对应的配置文件路径[&#x2013;local]</h4>
+<div id="outline-container-org0ea9ae6" class="outline-4">
+<h4 id="org0ea9ae6"><span class="section-number-4">1.2.1</span> 本地仓库配置对应的配置文件路径 [local]</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <div class="org-src-container">
 <pre class="src src-shell">&lt;repo&gt;/.git/config
@@ -110,8 +110,8 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-org22ecf87" class="outline-4">
-<h4 id="org22ecf87"><span class="section-number-4">1.2.2</span> 用户全局配置对应的配置文件路径[&#x2013;global]</h4>
+<div id="outline-container-org0c30b95" class="outline-4">
+<h4 id="org0c30b95"><span class="section-number-4">1.2.2</span> 用户全局配置对应的配置文件路径 [global]</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <div class="org-src-container">
 <pre class="src src-shell">~/.gitconfig
@@ -120,8 +120,8 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-orgae8dddd" class="outline-4">
-<h4 id="orgae8dddd"><span class="section-number-4">1.2.3</span> 系统配置对应的配置文件路径[&#x2013;local]</h4>
+<div id="outline-container-org2d02016" class="outline-4">
+<h4 id="org2d02016"><span class="section-number-4">1.2.3</span> 系统配置对应的配置文件路径 [system]</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <div class="org-src-container">
 <pre class="src src-shell">/etc/gitconfig
@@ -131,8 +131,8 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-org244e2e5" class="outline-3">
-<h3 id="org244e2e5"><span class="section-number-3">1.3</span> 创建</h3>
+<div id="outline-container-org0b1bb4b" class="outline-3">
+<h3 id="org0b1bb4b"><span class="section-number-3">1.3</span> 创建仓库</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
 <div id="outline-container-orgd238b11" class="outline-4">
@@ -159,8 +159,8 @@ git clone http://domain.com/user/repo.git
 </div>
 </div>
 
-<div id="outline-container-org1487c95" class="outline-3">
-<h3 id="org1487c95"><span class="section-number-3">1.4</span> 本地修改</h3>
+<div id="outline-container-org847f284" class="outline-3">
+<h3 id="org847f284"><span class="section-number-3">1.4</span> 本地文件修改</h3>
 <div class="outline-text-3" id="text-1-4">
 </div>
 <div id="outline-container-org2ab2ce4" class="outline-4">
@@ -237,7 +237,7 @@ git clone http://domain.com/user/repo.git
 <h4 id="org95aea11"><span class="section-number-4">1.4.8</span> 提交，并将提交时间设置为之前的某个日期:</h4>
 <div class="outline-text-4" id="text-1-4-8">
 <div class="org-src-container">
-<pre class="src src-shell">git commit --date=<span style="color: #2d9574;">"`date --date='n day ago'`"</span> -am <span style="color: #2d9574;">"Commit Message"</span>
+<pre class="src src-shell">git commit --date=<span style="color: #2d9574;">"date --date='n day ago'"</span> -am <span style="color: #2d9574;">"Commit Message"</span>
 </pre>
 </div>
 </div>
@@ -310,8 +310,8 @@ git stash pop
 </div>
 </div>
 
-<div id="outline-container-org41b6c85" class="outline-3">
-<h3 id="org41b6c85"><span class="section-number-3">1.5</span> 搜索</h3>
+<div id="outline-container-orgc622253" class="outline-3">
+<h3 id="orgc622253"><span class="section-number-3">1.5</span> 本地文件搜索</h3>
 <div class="outline-text-3" id="text-1-5">
 </div>
 <div id="outline-container-org2e510f2" class="outline-4">
@@ -707,8 +707,8 @@ git push &lt;remote&gt; --delete &lt;branch&gt; <span style="color: #4f97d7;">(<
 </div>
 </div>
 
-<div id="outline-container-orge6a612a" class="outline-4">
-<h4 id="orge6a612a"><span class="section-number-4">1.9.6</span> 在编辑器中手动解决冲突后，标记文件为 `已解决冲突`</h4>
+<div id="outline-container-orgbf27a01" class="outline-4">
+<h4 id="orgbf27a01"><span class="section-number-4">1.9.6</span> 在编辑器中手动解决冲突后，标记文件为已解决冲突</h4>
 <div class="outline-text-4" id="text-1-9-6">
 <div class="org-src-container">
 <pre class="src src-shell">git add &lt;resolved-file&gt;
@@ -767,8 +767,8 @@ squash &lt;commit_id3&gt;
 </div>
 </div>
 
-<div id="outline-container-org34e4502" class="outline-4">
-<h4 id="org34e4502"><span class="section-number-4">1.10.2</span> 移除缓存区的所有文件（i.e. 撤销上次 `git add`）</h4>
+<div id="outline-container-orge9417f4" class="outline-4">
+<h4 id="orge9417f4"><span class="section-number-4">1.10.2</span> 移除缓存区的所有文件（i.e. 撤销上次 <code>git add</code> ）</h4>
 <div class="outline-text-4" id="text-1-10-2">
 <div class="org-src-container">
 <pre class="src src-shell">git reset HEAD
@@ -837,8 +837,8 @@ squash &lt;commit_id3&gt;
 </div>
 </div>
 
-<div id="outline-container-org87ee5fb" class="outline-4">
-<h4 id="org87ee5fb"><span class="section-number-4">1.10.9</span> 删除添加`.gitignore`文件前错误提交的文件</h4>
+<div id="outline-container-org75b7212" class="outline-4">
+<h4 id="org75b7212"><span class="section-number-4">1.10.9</span> 删除添加 <code>.gitignore</code> 文件前错误提交的文件</h4>
 <div class="outline-text-4" id="text-1-10-9">
 <div class="org-src-container">
 <pre class="src src-shell">git rm -r --cached .
@@ -851,213 +851,29 @@ git commit -m <span style="color: #2d9574;">"remove xyz file"</span>
 </div>
 </div>
 
-<div id="outline-container-org7999bf3" class="outline-2">
-<h2 id="org7999bf3"><span class="section-number-2">2</span> Git-Flow</h2>
+<div id="outline-container-org864ab99" class="outline-2">
+<h2 id="org864ab99"><span class="section-number-2">2</span> Tips</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgb7e6825" class="outline-3">
-<h3 id="orgb7e6825"><span class="section-number-3">2.1</span> 安装</h3>
-<div class="outline-text-3" id="text-2-1">
-<ul class="org-ul">
-<li>你需要有一个可以工作的 git 作为前提。</li>
-<li>Git flow 可以工作在 OSX, Linux 和 Windows 之下</li>
-</ul>
-</div>
-
-<div id="outline-container-org1b711c3" class="outline-4">
-<h4 id="org1b711c3"><span class="section-number-4">2.1.1</span> OSX Homebrew:</h4>
-<div class="outline-text-4" id="text-2-1-1">
-<div class="org-src-container">
-<pre class="src src-shell">brew install git-flow
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org966a335" class="outline-4">
-<h4 id="org966a335"><span class="section-number-4">2.1.2</span> OSX Macports:</h4>
-<div class="outline-text-4" id="text-2-1-2">
-<div class="org-src-container">
-<pre class="src src-shell">port install git-flow
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgaf0ae45" class="outline-4">
-<h4 id="orgaf0ae45"><span class="section-number-4">2.1.3</span> Linux</h4>
-<div class="outline-text-4" id="text-2-1-3">
-<div class="org-src-container">
-<pre class="src src-shell">apt-get install git-flow
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org9f0ab12" class="outline-4">
-<h4 id="org9f0ab12"><span class="section-number-4">2.1.4</span> Windows (Cygwin)</h4>
-<div class="outline-text-4" id="text-2-1-4">
-<p>
-安装 git-flow, 你需要 wget 和 util-linux。
-</p>
-
-<div class="org-src-container">
-<pre class="src src-shell">wget -q -O - --no-check-certificate https://github.com/nvie/gitflow/raw/develop/contrib/gitflow-installer.sh | bash
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org19a60c3" class="outline-3">
-<h3 id="org19a60c3"><span class="section-number-3">2.2</span> 开始</h3>
-<div class="outline-text-3" id="text-2-2">
-<ul class="org-ul">
-<li>为了自定义你的项目，Git flow 需要初始化过程。</li>
-<li>使用 git-flow，从初始化一个现有的 git 库内开始。</li>
-</ul>
-</div>
-
-<div id="outline-container-org9173b80" class="outline-4">
-<h4 id="org9173b80"><span class="section-number-4">2.2.1</span> 创建本地新的 dev 分支</h4>
-<div class="outline-text-4" id="text-2-2-1">
-<div class="org-src-container">
-<pre class="src src-shell">git branch dev  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21019;&#24314;&#26412;&#22320;&#20998;&#25903;</span>
-git branch  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#20998;&#25903;</span>
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#26159;&#20250;&#30475;&#21040; master &#21644; dev&#65292;&#32780;&#19988; master &#19978;&#20250;&#26377;&#19968;&#20010;&#26143;&#21495;</span>
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#20010;&#26102;&#20505; dev &#26159;&#19968;&#20010;&#26412;&#22320;&#20998;&#25903;&#65292;&#36828;&#31243;&#20179;&#24211;&#19981;&#30693;&#36947;&#23427;&#30340;&#23384;&#22312;</span>
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26412;&#22320;&#20998;&#25903;&#21487;&#20197;&#19981;&#21516;&#27493;&#21040;&#36828;&#31243;&#20179;&#24211;&#65292;&#25105;&#20204;&#21487;&#20197;&#22312; dev &#24320;&#21457;&#65292;&#28982;&#21518; merge &#21040; master&#65292;</span>
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; master &#21516;&#27493;&#20195;&#30721;&#65292;&#24403;&#28982;&#20063;&#21487;&#20197;&#21516;&#27493;</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-org40f4f53" class="outline-4">
-<h4 id="org40f4f53"><span class="section-number-4">2.2.2</span> 发布 dev 分支</h4>
-<div class="outline-text-4" id="text-2-2-2">
-<p>
-发布 dev 分支指的是同步 dev 分支的代码到远程服务器
-</p>
-
-<div class="org-src-container">
-<pre class="src src-shell">git push origin dev:dev  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#26679;&#36828;&#31243;&#20179;&#24211;&#20063;&#26377;&#19968;&#20010; dev &#20998;&#25903;&#20102;</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgaa6ae35" class="outline-4">
-<h4 id="orgaa6ae35"><span class="section-number-4">2.2.3</span> 在 dev 分支开发代码</h4>
-<div class="outline-text-4" id="text-2-2-3">
-<div class="org-src-container">
-<pre class="src src-shell">git checkout dev  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040; dev &#20998;&#25903;&#36827;&#34892;&#24320;&#21457;</span>
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24320;&#21457;&#20195;&#30721;&#20043;&#21518;&#65292;&#25105;&#20204;&#26377;&#20004;&#20010;&#36873;&#25321;</span>
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31532;&#19968;&#20010;&#65306;&#22914;&#26524;&#21151;&#33021;&#24320;&#21457;&#23436;&#25104;&#20102;&#65292;&#21487;&#20197;&#21512;&#24182;&#20027;&#20998;&#25903;</span>
-git checkout master  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040;&#20027;&#20998;&#25903;</span>
-git merge dev  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25226; dev &#20998;&#25903;&#30340;&#26356;&#25913;&#21644; master &#21512;&#24182;</span>
-git push  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25552;&#20132;&#20027;&#20998;&#25903;&#20195;&#30721;&#36828;&#31243;</span>
-git checkout dev  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040; dev &#36828;&#31243;&#20998;&#25903;</span>
-git push  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25552;&#20132; dev &#20998;&#25903;&#21040;&#36828;&#31243;</span>
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31532;&#20108;&#20010;&#65306;&#22914;&#26524;&#21151;&#33021;&#27809;&#26377;&#23436;&#25104;&#65292;&#21487;&#20197;&#30452;&#25509;&#25512;&#36865;</span>
-git push  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25552;&#20132;&#21040; dev &#36828;&#31243;&#20998;&#25903;</span>
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27880;&#24847;&#65306;&#22312;&#20998;&#25903;&#20999;&#25442;&#20043;&#21069;&#26368;&#22909;&#20808; commit &#20840;&#37096;&#30340;&#25913;&#21464;&#65292;&#38500;&#38750;&#20320;&#30495;&#30340;&#30693;&#36947;&#33258;&#24049;&#22312;&#20570;&#20160;&#20040;</span>
-</pre>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgdaae9c1" class="outline-4">
-<h4 id="orgdaae9c1"><span class="section-number-4">2.2.4</span> 删除分支</h4>
-<div class="outline-text-4" id="text-2-2-4">
-<div class="org-src-container">
-<pre class="src src-shell"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#36828;&#31243; dev &#20998;&#25903;&#65292;&#21361;&#38505;&#21629;&#20196;&#21734;</span>
-git push origin --delete &lt;branchName&gt;
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21487;&#20197;&#20351;&#29992;&#36825;&#31181;&#35821;&#27861;&#65292;&#25512;&#36865;&#19968;&#20010;&#31354;&#20998;&#25903;&#21040;&#36828;&#31243;&#20998;&#25903;&#65292;&#20854;&#23454;&#23601;&#30456;&#24403;&#20110;&#21024;&#38500;&#36828;&#31243;&#20998;&#25903;</span>
-git push origin :dev
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19979;&#38754;&#20004;&#26465;&#26159;&#21024;&#38500;&#26412;&#22320;&#20998;&#25903;</span>
-git checkout master  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040; master &#20998;&#25903;</span>
-git branch -d dev  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#26412;&#22320; dev &#20998;&#25903;</span>
-</pre>
-</div>
-</div>
-</div>
-</div>
-
-<div id="outline-container-orgfd379eb" class="outline-3">
-<h3 id="orgfd379eb"><span class="section-number-3">2.3</span> 追踪分支</h3>
-<div class="outline-text-3" id="text-2-3">
-<p>
-追踪分支是用与联系本地分支和远程分支的. 如果你在追踪分支(Tracking Branches)上执行推送(push)或拉取(pull)时,　它会自动推送(push)或拉取(pull)到关联的远程分支上。
-</p>
-
-<p>
-如果你经常要从远程仓库里拉取(pull)分支到本地,并且不想很麻烦的使用 `git pull` 这种格式; 那么就应当使用追踪分支(Tracking Branches)。
-</p>
-
-<p>
-`git clone` 命令会自动在本地建立一个 master 分支，它是 origin/master 的追踪分支。 而 origin/master 就是被克隆(clone)仓库的'master'分支。
-</p>
-
-<p>
-译者注: origin 一般是指原始仓库地址的别名。
-</p>
-
-<p>
-可以在使用 `git branch` 命令时加上 `&#x2013;track` 参数, 来手动创建一个追踪分支。
-</p>
-
-<div class="org-src-container">
-<pre class="src src-shell">git branch --track experimental origin/experimental
-<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25110;&#32773;</span>
-git checkout --track origin/experimental
-</pre>
-</div>
-
-<p>
-当你运行下命令时:
-</p>
-
-<div class="org-src-container">
-<pre class="src src-shell">git pull experimental
-</pre>
-</div>
-
-<p>
-它会自动从 `origin` 抓取(fetch)内容，再把远程的 `origin/experimental` 分支合并进(merge)本地的 experimental 分支。
-</p>
-
-<p>
-当要把修改推送(push)到 origin 时, 它会将你本地的 experimental 分支中的修改推送到 origin 的 experimental 分支里,　而无需指定它(origin)。
-</p>
-</div>
-</div>
-</div>
-
-
-<div id="outline-container-org864ab99" class="outline-2">
-<h2 id="org864ab99"><span class="section-number-2">3</span> Tips</h2>
-<div class="outline-text-2" id="text-3">
-</div>
 <div id="outline-container-orgbe1ef9c" class="outline-3">
-<h3 id="orgbe1ef9c"><span class="section-number-3">3.1</span> 查看某文件的修改历史 **</h3>
-<div class="outline-text-3" id="text-3-1">
+<h3 id="orgbe1ef9c"><span class="section-number-3">2.1</span> 查看某文件的修改历史 **</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
 先进入此文件所在的目录下
 </p>
 
 <ol class="org-ol">
-<li>查看 fileName 相关的 commit 记录：`git log filename`</li>
-<li>显示每次提交的 diff：`git log -p filename`</li>
-<li>查看某次提交中的某个文件变化，可以直接加上 fileName：`git show commit-id filename`</li>
-<li>根据 commit-id 查看某个提交：`git show -s &#x2013;pretty=raw ca53e82`</li>
+<li>查看 fileName 相关的 commit 记录： <code>git log filename</code></li>
+<li>显示每次提交的 diff： <code>git log -p filename</code></li>
+<li>查看某次提交中的某个文件变化，可以直接加上 fileName： <code>git show commit-id filename</code></li>
+<li>根据 commit-id 查看某个提交： <code>git show -s --pretty=raw ca53e82</code></li>
 </ol>
 </div>
 </div>
 
 <div id="outline-container-org65dcef8" class="outline-3">
-<h3 id="org65dcef8"><span class="section-number-3">3.2</span> git log 的常用选项</h3>
-<div class="outline-text-3" id="text-3-2">
+<h3 id="org65dcef8"><span class="section-number-3">2.2</span> git log 的常用选项</h3>
+<div class="outline-text-3" id="text-2-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1163,10 +979,9 @@ git checkout --track origin/experimental
 </div>
 </div>
 
-
 <div id="outline-container-orga0f0630" class="outline-2">
-<h2 id="orga0f0630"><span class="section-number-2">4</span> References</h2>
-<div class="outline-text-2" id="text-4">
+<h2 id="orga0f0630"><span class="section-number-2">3</span> References</h2>
+<div class="outline-text-2" id="text-3">
 <blockquote>
 <p>
 本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
