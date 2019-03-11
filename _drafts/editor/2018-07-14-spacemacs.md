@@ -53,6 +53,11 @@ tags:
 
 <!-- markdown-toc end -->
 
+## 重要命令
+
+- which-key-show-top-level
+  显示当前所有快捷键
+
 ## 快捷键
 
 ### 控制键定义
