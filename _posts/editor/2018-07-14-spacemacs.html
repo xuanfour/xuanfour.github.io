@@ -1,0 +1,1701 @@
+---
+layout: post
+title: "Spacemacs 学习"
+date: 2015-07-14
+categories: 文本编辑
+tags:
+    - Spacemacs
+excerpt:
+keywords: ""
+---
+
+<div id="outline-container-org6cf8ca8" class="outline-2">
+<h2 id="org6cf8ca8"><span class="section-number-2">1</span> 重要命令</h2>
+<div class="outline-text-2" id="text-1">
+<dl class="org-dl">
+<dt>which-key-show-top-level</dt><dd>显示当前所有快捷键</dd>
+
+<dt>删除连续空行</dt><dd><code>:%s/^\S*$//g</code></dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-org8bc8bbc" class="outline-2">
+<h2 id="org8bc8bbc"><span class="section-number-2">2</span> 快捷键</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orga5c8995" class="outline-3">
+<h3 id="orga5c8995"><span class="section-number-3">2.1</span> 控制键定义</h3>
+<div class="outline-text-3" id="text-2-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">MacOS</th>
+<th scope="col" class="org-left">Windows</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">(C)trl</td>
+<td class="org-left">Control</td>
+<td class="org-left">Ctrl</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">(M)eta</td>
+<td class="org-left">Option</td>
+<td class="org-left">Alt</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">(S)hift</td>
+<td class="org-left">Shift</td>
+<td class="org-left">Shift</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">(s)uper</td>
+<td class="org-left">Command</td>
+<td class="org-left">Win</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">(L)eader</td>
+<td class="org-left">custom</td>
+<td class="org-left">custom</td>
+<td class="org-left">Spacemacs 中一般为 &lt;SPC&gt; 空格键</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org8cff55c" class="outline-3">
+<h3 id="org8cff55c"><span class="section-number-3">2.2</span> 引导键配置</h3>
+<div class="outline-text-3" id="text-2-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">引导键</th>
+<th scope="col" class="org-left">配置选项</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&lt;space&gt;</td>
+<td class="org-left">dotspacemacs-leader-key</td>
+<td class="org-left">vim 按键 leader 键</td>
+</tr>
+
+<tr>
+<td class="org-left">,</td>
+<td class="org-left">dotspacemacs-major-mode-leader-key</td>
+<td class="org-left">vim 按键 major-mode-leader 键</td>
+</tr>
+
+<tr>
+<td class="org-left">:</td>
+<td class="org-left">dotspacemacs-ex-command-key</td>
+<td class="org-left">vim 按键扩展命令键</td>
+</tr>
+
+<tr>
+<td class="org-left">M-m</td>
+<td class="org-left">dotspacemacs-emacs-leader-key</td>
+<td class="org-left">emacs 按键 leader 键</td>
+</tr>
+
+<tr>
+<td class="org-left">C-M-m</td>
+<td class="org-left">dotspacemacs-major-mode-emacs-leader-key</td>
+<td class="org-left">emacs 按键 major-mode-leader 键</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org83f1f5a" class="outline-3">
+<h3 id="org83f1f5a"><span class="section-number-3">2.3</span> 重要快捷键</h3>
+<div class="outline-text-3" id="text-2-3">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">快捷键或命令</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-g</td>
+<td class="org-left">停止当前运行/输入的命令</td>
+</tr>
+
+<tr>
+<td class="org-left">C-x u</td>
+<td class="org-left">撤销前一个命令</td>
+</tr>
+
+<tr>
+<td class="org-left">M-x recover-file &lt;Return&gt;</td>
+<td class="org-left">从自动存盘文件恢复</td>
+</tr>
+
+<tr>
+<td class="org-left">M-x revert-buffer &lt;Return&gt;</td>
+<td class="org-left">撤销上次存盘后所有改动</td>
+</tr>
+
+<tr>
+<td class="org-left">M-x recover-session &lt;Return&gt;</td>
+<td class="org-left">如果你编辑了几个文件, 用这个恢复</td>
+</tr>
+
+<tr>
+<td class="org-left">Tab</td>
+<td class="org-left">代码补全</td>
+</tr>
+
+<tr>
+<td class="org-left">M-/</td>
+<td class="org-left">代码片段</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgce13509" class="outline-3">
+<h3 id="orgce13509"><span class="section-number-3">2.4</span> 自定义快捷键</h3>
+<div class="outline-text-3" id="text-2-4">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">快捷键</th>
+<th scope="col" class="org-left">evil 状态</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Q</td>
+<td class="org-left">normal/visual</td>
+<td class="org-left">查找替换</td>
+</tr>
+
+<tr>
+<td class="org-left">;j</td>
+<td class="org-left">normal/visual</td>
+<td class="org-left">下移到下一个显示行</td>
+</tr>
+
+<tr>
+<td class="org-left">;k</td>
+<td class="org-left">normal/visual</td>
+<td class="org-left">上移到下一个显示行</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org2eb4637" class="outline-3">
+<h3 id="org2eb4637"><span class="section-number-3">2.5</span> shell 快捷键</h3>
+<div class="outline-text-3" id="text-2-5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">快捷键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">:! command</td>
+<td class="org-left">执行 shell 命令，backspace 最小化 shell 窗格</td>
+</tr>
+
+<tr>
+<td class="org-left">:r! command</td>
+<td class="org-left">执行 shell 命令，同时将结果粘贴到光标处</td>
+</tr>
+
+<tr>
+<td class="org-left">L-!</td>
+<td class="org-left">执行 shell 命令，结果在小窗显示</td>
+</tr>
+
+<tr>
+<td class="org-left">L-'</td>
+<td class="org-left">打开 shell 窗口</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org281841f" class="outline-3">
+<h3 id="org281841f"><span class="section-number-3">2.6</span> help 快捷键</h3>
+<div class="outline-text-3" id="text-2-6">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-h c</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示快捷键绑定的命令</td>
+</tr>
+
+<tr>
+<td class="org-left">L-hdk</td>
+<td class="org-left">C-h k</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示快捷键绑定的命令和它的作用</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-h l</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示最后 100 个键入的内容</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-h w</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示命令被绑定到哪些快捷键上</td>
+</tr>
+
+<tr>
+<td class="org-left">L-hdf</td>
+<td class="org-left">C-h f</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示函数的功能</td>
+</tr>
+
+<tr>
+<td class="org-left">L-hdv</td>
+<td class="org-left">C-h v</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示变量的含义和值</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-h m</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示当前缓冲区模式的帮助文档</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-h b</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示当前缓冲区所有可用的快捷键</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-h t</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">打开 emacs 教程</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-h i</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">打开 info 阅读器</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-h C-f</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示 emacs FAQ</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-h p</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示本机 Elisp 包的信息</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgea32d05" class="outline-3">
+<h3 id="orgea32d05"><span class="section-number-3">2.7</span> text 快捷键</h3>
+<div class="outline-text-3" id="text-2-7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">L-xU</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">大写</td>
+</tr>
+
+<tr>
+<td class="org-left">L-xu</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">小写</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgf226aa1" class="outline-3">
+<h3 id="orgf226aa1"><span class="section-number-3">2.8</span> expand region 快捷键</h3>
+<div class="outline-text-3" id="text-2-8">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">L-vv</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">扩展文字区域</td>
+</tr>
+
+<tr>
+<td class="org-left">L-vV</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">收缩文字区域</td>
+</tr>
+
+<tr>
+<td class="org-left">L-vr</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">重置</td>
+</tr>
+
+<tr>
+<td class="org-left">L-ve</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">编辑</td>
+</tr>
+
+<tr>
+<td class="org-left">L-v/</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">从项目中检索文字区域</td>
+</tr>
+
+<tr>
+<td class="org-left">L-vf</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">从文件中检索文字区域</td>
+</tr>
+
+<tr>
+<td class="org-left">L-vb</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">从所有缓冲区中检索文字区域</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgf5cb21f" class="outline-3">
+<h3 id="orgf5cb21f"><span class="section-number-3">2.9</span> search/symbol 快捷键</h3>
+<div class="outline-text-3" id="text-2-9">
+</div>
+<div id="outline-container-orgbcb6d12" class="outline-4">
+<h4 id="orgbcb6d12"><span class="section-number-4">2.9.1</span> 搜索#</h4>
+<div class="outline-text-4" id="text-2-9-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">*</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">搜索当前符号并向前跳转</td>
+</tr>
+
+<tr>
+<td class="org-left">#</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">搜索当前符号并向后跳转</td>
+</tr>
+
+<tr>
+<td class="org-left">L-sh</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在当前范围内高亮当前符号的所有匹配项</td>
+</tr>
+
+<tr>
+<td class="org-left">L-sH</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">转到最后的高亮当前符号事件</td>
+</tr>
+
+<tr>
+<td class="org-left">L-se</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">高亮并编辑当前符号的所有匹配项</td>
+</tr>
+
+<tr>
+<td class="org-left">L-sc</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">清除高亮</td>
+</tr>
+
+<tr>
+<td class="org-left">L-sj</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">检索并跳转到缓冲区符号</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org4a9d24f" class="outline-4">
+<h4 id="org4a9d24f"><span class="section-number-4">2.9.2</span> 默认输入#</h4>
+<div class="outline-text-4" id="text-2-9-2">
+<p>
+默认输入指当前缓存的选择区域或光标下的关键字。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4d5bee1" class="outline-4">
+<h4 id="org4d5bee1"><span class="section-number-4">2.9.3</span> 命令#</h4>
+<div class="outline-text-4" id="text-2-9-3">
+<p>
+Leader s 检索工具 作用域
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8562ad6" class="outline-4">
+<h4 id="org8562ad6"><span class="section-number-4">2.9.4</span> 检索工具#</h4>
+<div class="outline-text-4" id="text-2-9-4">
+<p>
+如果省略检索工具，则自动选择默认工具进行搜索。列表定义 `dotspacemacs-search-tools`，默认顺序是 ag、pt、ack、grep。
+</p>
+
+<ul class="org-ul">
+<li>a: ag</li>
+<li>t: pt</li>
+<li>k: ack</li>
+<li>g: grep</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4881564" class="outline-4">
+<h4 id="org4881564"><span class="section-number-4">2.9.5</span> 作用域#</h4>
+<div class="outline-text-4" id="text-2-9-5">
+<p>
+大写作用域键用默认输入来搜索。重复作用域键用来搜索当前文件。
+</p>
+
+<ul class="org-ul">
+<li>b：当前打开的所有缓存文件。</li>
+<li>p：当前项目下的文件。</li>
+<li>d：选择（默认当前）目录。</li>
+<li>f：选择（默认当前）目录下的文件。</li>
+<li>w：选择网络。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd2ffaf9" class="outline-4">
+<h4 id="orgd2ffaf9"><span class="section-number-4">2.9.6</span> 在当前项目中搜索#</h4>
+<div class="outline-text-4" id="text-2-9-6">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">L-sp</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在当前项目中搜索</td>
+</tr>
+
+<tr>
+<td class="org-left">L-sP</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在当前项目中搜索默认输入</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+当前项目搜索的二级菜单
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">C-c C-l</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">搜索历史</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c C-e</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">编辑搜索结果列表</td>
+</tr>
+
+<tr>
+<td class="org-left">C-c &lt;Tab&gt;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">当前搜索结果添加到当前缓冲</td>
+</tr>
+
+<tr>
+<td class="org-left">C-z</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">helm actions 前缀键（可省略）</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;F1&gt;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">打开文件</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;F2&gt;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在其他窗口打开文件</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;F3&gt;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">搜索结果列表保存到临时缓冲</td>
+</tr>
+
+<tr>
+<td class="org-left">&lt;F4&gt;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">编辑搜索结果列表</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+常见操作：
+`L-sp` 在项目中搜索，显示搜索结果后按键 `&lt;F4&gt;` 编辑搜索结果列表，然后按键 `C-c C-c` 提交修改，或者按键 `C-c C-k`，然后回答 `y` 放弃修改。
+也可以按键 `&lt;F3&gt;` 将搜索结果列表保存到临时缓冲后逐一修改。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org64265bb" class="outline-4">
+<h4 id="org64265bb"><span class="section-number-4">2.9.7</span> 在当前文件中搜索#</h4>
+<div class="outline-text-4" id="text-2-9-7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">L-ss</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在当前文件中使用 swoop 搜索</td>
+</tr>
+
+<tr>
+<td class="org-left">L-sS</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在当前文件中使用 swoop 搜索默认输入</td>
+</tr>
+
+<tr>
+<td class="org-left">L-saa</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在当前文件中使用 ag 搜索</td>
+</tr>
+
+<tr>
+<td class="org-left">L-saA</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在当前文件中使用 ag 搜索默认输入</td>
+</tr>
+
+<tr>
+<td class="org-left">L-sg</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在当前文件中使用 grep 搜索</td>
+</tr>
+
+<tr>
+<td class="org-left">L-sgG</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在当前文件中使用 grep 搜索默认输入</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc7326f9" class="outline-3">
+<h3 id="orgc7326f9"><span class="section-number-3">2.10</span> jump/join/split 快捷键</h3>
+<div class="outline-text-3" id="text-2-10">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">%</td>
+<td class="org-left">跳转到对应语法位置</td>
+</tr>
+
+<tr>
+<td class="org-left">L-ji</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">检索并跳转到缓冲区符号</td>
+</tr>
+
+<tr>
+<td class="org-left">L-jj {char}</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">检索 {char}，键入屏幕显示的自符跳转到对应位置</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org367b3bf" class="outline-3">
+<h3 id="org367b3bf"><span class="section-number-3">2.11</span> narrow/numbers</h3>
+<div class="outline-text-3" id="text-2-11">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">L-nf</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">将缓冲区缩小到当前函数</td>
+</tr>
+
+<tr>
+<td class="org-left">L-np</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">将缓冲区缩小到可见页面</td>
+</tr>
+
+<tr>
+<td class="org-left">L-nr</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">将缓冲区缩小到所选文本</td>
+</tr>
+
+<tr>
+<td class="org-left">L-nw</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">将缓冲区加宽，即还原整个缓冲区</td>
+</tr>
+
+<tr>
+<td class="org-left">L-n=</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">增加文本数值</td>
+</tr>
+
+<tr>
+<td class="org-left">L-n-</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">减少文本数值</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org3400dbe" class="outline-3">
+<h3 id="org3400dbe"><span class="section-number-3">2.12</span> files 快捷键</h3>
+<div class="outline-text-3" id="text-2-12">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">L-ft</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换 neotree</td>
+</tr>
+</tbody>
+</table>
+<p>
+&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
+<code>=====</code>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org585489a" class="outline-3">
+<h3 id="org585489a"><span class="section-number-3">2.13</span> window 快捷键</h3>
+<div class="outline-text-3" id="text-2-13">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">L-1..9</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换 window</td>
+</tr>
+
+<tr>
+<td class="org-left">L-w[hjkl]</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换到上下左右 window</td>
+</tr>
+
+<tr>
+<td class="org-left">L-w[HJKL]</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">当前 window 移动到上下左右</td>
+</tr>
+
+<tr>
+<td class="org-left">L-w-</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">上下分割 window</td>
+</tr>
+
+<tr>
+<td class="org-left">L-w/</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">左右分割 window</td>
+</tr>
+
+<tr>
+<td class="org-left">L-wd</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">关闭 window</td>
+</tr>
+
+<tr>
+<td class="org-left">L-wb</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换到 minibuffer</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+<p>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt; 246057b41feb2511b092cb1c49e04f52acb65cbd
+</p>
+</div>
+</div>
+
+<div id="outline-container-org62438ed" class="outline-3">
+<h3 id="org62438ed"><span class="section-number-3">2.14</span> toggles 快捷键</h3>
+<div class="outline-text-3" id="text-2-14">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">L-t&lt;Tab&gt;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换显示缩进辅助线</td>
+</tr>
+
+<tr>
+<td class="org-left">L-tn</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换显示行号</td>
+</tr>
+
+<tr>
+<td class="org-left">L-tr</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换显示相对行号</td>
+</tr>
+
+<tr>
+<td class="org-left">L-tf</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换高亮 80 列</td>
+</tr>
+
+<tr>
+<td class="org-left">L-t8</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换高亮长行</td>
+</tr>
+
+<tr>
+<td class="org-left">L-t C-8</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换全局高亮长行</td>
+</tr>
+
+<tr>
+<td class="org-left">L-tw</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换高亮空白</td>
+</tr>
+
+<tr>
+<td class="org-left">L-tW</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">清除高亮空白</td>
+</tr>
+
+<tr>
+<td class="org-left">L-t C-w</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换全局高亮空白</td>
+</tr>
+
+<tr>
+<td class="org-left">L-t C-S-w</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">清除全局高亮空白</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgce5c4c2" class="outline-3">
+<h3 id="orgce5c4c2"><span class="section-number-3">2.15</span> major-mode-cmd 快捷键</h3>
+<div class="outline-text-3" id="text-2-15">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">,</td>
+<td class="org-left">major mode</td>
+</tr>
+
+<tr>
+<td class="org-left">L-meb</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">,eb</td>
+<td class="org-left">执行当前 buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">L-mee</td>
+<td class="org-left">C-x C-e</td>
+<td class="org-left">,ee</td>
+<td class="org-left">执行最后一条表达式，结果在小窗显示</td>
+</tr>
+
+<tr>
+<td class="org-left">L-m=</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">,=</td>
+<td class="org-left">格式化代码</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-orgf07e4e0" class="outline-3">
+<h3 id="orgf07e4e0"><span class="section-number-3">2.16</span> other 快捷键</h3>
+<div class="outline-text-3" id="text-2-16">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">`L-&lt;Space&gt;`</td>
+<td class="org-left">M-x</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M-x</td>
+</tr>
+
+<tr>
+<td class="org-left">`L-&lt;Tab&gt;`</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换到上一个 buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">`[&lt;space&gt;`</td>
+<td class="org-left">增加行上空行</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">`]&lt;space&gt;`</td>
+<td class="org-left">增加行上空行</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">]]</td>
+<td class="org-left">在当前位置换行</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-x ;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">设置注释列</td>
+</tr>
+
+<tr>
+<td class="org-left">L-;;</td>
+<td class="org-left">C-x C-;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">注释当前行</td>
+</tr>
+
+<tr>
+<td class="org-left">L-;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">注释选择行</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-o/i</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">向上/下跳转到上次移动位置</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">,</td>
+<td class="org-left">major mode</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-j</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在光标处打印最后一条表达式结果</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">=</td>
+<td class="org-left">格式化选择区域代码</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd48ea81" class="outline-2">
+<h2 id="orgd48ea81"><span class="section-number-2">3</span> M-x 命令</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org4c97305" class="outline-3">
+<h3 id="org4c97305"><span class="section-number-3">3.1</span> 进入命令的快捷键</h3>
+<div class="outline-text-3" id="text-3-1">
+<ul class="org-ul">
+<li>M-x</li>
+<li>LL</li>
+
+<li>cd: 选择当前路径</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgf3c8933" class="outline-2">
+<h2 id="orgf3c8933"><span class="section-number-2">4</span> Project 设置</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+如果是 git 项目，spacemacs 发现有 .git 目录，就会认为是一个 spacemacs project。
+如果没有 .git 目录，就需要手动创建一个 .projectile 空文件，告诉 spacmeacs 此处是 project 根目录。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">touch .projectile
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org1b3a613" class="outline-2">
+<h2 id="org1b3a613"><span class="section-number-2">5</span> iedit</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Spacemacs 使用强大的 iedit 模式通过 evil-iedit-state 多点位编辑语法关键字和选择区域。
+evil-iedit-state 定义了两个新的 evil 状态：
+</p>
+
+<ul class="org-ul">
+<li>iedit state</li>
+<li>iedit-insert state</li>
+</ul>
+
+<p>
+可以通过快捷键 `L-se` 和 `L-ve` 进入 iedit。进入 iedit 编辑状态后文本位置显示红色。iedit-insert state 必须按两次 ESC 才能回到正常状态。也可以随时按 C-g 返回正常状态。
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">快捷键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">ESC</td>
+<td class="org-left">回到正常状态</td>
+</tr>
+
+<tr>
+<td class="org-left">TAB</td>
+<td class="org-left">切换当前区域的 iedit state 选中状态</td>
+</tr>
+
+<tr>
+<td class="org-left">0</td>
+<td class="org-left">转到当前区域的开头</td>
+</tr>
+
+<tr>
+<td class="org-left">$</td>
+<td class="org-left">转到当前区域的结尾</td>
+</tr>
+
+<tr>
+<td class="org-left">#</td>
+<td class="org-left">为所有区域前缀一个增加的数字，SPC u# 来选择起始编号和文字格式。</td>
+</tr>
+
+<tr>
+<td class="org-left">A</td>
+<td class="org-left">转到当前区域的结尾并切换到 iedit-insert state</td>
+</tr>
+
+<tr>
+<td class="org-left">D</td>
+<td class="org-left">删除所有区域</td>
+</tr>
+
+<tr>
+<td class="org-left">F</td>
+<td class="org-left">将范围限制</td>
+</tr>
+
+<tr>
+<td class="org-left">gg</td>
+<td class="org-left">去第一次区域</td>
+</tr>
+
+<tr>
+<td class="org-left">G</td>
+<td class="org-left">去最后一次区域</td>
+</tr>
+
+<tr>
+<td class="org-left">I</td>
+<td class="org-left">转到当前区域的开头并切换到 iedit-insert state</td>
+</tr>
+
+<tr>
+<td class="org-left">J</td>
+<td class="org-left">将编辑范围增加一行以下</td>
+</tr>
+
+<tr>
+<td class="org-left">K</td>
+<td class="org-left">将编辑范围增加一行以上</td>
+</tr>
+
+<tr>
+<td class="org-left">L</td>
+<td class="org-left">将范围限制为当前行</td>
+</tr>
+
+<tr>
+<td class="org-left">n</td>
+<td class="org-left">去下一个区域</td>
+</tr>
+
+<tr>
+<td class="org-left">N</td>
+<td class="org-left">转到上一个区域</td>
+</tr>
+
+<tr>
+<td class="org-left">p</td>
+<td class="org-left">用最后复制的文本替换</td>
+</tr>
+
+<tr>
+<td class="org-left">S</td>
+<td class="org-left">替换删除并切换到 iedit-insert state</td>
+</tr>
+
+<tr>
+<td class="org-left">V</td>
+<td class="org-left">切换所有区域以外的区域是否可见</td>
+</tr>
+
+<tr>
+<td class="org-left">U</td>
+<td class="org-left">区域文字大写</td>
+</tr>
+
+<tr>
+<td class="org-left">C-U</td>
+<td class="org-left">区域文字小写</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgc86beb8" class="outline-2">
+<h2 id="orgc86beb8"><span class="section-number-2">6</span> 中英文混排空格 PanGu-Spacing</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+需要在中英文混排的时候，在英文两边增加空格，可以增加 chinese layer，这个 layer 里包括一个 pangu-spacing 包，是用来更好地显示中英文混排的，默认情况下，中英文混排会在英文前后添加 1 个空格分割显示，保存的也时候也会写入到文件当中。
+</p>
+
+<ul class="org-ul">
+<li>如果想在某个模式里禁用，可以在配置文件里把模式加入 pangu-spacing-inhibit-mode-alist。</li>
+<li>如果想在当前 buffer 里切换，可以使用命令 pangu-spacing-mode。</li>
+<li>如果想全局禁用，可以设置 global-pangu-spacing-mode。</li>
+<li>这个设置并不会真正在文件中插入空白，如果你希望这样，配置 (setq pangu-spacing-real-insert-separtor t)</li>
+<li></li>
+
+<li>[返回目录](#目录)</li>
+<li></li>
+</ul>
+<p>
+-# 设置缺省路径
+</p>
+<ul class="org-ul">
+<li></li>
+
+<li>增加 `(cd "<i>some/dir</i>")` 到配置文件的 `user-init` 方法。</li>
+<li>使用钩子函数 `(add-hook 'find-file-hook #'(lambda () (setq default-directory (expand-file-name "<i>some/dir</i>"))))`。</li>
+<li>在查找文件之前调用自定义函数 `(cd "<i>some/dir</i>")`。</li>
+<li></li>
+
+<li>[返回目录](#目录)</li>
+<li></li>
+</ul>
+<p>
+-# 中文乱码
+</p>
+<ul class="org-ul">
+<li></li>
+</ul>
+<p>
+-macs 打开文件后常常因为默认编码与文档编码不同而显示为乱码。此时不用惊慌，只需 `C-x &lt;RET&gt; r ( M-x revert-buffer-with-coding-system)` 来用指定的编码重新读入这个文件即可。一般乱码都是因为 emacs 下使用 latin 或者 utf8，而打开的文档是 gb2312 编码。如果不记得编码类型就试一下，基本上 gb2312 都能解决。询问编码时记得用 tab 补齐比较方便。
+</p>
+<ul class="org-ul">
+<li></li>
+</ul>
+<p>
+-一种更方便的方法是使用 unicad，下载 unicad.el 保存到相应目录（譬如.emacs 中配置 my-elisp 文件夹为存放目录），然后在.emacs 中声明 `(require ‘unicad)` 即可。这样下次打开文档时会自动判断编码类型，非常方便。
+</p>
+<ul class="org-ul">
+<li></li>
+
+<li>[返回目录](#目录)</li>
+<li></li>
+</ul>
+<p>
+-# 环境变量
+</p>
+<ul class="org-ul">
+<li></li>
+</ul>
+<p>
+-以通过 `~/.spacemacs.d/.spacemacs.env` 设置环境变量文件。
+</p>
+<ul class="org-ul">
+<li></li>
+
+<li>快捷键 `&lt;leader&gt;fee` 编辑环境变量文件。</li>
+<li>快捷键 `&lt;leader&gt;fe C-e` 强制初始化环境变量文件。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf443158" class="outline-2">
+<h2 id="orgf443158"><span class="section-number-2">7</span> YASnippet 代码片段</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org49d403a" class="outline-3">
+<h3 id="org49d403a"><span class="section-number-3">7.1</span> 添加 snippet</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+`M-x` 然后输入 `yas-new-snippet` 回车 RET，会出现一个新的 buffer
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text"># -*- mode: snippet -*-
+# name:
+# key:
+# --
+</pre>
+</div>
+
+<p>
+在出现的 buffer 中填写相应的数据
+</p>
+
+<div class="org-src-container">
+<pre class="src src-text"># -*- mode: snippet -*-
+# name: vard
+# key: vard
+# --
+echo '&lt;pre&gt;';
+var_dump($0);
+die;
+</pre>
+</div>
+
+<p>
+`c-x c-s` 保存
+</p>
+
+<p>
+可以保存到两个地方：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-shell">~/.emacs.d/private/snippets/modename-mode/
+~/.spacemacs.d/snippets/modename-mode/
+</pre>
+</div>
+
+<p>
+代码片段中的 `$0` 表示代码片段填充之后光标最后停的地方，`$1 $2 $3&#x2026;` 表示按 TAB 之后光标停的地方。这些变量我们叫做 tab stop
+</p>
+
+<p>
+在已存在的代码片段上创建 snippet  `helm-yas-create-snippet-on-region`
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgafa1089" class="outline-3">
+<h3 id="orgafa1089"><span class="section-number-3">7.2</span> 使用 snippet</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+打开一个 buffer
+M-/ spacemacs 的 TAB 按键被自动补全使用了，所以这里使用了 M-/ 来触发。
+如果有多个 tab stop 可以使用 TAB 进行跳转
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga5d971e" class="outline-3">
+<h3 id="orga5d971e"><span class="section-number-3">7.3</span> 与 auto-completion 整合</h3>
+<div class="outline-text-3" id="text-7-3">
+<div class="org-src-container">
+<pre class="src src-emacs-lisp"><span style="color: #2aa1ae; background-color: #292e34;">;; </span><span style="color: #2aa1ae; background-color: #292e34;">&#35753; auto-completion &#22312;&#25552;&#31034;&#30340;&#26102;&#20505;&#21152;&#19978; snippets</span>
+<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">setq-default</span> dotspacemacs-configuration-layers
+              '<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">(</span>auto-completion <span style="color: #4f97d7;">:variables</span>
+                                 auto-completion-enable-snippets-in-popup t<span style="color: #2d9574;">)</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org90d1f5d" class="outline-2">
+<h2 id="org90d1f5d"><span class="section-number-2">8</span> References</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+&gt; 本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+&gt; 笔记内容摘录于下列文章，相应权利归属原作者，如有未列出或不妥，请联系我立即增补或删除。
+</p>
+</div>
+</div>

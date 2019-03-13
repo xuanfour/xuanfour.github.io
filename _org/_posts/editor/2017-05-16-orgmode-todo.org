@@ -1,4 +1,15 @@
-#+TITLE: org-mode，最好的任务管理利器，没有之一
+#+begin_export html
+---
+layout: post
+title: "Org mode 待办事项"
+date: 2017-05-16
+categories: 文本编辑
+tags:
+    - Org mode
+excerpt:
+keywords: ""
+---
+#+end_export
 
 本文转自 Holbrook 的个人博客 https://holbrook.github.io/2012/04/14/emacs_orgmode_task.html
 
@@ -19,10 +30,10 @@ Org-mode 内置的任务状态只有两种：TODO 和 DONE。如果需要更多�
 
 可以在文件内部定义任务状态： 关键字应该各不相同，这样对于一个选项 Org 才知道该用哪个状态序列（集合）。例子中也给出了快速使用一个关键字的方法，就是在关键字后面括号中给出快捷字母 。当用 C-c C-t 时，会询问，让你输入一个字母。 要自定义任务状态，可以使用文档元数据 #+SEQ_TODO，可以在文档的任何地方定义，但是建议统一定义在文档头部：
 
-#+BEGIN_SRC org
-  ,#+SEQ_TODO: REPORT(r) BUG(b) KNOWNCAUSE(k) | FIXED(f)
-  ,#+SEQ_TODO: TODO(T!) | DONE(D@)3  CANCELED(C@/!)
-#+END_SRC
+#+begin_src org
+  #+SEQ_TODO: REPORT(r) BUG(b) KNOWNCAUSE(k) | FIXED(f)
+  #+SEQ_TODO: TODO(T!) | DONE(D@)3  CANCELED(C@/!)
+#+end_src
 
 将光标放在这些内容上，输入 C-c C-c 可以直接生效。此时再用 C-c C-t 设定任务时，会打开一个新的缓冲区。
 
@@ -32,9 +43,9 @@ Org-mode 内置的任务状态只有两种：TODO 和 DONE。如果需要更多�
 - 状态之间用空格分隔
 - 可以在（）中定义附加选项，包括：
   - 字符：该状态的快捷键
-  - ！：切换到该状态时会自动增加时间戳
-  - @ ：切换到该状态时要求输入文字说明
-  - 如果同时设定@和！，使用 @/!
+  - !: 切换到该状态时会自动增加时间戳
+  - @: 切换到该状态时要求输入文字说明
+  - 如果同时设定@和!，使用 @/!
 - 用 | 分隔未完成状态和已完成状态。未完成状态在查询待办事项时会列出。
 
 使用 C-c C-t 或者 S-LEFT/RIGTH 切换一些状态后，任务会变个样子。
@@ -43,12 +54,12 @@ Org-mode 内置的任务状态只有两种：TODO 和 DONE。如果需要更多�
 
 上面的任务状态设置只适用于当前文档。如果希望设定所有 .org 文档的默认任务状态，需要在 .emacs 配置文件中定义。上面的任务状态在配置文件中的等效设置为：
 
-#+BEGIN_SRC org
+#+begin_src org
   (setq org-todo-keywords
   '((sequence "REPORT(r)" "BUG(b)" "KNOWNCAUSE(k)" "|" "FIXED(f)")
   (sequence "TODO(T!)" "|" "DONE(D@)3" "CANCELED(C@/!)")
   ))
-#+END_SRC
+#+end_src
 
 除了状态序列外，还可以定义 type，来标记任务的分类。可以参考这里。
 
@@ -63,28 +74,27 @@ Org-mode 支持在上级任务上增加标记，当子任务的状态发生改�
 可以在上级任务标题中的任意位置插入 [%] 或者 [/],
 当子任务的状态发生变化时，会自动更新该位置的值。 比如：
 
-#+BEGIN_SRC org
-* Organize Party [%]
-** Call people [/]
-*** Peter
-*** Sarah
-** Buy food
-** Talk to neighbor
-#+END_SRC
+#+begin_src org
+  * Organize Party [%]
+  ** Call people [/]
+  *** Peter
+  *** Sarah
+  ** Buy food
+  ** Talk to neighbor
+#+end_src
 
 注意：
 
 当改变子任务状态时，只更新上一级任务的完成情况，不可级联。
 即使所有的子任务都完成，也只是标记上一级任务的完成情况为 100%，而不能自动更新上级任务的完成状态。如果需要自动设定为完成，可以在.emacs 中增加如下配置：
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (defun org-summary-todo (n-done n-not-done)
     "Switch entry to DONE when all subentries are done, to TODO otherwise."
     (let (org-log-done org-log-states)   ; turn off logging
       (org-todo (if (= n-not-done 0) "DONE" "TODO"))))
 
   (add-hook 'org-after-todo-statistics-hook 'org-summary-todo)
-#+END_SRC
-
+#+end_src
 
 * 用复选框标记非标题类型的子任务
 前面的任务和子任务都是标题形式。Org-mode 还支持非标题形式的子任务。对于以
@@ -92,16 +102,16 @@ Org-mode 支持在上级任务上增加标记，当子任务的状态发生改�
 会被当作复选框。这样就形成了局部的子任务，
 适用于将一个任务划分成几个简单的步骤。 下面是一个例子：
 
-#+BEGIN_SRC org
-*** 一个任务 [0/2]
-该任务包含几个步骤：
-- [-] 步骤 1 [1/2]
-  - [X] 步骤 1.1
-  - [ ] 步骤 1.2
-- [-] 步骤 2 [1/2]
-  - [X] 步骤 2.1
-  - [ ] 步骤 2.2
-#+END_SRC
+#+begin_src org
+  *** 一个任务 [0/2]
+  该任务包含几个步骤：
+  - [-] 步骤 1 [1/2]
+    - [X] 步骤 1.1
+    - [ ] 步骤 1.2
+  - [-] 步骤 2 [1/2]
+    - [X] 步骤 2.1
+    - [ ] 步骤 2.2
+#+end_src
 
 与子任务类似，步骤的状态变化会改变上级步骤/任务的完成情况。
 下面是复选框相关的命令：
@@ -115,9 +125,9 @@ M-S-RET 增加一个子项
 在 Org-mode 的编辑功能
 中介绍过大纲的检索功能：
 
-#+BEGIN_SRC org
+#+begin_src org
   C-c /    只列出包含搜索结果的大纲，并高亮，支持多种搜索方式
-#+END_SRC
+#+end_src
 
 该功能可以按照多种方式检索，其中针对任务有两种方式：todo 和 TODO key words，分别实现高亮所有 TODO 和具有特定关键字的 TODO。
 
@@ -128,18 +138,18 @@ Org-mode 中的任务还可以设置计划时间（SCHEDULED）和截止时间�
 在 Org-mode 中，将带有日期和时间信息的特定格式的字符串称为时间戳。时间戳使用”<
 >“进行标记，比如：
 
-#+BEGIN_SRC org
+#+begin_src org
   <2005-10-01 Tue>
   <2003-09-16 Tue 09:39>
   <2003-09-16 Tue 12:00-12:30>
-#+END_SRC
+#+end_src
 
 时间戳分为两种，上面的例子中的时间戳都标记了一个”时间点“，另外一种时间戳标记重复出现的多个时间点。
 使用时间点+ 间隔（ 天（d）、周（w）、月（m）或者年（y））来表示。比如：
 
-#+BEGIN_SRC org
+#+begin_src org
   <2007-05-16 Wed 12:30 +1w>
-#+END_SRC
+#+end_src
 
 表示从 2007-05-16 12:30 开始，每周重复一次。
 
@@ -159,9 +169,9 @@ S-up,S-down 调整光标所在时间单位；如果光标在时间戳之外，�
 ** 时间/日期段
 两个时间戳用 -- 连接起来就定义了一个时间段：
 
-#+BEGIN_SRC org
+#+begin_src org
   <2004-08-23 Mon>--<2004-08-26 Thu>
-#+END_SRC
+#+end_src
 
 连续使用 C-c . 可以创建时间段
 
@@ -181,13 +191,13 @@ Org-mode 可以为任务设定一个计划时间(SCHEDULED), 输入 C-c C-s
 要让 Org-mode 知道需要把哪些文件视为全局任务的组成部分，需要设定一个清单，可以在
 .emacs 中这样设置：
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (setq org-agenda-files (list "~/.todos/work.org"
                                "~/.todos/projects.org"
                                "~/.todos/home.org"
                                "~/Documents/todo/"
                                ))
-#+END_SRC
+#+end_src
 
 清单中可以加入文件或目录。如果是目录，该目录下的所有 .org 文件都会被加入清单。
 
@@ -204,12 +214,12 @@ Org-mode 可以为任务设定一个计划时间(SCHEDULED), 输入 C-c C-s
 如果提示 C-c a 快捷键未定义，是因为 Org-mode 的快捷键没有启用，需要在
 .emacs 中增加配置：
 
-#+BEGIN_SRC emacs-lisp
+#+begin_src emacs-lisp
   (global-set-key "\C-cl" 'org-store-link)
   (global-set-key "\C-cc" 'org-capture)
   (global-set-key "\C-ca" 'org-agenda)
   (global-set-key "\C-cb" 'org-iswitchb)
-#+END_SRC
+#+end_src
 
 * 日程表
 有时候可能需要根据未完成任务显示日程安排，通过 C-c a a 可以进入日程表视图。 日程表根据任务的计划时间列出每天的任务。
