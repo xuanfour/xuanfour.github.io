@@ -1,39 +1,19 @@
+#+begin_export html
 ---
-layout:     post
-title:      "Emacs 学习"
-date:       2015-07-24
-categories: editor
-author:     "xuanfour"
-header-img: "img/post-bg-unix-linux.jpg"
+layout: post
+title: "Emacs 学习"
+date: 2015-07-24
+categories: 文本编辑
 tags:
-    - editor
-    - emacs
+    - Emacs
 ---
+#+end_export
 
-# Emacs 学习
+* 快捷键
 
-## 目录
+** 按键简称
 
-<!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
-**Table of Contents**
-
-- [Emacs 学习](#emacs-学习)
-    - [目录](#目录)
-    - [快捷键](#快捷键)
-        - [按键简称](#按键简称)
-        - [光标移动](#光标移动)
-        - [删除](#删除)
-        - [搜索替换](#搜索替换)
-        - [获取帮助](#获取帮助)
-    - [References](#references)
-
-<!-- markdown-toc end -->
-
-## 快捷键
-
-### 按键简称
-
-```text
+#+begin_src text
 C                   以前的 Control 键，现代对应 CTRL 键
 C-x                 同时按下 CTRL-x (先按住 CTRL 键不放再按下 x 键，然后都放开）
 M                   以前的 Meta 键，现代对应 ALT 键
@@ -42,13 +22,12 @@ S                   Shift 键
 Del                 BackSpace 键，很久以前有些电脑的 BackSpace 叫做 Delete
 RET                 回车键
 C-x C-c             先按 CTRL-x，再按 CTRL-c
-```
+#+end_src
 
-> [返回目录](#目录)
 
-### 光标移动
+** 光标移动
 
-```text
+#+begin_src text
 C-b                 光标左移，同 <Left> 键
 C-f                 光标右移，同 <Right> 键
 C-p                 光标上移，同 <Up> 键
@@ -72,13 +51,12 @@ M->                 文件结尾，同 CTRL+<End>
 M-g M-g             跳到指定行号，连续按两次 ALT-g
 C-M-a               上一个函数，同时按下 CTRL-ALT-a
 C-M-e               下一个函数，同时按下 CTRL-ALT-e
-```
+#+end_src
 
-> [返回目录](#目录)
 
-### 删除
+** 删除
 
-```text
+#+begin_src text
 C-d                 向前(右) 删除字符，同 PC 的 <Delete> 键
 DEL                 向后(左) 删除字符（即 PC 的 <BackSpace> 键）
 M-d                 向前(右) 删除单词
@@ -92,13 +70,12 @@ C-w                 删除选中区域
 M-w                 复制区域到删除环
 C-y                 从删除环中拉回内容
 M-y                 从删除环中拉回更早期内容
-```
+#+end_src
 
-> [返回目录](#目录)
 
-### 搜索替换
+** 搜索替换
 
-```text
+#+begin_src text
 C-s                 搜索，出现 mini buffer 输入要查找的东西
 C-s                 搜索模式下向前搜索
 C-r                 搜索模式下向后搜索
@@ -106,28 +83,27 @@ RET                 退出搜索模式
 C-g                 退出搜索模式
 M-s w RET           向前搜索单词（空格和标点分隔）
 M-s w C-r RET       向后搜索单词（空格和标点分隔）
-```
+#+end_src
 
-> [返回目录](#目录)
 
-### 获取帮助
+** 获取帮助
 
-```text
+#+begin_src text
 C-h t               快速指南
 C-h k               按键帮助
 C-h f               行数帮助
 C-h r               Emacs 手册
-```
+#+end_src
 
-> [返回目录](#目录)
+* References
 
-## References
+#+begin_quote
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即删除。
+#+end_quote
 
-> 本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
-> 笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即删除。
-
-* <https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt>
-* <http://blog.csdn.net/garfielder007/article/details/49557441>
-* <http://blog.csdn.net/ryuali2010/article/details/7887776>
+- <https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt>
+- <http://blog.csdn.net/garfielder007/article/details/49557441>
+- <http://blog.csdn.net/ryuali2010/article/details/7887776>
 
 > [返回目录](#目录)
