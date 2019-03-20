@@ -195,6 +195,52 @@ My favorite scenes are (in this order)
 + ~-t~ 清除格式
 + ~-h~ 7 设置高度为 7 -w 40 设置宽度为 40
 
+*** 代码支持的语言
+
+| Language      | Identifier   |
+|---------------+--------------|
+| Asymptote     | ‘asymptote’  |
+| Awk           | ‘awk’        |
+| C             | ‘C’          |
+| C++           | ‘C++’144     |
+| Clojure       | ‘clojure’    |
+| CSS           | ‘css’        |
+| D             | ‘D’145       |
+| ditaa         | ‘ditaa’      |
+| Emacs Calc    | ‘calc’       |
+| Emacs Lisp    | ‘emacs-lisp’ |
+| Fortran       | ‘fortran’    |
+| Gnuplot       | ‘gnuplot’    |
+| GNU Screen    | ‘screen’     |
+| Graphviz      | ‘dot’        |
+| Haskell       | ‘haskell’    |
+| Java          | ‘java’       |
+| Javascript    | ‘js’         |
+| LaTeX         | ‘latex’      |
+| Ledger        | ‘ledger’     |
+| Lilypond      | ‘lilypond’   |
+| Lisp          | ‘lisp’       |
+| Lua           | ‘lua’        |
+| MATLAB        | ‘matlab’     |
+| Mscgen        | ‘mscgen’     |
+| OCaml         | ‘ocaml’      |
+| Octave        | ‘octave’     |
+| Org mode      | ‘org’        |
+| Oz            | ‘oz’         |
+| Perl          | ‘perl’       |
+| Plantuml      | ‘plantuml’   |
+| Processing.js | ‘processing’ |
+| Python        | ‘python’     |
+| R             | ‘R’          |
+| Ruby          | ‘ruby’       |
+| Sass          | ‘sass’       |
+| Scheme        | ‘scheme’     |
+| Sed           | ‘sed’        |
+| shell         | ‘sh’         |
+| SQL           | ‘sql’        |
+| SQLite        | ‘sqlite’     |
+| Vala          | ‘vala’       |
+
 *** 注释 
 
 以零个或多个空格字符开头的行后跟一个 ~#~ 和空格被视为注释，因此不会被导出。

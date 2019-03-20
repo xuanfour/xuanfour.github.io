@@ -17,7 +17,7 @@ tags:
 
 *** Spacemacs 安装以及基本配置
 
-    #+begin_src shell
+    #+begin_src sh
       brew install ag
       brew install grep
       brew tap d12frosted/emacs-plus
@@ -35,7 +35,7 @@ tags:
 
 *** Pandoc 安装以及基本配置
 
-    #+begin_src shell
+    #+begin_src sh
       brew install pandoc
       # 分析器安装
       brew install pandoc-citeproc
@@ -45,25 +45,21 @@ tags:
       tlmgr install collection-fontsrecommended
     #+end_src
 
-    > [返回目录](#目录)
-
 ** 多媒体
 
 *** 安装视频播放器
 
 **** iina
 
-     #+begin_src shell
+     #+begin_src sh
        brew cask install iina
      #+end_src
-
-     > [返回目录](#目录)
 
 ** Terminal
 
 *** locate
 
-    #+begin_src shell
+    #+begin_src sh
       # mac 下更新数据库命令是
       sudo /usr/libexec/locate.updatedb
       # mac 下使用不要使用通配符，locate 自动将包含关键字的文件都检索
@@ -81,13 +77,13 @@ tags:
 
 **** 安装 lrzsz
 
-     #+begin_src shell
+     #+begin_src sh
        brew install lrzsz
      #+end_src
 
 **** 下载 iTerm2 支持脚本
 
-     #+begin_src shell
+     #+begin_src sh
        cd /usr/local/bin
        sudo curl -O https://raw.githubusercontent.com/mmastrac/iterm2-zmodem/master/iterm2-recv-zmodem.sh
        sudo curl -O https://raw.githubusercontent.com/mmastrac/iterm2-zmodem/master/iterm2-send-zmodem.sh
@@ -123,5 +119,13 @@ tags:
      - 等待传输指示消失
 
 * 开发设计
+
+** 关键字备忘
+
+*** 字面量
+
+在计算机科学中，字面量（literal）是用于表达源代码中一个固定值的表示法（notation）。几乎所有计算机编程语言都具有对基本值的字面量表示，诸如：整数、浮点数以及字符串；而有很多也对布尔类型和字符类型的值也支持字面量表示；还有一些甚至对枚举类型的元素以及像数组、记录和对象等复合类型的值也支持字面量表示法。
+
+字面量是指由字母，数字等构成的字符串或者数值，它只能作为右值出现。
 
 * 生活备忘

@@ -15,49 +15,49 @@ tags:
 
 *** 列出 git 当前配置
 
-    #+begin_src shell
+    #+begin_src sh
       git config --list
     #+end_src
 
 *** 列出本地配置
 
-    #+begin_src shell
+    #+begin_src sh
       git config --local --list
     #+end_src
 
 *** 列出全局配置
 
-    #+begin_src shell
+    #+begin_src sh
       git config --global --list
     #+end_src
 
 *** 列出系统配置
 
-    #+begin_src shell
+    #+begin_src sh
       git config --system --list
     #+end_src
 
 *** 设置用户名
 
-    #+begin_src shell
+    #+begin_src sh
       git config --global user.name “[firstname lastname]”
     #+end_src
 
 *** 设置用户邮箱
 
-    #+begin_src shell
+    #+begin_src sh
       git config --global user.email “[valid-email]”
     #+end_src
 
 *** 设置 git 命令输出为彩色
 
-    #+begin_src shell
+    #+begin_src sh
       git config --global color.ui auto
     #+end_src
 
 *** 设置 git 使用的文本编辑器设
 
-    #+begin_src shell
+    #+begin_src sh
       git config --global core.editor vi
     #+end_src
 
@@ -65,19 +65,19 @@ tags:
 
 *** 本地仓库配置对应的配置文件路径 [local]
 
-    #+begin_src shell
+    #+begin_src sh
       <repo>/.git/config
     #+end_src
 
 *** 用户全局配置对应的配置文件路径 [global]
 
-    #+begin_src shell
+    #+begin_src sh
       ~/.gitconfig
     #+end_src
 
 *** 系统配置对应的配置文件路径 [system]
 
-    #+begin_src shell
+    #+begin_src sh
       /etc/gitconfig
     #+end_src
 
@@ -85,7 +85,7 @@ tags:
 
 *** 复制一个已创建的仓库:
 
-    #+begin_src shell
+    #+begin_src sh
       # 通过 SSH
       git clone ssh://user@domain.com/repo.git
       #通过 HTTP
@@ -94,7 +94,7 @@ tags:
 
 *** 创建一个新的本地仓库:
 
-    #+begin_src shell
+    #+begin_src sh
       git init
     #+end_src
 
@@ -102,49 +102,49 @@ tags:
 
 *** 显示工作路径下已修改的文件
 
-    #+begin_src shell
+    #+begin_src sh
       git status
     #+end_src
 
 *** 显示与上次提交版本文件的不同
 
-    #+begin_src shell
+    #+begin_src sh
       git diff
     #+end_src
 
 *** 把当前所有修改添加到下次提交中
 
-    #+begin_src shell
+    #+begin_src sh
       git add .
     #+end_src
 
 *** 把对某个文件的修改添加到下次提交中
 
-    #+begin_src shell
+    #+begin_src sh
       git add -p <file>
     #+end_src
 
 *** 提交本地的所有修改
 
-    #+begin_src shell
+    #+begin_src sh
       git commit -a
     #+end_src
 
 *** 提交之前已标记的变化
 
-    #+begin_src shell
+    #+begin_src sh
       git commit
     #+end_src
 
 *** 附加消息提交
 
-    #+begin_src shell
+    #+begin_src sh
       git commit -m 'message here'
     #+end_src
 
 *** 提交，并将提交时间设置为之前的某个日期:
 
-    #+begin_src shell
+    #+begin_src sh
       git commit --date="date --date='n day ago'" -am "Commit Message"
     #+end_src
 
@@ -152,25 +152,25 @@ tags:
 
     =请勿修改已发布的提交记录!=
 
-    #+begin_src shell
+    #+begin_src sh
       git commit --amend
     #+end_src
 
 *** 修改上次提交的 committer date
 
-    #+begin_src shell
+    #+begin_src sh
       GIT_COMMITTER_DATE="date" git commit --amend
     #+end_src
 
 *** 修改上次提交的 author date
 
-    #+begin_src shell
+    #+begin_src sh
       git commit --amend --date="date"
     #+end_src
 
 *** 把当前分支中未提交的修改移动到其他分支
 
-    #+begin_src shell
+    #+begin_src sh
       git stash
       git checkout branch2
       git stash pop
@@ -178,13 +178,13 @@ tags:
 
 *** 将 stashed changes 应用到当前分支
 
-    #+begin_src shell
+    #+begin_src sh
       git stash apply
     #+end_src
 
 *** 删除最新一次的 stashed changes
 
-    #+begin_src shell
+    #+begin_src sh
       git stash drop
     #+end_src
 
@@ -192,13 +192,13 @@ tags:
 
 *** 从当前目录的所有文件中查找文本内容
 
-    #+begin_src shell
+    #+begin_src sh
       git grep "Hello"
     #+end_src
 
 *** 在某一版本中搜索文本
 
-    #+begin_src shell
+    #+begin_src sh
       git grep "Hello" v2.5
     #+end_src
 
@@ -206,49 +206,49 @@ tags:
 
 *** 从最新提交开始，显示所有的提交记录（显示 hash， 作者信息，提交的标题和时间）
 
-    #+begin_src shell
+    #+begin_src sh
       git log
     #+end_src
 
 *** 显示所有提交（仅显示提交的 hash 和 message）
 
-    #+begin_src shell
+    #+begin_src sh
       git log --oneline
     #+end_src
 
 *** 显示某个用户的所有提交
 
-    #+begin_src shell
+    #+begin_src sh
       git log --author="username"
     #+end_src
 
 *** 显示某个文件的所有修改
 
-    #+begin_src shell
+    #+begin_src sh
       git log -p <file>
     #+end_src
 
 *** 仅显示远端<remote/master>分支与远端<origin/master>分支提交记录的差集
 
-    #+begin_src shell
+    #+begin_src sh
       git log --oneline <origin/master>..<remote/master> --left-right
     #+end_src
 
 *** 谁，在什么时间，修改了文件的什么内容
 
-    #+begin_src shell
+    #+begin_src sh
       git blame <file>
     #+end_src
 
 *** 显示 reflog
 
-    #+begin_src shell
+    #+begin_src sh
       git reflog show
     #+end_src
 
 *** 删除 reflog
 
-    #+begin_src shell
+    #+begin_src sh
       git reflog delete
     #+end_src
 
@@ -256,43 +256,43 @@ tags:
 
 *** 列出所有的分支
 
-    #+begin_src shell
+    #+begin_src sh
       git branch
     #+end_src
 
 *** 列出所有的远端分支
 
-    #+begin_src shell
+    #+begin_src sh
       git branch -r
     #+end_src
 
 *** 切换分支
 
-    #+begin_src shell
+    #+begin_src sh
       git checkout <branch>
     #+end_src
 
 *** 创建并切换到新分支
 
-    #+begin_src shell
+    #+begin_src sh
       git checkout -b <branch>
     #+end_src
 
 *** 基于当前分支创建新分支
 
-    #+begin_src shell
+    #+begin_src sh
       git branch <new-branch>
     #+end_src
 
 *** 基于远程分支创建新的可追溯的分支
 
-    #+begin_src shell
+    #+begin_src sh
       git branch --track <new-branch> <remote-branch>
     #+end_src
 
 *** 删除本地分支
 
-    #+begin_src shell
+    #+begin_src sh
       git branch -d <branch>
     #+end_src
 
@@ -300,13 +300,13 @@ tags:
 
     =将会丢失未合并的修改！=
 
-    #+begin_src shell
+    #+begin_src sh
       git branch -D <branch>
     #+end_src
 
 *** 查看标签
 
-    #+begin_src shell
+    #+begin_src sh
       git tag
       git tag -l 'v0.1.-'
       git show v0.1
@@ -314,13 +314,13 @@ tags:
 
 *** 给当前版本打标签
 
-    #+begin_src shell
+    #+begin_src sh
       git tag <tag-name>
     #+end_src
 
 *** 给当前版本打标签并附加消息
 
-    #+begin_src shell
+    #+begin_src sh
       git tag -a <tag-name>
       git tag -a <tag-name> -m 'my version'
     #+end_src
@@ -329,55 +329,55 @@ tags:
 
 *** 列出当前配置的远程端
 
-    #+begin_src shell
+    #+begin_src sh
       git remote -v
     #+end_src
 
 *** 显示远程端的信息
 
-    #+begin_src shell
+    #+begin_src sh
       git remote show <remote>
     #+end_src
 
 *** 添加新的远程端
 
-    #+begin_src shell
+    #+begin_src sh
       git remote add <remote> <url>
     #+end_src
 
 *** 下载远程端版本，但不合并到 HEAD 中
 
-    #+begin_src shell
+    #+begin_src sh
       git fetch <remote>
     #+end_src
 
 *** 下载远程端版本，并自动与 HEAD 版本合并
 
-    #+begin_src shell
+    #+begin_src sh
       git remote pull <remote> <url>
     #+end_src
 
 *** 将远程端版本合并到本地版本中
 
-    #+begin_src shell
+    #+begin_src sh
       git pull origin master
     #+end_src
 
 *** 以 rebase 方式将远端分支与本地合并
 
-    #+begin_src shell
+    #+begin_src sh
       git pull --rebase <remote> <branch>
     #+end_src
 
 *** 将本地版本发布到远程端
 
-    #+begin_src shell
+    #+begin_src sh
       git push remote <remote> <branch>
     #+end_src
 
 *** 删除远程端分支
 
-    #+begin_src shell
+    #+begin_src sh
       git push <remote> :<branch> (since Git v1.5.0)
       # 或者
       git push <remote> --delete <branch> (since Git v1.7.0)
@@ -385,7 +385,7 @@ tags:
 
 *** 发布标签:
 
-    #+begin_src shell
+    #+begin_src sh
       git push --tags
     #+end_src
 
@@ -393,7 +393,7 @@ tags:
 
 *** 将分支合并到当前 HEAD 中
 
-    #+begin_src shell
+    #+begin_src sh
       git merge <branch>
     #+end_src
 
@@ -401,52 +401,52 @@ tags:
 
     =请勿重置已发布的提交!=
 
-    #+begin_src shell
+    #+begin_src sh
       git rebase <branch>
     #+end_src
 
 *** 退出重置
 
-    #+begin_src shell
+    #+begin_src sh
       git rebase --abort
     #+end_src
 
 *** 解决冲突后继续重置
 
-    #+begin_src shell
+    #+begin_src sh
       git rebase --continue
     #+end_src
 
 *** 使用配置好的 merge tool 解决冲突
 
-    #+begin_src shell
+    #+begin_src sh
       git mergetool
     #+end_src
 
 *** 在编辑器中手动解决冲突后，标记文件为已解决冲突
 
-    #+begin_src shell
+    #+begin_src sh
       git add <resolved-file>
       git rm <resolved-file>
     #+end_src
 
 *** 合并提交
 
-    #+begin_src shell
+    #+begin_src sh
       git rebase -i <commit-just-before-first>
     #+end_src
 
     把下面两段命令的上段内容替换为下段内容
 
     =原内容=
-    #+begin_src shell
+    #+begin_src sh
       pick <commit_id>
       pick <commit_id2>
       pick <commit_id3>
     #+end_src
 
     =替换为=
-    #+begin_src shell
+    #+begin_src sh
       pick <commit_id>
       squash <commit_id2>
       squash <commit_id3>
@@ -456,55 +456,55 @@ tags:
 
 *** 放弃工作目录下的所有修改
 
-    #+begin_src shell
+    #+begin_src sh
       git reset --hard HEAD
     #+end_src
 
 *** 移除缓存区的所有文件（i.e. 撤销上次 ~git add~ ）
 
-    #+begin_src shell
+    #+begin_src sh
       git reset HEAD
     #+end_src
 
 *** 放弃某个文件的所有本地修改
 
-    #+begin_src shell
+    #+begin_src sh
       git checkout HEAD <file>
     #+end_src
 
 *** 重置一个提交（通过创建一个截然不同的新提交）
 
-    #+begin_src shell
+    #+begin_src sh
       git revert <commit>
     #+end_src
 
 *** 将 HEAD 重置到指定的版本，并抛弃该版本之后的所有修改
 
-    #+begin_src shell
+    #+begin_src sh
       git reset --hard <commit>
     #+end_src
 
 *** 用远端分支强制覆盖本地分支
 
-    #+begin_src shell
+    #+begin_src sh
       git reset --hard <remote/branch> e.g., upstream/master, origin/my-feature
     #+end_src
 
 *** 将 HEAD 重置到上一次提交的版本，并将之后的修改标记为未添加到缓存区的修改
 
-    #+begin_src shell
+    #+begin_src sh
       git reset <commit>
     #+end_src
 
 *** 将 HEAD 重置到上一次提交的版本，并保留未提交的本地修改
 
-    #+begin_src shell
+    #+begin_src sh
       git reset --keep <commit>
     #+end_src
 
 *** 删除添加 ~.gitignore~ 文件前错误提交的文件
 
-    #+begin_src shell
+    #+begin_src sh
       git rm -r --cached .
       git add .
       git commit -m "remove xyz file"

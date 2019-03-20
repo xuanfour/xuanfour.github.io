@@ -1,0 +1,148 @@
+---
+layout: post
+title: "Rails 样例"
+date: 2018-10-11
+categories: 程序设计
+tags:
+    - Rails
+---
+
+<div id="outline-container-orgd5fa91c" class="outline-2">
+<h2 id="orgd5fa91c"><span class="section-number-2">1</span> 新建项目</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-sh">
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21019;&#24314;&#26032;&#30340;&#39033;&#30446;</span>
+rails new sample_app
+<span style="color: #4f97d7;">cd</span> sample_app
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32534;&#36753; Gemfile</span>
+vim Gemfile
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23433;&#35013; gem</span>
+bundle install --without production
+bundle update
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32534;&#36753;&#35828;&#26126;&#25991;&#20214;</span>
+vim README.md
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21021;&#22987;&#21270; Git &#20179;&#24211;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">git init</span>
+git add -A
+git commit -m <span style="color: #2d9574;">'init'</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21551;&#21160;&#26381;&#21153;&#65292;&#20351;&#29992; C-c &#20013;&#26029;&#26381;&#21153;</span>
+bin/rails server
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#26377;&#36828;&#31243;&#20179;&#24211;</span>
+git remote add origin git@&lt;url&gt;:&lt;user&gt;/&lt;repo&gt;.git
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#39318;&#27425;&#25512;&#36865;&#20351;&#29992;</span>
+git push -u origin --all
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#20877;&#27425;&#25512;&#36865;&#20351;&#29992;</span>
+git push
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26377;&#22823;&#30340;&#21464;&#26356;&#21069;&#26368;&#22909;&#26032;&#24314;&#19968;&#20010;&#20998;&#25903;</span>
+git checkout -b &lt;branch-name&gt;
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#39318;&#27425;&#25512;&#36865;&#20998;&#25903;&#21040;&#36828;&#31243;&#20179;&#24211;</span>
+git push -u origin &lt;branch-name&gt;
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20462;&#25913;&#23436;&#25104;&#21518;&#25552;&#20132;&#24182;&#21512;&#24182;&#21040;&#20027;&#20998;&#25903;</span>
+git add -A
+git commit -m <span style="color: #2d9574;">'finish xxx'</span>
+git checkout master
+git merge &lt;branch-name&gt;
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#29983;&#25104;&#25511;&#21046;&#22120;&#65292;&#21629;&#20196;&#30340;&#25511;&#21046;&#22120;&#21517;&#20351;&#29992;&#39548;&#23792;&#24335;&#65292;&#21019;&#24314;&#30340;&#25511;&#21046;&#22120;&#25991;&#20214;&#21517;&#26159;&#34503;&#24213;&#24335;</span>
+bin/rails generate controller &lt;ControllerName&gt; &lt;action_name&gt;
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25764;&#38144;&#21069;&#19968;&#20010;&#21629;&#20196;</span>
+bin/rails destroy controller &lt;ControllerName&gt; &lt;action_name&gt;
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#29983;&#25104;&#27169;&#22411;</span>
+bin/rails generate model &lt;ModelName&gt; &lt;attr_name&gt;:&lt;type&gt;
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25764;&#38144;&#21069;&#19968;&#20010;&#21629;&#20196;</span>
+bin/rails destroy model &lt;ModelName&gt;
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#29983;&#25104;&#25968;&#25454;&#36801;&#31227;</span>
+bin/rails db:migrate
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25764;&#38144;&#21069;&#19968;&#20010;&#21629;&#20196;</span>
+bin/rails db:rollback
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22238;&#21040;&#26368;&#24320;&#22987;&#30340;&#29366;&#24577;&#65292;&#19979;&#38754;&#30340; `0` &#21487;&#20197;&#20462;&#25913;&#20026;&#20854;&#20182;&#25968;&#23383;&#20197;&#22238;&#21040;&#30456;&#24212;&#29256;&#26412;</span>
+bin/rails db:migrate <span style="color: #7590db;">VERSION</span>=<span style="color: #a45bad;">0</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20462;&#25913; `config/routes.rb` &#22686;&#21152;&#25511;&#21046;&#22120;&#21160;&#20316;&#30340;&#36335;&#30001;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#21457;&#32473; `&lt;controller&gt;/action` &#30340;&#35831;&#27714;&#26144;&#23556;&#21040;&#25511;&#21046;&#22120;&#21160;&#20316;&#12290;&#21478;&#22806;&#65292;get &#34920;&#36798;&#36825;&#20010;&#36335;&#30001;&#21709;&#24212;&#30340;&#26159; Get &#35831;&#27714;&#12290;</span>
+get <span style="color: #fa8072;">`&lt;controller&gt;/action`</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#38598;&#25104;&#27979;&#35797;</span>
+bin/rails generate integration_test site_layout
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#29983;&#25104;&#27979;&#35797;&#25968;&#25454;&#65292;&#32534;&#36753;&#25991;&#20214; `test/fixtures/xxxx.yml`</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">`gem faker` &#21487;&#20197;&#29992;&#21322;&#30495;&#23454;&#30340;&#21517;&#23383;&#21644;&#30005;&#23376;&#37038;&#20214;&#22320;&#22336;&#21019;&#24314;&#31034;&#20363;&#29992;&#25143;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21521;&#25968;&#25454;&#24211;&#20013;&#28155;&#21152;&#31034;&#20363;&#29992;&#25143;&#30340; ruby &#20195;&#30721;&#65292;&#32534;&#36753;&#25991;&#20214; `db/seeds.rb`</span>
+User.create!<span style="color: #4f97d7;">(</span>name: <span style="color: #2d9574;">'Example User'</span>,
+             email: <span style="color: #2d9574;">'example@railstutorial.org'</span>,
+             password: <span style="color: #2d9574;">'foobar'</span>,
+             password_confirmation: <span style="color: #2d9574;">'foobar'</span><span style="color: #4f97d7;">)</span>
+
+<span style="color: #a45bad;">99.times</span> do |n|
+  <span style="color: #7590db;">name</span> = Faker::Name.name
+  <span style="color: #7590db;">email</span> = <span style="color: #2d9574;">"example-#{n+1}@railstutorial.org"</span>
+  <span style="color: #7590db;">password</span> = <span style="color: #2d9574;">'password'</span>
+  User.create!<span style="color: #4f97d7;">(</span>name: name,
+               email: email,
+               password: password,
+               password_confirmation: password<span style="color: #4f97d7;">)</span>
+end
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36824;&#21407;&#25968;&#25454;&#24211;</span>
+bin/rails db:migrate:reset
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#29983;&#25104;&#31034;&#20363;&#25968;&#25454;</span>
+bin/rails db:seed
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1ecc69d" class="outline-2">
+<h2 id="org1ecc69d"><span class="section-number-2">2</span> 设置时区</h2>
+<div class="outline-text-2" id="text-2">
+<pre class="example">
+# file: config/application.rb
+# 国际化本地设置
+config.i18n.default_locale = 'zh-CN'
+# 显示为北京时间
+config.time_zone = "Beijing"
+# 存入数据库本地时区时间
+config.active_record.default_timezone = :local
+# optional: 关闭以 UTC 格式存入数据库并读取以本地时区格式读取的功能
+# config.active_record.time_zone_aware_attributes = false
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org74462dc" class="outline-2">
+<h2 id="org74462dc"><span class="section-number-2">3</span> 测试报告</h2>
+<div class="outline-text-2" id="text-3">
+<pre class="example">
+# file: Gemfile -&gt; test group
+gem 'minitest',                 '5.10.3'
+gem 'minitest-reporters',       '1.1.14'
+
+# file: test/test_helper.rb
+require 'minitest/reporters'
+Minitest::Reporters.use!
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-orgc6e15fd" class="outline-2">
+<h2 id="orgc6e15fd"><span class="section-number-2">4</span> References</h2>
+<div class="outline-text-2" id="text-4">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+</blockquote>
+</div>
+</div>

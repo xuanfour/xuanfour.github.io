@@ -1,0 +1,71 @@
+---
+layout: post
+title: "frp"
+date: 2019-03-05
+categories: 终端工具
+tags:
+    - 终端工具
+    - frp
+---
+
+<p>
+frp 是一个可用于内网穿透的高性能的反向代理应用，支持 tcp, udp 协议，为 http 和 https 应用协议提供了额外的能力，且尝试性支持了点对点穿透。
+</p>
+
+<div id="outline-container-orgdd3c53e" class="outline-2">
+<h2 id="orgdd3c53e"><span class="section-number-2">1</span> 安装 frp</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+安装 frp 工具，可以直接访问 <a href="https://github.com/fatedier/frp">Github</a>，下载相应平台的 release 版本。详细配置参考帮助文档。
+</p>
+
+<p>
+frp 支持根据请求的 URL 路径路由转发到不同的后端服务。可以将 <code>/client</code> 路径设置到另一个 web 服务来同时在本地测试两个服务。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge0072b3" class="outline-2">
+<h2 id="orge0072b3"><span class="section-number-2">2</span> 配置 frp</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-conf"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">frps.ini</span>
+[<span style="color: #ce537a; font-weight: bold;">common</span>]
+<span style="color: #7590db;">bind_port</span> = 7000
+<span style="color: #7590db;">vhost_http_port</span> = 80
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">frpc.ini</span>
+[<span style="color: #ce537a; font-weight: bold;">common</span>]
+<span style="color: #7590db;">server_addr</span> = 47.94.210.246
+<span style="color: #7590db;">server_port</span> = 7000
+
+[<span style="color: #ce537a; font-weight: bold;">web01</span>]
+<span style="color: #7590db;">type</span> = http
+<span style="color: #7590db;">local_port</span> = 3000
+<span style="color: #7590db;">custom_domains</span> = cas.wozouwokan.com
+<span style="color: #7590db;">locations</span> = /
+
+[<span style="color: #ce537a; font-weight: bold;">web02</span>]
+<span style="color: #7590db;">type</span> = http
+<span style="color: #7590db;">local_port</span> = 3001
+<span style="color: #7590db;">custom_domains</span> = cas.wozouwokan.com
+<span style="color: #7590db;">locations</span> = /client
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1a64ec5" class="outline-2">
+<h2 id="org1a64ec5"><span class="section-number-2">3</span> Refefences</h2>
+<div class="outline-text-2" id="text-3">
+<blockquote>
+<p>
+&gt; 本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+&gt; 笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+<ul class="org-ul">
+<li><a href="https://github.com/fatedier/frp">https://github.com/fatedier/frp</a></li>
+</ul>
+</blockquote>
+</div>
+</div>

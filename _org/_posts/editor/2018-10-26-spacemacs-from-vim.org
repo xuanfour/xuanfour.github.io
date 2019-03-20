@@ -358,7 +358,7 @@ Emacs 具有一个可扩展的帮助系统。所有的快捷键都有 SPC h d �
 -define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 -~~
 -
-- [返回目录](#目录)
+
 -
 -# References
 -
@@ -366,5 +366,3 @@ Emacs 具有一个可扩展的帮助系统。所有的快捷键都有 SPC h d �
 - 笔记内容摘录于下列文章，相应权利归属原作者，如有未列出或不妥，请联系我立即增补或删除。
 -
 - <https://www.oschina.net/translate/migrating-from-vim>
-
-> [返回目录](#目录)

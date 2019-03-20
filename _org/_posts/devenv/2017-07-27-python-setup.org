@@ -14,14 +14,14 @@ tags:
 
   可以用 brew 来安装 pyenv 的最新版本，而且会自动下载依赖包：
 
-  #+begin_src shell
+  #+begin_src sh
     brew install pyenv
     pyenv -v
     # 查看帮助
     pyenv help
   #+end_src
 
-  #+begin_src shell
+  #+begin_src sh
     # 添加到 `~/.bash_profile` 或 `~/.zprofile` 文件里
     export PYENV_ROOT=$HOME/.pyenv
     # 添加到 `~/.bashrc` 或 `~/.zshrc` 文件里
@@ -34,7 +34,7 @@ tags:
 
 * 安装 zlib 依赖
 
-  #+begin_src shell
+  #+begin_src sh
     brew install zlib
     # 如果编译程序有问题，尝试下列操作
     # 1. 增加编译选项设置
@@ -53,7 +53,7 @@ tags:
 
   pyenv versions 查看系统的上安装的 Python 版本。 `*` 表示当前目录正在使用的版本,其中 的 system 表示系统自带的 Python 版本：
 
-  #+begin_src shell
+  #+begin_src sh
     # 查看本机版本信息
     pyenv versions
     # 显示如下
@@ -84,7 +84,7 @@ trusted-host=mirrors.aliyun.com
 
 * pyenv 的其他操作
 
-  #+begin_src shell
+  #+begin_src sh
     # 卸载指定的包：
     pyenv uninstall 3.7.0
 
@@ -122,19 +122,19 @@ trusted-host=mirrors.aliyun.com
 
 ** 安装 pyenv-virtualenv
 
-   #+begin_src shell
+   #+begin_src sh
      brew install pyenv-virtualenv
    #+end_src
 
    修改 `~/bashrc` 或 `~/.zshrc`, 添加以下内容
 
-   #+begin_src shell
+   #+begin_src sh
      if which pyenv-virtualenv-init >/dev/null; then eval "$(pyenv virtualenv-init -)"; fi
    #+end_src
 
 ** 使用 pyenv-virtualenv
 
-   #+begin_src shell
+   #+begin_src sh
      # 创建虚拟环境
      pyenv virtualenv 2.7.15 env27
      pyenv virtualenv 3.7.0 env37

@@ -1,0 +1,70 @@
+---
+layout: post
+title: "NodeJs 安装配置"
+date: 2017-07-27
+categories: 研发环境
+tags:
+    - NVM
+    - NodeJs
+---
+
+<div id="outline-container-org0644f13" class="outline-2">
+<h2 id="org0644f13"><span class="section-number-2">1</span> 安装 nvm</h2>
+<div class="outline-text-2" id="text-1">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23433;&#35013; nvm</span>
+curl https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+&#25191;&#34892;&#37197;&#32622;
+<span style="color: #4f97d7;">source</span> ~/.bashrc
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25110;&#32773;&#37325;&#24320;&#19968;&#20010;&#32456;&#31471;</span>
+nvm --version
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475; node &#21487;&#23433;&#35013;&#29256;&#26412;</span>
+nvm ls-remote node
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#38271;&#26399;&#25903;&#25345;&#29256;&#26412;</span>
+nvm ls-remote --lts
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#23433;&#35013;&#26368;&#26032;&#31283;&#23450;&#29256;</span>
+nvm install stable
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23433;&#35013;&#25351;&#23450;&#29256;&#26412; node/npm</span>
+nvm install <span style="color: #a45bad;">10.6.0</span>
+node -v
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#29256;&#26412;</span>
+nvm use node <span style="color: #a45bad;">10.6.0</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#24403;&#21069;&#20351;&#29992;&#30340;&#29256;&#26412;</span>
+nvm current
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#24403;&#21069;&#24050;&#32463;&#23433;&#35013;&#30340;&#29256;&#26412;</span>
+nvm ls
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#30340;&#20869;&#23481;&#22914;&#19979;&#65292;&#26159; nvm &#30340;&#20869;&#32622;&#30340;&#20960;&#20010;&#22266;&#23450;&#30340;&#21035;&#21517;&#65288;alias&#65289;&#12290;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">default nvm &#40664;&#35748;&#20351;&#29992;&#30340;&#29256;&#26412;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">node &#21644; stable &#24403;&#21069;&#23433;&#35013;&#30340; node &#30340;&#26368;&#26032;&#30340;&#31283;&#23450;&#29256;&#26412;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">iojs iojs &#30340;&#26368;&#26032;&#31283;&#23450;&#29256;&#26412;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">lts/* node lts &#31995;&#21015;&#26368;&#26032;&#30340;&#31283;&#23450;&#29256;&#26412;</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35774;&#32622;&#40664;&#35748;&#30340;&#29256;&#26412;&#21035;&#21517;</span>
+nvm alias default <span style="color: #a45bad;">10.6.0</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; cnpm &#21644;&#28120;&#23453;&#28304;</span>
+npm install -g cnpm --registry=https://registry.npm.taobao.org
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf31c9e4" class="outline-2">
+<h2 id="orgf31c9e4"><span class="section-number-2">2</span> 安装常用包</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-sh">npm install -g restify
+npm install -g grunt-cli
+npm install -g tern
+npm install -g vmd
+npm install -g js-beautify
+npm install -g jshint
+npm install -g coffee-script
+npm install -g gitbook-cli
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">npm install -g hexo-cli</span>
+</pre>
+</div>
+</div>
+</div>

@@ -1,0 +1,335 @@
+---
+layout: post
+title: "Cygwin  安装配置"
+date: 2014-02-22
+categories: Linux
+tags:
+    - Cygwin
+---
+
+<div id="outline-container-org97d794e" class="outline-2">
+<h2 id="org97d794e"><span class="section-number-2">1</span> 1. 概述</h2>
+</div>
+
+<div id="outline-container-orga1d762c" class="outline-2">
+<h2 id="orga1d762c"><span class="section-number-2">2</span> 2. 安装 Cygwin</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+略&#x2026;&#x2026;
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7bd6f89" class="outline-2">
+<h2 id="org7bd6f89"><span class="section-number-2">3</span> 3. 安装包</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>安装"vim"</li>
+<li>安装"util-tool"</li>
+<li>安装"libiconv"</li>
+<li>安装"git"</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc0c47a3" class="outline-2">
+<h2 id="orgc0c47a3"><span class="section-number-2">4</span> 4. 环境设置</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org593267f" class="outline-3">
+<h3 id="org593267f"><span class="section-number-3">4.1</span> 4.1. 设置全局配置文件 =Cygwin\etc\profile=：</h3>
+<div class="outline-text-3" id="text-4-1">
+<pre class="example">
+#-----------------------------------------------------------
+# BuXing Settings
+#-----------------------------------------------------------
+# 定义语言环境变量
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# 定义用户 HOME 环境变量
+HOME='/cygdrive/d/LinuxHome/xuan'
+
+# Interactive operation...
+# alias rm='rm -i'
+# alias cp='cp -i'
+# alias mv='mv -i'
+#
+# Default to human readable figures
+alias df='df -h'
+alias du='du -h'
+#
+# Misc :)
+alias less='less -r'                          # raw control characters
+alias whence='type -a'                        # where, of a sort
+alias grep='grep --color'                     # show differences in colour
+alias egrep='egrep --color=auto'              # show differences in colour
+alias fgrep='fgrep --color=auto'              # show differences in colour
+#
+# Some shortcuts for different directory listings
+alias ls='ls -hF --color=tty'                 # classify files in colour
+alias dir='ls --color=auto --format=vertical'
+alias vdir='ls --color=auto --format=long'
+alias ll='ls -l'                              # long list
+alias la='ls -A'                              # all but . and ..
+alias l='ls -CF'                              #
+
+# Umask
+#
+# /etc/profile sets 022, removing write perms to group + others.
+# Set a more restrictive umask: i.e. no exec perms for others:
+# umask 027
+# Paranoid: neither group nor others have any perms:
+# umask 077
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge17189a" class="outline-3">
+<h3 id="orge17189a"><span class="section-number-3">4.2</span> 4.2. 设置用户配置文件 =${HOME}\.bashrc=：</h3>
+<div class="outline-text-3" id="text-4-2">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#33258;&#21160;&#34917;&#20840;&#19981;&#21306;&#20998;&#22823;&#23567;&#20889;</span>
+shopt -s nocaseglob
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaa91b15" class="outline-3">
+<h3 id="orgaa91b15"><span class="section-number-3">4.3</span> 4.3. 设置用户配置文件 =${HOME}\.inputrc=：</h3>
+<div class="outline-text-3" id="text-4-3">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#33258;&#21160;&#34917;&#20840;&#19981;&#21306;&#20998;&#22823;&#23567;&#20889;</span>
+<span style="color: #4f97d7;">set</span> completion-ignore-case on
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25353;&#21333;&#35789;&#31227;&#21160;/&#21024;&#38500;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Ctrl+Left/Right to move by whole words</span>
+<span style="color: #2d9574;">"\e[1;5C"</span>: forward-word
+<span style="color: #2d9574;">"\e[1;5D"</span>: backward-word
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Ctrl+Backspace/Delete to delete whole words</span>
+<span style="color: #2d9574;">"\e[3;5~"</span>: kill-word
+<span style="color: #2d9574;">"\C-_"</span>: backward-kill-word
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org91d1c52" class="outline-3">
+<h3 id="org91d1c52"><span class="section-number-3">4.4</span> 4.4. 链接磁盘及常用文件夹：</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+<pre class="src src-sh">ln -s /cygdrive/c /c
+ln -s /cygdrive/d /d
+ln -s /cygdrive/e /e
+ln -s /cygdrive/f /f
+d:/UserData/LinuxHome /home
+d:/UserData/Tech/Repositories/git /repo
+d:/UserData/Work/Projects /projects
+d:/UserData/Work/Codes /codes
+e:/Downloads /dl
+f:/Repositories/git /lrepo
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfac2e84" class="outline-3">
+<h3 id="orgfac2e84"><span class="section-number-3">4.5</span> 4.5. 修改 <code>Cygwin.bat</code> 文件，增加设置环境变量 =HOME=：</h3>
+<div class="outline-text-3" id="text-4-5">
+<pre class="example">
+set HOME=d:/UserData/LinuxHome/xuan
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1d70343" class="outline-2">
+<h2 id="org1d70343"><span class="section-number-2">5</span> 5. 右键菜单打开 Cygwin 在当前目录</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgb222412" class="outline-3">
+<h3 id="orgb222412"><span class="section-number-3">5.1</span> 5.1. 增加注册表项：</h3>
+<div class="outline-text-3" id="text-5-1">
+<pre class="example">
+Windows Registry Editor Version 5.00
+
+[HKEY_CLASSES_ROOT\Directory\shell\opencygwin]
+@="打开用 Cygwin"
+[HKEY_CLASSES_ROOT\Directory\shell\opencygwin\command]
+@="d:\\GSoft\\Linux\\Cygwin\\Cygwin.bat %V"
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org485e5fe" class="outline-3">
+<h3 id="org485e5fe"><span class="section-number-3">5.2</span> 5.2. 修改 <code>Cygwin.bat</code> 文件，增加设置路径变量 =set _T=%*=：</h3>
+<div class="outline-text-3" id="text-5-2">
+<pre class="example">
+@echo off
+set _T=%*
+set HOME=d:/UserData/LinuxHome/xuan
+D:
+chdir d:/GSoft/Linux/Cygwin/bin
+
+bash --login -i
+REM mintty.exe -i /Cygwin-Terminal.ico -
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org03857f0" class="outline-3">
+<h3 id="org03857f0"><span class="section-number-3">5.3</span> 5.3. 设置用户配置文件 =${HOME}\.bash_profile=，在最后增加：</h3>
+<div class="outline-text-3" id="text-5-3">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21491;&#38190;&#33756;&#21333;&#25171;&#24320; Cygwin &#22312;&#24403;&#21069;&#30446;&#24405;</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">_T</span>=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">_T</span>//<span style="color: #2d9574;">\\</span>//<span style="color: #4f97d7;">}</span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">replace backslash to fowardslash</span>
+<span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">[</span><span style="color: #bc6ec5;">[</span> $<span style="color: #7590db;">_T</span> == <span style="color: #2d9574;">""</span> <span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">]</span>; <span style="color: #4f97d7; font-weight: bold;">then</span>
+    <span style="color: #4f97d7;">export</span> <span style="color: #7590db;">_T</span>=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>
+<span style="color: #4f97d7; font-weight: bold;">fi</span>
+<span style="color: #4f97d7;">cd</span> <span style="color: #2d9574;">"$_T"</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3245f74" class="outline-2">
+<h2 id="org3245f74"><span class="section-number-2">6</span> 6. Git 设置</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgb2d00dc" class="outline-3">
+<h3 id="orgb2d00dc"><span class="section-number-3">6.1</span> 6.1. 初始化配置：</h3>
+<div class="outline-text-3" id="text-6-1">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#37197;&#32622; ID</span>
+git config --global user.name <span style="color: #2d9574;">"your_id"</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#37197;&#32622; EMAIL</span>
+git config --global user.email <span style="color: #2d9574;">"your_name@email_address"</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">git &#36755;&#20986;&#65288;&#27604;&#22914; log&#12289;status&#65289;&#24425;&#33394;&#26174;&#31034;</span>
+git config --global color.ui auto
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20840;&#23616;&#37197;&#32622; Git &#19981;&#20250;&#36827;&#34892;&#25442;&#34892;&#31526;&#30340;&#36716;&#25442;</span>
+git config --global core.autocrlf false
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20840;&#23616;&#37197;&#32622;&#25991;&#20214;&#26435;&#38480;</span>
+git config --global core.filemode false
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6415ad8" class="outline-3">
+<h3 id="org6415ad8"><span class="section-number-3">6.2</span> 6.2. 配置 SSH 证书：</h3>
+<div class="outline-text-3" id="text-6-2">
+</div>
+<div id="outline-container-org16eaddb" class="outline-4">
+<h4 id="org16eaddb"><span class="section-number-4">6.2.1</span> 6.2.1. 新建 SSH 证书：</h4>
+<div class="outline-text-4" id="text-6-2-1">
+<div class="org-src-container">
+<pre class="src src-sh">ssh-keygen -t rsa -C <span style="color: #2d9574;">"your_name@email_address"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org63625e5" class="outline-4">
+<h4 id="org63625e5"><span class="section-number-4">6.2.2</span> 6.2.2. 恢复备份 SSH 证书：</h4>
+<div class="outline-text-4" id="text-6-2-2">
+<ol class="org-ol">
+<li>建立目录“~/.ssh“；</li>
+<li>复制备份的"id_rsa"(私钥) 和"id_rsa.pub"(公钥) 文件至目录“~/.ssh“；</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9dde42c" class="outline-3">
+<h3 id="org9dde42c"><span class="section-number-3">6.3</span> 6.2.3. 通过 github 测试 SSH 证书：</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+ssh -T git@github.com
+</p>
+
+<p>
+如果看到"You've successfully authenticated, but GitHub does not provide
+shell access"信息，就表示连接成功。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org40781a5" class="outline-2">
+<h2 id="org40781a5"><span class="section-number-2">7</span> 7. 小技巧</h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-org5346ff0" class="outline-3">
+<h3 id="org5346ff0"><span class="section-number-3">7.1</span> 7.1. 可以建立指向 Windows 系统的符号链接，例如：</h3>
+<div class="outline-text-3" id="text-7-1">
+<div class="org-src-container">
+<pre class="src src-sh">ln -s /cygdrive/e/Downloads ~/dl
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfac9f3b" class="outline-3">
+<h3 id="orgfac9f3b"><span class="section-number-3">7.2</span> 7.2.</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+Cygwin 下的 cd 命令可以直接使用 Windows 的路径表示，路径加上单引号转义
+=\=，例如：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #4f97d7;">cd</span> <span style="color: #2d9574;">'C:\Windows\System32\drivers\etc'</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge645427" class="outline-3">
+<h3 id="orge645427"><span class="section-number-3">7.3</span> 7.3. 错误"$'\r': command not</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+found"，原因是脚本文件里使用的是 Windows 的回车换行，修改文件为 Unix 的换行即可：
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9766b57" class="outline-3">
+<h3 id="org9766b57"><span class="section-number-3">7.4</span> 7.4.</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+Cygwin 字符集设置为 UTF-8 的时候运行 Windows 命令，会因为编码的关系出现乱码。解决方法就是写个 shell 脚本放在"/bin"目录下，例如：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">!/bin/</span><span style="color: #4f97d7; font-weight: bold;">sh</span>
+ping.exe $<span style="color: #7590db;">@</span> <span style="color: #a45bad;">2</span>&gt;&amp;<span style="color: #a45bad;">1</span> | iconv -f gbk -t utf-8
+</pre>
+</div>
+
+<p>
+并增加可执行权限：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">chmod +x ping
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc523220" class="outline-3">
+<h3 id="orgc523220"><span class="section-number-3">7.5</span> 7.5. 同步 Windows 系统用户：</h3>
+<div class="outline-text-3" id="text-7-5">
+<div class="org-src-container">
+<pre class="src src-sh">mkpasswd -l &gt; /etc/passwd
+mkgroup -l &gt; /etc/group
+</pre>
+</div>
+</div>
+</div>
+</div>

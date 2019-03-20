@@ -27,19 +27,19 @@ Gitflow 工作流程围绕项目发布定义了严格的分支模型。尽管它
 
 *** OSX Homebrew:
 
-    #+begin_src shell
+    #+begin_src sh
       brew install git-flow
     #+end_src
 
 *** OSX Macports:
 
-    #+begin_src shell
+    #+begin_src sh
       port install git-flow
     #+end_src
 
 *** Linux
 
-    #+begin_src shell
+    #+begin_src sh
       apt-get install git-flow
     #+end_src
 
@@ -47,7 +47,7 @@ Gitflow 工作流程围绕项目发布定义了严格的分支模型。尽管它
 
     安装 git-flow, 你需要 wget 和 util-linux。
 
-    #+begin_src shell
+    #+begin_src sh
       wget -q -O - --no-check-certificate https://github.com/nvie/gitflow/raw/develop/contrib/gitflow-installer.sh | bash
     #+end_src
 
@@ -58,7 +58,7 @@ Gitflow 工作流程围绕项目发布定义了严格的分支模型。尽管它
 
 *** 创建本地新的 dev 分支
 
-    #+begin_src shell
+    #+begin_src sh
       git branch dev  # 创建本地分支
       git branch  # 查看分支
       # 这是会看到 master 和 dev，而且 master 上会有一个星号
@@ -71,13 +71,13 @@ Gitflow 工作流程围绕项目发布定义了严格的分支模型。尽管它
 
     发布 dev 分支指的是同步 dev 分支的代码到远程服务器
 
-    #+begin_src shell
+    #+begin_src sh
       git push origin dev:dev  # 这样远程仓库也有一个 dev 分支了
     #+end_src
 
 *** 在 dev 分支开发代码
 
-    #+begin_src shell
+    #+begin_src sh
       git checkout dev  # 切换到 dev 分支进行开发
       # 开发代码之后，我们有两个选择
       # 第一个：如果功能开发完成了，可以合并主分支
@@ -93,7 +93,7 @@ Gitflow 工作流程围绕项目发布定义了严格的分支模型。尽管它
 
 *** 删除分支
 
-    #+begin_src shell
+    #+begin_src sh
       # 删除远程 dev 分支，危险命令哦
       git push origin --delete <branchName>
       # 可以使用这种语法，推送一个空分支到远程分支，其实就相当于删除远程分支
@@ -115,7 +115,7 @@ Gitflow 工作流程围绕项目发布定义了严格的分支模型。尽管它
 
    可以在使用 ~git branch~ 命令时加上 ~--track~ 参数, 来手动创建一个追踪分支。
 
-   #+begin_src shell
+   #+begin_src sh
      git branch --track experimental origin/experimental
      # 或者
      git checkout --track origin/experimental
@@ -123,7 +123,7 @@ Gitflow 工作流程围绕项目发布定义了严格的分支模型。尽管它
 
    当你运行下命令时:
 
-   #+begin_src shell
+   #+begin_src sh
      git pull experimental
    #+end_src
 

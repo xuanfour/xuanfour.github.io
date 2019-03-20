@@ -1,0 +1,763 @@
+---
+layout: post
+title: "Rails MVC"
+date: 2018-10-11
+categories: 程序设计
+tags:
+    - Rails
+---
+
+<div id="outline-container-orgc05a5b0" class="outline-2">
+<h2 id="orgc05a5b0"><span class="section-number-2">1</span> Model</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org3f37c6a" class="outline-3">
+<h3 id="org3f37c6a"><span class="section-number-3">1.1</span> 业务逻辑组织</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org3d2da8c" class="outline-4">
+<h4 id="org3d2da8c"><span class="section-number-4">1.1.1</span> 重构 service</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<p>
+是否需要重构 service？
+</p>
+
+<p>
+什么时候需要重构 service？
+</p>
+
+<ol class="org-ol">
+<li>当发生跨 model
+写的时候。这不是必然，但是可以认为是一个信号，表示你的业务逻辑开始变的复杂了。同时，当跨
+model 的"写"都遵守了这个规则时，rails 的 model 层就会变成一个真正的
+DAL（Data Access Layer），不再是混合了数据逻辑和业务逻辑的 "Fat
+Model"；</li>
+<li>一般来讲，callback 是要慎用的，特别是 callback 里面涉及到了调用其他
+model、修改其他 model 的情况，这个时候就可以考虑把相关的逻辑抽成
+service。</li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2175416" class="outline-3">
+<h3 id="org2175416"><span class="section-number-3">1.2</span> 常见模型操作样例</h3>
+<div class="outline-text-3" id="text-1-2">
+<pre class="example">
+# 新建模型对象
+user = User.new(...)
+# 存入数据库
+user.save
+# 新建模型对象并存入数据库
+user = User.create(...)
+# 从数据库中删除模型对象
+user.destroy
+
+# 查找 id=1 的对象
+User.find(1)
+# 查找 name='xuan'的对象
+User.find_by(name: 'xuan')
+# 查找第一个
+User.first
+#查找所有，返回结果类似数组，但并不是，属于 User::ActiveRecord_Relation
+User.all
+
+# 更新对象数据
+user.name = 'zhang'
+user.save
+# 同时更新对象的多个数据属性，并且不做数据校验
+user.update_attributes(name: 'zhang', email: 'zhang@test.com')
+# 重新加载数据
+user.reload
+# update 和 update! 的区别：有 `!` 的方法操作失败会发送异常
+
+# 在模型对象类增加验证
+class User &lt; ApplicationRecord
+  validates :name, presence: true, length: { maximum: 50 }
+end
+
+# 验证对象
+user = User.new(...)
+puts user.errors.full_messages unless user.valid?
+
+# 用户密码设置与验证
+# 用户 model 设置
+has_secure_password
+validates :password, presence: true, length: { minimum: 6 }
+# 新建用户
+User.create(name: username, email: useremail, password: userpassword, password_confirmation: userpassword)
+# 密码正确，返回用户对象，否则返回 false
+user.authenticate(userpassword)
+# 密码正确，返回 true
+!!user.authenticate(userpassword)
+</pre>
+</div>
+</div>
+
+
+<div id="outline-container-org8950bcb" class="outline-3">
+<h3 id="org8950bcb"><span class="section-number-3">1.3</span> Model 常见操作</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org775f4db" class="outline-4">
+<h4 id="org775f4db"><span class="section-number-4">1.3.1</span> 持久化</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<p>
+如何更新已经持久化的对象并将修改更新到数据库。与保存对象类似，更新对象也有两种方法。
+</p>
+
+<ol class="org-ol">
+<li>最常规的方法是直接更新一个持久化对象的属性，然后将其保存。</li>
+
+<li>找到持久化对象的引用</li>
+<li>设置对象属性</li>
+<li>save 方法将对象保存</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-ruby">user = <span style="color: #ce537a; font-weight: bold;">User</span>.first
+user.name = <span style="color: #2d9574;">'Zhangsan'</span>
+user.save
+</pre>
+</div>
+
+<ol class="org-ol">
+<li>另一种方式将属性设置和保存操作整合为一步。</li>
+
+<li><code>create</code> 和 <code>update_attributes</code> 操作，将属性设置和保存操作整合为一步。</li>
+<li><code>update</code> 是 <code>update_attributes</code> 的别名。</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org6fa46f9" class="outline-4">
+<h4 id="org6fa46f9"><span class="section-number-4">1.3.2</span> 查找</h4>
+<div class="outline-text-4" id="text-1-3-2">
+</div>
+<div id="outline-container-org0186da0" class="outline-5">
+<h5 id="org0186da0"><span class="section-number-5">1.3.2.1</span> find</h5>
+<div class="outline-text-5" id="text-1-3-2-1">
+<ul class="org-ul">
+<li>根据 id 进行查询。会把传过去的 model 对象的 id 进行查询。</li>
+<li>没有查询到结果，会抛出一个 ActiveRecord::RecordNotFound 异常。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgb430a4c" class="outline-5">
+<h5 id="orgb430a4c"><span class="section-number-5">1.3.2.2</span> find_by</h5>
+<div class="outline-text-5" id="text-1-3-2-2">
+<ul class="org-ul">
+<li>需要传递一个 hash 作为参数。</li>
+<li>没有查询到结果，会返回 nil</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org388ddf5" class="outline-5">
+<h5 id="org388ddf5"><span class="section-number-5">1.3.2.3</span> where</h5>
+<div class="outline-text-5" id="text-1-3-2-3">
+<ul class="org-ul">
+<li>where 返回的是一个 ActiveRecord_Relation 集合，并不是一个 model
+的对象。</li>
+<li>where 返回的结果直接进行更新操作的话，只能使用 <code>*_all</code> 的形式。</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9ae67a1" class="outline-4">
+<h4 id="org9ae67a1"><span class="section-number-4">1.3.3</span> 更新</h4>
+<div class="outline-text-4" id="text-1-3-3">
+<ul class="org-ul">
+<li><code>update_attributes</code> 更新记录，不能用于 <code>where</code> 得到的
+=ActiveRecord::Relation=。</li>
+<li><code>update_all</code> 调用 <code>ActiveRecord::Relation</code>
+对象时的方法更新所有记录，而不调用正在更新的记录的任何回调和验证。不能用户
+<code>find</code> 及 <code>find_by</code> 得到的模型。</li>
+<li><code>update</code> 是别名，自动转换以用于上述所有查询。用于
+<code>ActiveRecord::Relation</code> 的时候没有 <code>update!</code> 的形式。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6668a05" class="outline-4">
+<h4 id="org6668a05"><span class="section-number-4">1.3.4</span> 删除</h4>
+<div class="outline-text-4" id="text-1-3-4">
+<ul class="org-ul">
+<li>delete 直接在数据库执行一条 sql 语句;</li>
+<li>delete 效率高于 destroy（因为 1）;</li>
+<li>delete 绕开业务逻辑的 callback(使用时，需注意参照完整性约束);</li>
+<li>destroy 需要将对象实例化;</li>
+<li>destroy 需要将对象一条一条删除（因为 4）;</li>
+<li>destroy 耗费时间，因为每一条都需要执行：实例化，callback，删除;</li>
+<li>destroy 会把关联的对象的外键设为 nil;</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgee6d69f" class="outline-3">
+<h3 id="orgee6d69f"><span class="section-number-3">1.4</span> 无数据库模型</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+在 rails
+中，模型（model）一般都和数据库中的某数据表对应，以存储数据。但在某些场合下，模型数据并不需要存储，或者以其他存储形态（如文件）出现，那么这时就需要不用数据库的模型，即无数据库模型。
+</p>
+
+<p>
+模型除了用数据库存储数据的功能外，还有数据验证、回调等功能，一般情况下我们还需要用到这些功能的一部分，所以在普通应用意义上的无数据库模型就是把用数据库存储数据的功能从普通意义上的模型中剖离出去。
+</p>
+
+<p>
+在 rails 标准库中，实现这种无数据库模型的方法是用 ActiveModel
+模块，这个模块有很多普通意义的模型所具有的功能，想用哪个功能就把哪个
+include 进去，这样也有利于功能的精简化。
+</p>
+
+<p>
+在代码上，普通模型都要继承
+ActiveRecord::Base，而无数据库模型则什么都不继承，仅仅在类里 include
+所需的模块，如
+</p>
+
+<pre class="example">
+class sample
+include ActiveModel::Model
+end
+</pre>
+
+<p>
+其中 ActiveModel：：Model 能完成很多功能，是最常用的模块。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2db8435" class="outline-3">
+<h3 id="org2db8435"><span class="section-number-3">1.5</span> rails 中的 form_for 表单</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+在 rails 中，表单有两种，form_tag 和 form_for，由于 form_tag
+和模型无關，所以此处我们只讨论 form_for 表单。
+</p>
+
+<p>
+如果 form_for
+的第一个参数是一个模型对象，这个对象还属于一个资源的情况下，那么有两种情况：
+</p>
+
+<ol class="org-ol">
+<li>这个对象是新创建的（即不存在于数据表中）。此时按提交按钮会转向 create
+活动，表达的是增加一个数据</li>
+<li>这个对象在数据表中存在。此时按提交按钮会转向 update
+活动，表达的是更新一个已有数据。</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org9d8a6b4" class="outline-3">
+<h3 id="org9d8a6b4"><span class="section-number-3">1.6</span> ActiveModel 应用于 form_for</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+由于 ActiveModel
+和数据库无关，所以其模型对象也无法再通过是否存在于数据表中来判断是新数据还是旧数据，也无法得知提交后的活动是创建还是更新。这样就需要一些手段来识别是新数据还是旧数据。
+</p>
+
+<p>
+这个手段就是 persisted? 方法，当模型对象的 persisted? 为
+true，代表的是旧数据，如果模型对象的 persisted? 为
+false，代表的是新数据。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcb9cc78" class="outline-3">
+<h3 id="orgcb9cc78"><span class="section-number-3">1.7</span> 例子</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+我们以上传文件管理为例。为了管理上传的文件，假设每个文件都对应一个唯一的名字，如果上传了一个同名字的文件，那么代表更新这个文件。由于这个任务和数据库无关，数据以文件形式存储，所以可以用无数据库模型。
+</p>
+</div>
+
+<div id="outline-container-org75b23d9" class="outline-4">
+<h4 id="org75b23d9"><span class="section-number-4">1.7.1</span> 1. 定义模型</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<pre class="example">
+class Upload
+  include ActiveModel：：Model
+  attr_accessor：id
+
+  def persisted？
+    id
+  end
+end
+</pre>
+
+<p>
+这里的 id 表达的就是文件所对应的名字。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd2ec8dd" class="outline-4">
+<h4 id="orgd2ec8dd"><span class="section-number-4">1.7.2</span> 2. 控制器的 new 活动</h4>
+<div class="outline-text-4" id="text-1-7-2">
+<pre class="example">
+def new
+  @u=Upload.new
+end
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgad7583b" class="outline-4">
+<h4 id="orgad7583b"><span class="section-number-4">1.7.3</span> 3. new.html.erb</h4>
+<div class="outline-text-4" id="text-1-7-3">
+<pre class="example">
+&lt;%= form_for @u do |f| %&gt;
+  &lt;%= f.label：id %&gt;
+  &lt;%= f.text_field：id %&gt;
+  &lt;%= f.file_field：file %&gt;
+  &lt;%= f.submit %&gt;
+&lt;% end %&gt;
+</pre>
+
+<p>
+由于@u 的 id 为空，所以@u. persisted？为假，所以这个表单会转向 create
+活动。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgec57f6b" class="outline-4">
+<h4 id="orgec57f6b"><span class="section-number-4">1.7.4</span> 4. 控制器的 edit 活动</h4>
+<div class="outline-text-4" id="text-1-7-4">
+<pre class="example">
+def edit
+  @u=Upload.new
+  @u.id=params[：id]
+end
+</pre>
+
+<p>
+@u.id 被赋值成文件所对应的名字
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3b116a3" class="outline-4">
+<h4 id="org3b116a3"><span class="section-number-4">1.7.5</span> 5. edit.html.erb</h4>
+<div class="outline-text-4" id="text-1-7-5">
+<p>
+由于 edit.html.erb 的内容和 new.html.erb 一样，所以就不再重复。
+</p>
+
+<p>
+由于在 edit 活动中 @u.id 被赋值成文件所对应的名字，所以 @u.
+persisted？为真，所以这个表单会转向 update 活动。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org15f4b0e" class="outline-2">
+<h2 id="org15f4b0e"><span class="section-number-2">2</span> View</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org59eca30" class="outline-3">
+<h3 id="org59eca30"><span class="section-number-3">2.1</span> Rails 的常用前端技术</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>jQuery</li>
+<li>UJS</li>
+<li>Assets pipeline</li>
+<li>SJR( 服务端 JS 生成技术 )</li>
+<li>Turoblinks( 一种极小成本实现的单页效果的技术 )</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgc4888ae" class="outline-3">
+<h3 id="orgc4888ae"><span class="section-number-3">2.2</span> 参数传递</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+params 是一个嵌套散列，包含每次请求的信息。 不能直接使用 params
+批量赋值，有漏洞，需要通过下列方法获取：
+</p>
+
+<pre class="example">
+params.require(:user)permit(:name, :email, ...)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgdf73ba6" class="outline-3">
+<h3 id="orgdf73ba6"><span class="section-number-3">2.3</span> 调试</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+通过在 <code>application.html.erb</code> 里增加下列语句在页面展示调试信息：
+</p>
+
+<pre class="example">
+&lt;%= debug(params) if Rails.env.development? %&gt;
+</pre>
+
+<p>
+通过在控制器增加 <code>debugger</code>
+方法，可以在控制台服务窗口运行调试命令，需要安装 <code>byebug gem=，按快捷键
+=C-D</code> 退出。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org3a57828" class="outline-3">
+<h3 id="org3a57828"><span class="section-number-3">2.4</span> Flash 闪现消息</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+在 rails 中，短暂显示一个消息使用闪现消息实现。按照约定，flash
+用于在两个 action 间传递临时数据，flash
+中存放的所有数据会在紧接着的下一个 action
+调用后清除。一般用于传递提示和错误信息。
+</p>
+
+<pre class="example">
+flash = { success: "It worked!", danger: "It failed." }
+</pre>
+
+<p>
+一共有两种通知：notice 与 alert，分别表示"提示"和"错误警告"。
+</p>
+
+<ul class="org-ul">
+<li>flash[:notice] 与 flash[:alert] 有多种写法：</li>
+<li>flash.notice= 与 flash.alert=</li>
+<li>flash["notice"] 与 flash["alert"]</li>
+<li>redirect_to 时作为参数 :alert =&gt; "&#x2026;", :notice =&gt; "&#x2026;"</li>
+</ul>
+
+<p>
+另外一个还会遇到的是 flash.now[]，它只对当前 action
+有效，用于重新渲染的页面，下一个 action 即无效。
+</p>
+
+<ul class="org-ul">
+<li>flash 方法的消息会从保存到下一个 action，和 redirct_to 方法一起使用</li>
+<li>flash.now 方法的详细只会在当前视图显示，不会保存到下一个 action，和
+render 方法一起使用</li>
+<li>flash.now[:message] = "Hello current action"</li>
+<li>flash.now[]设置的数据访问方法与其它相同：均为 flash['my-key'**</li>
+</ul>
+
+<p>
+<b>原理：*</b>
+</p>
+
+<p>
+flash.now[** 是保存在 request 中的。alert 与 notice 是保存在 session
+中的, 只是获取数据时添加了删除的逻辑。
+</p>
+
+<p>
+<b>注意：*</b>
+</p>
+
+<ul class="org-ul">
+<li>flash[:alert],flash[:notice]一般与 redirect_to 一起用，而不能与 render
+一起用。</li>
+<li>redirect_to 是重定向，会重新发起请求，比 render
+多了一次请求。flash[:alert],flash[:notice]只会出现在接下面的一个页面中。</li>
+<li>而 render 是服务器端转发，客户端不会重新发送请求，比 redirect_to
+少了一次请求。所以一旦一起用，结果是接下来两个页面都有
+flash[:alert],flash[:notice]，第三个页面时才会消失。</li>
+<li>正确的做法是 render 搭配 flash.now[:alert],flash.now[:notice]一起用</li>
+</ul>
+
+<p>
+显示所有 notice 与 alert 的 helper
+</p>
+
+<p>
+application_helper.rb 中添加：
+</p>
+
+<pre class="example">
+def display_notice_and_alert
+  msg = ''
+  msg &lt;&lt; (content_tag :div, notice, :class =&gt; "notice") if notice
+  msg &lt;&lt; (content_tag :div, alert, :class =&gt; "alert") if alert
+  sanitize msg
+end
+</pre>
+
+<p>
+view 中只需添加：
+</p>
+
+<pre class="example">
+&lt;%= display_notice_and_alert %&gt;
+</pre>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org51fc20f" class="outline-2">
+<h2 id="org51fc20f"><span class="section-number-2">3</span> Controller</h2>
+</div>
+
+
+<div id="outline-container-org64fc5ad" class="outline-2">
+<h2 id="org64fc5ad"><span class="section-number-2">4</span> Route</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Rails 路由按照声明顺序进行匹配。
+</p>
+</div>
+
+<div id="outline-container-orgec7c3ab" class="outline-3">
+<h3 id="orgec7c3ab"><span class="section-number-3">4.1</span> REST 具名路由</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+将 RESTful 带入 Rails 路由系统的点子，出自它对应了 HTTP 动词
+POST、GET、PATCH/PUT、DELETE 到资料的新增、读取、更新、删除等四项操作。
+</p>
+
+<p>
+手工 CRUD 的路由：
+</p>
+
+<ul class="org-ul">
+<li>/users/create</li>
+<li><i>users/show</i>:id</li>
+<li><i>users/update</i>:id</li>
+<li><i>users/destroy</i>:id</li>
+</ul>
+
+<p>
+RESTful CRUD 路由：
+</p>
+
+<ul class="org-ul">
+<li>POST /users 对应到 Controller 中的 create action</li>
+<li>GET <i>users</i>:id 对应到 Controller 中的 show action</li>
+<li>PATCH <i>users</i>:id 对应到 Controller 中的 update action</li>
+<li>DELETE <i>users</i>:id 对应到 Controller 中的 destroy action</li>
+</ul>
+
+<p>
+什么是 HTTP method？在 HTTP
+通讯协定中制定了九种动词(Verbs)来跟服务器沟通，分别是
+HEAD、GET、POST、PUT、PATCH、DELETE、TRACE、OPTIONS、CONNECT。其中最常见的就是
+GET 和 POST：GET 用来读取资料，这个动作不应该造成任何资料变更。而 POST
+用于送出资料，这个动作不会被快取。而因为 HTML 只能送出 GET
+或透过表单送出 POST，Rails 为了突破这个限制，在 POST
+加上一个隐藏参数_method=PATCH 或_method=DELETE 就可以当做 PATCH 和
+DELETE 请求了。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgea0eb8a" class="outline-3">
+<h3 id="orgea0eb8a"><span class="section-number-3">4.2</span> resources 资源路由表：</h3>
+<div class="outline-text-3" id="text-4-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">方法</th>
+<th scope="col" class="org-left">URL</th>
+<th scope="col" class="org-left">动作</th>
+<th scope="col" class="org-left">辅助方法（具名路由）</th>
+<th scope="col" class="org-left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">get</td>
+<td class="org-left">/users</td>
+<td class="org-left">index</td>
+<td class="org-left">users_path</td>
+<td class="org-left">显示所有用户页面</td>
+</tr>
+
+<tr>
+<td class="org-left">get</td>
+<td class="org-left"><i>users</i>:id</td>
+<td class="org-left">show</td>
+<td class="org-left">user_path(:id)</td>
+<td class="org-left">显示用户页面</td>
+</tr>
+
+<tr>
+<td class="org-left">get</td>
+<td class="org-left">/users/new</td>
+<td class="org-left">new</td>
+<td class="org-left">new_user_path</td>
+<td class="org-left">显示创建用户页面</td>
+</tr>
+
+<tr>
+<td class="org-left">get</td>
+<td class="org-left"><i>users</i>:id/edit</td>
+<td class="org-left">edit</td>
+<td class="org-left">edit_user_path(:id)</td>
+<td class="org-left">显示编辑用户页面</td>
+</tr>
+
+<tr>
+<td class="org-left">post</td>
+<td class="org-left">/users</td>
+<td class="org-left">create</td>
+<td class="org-left">users_path</td>
+<td class="org-left">创建用户</td>
+</tr>
+
+<tr>
+<td class="org-left">patch</td>
+<td class="org-left"><i>users</i>:id</td>
+<td class="org-left">update</td>
+<td class="org-left">user_path(:id)</td>
+<td class="org-left">更新用户</td>
+</tr>
+
+<tr>
+<td class="org-left">delete</td>
+<td class="org-left"><i>users</i>:id</td>
+<td class="org-left">destroy</td>
+<td class="org-left">user_path(:id)</td>
+<td class="org-left">删除用户</td>
+</tr>
+</tbody>
+</table>
+
+<ul class="org-ul">
+<li>通常在 controller 里的代码顺序也如上述。</li>
+<li>单数资源没有 index 路径动作。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org5675f38" class="outline-3">
+<h3 id="org5675f38"><span class="section-number-3">4.3</span> 辅助方法</h3>
+<div class="outline-text-3" id="text-4-3">
+<ul class="org-ul">
+<li>在使用辅助方法时，数字 id 参数可以使用对象实例。</li>
+<li>在使用 url_for 方法时传入一组对象，Rails 会自动确定对应的路由。</li>
+<li>在使用 link_to 等辅助方法时，可以指定对象，而不必完整调用 url_for
+方法。</li>
+<li>如果想链接到其他控制器动作，只需要把动作名称作为第一个元素插入对象数组即可。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcf5d3c3" class="outline-3">
+<h3 id="orgcf5d3c3"><span class="section-number-3">4.4</span> route 路由表</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+在 route.rb 文件中定义路径会产生具名路由，一般有两种形式：
+</p>
+
+<ul class="org-ul">
+<li><code>action_path</code> 表示短路径 <code>/action=。通常在 =link_to</code> 的时候使用。</li>
+<li><code>action_url</code> 表示全路径 <code>http://localhost/action=。通常在
+  =redirect_to</code> 的时候使用。</li>
+</ul>
+
+<p>
+路由定义样例：
+</p>
+
+<pre class="example">
+root 'pages#action'
+get 'pages/help'
+get '/about', to: 'pages#about'
+get '/home', to: 'pages#home' as myhome
+resources microposts, only: [:create, :destroy]
+resources users do
+  member do
+    get :following, :followers
+  end
+  collection do
+    get :tigers
+  end
+end
+get '/blog', to: redirect("http://example.com/blog")
+match '/blog', to: redirect("http://example.com/blog"), via: [:get, post]
+</pre>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">HTTP 请求</th>
+<th scope="col" class="org-left">URL</th>
+<th scope="col" class="org-left">动作</th>
+<th scope="col" class="org-left">具名路由</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">get</td>
+<td class="org-left"><i>users</i>:id/following</td>
+<td class="org-left">following</td>
+<td class="org-left">following_user_path(id)</td>
+</tr>
+
+<tr>
+<td class="org-left">get</td>
+<td class="org-left">/users/tigers</td>
+<td class="org-left">tigers</td>
+<td class="org-left">tigers_user_path</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgbfc49e8" class="outline-2">
+<h2 id="orgbfc49e8"><span class="section-number-2">5</span> References</h2>
+<div class="outline-text-2" id="text-5">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+</blockquote>
+</div>
+</div>

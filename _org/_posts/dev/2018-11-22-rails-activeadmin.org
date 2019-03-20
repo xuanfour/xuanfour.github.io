@@ -436,7 +436,6 @@ Index Filter 过滤器
     :check_boxes - A list of check boxes users can turn on and off to filter
 #+END_SRC
 
-
 * 项目汉化
 
 ** ActiveAdmin 汉化
@@ -544,7 +543,6 @@ zh-CN.yml。
 
 - 地址：https://github.com/tsechingho/rails-i18n/tree/master/rails/locale
 - 中文：https://github.com/tsechingho/rails-i18n/blob/master/rails/locale/zh-CN.yml
-
 
 * ActiveAdmin 更新
 
@@ -702,7 +700,6 @@ render。理解这一点才能更好的理解功能的实现。
 - 示例网址：[[https://demo.activeadmin.info]]
 - 邮箱列表：[[https://groups.google.com/group/activeadmin]]
 - 其他相关：http://blog.csdn.net/feng88724/article/details/49124281
-
 
 * References
 

@@ -1,0 +1,1014 @@
+---
+layout: post
+title: "Bash 学习"
+date: 2018-07-13
+categories: 程序设计
+tags:
+    - Bash
+---
+
+<div id="outline-container-orgce7c325" class="outline-2">
+<h2 id="orgce7c325"><span class="section-number-2">1</span> 常用快捷键</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+默认使用 Emacs 键位。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">CTRL+A              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31227;&#21160;&#21040;&#34892;&#39318;&#65292;&#21516; &lt;Home&gt;</span>
+CTRL+B              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21521;&#21518;&#31227;&#21160;&#65292;&#21516; &lt;Left&gt;</span>
+CTRL+C              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32467;&#26463;&#24403;&#21069;&#21629;&#20196;</span>
+CTRL+D              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#20809;&#26631;&#21069;&#30340;&#23383;&#31526;&#65292;&#21516; &lt;Delete&gt; &#65292;&#25110;&#32773;&#27809;&#26377;&#20869;&#23481;&#26102;&#65292;&#36864;&#20986;&#20250;&#35805;</span>
+CTRL+E              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31227;&#21160;&#21040;&#34892;&#26411;&#65292;&#21516; &lt;End&gt;</span>
+CTRL+F              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21521;&#21069;&#31227;&#21160;&#65292;&#21516; &lt;Right&gt;</span>
+CTRL+G              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36864;&#20986;&#24403;&#21069;&#32534;&#36753;&#65288;&#27604;&#22914;&#27491;&#22312; CTRL+R &#25628;&#32034;&#21382;&#21490;&#26102;&#65289;</span>
+CTRL+H              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#20809;&#26631;&#24038;&#36793;&#30340;&#23383;&#31526;&#65292;&#21516; &lt;Backspace&gt;</span>
+CTRL+K              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#20809;&#26631;&#20301;&#32622;&#21040;&#34892;&#26411;&#30340;&#20869;&#23481;</span>
+CTRL+L              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#28165;&#23631;&#24182;&#37325;&#26032;&#26174;&#31034;</span>
+CTRL+N              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31227;&#21160;&#21040;&#21629;&#20196;&#21382;&#21490;&#30340;&#19979;&#19968;&#34892;&#65292;&#21516; &lt;Down&gt;</span>
+CTRL+O              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31867;&#20284;&#22238;&#36710;&#65292;&#20294;&#26159;&#20250;&#26174;&#31034;&#19979;&#19968;&#34892;&#21382;&#21490;</span>
+CTRL+P              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31227;&#21160;&#21040;&#21629;&#20196;&#21382;&#21490;&#30340;&#19978;&#19968;&#34892;&#65292;&#21516; &lt;Up&gt;</span>
+CTRL+R              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21382;&#21490;&#21629;&#20196;&#21453;&#21521;&#25628;&#32034;&#65292;&#20351;&#29992; CTRL+G &#36864;&#20986;&#25628;&#32034;</span>
+CTRL+S              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21382;&#21490;&#21629;&#20196;&#27491;&#21521;&#25628;&#32034;&#65292;&#20351;&#29992; CTRL+G &#36864;&#20986;&#25628;&#32034;</span>
+CTRL+T              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20132;&#25442;&#21069;&#21518;&#20004;&#20010;&#23383;&#31526;</span>
+CTRL+U              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#23383;&#31526;&#21040;&#34892;&#39318;</span>
+CTRL+V              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36755;&#20837;&#23383;&#31526;&#23383;&#38754;&#37327;&#65292;&#20808;&#25353; CTRL+V &#20877;&#25353;&#20219;&#24847;&#38190;</span>
+CTRL+W              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#20809;&#26631;&#24038;&#36793;&#30340;&#19968;&#20010;&#21333;&#35789;</span>
+CTRL+X              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#20986;&#21487;&#33021;&#30340;&#34917;&#20840;</span>
+CTRL+Y              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31896;&#36148;&#21069;&#38754; CTRL+u/k/w &#21024;&#38500;&#36807;&#30340;&#20869;&#23481;</span>
+CTRL+Z              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26242;&#20572;&#21069;&#21488;&#36827;&#31243;&#36820;&#22238; bash&#65292;&#38656;&#35201;&#26102;&#21487;&#29992; fg &#23558;&#20854;&#20999;&#25442;&#22238;&#21069;&#21488;</span>
+CTRL+_              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25764;&#38144;&#65288;undo&#65289;&#65292;&#26377;&#30340;&#32456;&#31471;&#23558; CTRL+_ &#26144;&#23556;&#20026; CTRL+/ &#25110; CTRL+7</span>
+
+ALT+b               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21521;&#21518;&#65288;&#24038;&#36793;&#65289;&#31227;&#21160;&#19968;&#20010;&#21333;&#35789;</span>
+ALT+d               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#20809;&#26631;&#21518;&#65288;&#21491;&#36793;&#65289;&#19968;&#20010;&#21333;&#35789;</span>
+ALT+f               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21521;&#21069;&#65288;&#21491;&#36793;&#65289;&#31227;&#21160;&#19968;&#20010;&#21333;&#35789;</span>
+ALT+t               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20132;&#25442;&#23383;&#31526;</span>
+ALT+BACKSPACE       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#20809;&#26631;&#21069;&#38754;&#19968;&#20010;&#21333;&#35789;&#65292;&#31867;&#20284; CTRL+W&#65292;&#20294;&#19981;&#24433;&#21709;&#21098;&#36148;&#26495;</span>
+
+CTRL+X CTRL+X       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36830;&#32493;&#25353;&#20004;&#27425; CTRL+X&#65292;&#20809;&#26631;&#22312;&#24403;&#21069;&#20301;&#32622;&#21644;&#34892;&#39318;&#26469;&#22238;&#36339;&#36716;</span>
+CTRL+X CTRL+E       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#29992;&#20320;&#25351;&#23450;&#30340;&#32534;&#36753;&#22120;&#65292;&#32534;&#36753;&#24403;&#21069;&#21629;&#20196;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org40f2681" class="outline-2">
+<h2 id="org40f2681"><span class="section-number-2">2</span> BASH 基本操作</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #4f97d7; font-weight: bold;">exit</span>                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36864;&#20986;&#24403;&#21069;&#30331;&#38470;</span>
+env                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#29615;&#22659;&#21464;&#37327;</span>
+<span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">SHELL</span>         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#20320;&#22312;&#20351;&#29992;&#20160;&#20040; SHELL</span>
+
+bash                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; bash&#65292;&#29992; exit &#36820;&#22238;</span>
+<span style="color: #4f97d7;">which</span> bash          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25628;&#32034; $PATH&#65292;&#26597;&#25214;&#21738;&#20010;&#31243;&#24207;&#23545;&#24212;&#21629;&#20196; bash</span>
+whereis bash        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25628;&#32034;&#21487;&#25191;&#34892;&#65292;&#22836;&#25991;&#20214;&#21644;&#24110;&#21161;&#20449;&#24687;&#30340;&#20301;&#32622;&#65292;&#20351;&#29992;&#31995;&#32479;&#20869;&#24314;&#25968;&#25454;&#24211;</span>
+whatis bash         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#26576;&#20010;&#21629;&#20196;&#30340;&#35299;&#37322;&#65292;&#19968;&#21477;&#35805;&#21578;&#35785;&#20320;&#36825;&#26159;&#24178;&#20160;&#20040;&#30340;</span>
+
+clear               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#28165;&#21021;&#23631;&#24149;&#20869;&#23481;</span>
+reset               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#37325;&#32622;&#32456;&#31471;&#65288;&#24403;&#20320;&#19981;&#23567;&#24515; cat &#20102;&#19968;&#20010;&#20108;&#36827;&#21046;&#65292;&#32456;&#31471;&#29366;&#24577;&#20081;&#25481;&#26102;&#20351;&#29992;&#65289;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org779e633" class="outline-2">
+<h2 id="org779e633"><span class="section-number-2">3</span> 目录操作</h2>
+<div class="outline-text-2" id="text-3">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #4f97d7;">cd</span>                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36820;&#22238;&#33258;&#24049; $HOME &#30446;&#24405;</span>
+<span style="color: #4f97d7;">cd</span> <span style="color: #4f97d7;">{</span>dirname<span style="color: #4f97d7;">}</span>        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36827;&#20837;&#30446;&#24405;</span>
+<span style="color: #4f97d7;">pwd</span>                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#24403;&#21069;&#25152;&#22312;&#30446;&#24405;</span>
+mkdir <span style="color: #4f97d7;">{</span>dirname<span style="color: #4f97d7;">}</span>     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21019;&#24314;&#30446;&#24405;</span>
+mkdir -p <span style="color: #4f97d7;">{</span>dirname<span style="color: #4f97d7;">}</span>  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36882;&#24402;&#21019;&#24314;&#30446;&#24405;</span>
+<span style="color: #4f97d7;">pushd</span> <span style="color: #4f97d7;">{</span>dirname<span style="color: #4f97d7;">}</span>     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#30446;&#24405;&#21387;&#26632;&#24182;&#36827;&#20837;&#26032;&#30446;&#24405;</span>
+<span style="color: #4f97d7;">popd</span>                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24377;&#20986;&#24182;&#36827;&#20837;&#26632;&#39030;&#30340;&#30446;&#24405;</span>
+<span style="color: #4f97d7;">dirs</span> -v             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#20986;&#24403;&#21069;&#30446;&#24405;&#26632;</span>
+<span style="color: #4f97d7;">cd</span> -                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22238;&#21040;&#20043;&#21069;&#30340;&#30446;&#24405;</span>
+<span style="color: #4f97d7;">cd</span> -<span style="color: #4f97d7;">{</span>N<span style="color: #4f97d7;">}</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040;&#30446;&#24405;&#26632;&#20013;&#30340;&#31532; N &#20010;&#30446;&#24405;&#65292;&#27604;&#22914; cd -2 &#23558;&#20999;&#25442;&#21040;&#31532;&#20108;&#20010;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbf7b64e" class="outline-2">
+<h2 id="orgbf7b64e"><span class="section-number-2">4</span> 文件操作</h2>
+<div class="outline-text-2" id="text-4">
+<div class="org-src-container">
+<pre class="src src-sh">ls                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#24403;&#21069;&#30446;&#24405;&#20869;&#23481;&#65292;&#21518;&#38754;&#21487;&#25509;&#30446;&#24405;&#21517;&#65306;ls {dir} &#26174;&#31034;&#25351;&#23450;&#30446;&#24405;</span>
+ls -l               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#34920;&#26041;&#24335;&#26174;&#31034;&#30446;&#24405;&#20869;&#23481;&#65292;&#21253;&#25324;&#25991;&#20214;&#26085;&#26399;&#65292;&#22823;&#23567;&#65292;&#26435;&#38480;&#31561;&#20449;&#24687;</span>
+ls -a               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#25152;&#26377;&#25991;&#20214;&#21644;&#30446;&#24405;&#65292;&#21253;&#25324;&#38544;&#34255;&#25991;&#20214;&#65288;.&#24320;&#22836;&#30340;&#25991;&#20214;/&#30446;&#24405;&#21517;&#65289;</span>
+ln -s <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span> <span style="color: #4f97d7;">{</span>link<span style="color: #4f97d7;">}</span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32473;&#25351;&#23450;&#25991;&#20214;&#21019;&#24314;&#19968;&#20010;&#36719;&#38142;&#25509;</span>
+cp <span style="color: #4f97d7;">{</span>src<span style="color: #4f97d7;">}</span> <span style="color: #4f97d7;">{</span>dest<span style="color: #4f97d7;">}</span>     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25335;&#36125;&#25991;&#20214;&#65292;cp -r dir1 dir2 &#21487;&#20197;&#36882;&#24402;&#25335;&#36125;&#65288;&#30446;&#24405;&#65289;</span>
+rm <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#25991;&#20214;&#65292;rm -r &#36882;&#24402;&#21024;&#38500;&#30446;&#24405;&#65292;rm -f &#24378;&#21046;&#21024;&#38500;</span>
+mv <span style="color: #4f97d7;">{</span>src<span style="color: #4f97d7;">}</span> <span style="color: #4f97d7;">{</span>dest<span style="color: #4f97d7;">}</span>     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31227;&#21160;&#25991;&#20214;&#65292;&#22914;&#26524; dest &#26159;&#30446;&#24405;&#65292;&#21017;&#31227;&#21160;&#65292;&#26159;&#25991;&#20214;&#21517;&#21017;&#35206;&#30422;</span>
+touch <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21019;&#24314;&#25110;&#32773;&#26356;&#26032;&#19968;&#19979;&#21046;&#23450;&#25991;&#20214;</span>
+cat <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36755;&#20986;&#25991;&#20214;&#21407;&#22987;&#20869;&#23481;</span>
+any_cmd &gt; <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25191;&#34892;&#20219;&#24847;&#21629;&#20196;&#24182;&#23558;&#26631;&#20934;&#36755;&#20986;&#37325;&#23450;&#21521;&#21040;&#25351;&#23450;&#25991;&#20214;</span>
+more <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36880;&#23631;&#26174;&#31034;&#26576;&#25991;&#20214;&#20869;&#23481;&#65292;&#31354;&#26684;&#32763;&#39029;&#65292;q &#36864;&#20986;</span>
+less <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26356;&#39640;&#32423;&#28857;&#30340; more&#65292;&#26356;&#22810;&#25805;&#20316;&#65292;q &#36864;&#20986;</span>
+head <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#25991;&#20214;&#22836;&#37096;&#25968;&#34892;&#65292;&#21487;&#29992; head -3 abc.txt &#26174;&#31034;&#22836;&#19977;&#34892;</span>
+tail <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#25991;&#20214;&#23614;&#37096;&#25968;&#34892;&#65292;&#21487;&#29992; tail -3 abc.txt &#26174;&#31034;&#23614;&#37096;&#19977;&#34892;</span>
+tail -f <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25345;&#32493;&#26174;&#31034;&#25991;&#20214;&#23614;&#37096;&#25968;&#25454;&#65292;&#21487;&#29992;&#20110;&#30417;&#25511;&#26085;&#24535;</span>
+nano <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; nano &#32534;&#36753;&#22120;&#32534;&#36753;&#25991;&#20214;</span>
+vim <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; vim &#32534;&#36753;&#25991;&#20214;</span>
+diff <span style="color: #4f97d7;">{</span>f1<span style="color: #4f97d7;">}</span> <span style="color: #4f97d7;">{</span>f2<span style="color: #4f97d7;">}</span>      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27604;&#36739;&#20004;&#20010;&#25991;&#20214;&#30340;&#20869;&#23481;</span>
+wc <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32479;&#35745;&#25991;&#20214;&#26377;&#22810;&#23569;&#34892;&#65292;&#22810;&#23569;&#20010;&#21333;&#35789;</span>
+chmod <span style="color: #a45bad;">644</span> <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20462;&#25913;&#25991;&#20214;&#26435;&#38480;&#20026; 644&#65292;&#21487;&#20197;&#25509; -R &#23545;&#30446;&#24405;&#24490;&#29615;&#25913;&#26435;&#38480;</span>
+chgrp group <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20462;&#25913;&#25991;&#20214;&#25152;&#23646;&#30340;&#29992;&#25143;&#32452;</span>
+chown user1 <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20462;&#25913;&#25991;&#20214;&#25152;&#26377;&#20154;&#20026; user1, chown user1:group1 fn &#21487;&#20197;&#20462;&#25913;&#32452;</span>
+file <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26816;&#27979;&#25991;&#20214;&#30340;&#31867;&#22411;&#21644;&#32534;&#30721;</span>
+basename <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25991;&#20214;&#30340;&#21517;&#23383;&#65288;&#19981;&#21253;&#25324;&#36335;&#24452;&#65289;</span>
+dirname <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25991;&#20214;&#30340;&#36335;&#24452;&#65288;&#19981;&#21253;&#25324;&#21517;&#23383;&#65289;</span>
+grep <span style="color: #4f97d7;">{</span>pat<span style="color: #4f97d7;">}</span> <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#25991;&#20214;&#20013;&#26597;&#25214;&#20986;&#29616;&#36807; pat &#30340;&#20869;&#23481;</span>
+grep -r <span style="color: #4f97d7;">{</span>pat<span style="color: #4f97d7;">}</span> .     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#24403;&#21069;&#30446;&#24405;&#19979;&#36882;&#24402;&#26597;&#25214;&#25152;&#26377;&#20986;&#29616;&#36807; pat &#30340;&#25991;&#20214;&#20869;&#23481;</span>
+stat <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#25991;&#20214;&#30340;&#35814;&#32454;&#20449;&#24687;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge692e9e" class="outline-2">
+<h2 id="orge692e9e"><span class="section-number-2">5</span> 用户管理</h2>
+<div class="outline-text-2" id="text-5">
+<div class="org-src-container">
+<pre class="src src-sh">whoami              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#25105;&#30340;&#29992;&#25143;&#21517;</span>
+who                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#24050;&#30331;&#38470;&#29992;&#25143;&#20449;&#24687;&#65292;w / who / users &#20869;&#23481;&#30053;&#26377;&#19981;&#21516;</span>
+w                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#24050;&#30331;&#38470;&#29992;&#25143;&#20449;&#24687;&#65292;w / who / users &#20869;&#23481;&#30053;&#26377;&#19981;&#21516;</span>
+users               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#24050;&#30331;&#38470;&#29992;&#25143;&#20449;&#24687;&#65292;w / who / users &#20869;&#23481;&#30053;&#26377;&#19981;&#21516;</span>
+passwd              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20462;&#25913;&#23494;&#30721;&#65292;passwd {user} &#21487;&#20197;&#29992;&#20110; root &#20462;&#25913;&#21035;&#20154;&#23494;&#30721;</span>
+finger <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#26576;&#29992;&#25143;&#20449;&#24687;&#65292;&#21253;&#25324; id, &#21517;&#23383;, &#30331;&#38470;&#29366;&#24577;&#31561;</span>
+adduser <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#28155;&#21152;&#29992;&#25143;</span>
+deluser <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#29992;&#25143;</span>
+w                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#35841;&#22312;&#32447;</span>
+su                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040; root &#29992;&#25143;</span>
+su -                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040; root &#29992;&#25143;&#24182;&#30331;&#38470;&#65288;&#25191;&#34892;&#30331;&#38470;&#33050;&#26412;&#65289;</span>
+su <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040;&#26576;&#29992;&#25143;</span>
+su -<span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040;&#26576;&#29992;&#25143;&#24182;&#30331;&#38470;&#65288;&#25191;&#34892;&#30331;&#38470;&#33050;&#26412;&#65289;</span>
+id <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#29992;&#25143;&#30340; uid&#65292;gid &#20197;&#21450;&#25152;&#23646;&#20854;&#20182;&#29992;&#25143;&#32452;</span>
+id -u <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25171;&#21360;&#29992;&#25143; uid</span>
+id -g <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25171;&#21360;&#29992;&#25143; gid</span>
+write <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21521;&#26576;&#29992;&#25143;&#21457;&#36865;&#19968;&#21477;&#28040;&#24687;</span>
+last                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#26368;&#36817;&#29992;&#25143;&#30331;&#38470;&#21015;&#34920;</span>
+last <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#30331;&#38470;&#35760;&#24405;</span>
+lastb               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#22833;&#36133;&#30331;&#38470;&#35760;&#24405;</span>
+lastlog             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#25152;&#26377;&#29992;&#25143;&#30340;&#26368;&#36817;&#30331;&#38470;&#35760;&#24405;</span>
+sudo <span style="color: #4f97d7;">{</span>command<span style="color: #4f97d7;">}</span>      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20197; root &#26435;&#38480;&#25191;&#34892;&#26576;&#21629;&#20196;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9b83253" class="outline-2">
+<h2 id="org9b83253"><span class="section-number-2">6</span> 进程管理</h2>
+<div class="outline-text-2" id="text-6">
+<div class="org-src-container">
+<pre class="src src-sh">ps                        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#24403;&#21069;&#20250;&#35805;&#36827;&#31243;</span>
+ps ax                     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#36827;&#31243;&#65292;&#31867;&#20284; ps -e</span>
+ps aux                    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#36827;&#31243;&#35814;&#32454;&#20449;&#24687;&#65292;&#31867;&#20284; ps -ef</span>
+ps auxww                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#36827;&#31243;&#65292;&#24182;&#19988;&#26174;&#31034;&#36827;&#31243;&#30340;&#23436;&#25972;&#21551;&#21160;&#21629;&#20196;</span>
+ps -u <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#26576;&#29992;&#25143;&#36827;&#31243;</span>
+ps axjf                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#20986;&#36827;&#31243;&#26641;</span>
+ps xjf -u <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#20986;&#26576;&#29992;&#25143;&#30340;&#36827;&#31243;&#26641;</span>
+ps -eo pid,user,command   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25353;&#29992;&#25143;&#25351;&#23450;&#30340;&#26684;&#24335;&#26597;&#30475;&#36827;&#31243;</span>
+ps aux | grep httpd       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#21517;&#20026; httpd &#30340;&#25152;&#26377;&#36827;&#31243;</span>
+ps --ppid <span style="color: #4f97d7;">{</span>pid<span style="color: #4f97d7;">}</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#29238;&#36827;&#31243;&#20026; pid &#30340;&#25152;&#26377;&#36827;&#31243;</span>
+pstree                    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26641;&#24418;&#21015;&#20986;&#25152;&#26377;&#36827;&#31243;&#65292;pstree &#40664;&#35748;&#19968;&#33324;&#19981;&#24102;&#65292;&#38656;&#23433;&#35013;</span>
+pstree <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36827;&#31243;&#26641;&#21015;&#20986;&#26576;&#29992;&#25143;&#30340;&#36827;&#31243;</span>
+pstree -u                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26641;&#24418;&#21015;&#20986;&#25152;&#26377;&#36827;&#31243;&#20197;&#21450;&#25152;&#23646;&#29992;&#25143;</span>
+pgrep <span style="color: #4f97d7;">{</span>procname<span style="color: #4f97d7;">}</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25628;&#32034;&#21517;&#23383;&#21305;&#37197;&#30340;&#36827;&#31243;&#30340; pid&#65292;&#27604;&#22914; pgrep apache2</span>
+
+<span style="color: #4f97d7;">kill</span> <span style="color: #4f97d7;">{</span>pid<span style="color: #4f97d7;">}</span>                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32467;&#26463;&#36827;&#31243;</span>
+<span style="color: #4f97d7;">kill</span> -9 <span style="color: #4f97d7;">{</span>pid<span style="color: #4f97d7;">}</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24378;&#21046;&#32467;&#26463;&#36827;&#31243;&#65292;9/SIGKILL &#26159;&#24378;&#21046;&#19981;&#21487;&#25429;&#33719;&#32467;&#26463;&#20449;&#21495;</span>
+<span style="color: #4f97d7;">kill</span> -KILL <span style="color: #4f97d7;">{</span>pid<span style="color: #4f97d7;">}</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24378;&#21046;&#25191;&#34892;&#36827;&#31243;&#65292;kill -9 &#30340;&#21478;&#22806;&#19968;&#31181;&#20889;&#27861;</span>
+<span style="color: #4f97d7;">kill</span> -l                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#20449;&#21495;</span>
+<span style="color: #4f97d7;">kill</span> -l TERM              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475; TERM &#20449;&#21495;&#30340;&#32534;&#21495;</span>
+killall <span style="color: #4f97d7;">{</span>procname<span style="color: #4f97d7;">}</span>        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25353;&#21517;&#31216;&#32467;&#26463;&#25152;&#26377;&#36827;&#31243;</span>
+pkill <span style="color: #4f97d7;">{</span>procname<span style="color: #4f97d7;">}</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25353;&#21517;&#31216;&#32467;&#26463;&#36827;&#31243;&#65292;&#38500;&#21517;&#31216;&#22806;&#36824;&#21487;&#20197;&#26377;&#20854;&#20182;&#21442;&#25968;</span>
+
+top                       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#26368;&#27963;&#36291;&#30340;&#36827;&#31243;</span>
+top -u <span style="color: #4f97d7;">{</span>user<span style="color: #4f97d7;">}</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#26576;&#29992;&#25143;&#26368;&#27963;&#36291;&#30340;&#36827;&#31243;</span>
+
+any_command &amp;             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#21518;&#21488;&#36816;&#34892;&#26576;&#21629;&#20196;&#65292;&#20063;&#21487;&#29992; CTRL+Z &#23558;&#24403;&#21069;&#36827;&#31243;&#25346;&#21040;&#21518;&#21488;</span>
+<span style="color: #4f97d7;">jobs</span>                      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#21518;&#21488;&#36827;&#31243;&#65288;jobs&#65289;</span>
+<span style="color: #4f97d7;">bg</span>                        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#21518;&#21488;&#36827;&#31243;&#65292;&#24182;&#20999;&#25442;&#36807;&#21435;</span>
+<span style="color: #4f97d7;">fg</span>                        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21518;&#21488;&#36827;&#31243;&#21040;&#21069;&#21488;</span>
+<span style="color: #4f97d7;">fg</span> <span style="color: #4f97d7;">{</span>job<span style="color: #4f97d7;">}</span>                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#29305;&#23450;&#21518;&#21488;&#36827;&#31243;&#21040;&#21069;&#21488;</span>
+
+<span style="color: #4f97d7; font-weight: bold;">trap</span> cmd sig1 sig2        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#33050;&#26412;&#20013;&#35774;&#32622;&#20449;&#21495;&#22788;&#29702;&#21629;&#20196;</span>
+<span style="color: #4f97d7; font-weight: bold;">trap</span> <span style="color: #2d9574;">""</span> sig1 sig2         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#33050;&#26412;&#20013;&#23631;&#34109;&#26576;&#20449;&#21495;</span>
+<span style="color: #4f97d7; font-weight: bold;">trap</span> - sig1 sig2          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24674;&#22797;&#40664;&#35748;&#20449;&#21495;&#22788;&#29702;&#34892;&#20026;</span>
+
+nohup <span style="color: #4f97d7;">{</span>command<span style="color: #4f97d7;">}</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#38271;&#26399;&#36816;&#34892;&#26576;&#31243;&#24207;&#65292;&#22312;&#20320;&#36864;&#20986;&#30331;&#38470;&#37117;&#20445;&#25345;&#23427;&#36816;&#34892;</span>
+nohup <span style="color: #4f97d7;">{</span>command<span style="color: #4f97d7;">}</span> &amp;         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#21518;&#21488;&#38271;&#26399;&#36816;&#34892;&#26576;&#31243;&#24207;</span>
+<span style="color: #4f97d7;">disown</span> <span style="color: #4f97d7;">{</span>PID|JID<span style="color: #4f97d7;">}</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#36827;&#31243;&#20174;&#21518;&#21488;&#20219;&#21153;&#21015;&#34920;&#65288;jobs&#65289;&#31227;&#38500;</span>
+
+<span style="color: #4f97d7;">wait</span>                      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31561;&#24453;&#25152;&#26377;&#21518;&#21488;&#36827;&#31243;&#20219;&#21153;&#32467;&#26463;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org91d8aa2" class="outline-2">
+<h2 id="org91d8aa2"><span class="section-number-2">7</span> 常用命令-SSH/系统信息/网络</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+<pre class="src src-sh">ssh user@host             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20197;&#29992;&#25143; user &#30331;&#38470;&#21040;&#36828;&#31243;&#20027;&#26426; host</span>
+ssh -p <span style="color: #4f97d7;">{</span>port<span style="color: #4f97d7;">}</span> user@host   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25351;&#23450;&#31471;&#21475;&#30331;&#38470;&#20027;&#26426;</span>
+ssh-copy-id user@host     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25335;&#36125;&#20320;&#30340; ssh key &#21040;&#36828;&#31243;&#20027;&#26426;&#65292;&#36991;&#20813;&#37325;&#22797;&#36755;&#20837;&#23494;&#30721;</span>
+scp <span style="color: #4f97d7;">{</span>fn<span style="color: #4f97d7;">}</span> user@host:path   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25335;&#36125;&#25991;&#20214;&#21040;&#36828;&#31243;&#20027;&#26426;</span>
+scp user@host:path dest   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20174;&#36828;&#31243;&#20027;&#26426;&#25335;&#36125;&#25991;&#20214;&#22238;&#26469;</span>
+scp -P <span style="color: #4f97d7;">{</span>port<span style="color: #4f97d7;">}</span> ...         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25351;&#23450;&#31471;&#21475;&#36828;&#31243;&#25335;&#36125;&#25991;&#20214;</span>
+
+uname -a                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#20869;&#26680;&#29256;&#26412;&#31561;&#20449;&#24687;</span>
+man <span style="color: #4f97d7;">{</span>help<span style="color: #4f97d7;">}</span>                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#24110;&#21161;</span>
+man -k <span style="color: #4f97d7;">{</span>keyword<span style="color: #4f97d7;">}</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#21738;&#20123;&#24110;&#21161;&#25991;&#26723;&#37324;&#21253;&#21547;&#20102;&#35813;&#20851;&#38190;&#23383;</span>
+info <span style="color: #4f97d7;">{</span>help<span style="color: #4f97d7;">}</span>               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475; info pages&#65292;&#27604; man &#26356;&#24378;&#30340;&#24110;&#21161;&#31995;&#32479;</span>
+uptime                    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#31995;&#32479;&#21551;&#21160;&#26102;&#38388;</span>
+date                      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#26085;&#26399;</span>
+cal                       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#26085;&#21382;</span>
+vmstat                    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#20869;&#23384;&#21644; CPU &#20351;&#29992;&#24773;&#20917;</span>
+vmstat <span style="color: #a45bad;">10</span>                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27599; 10 &#31186;&#25171;&#21360;&#19968;&#34892;&#20869;&#23384;&#21644; CPU &#24773;&#20917;&#65292;CTRL+C &#36864;&#20986;</span>
+free                      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#20869;&#23384;&#21644;&#20132;&#25442;&#21306;&#20351;&#29992;&#24773;&#20917;</span>
+df                        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#30913;&#30424;&#20351;&#29992;&#24773;&#20917;</span>
+du                        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#24403;&#21069;&#30446;&#24405;&#21344;&#29992;&#65292;du . --max-depth=2 &#21487;&#20197;&#25351;&#23450;&#28145;&#24230;</span>
+uname                     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#31995;&#32479;&#29256;&#26412;&#21495;</span>
+hostname                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#20027;&#26426;&#21517;&#31216;</span>
+showkey -a                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#32456;&#31471;&#21457;&#36865;&#30340;&#25353;&#38190;&#32534;&#30721;</span>
+
+ping <span style="color: #4f97d7;">{</span>host<span style="color: #4f97d7;">}</span>               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">ping &#36828;&#31243;&#20027;&#26426;&#24182;&#26174;&#31034;&#32467;&#26524;&#65292;CTRL+C &#36864;&#20986;</span>
+ping -c N <span style="color: #4f97d7;">{</span>host<span style="color: #4f97d7;">}</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">ping &#36828;&#31243;&#20027;&#26426; N &#27425;</span>
+traceroute <span style="color: #4f97d7;">{</span>host<span style="color: #4f97d7;">}</span>         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20390;&#27979;&#36335;&#30001;&#36830;&#36890;&#24773;&#20917;</span>
+mtr <span style="color: #4f97d7;">{</span>host<span style="color: #4f97d7;">}</span>                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#39640;&#32423;&#29256;&#26412; traceroute</span>
+host <span style="color: #4f97d7;">{</span>domain<span style="color: #4f97d7;">}</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">DNS &#26597;&#35810;&#65292;{domain} &#21069;&#38754;&#21487;&#21152; -a &#26597;&#30475;&#35814;&#32454;&#20449;&#24687;</span>
+whois <span style="color: #4f97d7;">{</span>domain<span style="color: #4f97d7;">}</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21462;&#24471;&#22495;&#21517; whois &#20449;&#24687;</span>
+dig <span style="color: #4f97d7;">{</span>domain<span style="color: #4f97d7;">}</span>              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21462;&#24471;&#22495;&#21517; dns &#20449;&#24687;</span>
+route -n                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#36335;&#30001;&#34920;</span>
+netstat -a                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#20986;&#25152;&#26377;&#31471;&#21475;</span>
+netstat -an               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#36830;&#25509;&#20449;&#24687;&#65292;&#19981;&#35299;&#26512;&#22495;&#21517;</span>
+netstat -anp              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#36830;&#25509;&#20449;&#24687;&#65292;&#21253;&#21547;&#36827;&#31243;&#20449;&#24687;&#65288;&#38656;&#35201; sudo&#65289;</span>
+netstat -l                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#30417;&#21548;&#30340;&#31471;&#21475;</span>
+netstat -t                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377; TCP &#38142;&#25509;</span>
+netstat -lntu             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#25152;&#26377;&#27491;&#22312;&#30417;&#21548;&#30340; TCP &#21644; UDP &#20449;&#24687;</span>
+netstat -lntup            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#25152;&#26377;&#27491;&#22312;&#30417;&#21548;&#30340; socket &#21450;&#36827;&#31243;&#20449;&#24687;</span>
+netstat -i                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#32593;&#21345;&#20449;&#24687;</span>
+netstat -rn               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#24403;&#21069;&#31995;&#32479;&#36335;&#30001;&#34920;&#65292;&#21516; route -n</span>
+ss -an                    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27604; netstat -an &#26356;&#24555;&#36895;&#26356;&#35814;&#32454;</span>
+ss -s                     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32479;&#35745; TCP &#30340; established, wait &#31561;</span>
+
+wget <span style="color: #4f97d7;">{</span>url<span style="color: #4f97d7;">}</span>                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19979;&#36733;&#25991;&#20214;&#65292;&#21487;&#21152; --no-check-certificate &#24573;&#30053; ssl &#39564;&#35777;</span>
+wget -qO- <span style="color: #4f97d7;">{</span>url<span style="color: #4f97d7;">}</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19979;&#36733;&#25991;&#20214;&#24182;&#36755;&#20986;&#21040;&#26631;&#20934;&#36755;&#20986;&#65288;&#19981;&#20445;&#23384;&#65289;</span>
+curl -sL <span style="color: #4f97d7;">{</span>url<span style="color: #4f97d7;">}</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21516; wget -qO- {url} &#27809;&#26377; wget &#30340;&#26102;&#20505;&#20351;&#29992;</span>
+
+sz <span style="color: #4f97d7;">{</span>file<span style="color: #4f97d7;">}</span>                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21457;&#36865;&#25991;&#20214;&#21040;&#32456;&#31471;&#65292;zmodem &#21327;&#35758;</span>
+rz                        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25509;&#25910;&#32456;&#31471;&#21457;&#36865;&#36807;&#26469;&#30340;&#25991;&#20214;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaf83285" class="outline-2">
+<h2 id="orgaf83285"><span class="section-number-2">8</span> 变量操作</h2>
+<div class="outline-text-2" id="text-8">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #7590db;">varname</span>=value             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23450;&#20041;&#21464;&#37327;</span>
+<span style="color: #7590db;">varname</span>=value command     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23450;&#20041;&#23376;&#36827;&#31243;&#21464;&#37327;&#24182;&#25191;&#34892;&#23376;&#36827;&#31243;</span>
+<span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">varname</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#21464;&#37327;&#20869;&#23481;</span>
+<span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">$</span>                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#24403;&#21069; shell &#30340;&#36827;&#31243;&#21495;</span>
+<span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">!</span>                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#26368;&#36817;&#35843;&#29992;&#30340;&#21518;&#21488;&#20219;&#21153;&#36827;&#31243;&#21495;</span>
+<span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">?</span>                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#26368;&#36817;&#19968;&#26465;&#21629;&#20196;&#30340;&#36820;&#22238;&#30721;</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">VARNAME</span>=value      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35774;&#32622;&#29615;&#22659;&#21464;&#37327;&#65288;&#23558;&#20250;&#24433;&#21709;&#21040;&#23376;&#36827;&#31243;&#65289;</span>
+
+<span style="color: #7590db;">array</span><span style="color: #4f97d7;">[</span><span style="color: #a45bad;">0</span><span style="color: #4f97d7;">]</span>=valA             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23450;&#20041;&#25968;&#32452;</span>
+<span style="color: #7590db;">array</span><span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span><span style="color: #4f97d7;">]</span>=valB
+<span style="color: #7590db;">array</span><span style="color: #4f97d7;">[</span><span style="color: #a45bad;">2</span><span style="color: #4f97d7;">]</span>=valC
+<span style="color: #7590db;">array</span>=<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">0</span><span style="color: #bc6ec5;">]</span>=valA <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span><span style="color: #bc6ec5;">]</span>=valB <span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">2</span><span style="color: #bc6ec5;">]</span>=valC<span style="color: #4f97d7;">)</span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21478;&#19968;&#31181;&#26041;&#24335;</span>
+<span style="color: #7590db;">array</span>=<span style="color: #4f97d7;">(</span>valA valB valC<span style="color: #4f97d7;">)</span>               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21478;&#19968;&#31181;&#26041;&#24335;</span>
+
+$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">array</span><span style="color: #bc6ec5;">[</span>i<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">}</span>               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21462;&#24471;&#25968;&#32452;&#20013;&#30340;&#20803;&#32032;</span>
+$<span style="color: #4f97d7;">{</span>#<span style="color: #7590db;">array</span><span style="color: #bc6ec5;">[</span>@<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">}</span>              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21462;&#24471;&#25968;&#32452;&#30340;&#38271;&#24230;</span>
+$<span style="color: #4f97d7;">{</span>#<span style="color: #7590db;">array</span><span style="color: #bc6ec5;">[</span>i<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">}</span>              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21462;&#24471;&#25968;&#32452;&#20013;&#26576;&#20010;&#21464;&#37327;&#30340;&#38271;&#24230;</span>
+
+<span style="color: #4f97d7;">declare</span> -a                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#25968;&#32452;</span>
+<span style="color: #4f97d7;">declare</span> -f                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#20989;&#25968;</span>
+<span style="color: #4f97d7;">declare</span> -F                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#20989;&#25968;&#65292;&#20165;&#26174;&#31034;&#20989;&#25968;&#21517;</span>
+<span style="color: #4f97d7;">declare</span> -i                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#25972;&#25968;</span>
+<span style="color: #4f97d7;">declare</span> -r                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#21482;&#35835;&#21464;&#37327;</span>
+<span style="color: #4f97d7;">declare</span> -x                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25152;&#26377;&#34987;&#23548;&#20986;&#25104;&#29615;&#22659;&#21464;&#37327;&#30340;&#19996;&#35199;</span>
+<span style="color: #4f97d7;">declare</span> -p varname        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36755;&#20986;&#21464;&#37327;&#26159;&#24590;&#20040;&#23450;&#20041;&#30340;&#65288;&#31867;&#22411;+&#20540;&#65289;</span>
+
+$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">varname</span>:-word<span style="color: #4f97d7;">}</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#21464;&#37327;&#19981;&#20026;&#31354;&#21017;&#36820;&#22238;&#21464;&#37327;&#65292;&#21542;&#21017;&#36820;&#22238; word</span>
+$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">varname</span>:=word<span style="color: #4f97d7;">}</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#21464;&#37327;&#19981;&#20026;&#31354;&#21017;&#36820;&#22238;&#21464;&#37327;&#65292;&#21542;&#21017;&#36171;&#20540;&#25104; word &#24182;&#36820;&#22238;</span>
+$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">varname</span>:?message<span style="color: #4f97d7;">}</span>       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#21464;&#37327;&#19981;&#20026;&#31354;&#21017;&#36820;&#22238;&#21464;&#37327;&#65292;&#21542;&#21017;&#25171;&#21360;&#38169;&#35823;&#20449;&#24687;&#24182;&#36864;&#20986;</span>
+$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">varname</span>:+word<span style="color: #4f97d7;">}</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#21464;&#37327;&#19981;&#20026;&#31354;&#21017;&#36820;&#22238; word&#65292;&#21542;&#21017;&#36820;&#22238; null</span>
+$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">varname</span>:offset:len<span style="color: #4f97d7;">}</span>     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21462;&#24471;&#23383;&#31526;&#20018;&#30340;&#23376;&#23383;&#31526;&#20018;</span>
+
+$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">variable</span>#pattern<span style="color: #4f97d7;">}</span>       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#21464;&#37327;&#22836;&#37096;&#21305;&#37197; pattern&#65292;&#21017;&#21024;&#38500;&#26368;&#23567;&#21305;&#37197;&#37096;&#20998;&#36820;&#22238;&#21097;&#19979;&#30340;</span>
+$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">variable</span>*pattern<span style="color: #4f97d7;">}</span>      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#21464;&#37327;&#22836;&#37096;&#21305;&#37197; pattern&#65292;&#21017;&#21024;&#38500;&#26368;&#22823;&#21305;&#37197;&#37096;&#20998;&#36820;&#22238;&#21097;&#19979;&#30340;</span>
+$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">variable</span>%pattern<span style="color: #4f97d7;">}</span>       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#21464;&#37327;&#23614;&#37096;&#21305;&#37197; pattern&#65292;&#21017;&#21024;&#38500;&#26368;&#23567;&#21305;&#37197;&#37096;&#20998;&#36820;&#22238;&#21097;&#19979;&#30340;</span>
+$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">variable</span>%%pattern<span style="color: #4f97d7;">}</span>      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#21464;&#37327;&#23614;&#37096;&#21305;&#37197; pattern&#65292;&#21017;&#21024;&#38500;&#26368;&#22823;&#21305;&#37197;&#37096;&#20998;&#36820;&#22238;&#21097;&#19979;&#30340;</span>
+$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">variable</span>/pattern/str<span style="color: #4f97d7;">}</span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#21464;&#37327;&#20013;&#31532;&#19968;&#20010;&#21305;&#37197; pattern &#30340;&#26367;&#25442;&#25104; str&#65292;&#24182;&#36820;&#22238;</span>
+$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">variable</span>//pattern/str<span style="color: #4f97d7;">}</span>  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#21464;&#37327;&#20013;&#25152;&#26377;&#21305;&#37197; pattern &#30340;&#22320;&#26041;&#26367;&#25442;&#25104; str &#24182;&#36820;&#22238;</span>
+
+$<span style="color: #4f97d7;">{</span>#<span style="color: #7590db;">varname</span><span style="color: #4f97d7;">}</span>               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36820;&#22238;&#23383;&#31526;&#20018;&#38271;&#24230;</span>
+
+*<span style="color: #4f97d7;">(</span>patternlist<span style="color: #4f97d7;">)</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#38646;&#27425;&#25110;&#32773;&#22810;&#27425;&#21305;&#37197;</span>
++<span style="color: #4f97d7;">(</span>patternlist<span style="color: #4f97d7;">)</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19968;&#27425;&#25110;&#32773;&#22810;&#27425;&#21305;&#37197;</span>
+?<span style="color: #4f97d7;">(</span>patternlist<span style="color: #4f97d7;">)</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#38646;&#27425;&#25110;&#32773;&#19968;&#27425;&#21305;&#37197;</span>
+@<span style="color: #4f97d7;">(</span>patternlist<span style="color: #4f97d7;">)</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21333;&#35789;&#21305;&#37197;</span>
+<span style="color: #a45bad;">!</span><span style="color: #4f97d7;">(</span>patternlist<span style="color: #4f97d7;">)</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19981;&#21305;&#37197;</span>
+
+<span style="color: #7590db;">array</span>=<span style="color: #4f97d7;">(</span>$<span style="color: #7590db;">text</span><span style="color: #4f97d7;">)</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25353;&#31354;&#26684;&#20998;&#38548; text &#25104;&#25968;&#32452;&#65292;&#24182;&#36171;&#20540;&#32473;&#21464;&#37327;</span>
+<span style="color: #7590db;">IFS</span>=<span style="color: #2d9574;">"/"</span> <span style="color: #7590db;">array</span>=<span style="color: #4f97d7;">(</span>$<span style="color: #7590db;">text</span><span style="color: #4f97d7;">)</span>     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25353;&#26012;&#26438;&#20998;&#38548;&#23383;&#31526;&#20018; text &#25104;&#25968;&#32452;&#65292;&#24182;&#36171;&#20540;&#32473;&#21464;&#37327;</span>
+<span style="color: #7590db;">text</span>=<span style="color: #2d9574;">"${array[*]}"</span>        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#29992;&#31354;&#26684;&#38142;&#25509;&#25968;&#32452;&#24182;&#36171;&#20540;&#32473;&#21464;&#37327;</span>
+<span style="color: #7590db;">text</span>=$<span style="color: #4f97d7;">(</span><span style="color: #7590db;">IFS</span>=/; <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"${array[*]}"</span><span style="color: #4f97d7;">)</span>  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#29992;&#26012;&#26464;&#38142;&#25509;&#25968;&#32452;&#24182;&#36171;&#20540;&#32473;&#21464;&#37327;</span>
+
+$<span style="color: #4f97d7;">(</span>UNIX command<span style="color: #4f97d7;">)</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36816;&#34892;&#21629;&#20196;&#65292;&#24182;&#23558;&#26631;&#20934;&#36755;&#20986;&#20869;&#23481;&#25429;&#33719;&#24182;&#36820;&#22238;</span>
+<span style="color: #7590db;">varname</span>=$<span style="color: #4f97d7;">(</span>id -u user<span style="color: #4f97d7;">)</span>     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#29992;&#25143;&#21517;&#20026; user &#30340; uid &#36171;&#20540;&#32473; varname &#21464;&#37327;</span>
+
+<span style="color: #7590db;">num</span>=$<span style="color: #4f97d7;">(</span>expr <span style="color: #a45bad;">1</span> + <span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20860;&#23481; posix sh &#30340;&#35745;&#31639;&#65292;&#20351;&#29992; expr &#21629;&#20196;&#35745;&#31639;&#32467;&#26524;</span>
+<span style="color: #7590db;">num</span>=$<span style="color: #4f97d7;">(</span>expr $<span style="color: #7590db;">num</span> + <span style="color: #a45bad;">1</span><span style="color: #4f97d7;">)</span>      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25968;&#23383;&#33258;&#22686;</span>
+expr <span style="color: #a45bad;">2</span> <span style="color: #2d9574;">\*</span> <span style="color: #2d9574;">\(</span> <span style="color: #a45bad;">2</span> + <span style="color: #a45bad;">3</span> <span style="color: #2d9574;">\)</span>     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20860;&#23481; posix sh &#30340;&#22797;&#26434;&#35745;&#31639;&#65292;&#36755;&#20986; 10</span>
+
+<span style="color: #7590db;">num</span>=$<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">1</span> + <span style="color: #a45bad;">2</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35745;&#31639; 1+2 &#36171;&#20540;&#32473; num&#65292;&#20351;&#29992; bash &#29420;&#26377;&#30340; $((..)) &#35745;&#31639;</span>
+<span style="color: #7590db;">num</span>=$<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span>$<span style="color: #7590db;">num</span> + <span style="color: #a45bad;">1</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21464;&#37327;&#36882;&#22686;</span>
+<span style="color: #7590db;">num</span>=$<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span>num + <span style="color: #a45bad;">1</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21464;&#37327;&#36882;&#22686;&#65292;&#21452;&#25324;&#21495;&#20869;&#30340; $ &#21487;&#20197;&#30465;&#30053;</span>
+<span style="color: #7590db;">num</span>=$<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span><span style="color: #a45bad;">1</span> + <span style="color: #2d9574;">(</span><span style="color: #a45bad;">2</span> + <span style="color: #a45bad;">3</span><span style="color: #2d9574;">)</span> * <span style="color: #a45bad;">2</span><span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22797;&#26434;&#35745;&#31639;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgac02f6c" class="outline-2">
+<h2 id="orgac02f6c"><span class="section-number-2">9</span> 事件指示符</h2>
+<div class="outline-text-2" id="text-9">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #a45bad;">!</span>!                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19978;&#19968;&#26465;&#21629;&#20196;</span>
+<span style="color: #a45bad;">!</span>^                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19978;&#19968;&#26465;&#21629;&#20196;&#30340;&#31532;&#19968;&#20010;&#21333;&#35789;</span>
+<span style="color: #a45bad;">!</span>$                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19978;&#19968;&#26465;&#21629;&#20196;&#30340;&#26368;&#21518;&#19968;&#20010;&#21333;&#35789;</span>
+<span style="color: #a45bad;">!</span>string             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26368;&#36817;&#19968;&#26465;&#21253;&#21547; string &#30340;&#21629;&#20196;</span>
+<span style="color: #a45bad;">!</span>^string1^string2   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26368;&#36817;&#19968;&#26465;&#21253;&#21547; string1 &#30340;&#21629;&#20196;, &#24555;&#36895;&#26367;&#25442;&#20026; string2, &#30456;&#24403;&#20110;!!:s/string1/string2/</span>
+<span style="color: #a45bad;">!</span>#                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26412;&#26465;&#21629;&#20196;&#20043;&#21069;&#25152;&#26377;&#30340;&#36755;&#20837;&#20869;&#23481;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4d55f13" class="outline-2">
+<h2 id="org4d55f13"><span class="section-number-2">10</span> 函数</h2>
+<div class="outline-text-2" id="text-10">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23450;&#20041;&#19968;&#20010;&#26032;&#20989;&#25968;</span>
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">myfunc</span><span style="color: #4f97d7;">()</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">$1 &#20195;&#34920;&#31532;&#19968;&#20010;&#21442;&#25968;&#65292;$N &#20195;&#34920;&#31532; N &#20010;&#21442;&#25968;</span>
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">$# &#20195;&#34920;&#21442;&#25968;&#20010;&#25968;</span>
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">$0 &#20195;&#34920;&#34987;&#35843;&#29992;&#32773;&#33258;&#36523;&#30340;&#21517;&#23383;</span>
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">$@ &#20195;&#34920;&#25152;&#26377;&#21442;&#25968;&#65292;&#31867;&#22411;&#26159;&#20010;&#25968;&#32452;&#65292;&#24819;&#20256;&#36882;&#25152;&#26377;&#21442;&#25968;&#32473;&#20854;&#20182;&#21629;&#20196;&#29992; cmd "$@"</span>
+    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">$* &#31354;&#26684;&#38142;&#25509;&#36215;&#26469;&#30340;&#25152;&#26377;&#21442;&#25968;&#65292;&#31867;&#22411;&#26159;&#23383;&#31526;&#20018;</span>
+    <span style="color: #bc6ec5;">{</span>shell commands ...<span style="color: #bc6ec5;">}</span>
+
+myfunc                    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35843;&#29992;&#20989;&#25968; myfunc</span>
+myfunc arg1 arg2 arg3     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24102;&#21442;&#25968;&#30340;&#20989;&#25968;&#35843;&#29992;</span>
+myfunc <span style="color: #2d9574;">"$@"</span>               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#25152;&#26377;&#21442;&#25968;&#20256;&#36882;&#32473;&#20989;&#25968;</span>
+<span style="color: #4f97d7;">shift</span>                     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21442;&#25968;&#24038;&#31227;</span>
+
+<span style="color: #4f97d7;">unset</span> -f myfunc           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#20989;&#25968;</span>
+<span style="color: #4f97d7;">declare</span> -f                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#20986;&#20989;&#25968;&#23450;&#20041;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8c1539d" class="outline-2">
+<h2 id="org8c1539d"><span class="section-number-2">11</span> 条件判断</h2>
+<div class="outline-text-2" id="text-11">
+<p>
+man test
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">statement1 &amp;&amp; statement2  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">and &#25805;&#20316;&#31526;</span>
+statement1 || statement2  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">or &#25805;&#20316;&#31526;</span>
+
+exp1 -a exp2              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">exp1 &#21644; exp2 &#21516;&#26102;&#20026;&#30495;&#26102;&#36820;&#22238;&#30495;&#65288;POSIX XSI &#25193;&#23637;&#65289;</span>
+exp1 -o exp2              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">exp1 &#21644; exp2 &#26377;&#19968;&#20010;&#20026;&#30495;&#23601;&#36820;&#22238;&#30495;&#65288;POSIX XSI &#25193;&#23637;&#65289;</span>
+<span style="color: #4f97d7;">(</span> expression <span style="color: #4f97d7;">)</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524; expression &#20026;&#30495;&#26102;&#36820;&#22238;&#30495;&#65292;&#36755;&#20837;&#27880;&#24847;&#25324;&#21495;&#21069;&#21453;&#26012;&#26438;</span>
+<span style="color: #a45bad;">!</span> expression              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524; expression &#20026;&#20551;&#37027;&#36820;&#22238;&#30495;</span>
+
+<span style="color: #7590db;">str1</span> = str2               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#23383;&#31526;&#20018;&#30456;&#31561;&#65292;&#22914; [ "$x" = "$y" ] &amp;&amp; echo yes</span>
+str1 != str2              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#23383;&#31526;&#20018;&#19981;&#31561;&#65292;&#22914; [ "$x" != "$y" ] &amp;&amp; echo yes</span>
+str1 &lt; str2               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23383;&#31526;&#20018;&#23567;&#20110;&#65292;&#22914; [ "$x" \&lt; "$y" ] &amp;&amp; echo yes</span>
+str2 &gt; str2               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23383;&#31526;&#20018;&#22823;&#20110;&#65292;&#27880;&#24847; &lt; &#25110; &gt; &#26159;&#23383;&#38754;&#37327;&#65292;&#36755;&#20837;&#26102;&#35201;&#21152;&#21453;&#26012;&#26438;</span>
+-n str1                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#23383;&#31526;&#20018;&#19981;&#20026;&#31354;&#65288;&#38271;&#24230;&#22823;&#20110;&#38646;&#65289;</span>
+-z str1                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#23383;&#31526;&#20018;&#20026;&#31354;&#65288;&#38271;&#24230;&#31561;&#20110;&#38646;&#65289;</span>
+
+-a file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#25991;&#20214;&#23384;&#22312;&#65292;&#22914; [ -a /tmp/abc ] &amp;&amp; echo "exists"</span>
+-d file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#25991;&#20214;&#23384;&#22312;&#65292;&#19988;&#35813;&#25991;&#20214;&#26159;&#19968;&#20010;&#30446;&#24405;</span>
+-e file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#25991;&#20214;&#23384;&#22312;&#65292;&#21644; -a &#31561;&#20215;</span>
+-f file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#25991;&#20214;&#23384;&#22312;&#65292;&#19988;&#35813;&#25991;&#20214;&#26159;&#19968;&#20010;&#26222;&#36890;&#25991;&#20214;&#65288;&#38750;&#30446;&#24405;&#31561;&#65289;</span>
+-r file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#25991;&#20214;&#23384;&#22312;&#65292;&#19988;&#21487;&#35835;</span>
+-s file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#25991;&#20214;&#23384;&#22312;&#65292;&#19988;&#23610;&#23544;&#22823;&#20110; 0</span>
+-w file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#25991;&#20214;&#23384;&#22312;&#65292;&#19988;&#21487;&#20889;</span>
+-x file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#25991;&#20214;&#23384;&#22312;&#65292;&#19988;&#25191;&#34892;</span>
+-N file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25991;&#20214;&#19978;&#27425;&#20462;&#25913;&#36807;&#21518;&#36824;&#27809;&#26377;&#35835;&#21462;&#36807;</span>
+-O file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25991;&#20214;&#23384;&#22312;&#19988;&#23646;&#20110;&#24403;&#21069;&#29992;&#25143;</span>
+-G file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25991;&#20214;&#23384;&#22312;&#19988;&#21305;&#37197;&#20320;&#30340;&#29992;&#25143;&#32452;</span>
+file1 -nt file2           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25991;&#20214; 1 &#27604; &#25991;&#20214; 2 &#26032;</span>
+file1 -ot file2           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25991;&#20214; 1 &#27604; &#25991;&#20214; 2 &#26087;</span>
+
+num1 -eq num2             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25968;&#23383;&#21028;&#26029;&#65306;num1 == num2</span>
+num1 -ne num2             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25968;&#23383;&#21028;&#26029;&#65306;num1 != num2</span>
+num1 -lt num2             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25968;&#23383;&#21028;&#26029;&#65306;num1 &lt; num2</span>
+num1 -le num2             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25968;&#23383;&#21028;&#26029;&#65306;num1 &lt;= num2</span>
+num1 -gt num2             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25968;&#23383;&#21028;&#26029;&#65306;num1 &gt; num2</span>
+num1 -ge num2             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25968;&#23383;&#21028;&#26029;&#65306;num1 &gt;= num2</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org17c7888" class="outline-2">
+<h2 id="org17c7888"><span class="section-number-2">12</span> 分支控制</h2>
+<div class="outline-text-2" id="text-12">
+<div class="org-src-container">
+<pre class="src src-sh">test <span style="color: #4f97d7;">{</span>expression<span style="color: #4f97d7;">}</span>         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#26465;&#20214;&#20026;&#30495;&#30340;&#35805; test &#31243;&#24207;&#36820;&#22238; 0 &#21542;&#21017;&#38750;&#38646;</span>
+<span style="color: #4f97d7;">[</span> expression <span style="color: #4f97d7;">]</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#26465;&#20214;&#20026;&#30495;&#30340;&#35805;&#36820;&#22238; 0 &#21542;&#21017;&#38750;&#38646;</span>
+
+test <span style="color: #2d9574;">"abc"</span> = <span style="color: #2d9574;">"def"</span>        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#36820;&#22238;&#20540; echo $? &#26174;&#31034; 1&#65292;&#22240;&#20026;&#26465;&#20214;&#20026;&#20551;</span>
+test <span style="color: #2d9574;">"abc"</span> != <span style="color: #2d9574;">"def"</span>       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#36820;&#22238;&#20540; echo $? &#26174;&#31034; 0&#65292;&#22240;&#20026;&#26465;&#20214;&#20026;&#30495;</span>
+
+test -a /tmp; <span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">?</span>     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35843;&#29992; test &#21028;&#26029; /tmp &#26159;&#21542;&#23384;&#22312;&#65292;&#24182;&#25171;&#21360; test &#30340;&#36820;&#22238;&#20540;</span>
+<span style="color: #4f97d7;">[</span> -a /tmp <span style="color: #4f97d7;">]</span>; <span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">?</span>      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21644;&#19978;&#38754;&#23436;&#20840;&#31561;&#20215;&#65292;/tmp &#32943;&#23450;&#26159;&#23384;&#22312;&#30340;&#65292;&#25152;&#20197;&#36755;&#20986;&#26159; 0</span>
+
+test cond &amp;&amp; cmd1         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#26465;&#20214;&#20026;&#30495;&#26102;&#25191;&#34892; cmd1</span>
+<span style="color: #4f97d7;">[</span> cond <span style="color: #4f97d7;">]</span> &amp;&amp; cmd1          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21644;&#19978;&#38754;&#23436;&#20840;&#31561;&#20215;</span>
+<span style="color: #4f97d7;">[</span> cond <span style="color: #4f97d7;">]</span> &amp;&amp; cmd1 || cmd2  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26465;&#20214;&#20026;&#30495;&#25191;&#34892; cmd1 &#21542;&#21017;&#25191;&#34892; cmd2</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029; /etc/passwd &#25991;&#20214;&#26159;&#21542;&#23384;&#22312;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32463;&#20856;&#30340; if &#35821;&#21477;&#23601;&#26159;&#21028;&#26029;&#21518;&#38754;&#30340;&#21629;&#20196;&#36820;&#22238;&#20540;&#20026; 0 &#30340;&#35805;&#65292;&#35748;&#20026;&#26465;&#20214;&#20026;&#30495;&#65292;&#21542;&#21017;&#20026;&#20551;</span>
+<span style="color: #4f97d7; font-weight: bold;">if</span> test -e /etc/passwd; <span style="color: #4f97d7; font-weight: bold;">then</span>
+    <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"alright it exists ... "</span>
+<span style="color: #4f97d7; font-weight: bold;">else</span>
+    <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"it doesn't exist ... "</span>
+<span style="color: #4f97d7; font-weight: bold;">fi</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21644;&#19978;&#38754;&#23436;&#20840;&#31561;&#20215;&#65292;[ &#26159;&#20010;&#21644; test &#19968;&#26679;&#30340;&#21487;&#25191;&#34892;&#31243;&#24207;&#65292;&#20294;&#26368;&#21518;&#19968;&#20010;&#21442;&#25968;&#24517;&#39035;&#20026; ]</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#20010;&#21517;&#23383;&#20026; "[" &#30340;&#21487;&#25191;&#34892;&#31243;&#24207;&#19968;&#33324;&#23601;&#22312; /bin &#25110; /usr/bin &#19979;&#38754;&#65292;&#27604; test &#20248;&#38597;&#20123;</span>
+<span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">[</span> -e /etc/passwd <span style="color: #4f97d7;">]</span>; <span style="color: #4f97d7; font-weight: bold;">then</span>
+    <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"alright it exists ... "</span>
+<span style="color: #4f97d7; font-weight: bold;">else</span>
+    <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"it doesn't exist ... "</span>
+<span style="color: #4f97d7; font-weight: bold;">fi</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21644;&#19978;&#38754;&#20004;&#20010;&#23436;&#20840;&#31561;&#20215;&#65292;&#20854;&#23454;&#21040; bash &#26102;&#20195; [ &#24050;&#32463;&#26159;&#20869;&#37096;&#21629;&#20196;&#20102;&#65292;&#29992; enable &#21487;&#20197;&#30475;&#21040;</span>
+<span style="color: #4f97d7;">[</span> -e /etc/passwd <span style="color: #4f97d7;">]</span> &amp;&amp; <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"alright it exists"</span> || <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"it doesn't exist"</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#21464;&#37327;&#30340;&#20540;</span>
+<span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">[</span> <span style="color: #2d9574;">"$varname"</span> = <span style="color: #2d9574;">"foo"</span> <span style="color: #4f97d7;">]</span>; <span style="color: #4f97d7; font-weight: bold;">then</span>
+    <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"this is foo"</span>
+<span style="color: #4f97d7; font-weight: bold;">elif</span> <span style="color: #4f97d7;">[</span> <span style="color: #2d9574;">"$varname"</span> = <span style="color: #2d9574;">"bar"</span> <span style="color: #4f97d7;">]</span>; <span style="color: #4f97d7; font-weight: bold;">then</span>
+    <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"this is bar"</span>
+<span style="color: #4f97d7; font-weight: bold;">else</span>
+    <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"neither"</span>
+<span style="color: #4f97d7; font-weight: bold;">fi</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22797;&#26434;&#26465;&#20214;&#21028;&#26029;&#65292;&#27880;&#24847; || &#21644; &amp;&amp; &#26159;&#23436;&#20840;&#20860;&#23481; POSIX &#30340;&#25512;&#33616;&#20889;&#27861;</span>
+<span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">[</span> $<span style="color: #7590db;">x</span> -gt <span style="color: #a45bad;">10</span> <span style="color: #4f97d7;">]</span> &amp;&amp; <span style="color: #4f97d7;">[</span> $<span style="color: #7590db;">x</span> -lt <span style="color: #a45bad;">20</span> <span style="color: #4f97d7;">]</span>; <span style="color: #4f97d7; font-weight: bold;">then</span>
+    <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"yes, between 10 and 20"</span>
+<span style="color: #4f97d7; font-weight: bold;">fi</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21487;&#20197;&#29992; &amp;&amp; &#21629;&#20196;&#36830;&#25509;&#31526;&#26469;&#20570;&#21644;&#19978;&#38754;&#23436;&#20840;&#31561;&#20215;&#30340;&#20107;&#24773;</span>
+<span style="color: #4f97d7;">[</span> $<span style="color: #7590db;">x</span> -gt <span style="color: #a45bad;">10</span> <span style="color: #4f97d7;">]</span> &amp;&amp; <span style="color: #4f97d7;">[</span> $<span style="color: #7590db;">x</span> -lt <span style="color: #a45bad;">20</span> <span style="color: #4f97d7;">]</span> &amp;&amp; <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"yes, between 10 and 20"</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23567;&#25324;&#21495;&#21644; -a -o &#26159; POSIX XSI &#25193;&#23637;&#20889;&#27861;&#65292;&#23567;&#25324;&#21495;&#26159;&#23383;&#38754;&#37327;&#65292;&#36755;&#20837;&#26102;&#21069;&#38754;&#35201;&#21152;&#21453;&#26012;&#26438;</span>
+<span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">[</span> <span style="color: #2d9574;">\(</span> $<span style="color: #7590db;">x</span> -gt <span style="color: #a45bad;">10</span> <span style="color: #2d9574;">\)</span> -a <span style="color: #2d9574;">\(</span> $<span style="color: #7590db;">x</span> -lt <span style="color: #a45bad;">20</span> <span style="color: #2d9574;">\)</span> <span style="color: #4f97d7;">]</span>; <span style="color: #4f97d7; font-weight: bold;">then</span>
+    <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"yes, between 10 and 20"</span>
+<span style="color: #4f97d7; font-weight: bold;">fi</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21516;&#26679;&#21487;&#20197;&#29992; &amp;&amp; &#21629;&#20196;&#36830;&#25509;&#31526;&#26469;&#20570;&#21644;&#19978;&#38754;&#23436;&#20840;&#31561;&#20215;&#30340;&#20107;&#24773;</span>
+<span style="color: #4f97d7;">[</span> <span style="color: #2d9574;">\(</span> $<span style="color: #7590db;">x</span> -gt <span style="color: #a45bad;">10</span> <span style="color: #2d9574;">\)</span> -a <span style="color: #2d9574;">\(</span> $<span style="color: #7590db;">x</span> -lt <span style="color: #a45bad;">20</span> <span style="color: #2d9574;">\)</span> <span style="color: #4f97d7;">]</span> &amp;&amp; <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"yes, between 10 and 20"</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21028;&#26029;&#31243;&#24207;&#23384;&#22312;&#30340;&#35805;&#23601;&#25191;&#34892;</span>
+<span style="color: #4f97d7;">[</span> -x /bin/ls <span style="color: #4f97d7;">]</span> &amp;&amp; /bin/ls -l
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;&#19981;&#32771;&#34385;&#20860;&#23481; posix sh &#21644; dash &#36825;&#20123;&#30340;&#35805;&#65292;&#21487;&#29992; bash &#29420;&#26377;&#30340; ((..)) &#21644; [[..]]:</span>
+https://www.ibm.com/developerworks/library/l-bash-test/index.html
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc60324f" class="outline-2">
+<h2 id="orgc60324f"><span class="section-number-2">13</span> 流程控制</h2>
+<div class="outline-text-2" id="text-13">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #4f97d7; font-weight: bold;">while</span> / for / case / until
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">while &#24490;&#29615;</span>
+<span style="color: #4f97d7; font-weight: bold;">while</span> condition; <span style="color: #4f97d7; font-weight: bold;">do</span>
+    statements
+<span style="color: #4f97d7; font-weight: bold;">done</span>
+
+<span style="color: #7590db;">i</span>=<span style="color: #a45bad;">1</span>
+<span style="color: #4f97d7; font-weight: bold;">while</span> <span style="color: #4f97d7;">[</span> $<span style="color: #7590db;">i</span> -le <span style="color: #a45bad;">10</span> <span style="color: #4f97d7;">]</span>; <span style="color: #4f97d7; font-weight: bold;">do</span>
+    <span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">i</span>;
+    <span style="color: #7590db;">i</span>=$<span style="color: #4f97d7;">(</span>expr $<span style="color: #7590db;">i</span> + <span style="color: #a45bad;">1</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">done</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">for &#24490;&#29615;&#65306;&#19978;&#38754;&#30340; while &#35821;&#21477;&#31561;&#20215;</span>
+<span style="color: #4f97d7; font-weight: bold;">for</span> i<span style="color: #4f97d7; font-weight: bold;"> in</span> <span style="color: #4f97d7;">{</span><span style="color: #a45bad;">1..10</span><span style="color: #4f97d7;">}</span>; <span style="color: #4f97d7; font-weight: bold;">do</span>
+    <span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">i</span>
+<span style="color: #4f97d7; font-weight: bold;">done</span>
+
+<span style="color: #4f97d7; font-weight: bold;">for</span> name <span style="color: #4f97d7;">[</span>in list<span style="color: #4f97d7;">]</span>; <span style="color: #4f97d7; font-weight: bold;">do</span>
+    statements
+<span style="color: #4f97d7; font-weight: bold;">done</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">for &#21015;&#20030;&#26576;&#30446;&#24405;&#19979;&#38754;&#30340;&#25152;&#26377;&#25991;&#20214;</span>
+<span style="color: #4f97d7; font-weight: bold;">for</span> f<span style="color: #4f97d7; font-weight: bold;"> in</span> /home/*; <span style="color: #4f97d7; font-weight: bold;">do</span>
+    <span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">f</span>
+<span style="color: #4f97d7; font-weight: bold;">done</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">bash &#29420;&#26377;&#30340; (( .. )) &#35821;&#21477;&#65292;&#26356;&#25509;&#36817; C &#35821;&#35328;&#65292;&#20294;&#26159;&#19981;&#20860;&#23481; posix sh</span>
+<span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span> initialisation ; ending condition ; update <span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>; <span style="color: #4f97d7; font-weight: bold;">do</span>
+    statements
+<span style="color: #4f97d7; font-weight: bold;">done</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21644;&#19978;&#38754;&#30340;&#20889;&#27861;&#31561;&#20215;</span>
+<span style="color: #4f97d7; font-weight: bold;">for</span> <span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span><span style="color: #7590db;">i</span> = <span style="color: #a45bad;">0</span>; i &lt; <span style="color: #a45bad;">10</span>; i++<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>; <span style="color: #4f97d7; font-weight: bold;">do </span><span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">i</span>; <span style="color: #4f97d7; font-weight: bold;">done</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">case &#21028;&#26029;</span>
+<span style="color: #4f97d7; font-weight: bold;">case</span> expression<span style="color: #4f97d7; font-weight: bold;"> in</span>
+    pattern1 )
+        statements ;;
+    pattern2 )
+        statements ;;
+    * )
+        otherwise ;;
+<span style="color: #4f97d7; font-weight: bold;">esac</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">until &#35821;&#21477;</span>
+<span style="color: #4f97d7; font-weight: bold;">until</span> condition; <span style="color: #4f97d7; font-weight: bold;">do</span>
+    statements
+<span style="color: #4f97d7; font-weight: bold;">done</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">select &#35821;&#21477;</span>
+<span style="color: #4f97d7; font-weight: bold;">select</span> name <span style="color: #4f97d7;">[</span>in list<span style="color: #4f97d7;">]</span>; <span style="color: #4f97d7; font-weight: bold;">do</span>
+  statements that can use $<span style="color: #7590db;">name</span>
+<span style="color: #4f97d7; font-weight: bold;">done</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9993342" class="outline-2">
+<h2 id="org9993342"><span class="section-number-2">14</span> 命令处理</h2>
+<div class="outline-text-2" id="text-14">
+<div class="org-src-container">
+<pre class="src src-sh">command ls                         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24573;&#30053; alias &#30452;&#25509;&#25191;&#34892;&#31243;&#24207;&#25110;&#32773;&#20869;&#24314;&#21629;&#20196; ls</span>
+<span style="color: #4f97d7;">builtin</span> cd                         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24573;&#30053; alias &#30452;&#25509;&#36816;&#34892;&#20869;&#24314;&#30340; cd &#21629;&#20196;</span>
+<span style="color: #4f97d7;">enable</span>                             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#20986;&#25152;&#26377; bash &#20869;&#32622;&#21629;&#20196;&#65292;&#25110;&#31105;&#27490;&#26576;&#21629;&#20196;</span>
+help <span style="color: #4f97d7;">{</span>builtin_command<span style="color: #4f97d7;">}</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#20869;&#32622;&#21629;&#20196;&#30340;&#24110;&#21161;&#65288;&#20165;&#38480; bash &#20869;&#32622;&#21629;&#20196;&#65289;</span>
+
+<span style="color: #4f97d7;">eval</span> $<span style="color: #7590db;">script</span>                       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23545; script &#21464;&#37327;&#20013;&#30340;&#23383;&#31526;&#20018;&#27714;&#20540;&#65288;&#25191;&#34892;&#65289;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7d10122" class="outline-2">
+<h2 id="org7d10122"><span class="section-number-2">15</span> 输出/输入重定向</h2>
+<div class="outline-text-2" id="text-15">
+<div class="org-src-container">
+<pre class="src src-sh">cmd1 | cmd2                        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31649;&#36947;&#65292;cmd1 &#30340;&#26631;&#20934;&#36755;&#20986;&#25509;&#21040; cmd2 &#30340;&#26631;&#20934;&#36755;&#20837;</span>
+&lt; file                             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#25991;&#20214;&#20869;&#23481;&#37325;&#23450;&#21521;&#20026;&#21629;&#20196;&#30340;&#26631;&#20934;&#36755;&#20837;</span>
+&gt; file                             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#21629;&#20196;&#30340;&#26631;&#20934;&#36755;&#20986;&#37325;&#23450;&#21521;&#21040;&#25991;&#20214;&#65292;&#20250;&#35206;&#30422;&#25991;&#20214;</span>
+&gt;&gt; file                            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#21629;&#20196;&#30340;&#26631;&#20934;&#36755;&#20986;&#37325;&#23450;&#21521;&#21040;&#25991;&#20214;&#65292;&#36861;&#21152;&#19981;&#35206;&#30422;</span>
+&gt;| file                            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24378;&#21046;&#36755;&#20986;&#21040;&#25991;&#20214;&#65292;&#21363;&#20415;&#35774;&#32622;&#36807;&#65306;set -o noclobber</span>
+n&gt;| file                           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24378;&#21046;&#23558;&#25991;&#20214;&#25551;&#36848;&#31526; n &#30340;&#36755;&#20986;&#37325;&#23450;&#21521;&#21040;&#25991;&#20214;</span>
+&lt;&gt; file                            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21516;&#26102;&#20351;&#29992;&#35813;&#25991;&#20214;&#20316;&#20026;&#26631;&#20934;&#36755;&#20837;&#21644;&#26631;&#20934;&#36755;&#20986;</span>
+n&lt;&gt; file                           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21516;&#26102;&#20351;&#29992;&#25991;&#20214;&#20316;&#20026;&#25991;&#20214;&#25551;&#36848;&#31526; n &#30340;&#36755;&#20986;&#21644;&#36755;&#20837;</span>
+n&gt; file                            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#37325;&#23450;&#21521;&#25991;&#20214;&#25551;&#36848;&#31526; n &#30340;&#36755;&#20986;&#21040;&#25991;&#20214;</span>
+n&lt; file                            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#37325;&#23450;&#21521;&#25991;&#20214;&#25551;&#36848;&#31526; n &#30340;&#36755;&#20837;&#20026;&#25991;&#20214;&#20869;&#23481;</span>
+n&gt;&amp;                                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#26631;&#20934;&#36755;&#20986; dup/&#21512;&#24182; &#21040;&#25991;&#20214;&#25551;&#36848;&#31526; n</span>
+n&lt;&amp;                                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#26631;&#20934;&#36755;&#20837; dump/&#21512;&#24182; &#23450;&#21521;&#20026;&#25551;&#36848;&#31526; n</span>
+n&gt;&amp;m                               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25991;&#20214;&#25551;&#36848;&#31526; n &#34987;&#20316;&#20026;&#25551;&#36848;&#31526; m &#30340;&#21103;&#26412;&#65292;&#36755;&#20986;&#29992;</span>
+n&lt;&amp;m                               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25991;&#20214;&#25551;&#36848;&#31526; n &#34987;&#20316;&#20026;&#25551;&#36848;&#31526; m &#30340;&#21103;&#26412;&#65292;&#36755;&#20837;&#29992;</span>
+&amp;&gt;file                             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558;&#26631;&#20934;&#36755;&#20986;&#21644;&#26631;&#20934;&#38169;&#35823;&#37325;&#23450;&#21521;&#21040;&#25991;&#20214;</span>
+&lt;&amp;-                                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20851;&#38381;&#26631;&#20934;&#36755;&#20837;</span>
+&gt;&amp;-                                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20851;&#38381;&#26631;&#20934;&#36755;&#20986;</span>
+n&gt;&amp;-                               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20851;&#38381;&#20316;&#20026;&#36755;&#20986;&#30340;&#25991;&#20214;&#25551;&#36848;&#31526; n</span>
+n&lt;&amp;-                               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20851;&#38381;&#20316;&#20026;&#36755;&#20837;&#30340;&#25991;&#20214;&#25551;&#36848;&#31526; n</span>
+diff &lt;<span style="color: #4f97d7;">(</span>cmd1<span style="color: #4f97d7;">)</span> &lt;<span style="color: #4f97d7;">(</span>cmd2<span style="color: #4f97d7;">)</span>               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27604;&#36739;&#20004;&#20010;&#21629;&#20196;&#30340;&#36755;&#20986;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org428fa63" class="outline-2">
+<h2 id="org428fa63"><span class="section-number-2">16</span> 文本处理-cut</h2>
+<div class="outline-text-2" id="text-16">
+<div class="org-src-container">
+<pre class="src src-sh">cut -c <span style="color: #a45bad;">1-16</span>                        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25130;&#21462;&#27599;&#34892;&#22836; 16 &#20010;&#23383;&#31526;</span>
+cut -c <span style="color: #a45bad;">1-16</span> file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25130;&#21462;&#25351;&#23450;&#25991;&#20214;&#20013;&#27599;&#34892;&#22836; 16 &#20010;&#23383;&#31526;</span>
+cut -c3-                           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25130;&#21462;&#27599;&#34892;&#20174;&#31532;&#19977;&#20010;&#23383;&#31526;&#24320;&#22987;&#21040;&#34892;&#26411;&#30340;&#20869;&#23481;</span>
+cut -d<span style="color: #2d9574;">':'</span> -f5                      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25130;&#21462;&#29992;&#20882;&#21495;&#20998;&#38548;&#30340;&#31532;&#20116;&#21015;&#20869;&#23481;</span>
+cut -d<span style="color: #2d9574;">';'</span> -f2,10                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25130;&#21462;&#29992;&#20998;&#21495;&#20998;&#38548;&#30340;&#31532;&#20108;&#21644;&#31532;&#21313;&#21015;&#20869;&#23481;</span>
+cut -d<span style="color: #2d9574;">' '</span> -f3-7                    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25130;&#21462;&#31354;&#26684;&#20998;&#38548;&#30340;&#19977;&#21040;&#19971;&#21015;</span>
+<span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"hello"</span> | cut -c1-3           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034; hel</span>
+<span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"hello sir"</span> | cut -d<span style="color: #2d9574;">' '</span> -f2   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034; sir</span>
+ps | tr -s <span style="color: #2d9574;">" "</span> | cut -d <span style="color: #2d9574;">" "</span> -f <span style="color: #a45bad;">2,3,4</span>  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">cut &#25645;&#37197; tr &#21387;&#32553;&#23383;&#31526;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge68b819" class="outline-2">
+<h2 id="orge68b819"><span class="section-number-2">17</span> 文本处理-awk/sed</h2>
+<div class="outline-text-2" id="text-17">
+<div class="org-src-container">
+<pre class="src src-sh">awk <span style="color: #2d9574;">'{print $5}'</span> file              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25171;&#21360;&#25991;&#20214;&#20013;&#20197;&#31354;&#26684;&#20998;&#38548;&#30340;&#31532;&#20116;&#21015;</span>
+awk -F <span style="color: #2d9574;">','</span> <span style="color: #2d9574;">'{print $5}'</span> file       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25171;&#21360;&#25991;&#20214;&#20013;&#20197;&#36887;&#21495;&#20998;&#38548;&#30340;&#31532;&#20116;&#21015;</span>
+awk <span style="color: #2d9574;">'/str/ {print $2}'</span> file        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25171;&#21360;&#25991;&#20214;&#20013;&#21253;&#21547; str &#30340;&#25152;&#26377;&#34892;&#30340;&#31532;&#20108;&#21015;</span>
+awk -F <span style="color: #2d9574;">','</span> <span style="color: #2d9574;">'{print $NF}'</span> file      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25171;&#21360;&#36887;&#21495;&#20998;&#38548;&#30340;&#25991;&#20214;&#20013;&#30340;&#27599;&#34892;&#26368;&#21518;&#19968;&#21015;</span>
+awk <span style="color: #2d9574;">'{s+=$1} END {print s}'</span> file   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35745;&#31639;&#25152;&#26377;&#31532;&#19968;&#21015;&#30340;&#21512;</span>
+awk <span style="color: #2d9574;">'NR%3==1'</span> file                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20174;&#31532;&#19968;&#34892;&#24320;&#22987;&#65292;&#27599;&#38548;&#19977;&#34892;&#25171;&#21360;&#19968;&#34892;</span>
+
+sed <span style="color: #2d9574;">'s/find/replace/'</span> file         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26367;&#25442;&#25991;&#20214;&#20013;&#39318;&#27425;&#20986;&#29616;&#30340;&#23383;&#31526;&#20018;&#24182;&#36755;&#20986;&#32467;&#26524;</span>
+sed <span style="color: #2d9574;">'10s/find/replace/'</span> file       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26367;&#25442;&#25991;&#20214;&#31532; 10 &#34892;&#20869;&#23481;</span>
+sed <span style="color: #2d9574;">'10,20s/find/replace/'</span> file    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26367;&#25442;&#25991;&#20214;&#20013; 10-20 &#34892;&#20869;&#23481;</span>
+sed -r <span style="color: #2d9574;">'s/regex/replace/g'</span> file    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26367;&#25442;&#25991;&#20214;&#20013;&#25152;&#26377;&#20986;&#29616;&#30340;&#23383;&#31526;&#20018;</span>
+sed -i <span style="color: #2d9574;">'s/find/replace/g'</span> file     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26367;&#25442;&#25991;&#20214;&#20013;&#25152;&#26377;&#20986;&#29616;&#30340;&#23383;&#31526;&#24182;&#19988;&#35206;&#30422;&#25991;&#20214;</span>
+sed <span style="color: #2d9574;">'/line/s/find/replace/'</span> file   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20808;&#25628;&#32034;&#34892;&#29305;&#24449;&#20877;&#25191;&#34892;&#26367;&#25442;</span>
+sed -e <span style="color: #2d9574;">'s/f/r/'</span> -e <span style="color: #2d9574;">'s/f/r'</span> file    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25191;&#34892;&#22810;&#27425;&#26367;&#25442;</span>
+sed <span style="color: #2d9574;">'s#find#replace#'</span> file         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; # &#26367;&#25442; / &#26469;&#36991;&#20813; pattern &#20013;&#26377;&#26012;&#26438;</span>
+sed -i -r <span style="color: #2d9574;">'s/^\s+//g'</span> file         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#25991;&#20214;&#27599;&#34892;&#22836;&#37096;&#31354;&#26684;</span>
+sed <span style="color: #2d9574;">'/^$/d'</span> file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#25991;&#20214;&#31354;&#34892;&#24182;&#25171;&#21360;</span>
+sed -i <span style="color: #2d9574;">'s/\s\+$//'</span> file            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#25991;&#20214;&#27599;&#34892;&#26411;&#23614;&#22810;&#20313;&#31354;&#26684;</span>
+sed -n <span style="color: #2d9574;">'2p'</span> file                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25171;&#21360;&#25991;&#20214;&#31532;&#20108;&#34892;</span>
+sed -n <span style="color: #2d9574;">'2,5p'</span> file                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25171;&#21360;&#25991;&#20214;&#31532;&#20108;&#21040;&#31532;&#20116;&#34892;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6fc4f14" class="outline-2">
+<h2 id="org6fc4f14"><span class="section-number-2">18</span> 排序</h2>
+<div class="outline-text-2" id="text-18">
+<div class="org-src-container">
+<pre class="src src-sh">sort file                          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25490;&#24207;&#25991;&#20214;</span>
+sort -r file                       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21453;&#21521;&#25490;&#24207;&#65288;&#38477;&#24207;&#65289;</span>
+sort -n file                       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992;&#25968;&#23383;&#32780;&#19981;&#26159;&#23383;&#31526;&#20018;&#36827;&#34892;&#27604;&#36739;</span>
+sort -t: -k <span style="color: #a45bad;">3n</span> /etc/passwd         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25353; passwd &#25991;&#20214;&#30340;&#31532;&#19977;&#21015;&#36827;&#34892;&#25490;&#24207;</span>
+sort -u file                       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21435;&#37325;&#25490;&#24207;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge4c6e01" class="outline-2">
+<h2 id="orge4c6e01"><span class="section-number-2">19</span> 快速跳转</h2>
+<div class="outline-text-2" id="text-19">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #4f97d7;">source</span> /path/to/z.sh               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">.bashrc &#20013;&#21021;&#22987;&#21270; z.sh</span>
+z                                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#20986;&#25152;&#26377;&#21382;&#21490;&#36335;&#24452;&#20197;&#21450;&#20182;&#20204;&#30340;&#26435;&#37325;</span>
+z foo                              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36339;&#21040;&#21382;&#21490;&#36335;&#24452;&#20013;&#21305;&#37197; foo &#30340;&#26435;&#37325;&#26368;&#22823;&#30340;&#30446;&#24405;</span>
+z foo bar                          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36339;&#21040;&#21382;&#21490;&#36335;&#24452;&#20013;&#21305;&#37197; foo &#21644; bar &#26435;&#37325;&#26368;&#22823;&#30340;&#30446;&#24405;</span>
+z -l foo                           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#20986;&#25152;&#26377;&#21382;&#21490;&#36335;&#24452;&#20013;&#21305;&#37197; foo &#30340;&#30446;&#24405;&#21450;&#26435;&#37325;</span>
+z -r foo                           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25353;&#29031;&#26368;&#39640;&#35775;&#38382;&#27425;&#25968;&#20248;&#20808;&#36827;&#34892;&#21305;&#37197;&#36339;&#36716;</span>
+z -t foo                           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25353;&#29031;&#26368;&#36817;&#35775;&#38382;&#20248;&#20808;&#36827;&#34892;&#21305;&#37197;&#36339;&#36716;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb95a251" class="outline-2">
+<h2 id="orgb95a251"><span class="section-number-2">20</span> 键盘绑定</h2>
+<div class="outline-text-2" id="text-20">
+<div class="org-src-container">
+<pre class="src src-sh">bind <span style="color: #2d9574;">'"\eh":"\C-b"'</span>                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32465;&#23450; ALT+h &#20026;&#20809;&#26631;&#24038;&#31227;&#65292;&#21516; CTRL+b / &lt;Left&gt;</span>
+bind <span style="color: #2d9574;">'"\el":"\C-f"'</span>                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32465;&#23450; ALT+l &#20026;&#20809;&#26631;&#21491;&#31227;&#65292;&#21516; CTRL+f / &lt;Right&gt;</span>
+bind <span style="color: #2d9574;">'"\ej":"\C-n"'</span>                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32465;&#23450; ALT+j &#20026;&#19979;&#26465;&#21382;&#21490;&#65292;&#21516; CTRL+n / &lt;Down&gt;</span>
+bind <span style="color: #2d9574;">'"\ek":"\C-p"'</span>                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32465;&#23450; ALT+k &#20026;&#19978;&#26465;&#21382;&#21490;&#65292;&#21516; CTRL+p / &lt;Up&gt;</span>
+bind <span style="color: #2d9574;">'"\eH":"\eb"'</span>                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32465;&#23450; ALT+H &#20026;&#20809;&#26631;&#24038;&#31227;&#19968;&#20010;&#21333;&#35789;&#65292;&#21516; ALT-b</span>
+bind <span style="color: #2d9574;">'"\eL":"\ef"'</span>                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32465;&#23450; ALT+L &#20026;&#20809;&#26631;&#21491;&#31227;&#19968;&#20010;&#21333;&#35789;&#65292;&#21516; ALT-f</span>
+bind <span style="color: #2d9574;">'"\eJ":"\C-a"'</span>                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32465;&#23450; ALT+J &#20026;&#31227;&#21160;&#21040;&#34892;&#39318;&#65292;&#21516; CTRL+a / &lt;Home&gt;</span>
+bind <span style="color: #2d9574;">'"\eK":"\C-e"'</span>                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32465;&#23450; ALT+K &#20026;&#31227;&#21160;&#21040;&#34892;&#26411;&#65292;&#21516; CTRL+e / &lt;End&gt;</span>
+bind <span style="color: #2d9574;">'"\e;":"ls -l\n"'</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32465;&#23450; ALT+; &#20026;&#25191;&#34892; ls -l &#21629;&#20196;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org932da24" class="outline-2">
+<h2 id="org932da24"><span class="section-number-2">21</span> 网络管理</h2>
+<div class="outline-text-2" id="text-21">
+<div class="org-src-container">
+<pre class="src src-sh">ip a                               <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#25152;&#26377;&#32593;&#32476;&#22320;&#22336;&#65292;&#21516; ip address</span>
+ip a show eth1                     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#32593;&#21345; IP &#22320;&#22336;</span>
+ip a add <span style="color: #a45bad;">172.16.1.23/24</span> dev eth1   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#28155;&#21152;&#32593;&#21345; IP &#22320;&#22336;</span>
+ip a del <span style="color: #a45bad;">172.16.1.23/24</span> dev eth1   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#32593;&#21345; IP &#22320;&#22336;</span>
+ip link show dev eth0              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#32593;&#21345;&#35774;&#22791;&#23646;&#24615;</span>
+ip link set eth1 up                <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#28608;&#27963;&#32593;&#21345;</span>
+ip link set eth1 down              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20851;&#38381;&#32593;&#21345;</span>
+ip link set eth1 address <span style="color: #4f97d7;">{</span>mac<span style="color: #4f97d7;">}</span>     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20462;&#25913; MAC &#22320;&#22336;</span>
+ip neighbour                       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475; ARP &#32531;&#23384;</span>
+ip route                           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#36335;&#30001;&#34920;</span>
+ip route add <span style="color: #a45bad;">10.1.0.0/24</span> via <span style="color: #a45bad;">10.0.0.253</span> dev eth0    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#28155;&#21152;&#38745;&#24577;&#36335;&#30001;</span>
+ip route del <span style="color: #a45bad;">10.1.0.0/24</span>           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21024;&#38500;&#38745;&#24577;&#36335;&#30001;</span>
+
+ifconfig                           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#25152;&#26377;&#32593;&#21345;&#21644;&#25509;&#21475;&#20449;&#24687;</span>
+ifconfig -a                        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#25152;&#26377;&#32593;&#21345;&#65288;&#21253;&#25324;&#24320;&#26426;&#27809;&#21551;&#21160;&#30340;&#65289;&#20449;&#24687;</span>
+ifconfig eth0                      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25351;&#23450;&#35774;&#22791;&#26174;&#31034;&#20449;&#24687;</span>
+ifconfig eth0 up                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#28608;&#27963;&#32593;&#21345;</span>
+ifconfig eth0 down                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20851;&#38381;&#32593;&#21345;</span>
+ifconfig eth0 <span style="color: #a45bad;">192.168.120.56</span>       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32473;&#32593;&#21345;&#37197;&#32622; IP &#22320;&#22336;</span>
+ifconfig eth0 <span style="color: #a45bad;">10.0.0.8</span> netmask <span style="color: #a45bad;">255.255.255.0</span> up     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#37197;&#32622; IP &#24182;&#21551;&#21160;</span>
+ifconfig eth0 hw ether <span style="color: #a45bad;">00:aa:bb:cc:dd:ee</span>            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20462;&#25913; MAC &#22320;&#22336;</span>
+
+nmap <span style="color: #a45bad;">10.0.0.12</span>                     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25195;&#25551;&#20027;&#26426; 1-1000 &#31471;&#21475;</span>
+nmap -p <span style="color: #a45bad;">1024-65535</span> <span style="color: #a45bad;">10.0.0.12</span>       <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25195;&#25551;&#32473;&#23450;&#31471;&#21475;</span>
+nmap <span style="color: #a45bad;">10.0.0.0/24</span>                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32473;&#23450;&#32593;&#27573;&#25195;&#25551;&#23616;&#22495;&#32593;&#20869;&#25152;&#26377;&#20027;&#26426;</span>
+nmap -O -sV <span style="color: #a45bad;">10.0.0.12</span>              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25506;&#27979;&#20027;&#26426;&#26381;&#21153;&#21644;&#25805;&#20316;&#31995;&#32479;&#29256;&#26412;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8e03369" class="outline-2">
+<h2 id="org8e03369"><span class="section-number-2">22</span> 有趣的命令</h2>
+<div class="outline-text-2" id="text-22">
+<div class="org-src-container">
+<pre class="src src-sh">man hier                           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#25991;&#20214;&#31995;&#32479;&#30340;&#32467;&#26500;&#21644;&#21547;&#20041;</span>
+man test                           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475; posix sh &#30340;&#26465;&#20214;&#21028;&#26029;&#24110;&#21161;</span>
+man ascii                          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034; ascii &#34920;</span>
+getconf LONG_BIT                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#31995;&#32479;&#26159; 32 &#20301;&#36824;&#26159; 64 &#20301;</span>
+bind -P                            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#20986;&#25152;&#26377; bash &#30340;&#24555;&#25463;&#38190;</span>
+mount | column -t                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#28418;&#20142;&#30340;&#21015;&#20986;&#24403;&#21069;&#21152;&#36733;&#30340;&#25991;&#20214;&#31995;&#32479;</span>
+curl ip.cn                         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21462;&#24471;&#22806;&#32593; ip &#22320;&#22336;&#21644;&#26381;&#21153;&#21830;&#20449;&#24687;</span>
+<span style="color: #4f97d7;">disown</span> -a &amp;&amp; <span style="color: #4f97d7; font-weight: bold;">exit</span>                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20851;&#38381;&#25152;&#26377;&#21518;&#21488;&#20219;&#21153;&#24182;&#36864;&#20986;</span>
+cat /etc/issue                     <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475; Linux &#21457;&#34892;&#29256;&#20449;&#24687;</span>
+lsof -i port:80                    <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21738;&#20010;&#31243;&#24207;&#22312;&#20351;&#29992; 80 &#31471;&#21475;&#65311;</span>
+showkey -a                         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21462;&#24471;&#25353;&#38190;&#30340; ASCII &#30721;</span>
+svn diff | view -                  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; Vim &#26469;&#26174;&#31034;&#24102;&#33394;&#24425;&#30340; diff &#36755;&#20986;</span>
+mv filename.<span style="color: #4f97d7;">{</span>old,new<span style="color: #4f97d7;">}</span>              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24555;&#36895;&#25991;&#20214;&#25913;&#21517;</span>
+<span style="color: #4f97d7;">time</span> read                          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; CTRL-D &#20572;&#27490;&#65292;&#26368;&#31616;&#21333;&#30340;&#35745;&#26102;&#21151;&#33021;</span>
+cp file.txt<span style="color: #4f97d7;">{</span>,.bak<span style="color: #4f97d7;">}</span>                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24555;&#36895;&#22791;&#20221;&#25991;&#20214;</span>
+sudo touch /forcefsck              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24378;&#21046;&#22312;&#19979;&#27425;&#37325;&#21551;&#26102;&#25195;&#25551;&#30913;&#30424;</span>
+find ~ -mmin <span style="color: #a45bad;">60</span> -type f            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#25214; $HOME &#30446;&#24405;&#20013;&#65292;60 &#20998;&#38047;&#20869;&#20462;&#25913;&#36807;&#30340;&#25991;&#20214;</span>
+curl wttr.in/~beijing              <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#21271;&#20140;&#30340;&#22825;&#27668;&#39044;&#25253;</span>
+<span style="color: #4f97d7;">echo</span> $<span style="color: #4f97d7;">{</span><span style="color: #7590db;">SSH_CLIENT</span>%% *<span style="color: #4f97d7;">}</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21462;&#24471;&#20320;&#26159;&#20174;&#20160;&#20040; IP &#38142;&#25509;&#21040;&#24403;&#21069;&#20027;&#26426;&#19978;&#30340;</span>
+<span style="color: #4f97d7;">echo</span> $<span style="color: #4f97d7;">[</span>RANDOM%X+1<span style="color: #4f97d7;">]</span>                 <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21462;&#24471; 1 &#21040; X &#20043;&#38388;&#30340;&#38543;&#26426;&#25968;</span>
+bind -x <span style="color: #2d9574;">'"\C-l":ls -l'</span>             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35774;&#32622; CTRL+l &#20026;&#25191;&#34892; ls -l &#21629;&#20196;</span>
+find / -type f -size +5M           <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#25214;&#22823;&#20110; 5M &#30340;&#25991;&#20214;</span>
+chmod --reference f1 f2            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23558; f2 &#30340;&#26435;&#38480;&#35774;&#32622;&#25104; f1 &#19968;&#27169;&#19968;&#26679;&#30340;</span>
+curl -L cheat.sh                   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36895;&#26597;&#34920;&#22823;&#20840;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7c15094" class="outline-2">
+<h2 id="org7c15094"><span class="section-number-2">23</span> 常用技巧</h2>
+<div class="outline-text-2" id="text-23">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#20986;&#26368;&#24120;&#20351;&#29992;&#30340;&#21629;&#20196;</span>
+<span style="color: #4f97d7;">history</span> | awk <span style="color: #2d9574;">'{a[$2]++}END{for(i in a){print a[i] " " i}}'</span> | sort -rn | head
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21015;&#20986;&#25152;&#26377;&#32593;&#32476;&#29366;&#24577;&#65306;ESTABLISHED / TIME_WAIT / FIN_WAIT1 / FIN_WAIT2</span>
+netstat -n | awk <span style="color: #2d9574;">'/^tcp/ {++tt[$NF]} END {for (a in tt) print a, tt[a]}'</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36890;&#36807; SSH &#26469; mount &#25991;&#20214;&#31995;&#32479;</span>
+sshfs name@server:/path/to/folder /path/to/mount/point
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#21069;&#21313;&#20010;&#36816;&#34892;&#30340;&#36827;&#31243;&#24182;&#25353;&#20869;&#23384;&#20351;&#29992;&#37327;&#25490;&#24207;</span>
+ps aux | sort -nk +4 | tail
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#21491;&#19978;&#35282;&#26174;&#31034;&#26102;&#38047;</span>
+<span style="color: #4f97d7; font-weight: bold;">while</span> sleep <span style="color: #a45bad;">1</span>;<span style="color: #4f97d7; font-weight: bold;">do</span> tput sc;tput cup <span style="color: #a45bad;">0</span> $<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">(</span>$<span style="color: #2d9574;">(</span>tput cols<span style="color: #2d9574;">)</span>-29<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>;date;tput rc;<span style="color: #4f97d7; font-weight: bold;">done</span>&amp;
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20174;&#32593;&#32476;&#19978;&#30340;&#21387;&#32553;&#25991;&#20214;&#20013;&#35299;&#20986;&#19968;&#20010;&#25991;&#20214;&#26469;&#65292;&#24182;&#36991;&#20813;&#20445;&#23384;&#20013;&#38388;&#25991;&#20214;</span>
+wget -qO - <span style="color: #2d9574;">"http://www.tarball.com/tarball.gz"</span> | tar zxvf -
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24615;&#33021;&#27979;&#35797;&#65306;&#27979;&#35797;&#22788;&#29702;&#22120;&#24615;&#33021;</span>
+python -c <span style="color: #2d9574;">"import test.pystone;print(test.pystone.pystones())"</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24615;&#33021;&#27979;&#35797;&#65306;&#27979;&#35797;&#20869;&#23384;&#24102;&#23485;</span>
+dd <span style="color: #7590db;">if</span>=/dev/zero <span style="color: #7590db;">of</span>=/dev/null <span style="color: #7590db;">bs</span>=<span style="color: #a45bad;">1M</span> <span style="color: #7590db;">count</span>=<span style="color: #a45bad;">32768</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Linux &#19979;&#25346;&#36733;&#19968;&#20010; iso &#25991;&#20214;</span>
+mount /path/to/file.iso /mnt/cdrom -oloop
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36890;&#36807;&#20027;&#26426; A &#30452;&#25509; ssh &#21040;&#20027;&#26426; B</span>
+ssh -t hostA ssh hostB
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19979;&#36733;&#19968;&#20010;&#32593;&#31449;&#30340;&#25152;&#26377;&#22270;&#29255;</span>
+wget -r -l1 --no-parent -nH -nd -P/tmp -A<span style="color: #2d9574;">".gif,.jpg"</span> http://example.com/images
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24555;&#36895;&#21019;&#24314;&#39033;&#30446;&#30446;&#24405;</span>
+mkdir -p work/<span style="color: #4f97d7;">{</span>project1,project2<span style="color: #4f97d7;">}</span>/<span style="color: #4f97d7;">{</span>src,bin,bak<span style="color: #4f97d7;">}</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25353;&#26085;&#26399;&#33539;&#22260;&#26597;&#25214;&#25991;&#20214;</span>
+find . -type f -newermt <span style="color: #2d9574;">"2010-01-01"</span> ! -newermt <span style="color: #2d9574;">"2010-06-01"</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#24403;&#21069;&#27491;&#22312;&#20351;&#29992;&#32593;&#32476;&#30340;&#36827;&#31243;</span>
+lsof -P -i -n | cut -f <span style="color: #a45bad;">1</span> -d <span style="color: #2d9574;">" "</span>| uniq | tail -n +2
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Vim &#20013;&#20445;&#23384;&#19968;&#20010;&#27809;&#26377;&#26435;&#38480;&#30340;&#25991;&#20214;</span>
+:w !sudo tee &gt; /dev/null %
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312; .bashrc / .bash_profile &#20013;&#21152;&#36733;&#21478;&#22806;&#19968;&#20010;&#25991;&#20214;&#65288;&#27604;&#22914;&#20320;&#20445;&#23384;&#22312; github &#19978;&#30340;&#37197;&#32622;&#65289;</span>
+<span style="color: #4f97d7;">source</span> ~/github/profiles/my_bash_init.sh
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32456;&#31471;&#19979;&#27491;&#30830;&#35774;&#32622; ALT &#38190;&#21644; BackSpace &#38190;</span>
+http://www.skywind.me/blog/archives/2021
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1db3ff1" class="outline-2">
+<h2 id="org1db3ff1"><span class="section-number-2">24</span> 有用的函数</h2>
+<div class="outline-text-2" id="text-24">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#33258;&#21160;&#35299;&#21387;&#65306;&#21028;&#26029;&#25991;&#20214;&#21518;&#32512;&#21517;&#24182;&#35843;&#29992;&#30456;&#24212;&#35299;&#21387;&#21629;&#20196;</span>
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">q-extract</span><span style="color: #4f97d7;">()</span> <span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #bc6ec5;">[</span> -f $<span style="color: #a45bad;">1</span> <span style="color: #bc6ec5;">]</span> ; <span style="color: #4f97d7; font-weight: bold;">then</span>
+        <span style="color: #4f97d7; font-weight: bold;">case</span> $<span style="color: #a45bad;">1</span><span style="color: #4f97d7; font-weight: bold;"> in</span>
+        *.tar.bz2)   tar -xvjf $<span style="color: #a45bad;">1</span>    ;;
+        *.tar.gz)    tar -xvzf $<span style="color: #a45bad;">1</span>    ;;
+        *.tar.xz)    tar -xvJf $<span style="color: #a45bad;">1</span>    ;;
+        *.bz2)       bunzip2 $<span style="color: #a45bad;">1</span>     ;;
+        *.rar)       rar x $<span style="color: #a45bad;">1</span>       ;;
+        *.gz)        gunzip $<span style="color: #a45bad;">1</span>      ;;
+        *.tar)       tar -xvf $<span style="color: #a45bad;">1</span>     ;;
+        *.tbz2)      tar -xvjf $<span style="color: #a45bad;">1</span>    ;;
+        *.tgz)       tar -xvzf $<span style="color: #a45bad;">1</span>    ;;
+        *.zip)       unzip $<span style="color: #a45bad;">1</span>       ;;
+        *.Z)         uncompress $<span style="color: #a45bad;">1</span>  ;;
+        *.7z)        <span style="color: #a45bad;">7z</span> x $<span style="color: #a45bad;">1</span>        ;;
+        *)           <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"don't know how to extract '$1'..."</span> ;;
+        <span style="color: #4f97d7; font-weight: bold;">esac</span>
+    <span style="color: #4f97d7; font-weight: bold;">else</span>
+        <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"'$1' is not a valid file!"</span>
+    <span style="color: #4f97d7; font-weight: bold;">fi</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#33258;&#21160;&#21387;&#32553;&#65306;&#21028;&#26029;&#21518;&#32512;&#21517;&#24182;&#35843;&#29992;&#30456;&#24212;&#21387;&#32553;&#31243;&#24207;</span>
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">q-compress</span><span style="color: #bc6ec5;">()</span> <span style="color: #bc6ec5;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #2d9574;">[</span> -n <span style="color: #2d9574;">"$1"</span> <span style="color: #2d9574;">]</span> ; <span style="color: #4f97d7; font-weight: bold;">then</span>
+        <span style="color: #7590db;">FILE</span>=$<span style="color: #a45bad;">1</span>
+        <span style="color: #4f97d7; font-weight: bold;">case</span> $<span style="color: #7590db;">FILE</span><span style="color: #4f97d7; font-weight: bold;"> in</span>
+        *.tar) <span style="color: #4f97d7;">shift</span> &amp;&amp; tar -cf $<span style="color: #7590db;">FILE</span> $<span style="color: #7590db;">*</span> ;;
+        *.tar.bz2) <span style="color: #4f97d7;">shift</span> &amp;&amp; tar -cjf $<span style="color: #7590db;">FILE</span> $<span style="color: #7590db;">*</span> ;;
+        *.tar.xz) <span style="color: #4f97d7;">shift</span> &amp;&amp; tar -cJf $<span style="color: #7590db;">FILE</span> $<span style="color: #7590db;">*</span> ;;
+        *.tar.gz) <span style="color: #4f97d7;">shift</span> &amp;&amp; tar -czf $<span style="color: #7590db;">FILE</span> $<span style="color: #7590db;">*</span> ;;
+        *.tgz) <span style="color: #4f97d7;">shift</span> &amp;&amp; tar -czf $<span style="color: #7590db;">FILE</span> $<span style="color: #7590db;">*</span> ;;
+        *.zip) <span style="color: #4f97d7;">shift</span> &amp;&amp; zip $<span style="color: #7590db;">FILE</span> $<span style="color: #7590db;">*</span> ;;
+        *.rar) <span style="color: #4f97d7;">shift</span> &amp;&amp; rar $<span style="color: #7590db;">FILE</span> $<span style="color: #7590db;">*</span> ;;
+        <span style="color: #4f97d7; font-weight: bold;">esac</span>
+    <span style="color: #4f97d7; font-weight: bold;">else</span>
+        <span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">"usage: q-compress &lt;foo.tar.gz&gt; ./foo ./bar"</span>
+    <span style="color: #4f97d7; font-weight: bold;">fi</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#28418;&#20142;&#30340;&#24102;&#35821;&#27861;&#39640;&#20142;&#30340; color cat&#65292;&#38656;&#35201;&#20808; pip install pygments</span>
+<span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">ccat</span><span style="color: #2d9574;">()</span> <span style="color: #2d9574;">{</span>
+    <span style="color: #4f97d7;">local</span> <span style="color: #7590db;">style</span>=<span style="color: #2d9574;">"monokai"</span>
+    <span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #67b11d;">[</span> $<span style="color: #7590db;">#</span> -eq <span style="color: #a45bad;">0</span> <span style="color: #67b11d;">]</span>; <span style="color: #4f97d7; font-weight: bold;">then</span>
+        pygmentize -P <span style="color: #7590db;">style</span>=$<span style="color: #7590db;">style</span> -P <span style="color: #7590db;">tabsize</span>=<span style="color: #a45bad;">4</span> -f terminal256 -g
+    <span style="color: #4f97d7; font-weight: bold;">else</span>
+        <span style="color: #4f97d7; font-weight: bold;">for</span> NAME<span style="color: #4f97d7; font-weight: bold;"> in</span> $<span style="color: #7590db;">@</span>; <span style="color: #4f97d7; font-weight: bold;">do</span>
+            pygmentize -P <span style="color: #7590db;">style</span>=$<span style="color: #7590db;">style</span> -P <span style="color: #7590db;">tabsize</span>=<span style="color: #a45bad;">4</span> -f terminal256 -g <span style="color: #2d9574;">"$NAME"</span>
+        <span style="color: #4f97d7; font-weight: bold;">done</span>
+    <span style="color: #4f97d7; font-weight: bold;">fi</span>
+
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3115f52" class="outline-2">
+<h2 id="org3115f52"><span class="section-number-2">25</span> 相关技巧</h2>
+<div class="outline-text-2" id="text-25">
+</div>
+<div id="outline-container-orgbd3a61c" class="outline-3">
+<h3 id="orgbd3a61c"><span class="section-number-3">25.1</span> 关于 `/dev/null` 及用途</h3>
+<div class="outline-text-3" id="text-25-1">
+<p>
+把 `/dev/null` 看作"黑洞". 它非常等价于一个只写文件. 所有写入它的内容都会永远丢失. 而尝试从它那儿读取内容则什么也读不到. 然而, `/dev/null` 对命令行和脚本都非常的有用.
+默认情况下，总是有三个文件处于打开状态，标准输入(键盘输入)、标准输出（输出到屏幕）、标准错误（也是输出到屏幕），它们分别对应的文件描述符是 `0，1，2`。
+</p>
+</div>
+
+<div id="outline-container-orga879cee" class="outline-4">
+<h4 id="orga879cee"><span class="section-number-4">25.1.1</span> 禁止标准输出</h4>
+<div class="outline-text-4" id="text-25-1-1">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25991;&#20214;&#20869;&#23481;&#20002;&#22833;&#65292;&#32780;&#19981;&#20250;&#36755;&#20986;&#21040;&#26631;&#20934;&#36755;&#20986;.</span>
+cat $<span style="color: #7590db;">filename</span> &gt;/dev/null
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org98ee9ff" class="outline-4">
+<h4 id="org98ee9ff"><span class="section-number-4">25.1.2</span> 禁止标准错误</h4>
+<div class="outline-text-4" id="text-25-1-2">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36825;&#26679;&#38169;&#35823;&#20449;&#24687;[&#26631;&#20934;&#38169;&#35823;]&#23601;&#34987;&#20002;&#21040;&#22826;&#24179;&#27915;&#21435;&#20102;.</span>
+rm $<span style="color: #7590db;">badname</span> <span style="color: #a45bad;">2</span>&gt;/dev/null
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3a68f1c" class="outline-4">
+<h4 id="org3a68f1c"><span class="section-number-4">25.1.3</span> 禁止标准输出和标准错误的输出</h4>
+<div class="outline-text-4" id="text-25-1-3">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;"$filename"&#19981;&#23384;&#22312;&#65292;&#23558;&#19981;&#20250;&#26377;&#20219;&#20309;&#38169;&#35823;&#20449;&#24687;&#25552;&#31034;.</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22914;&#26524;"$filename"&#23384;&#22312;, &#25991;&#20214;&#30340;&#20869;&#23481;&#19981;&#20250;&#25171;&#21360;&#21040;&#26631;&#20934;&#36755;&#20986;.</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#22240;&#27492; Therefore, &#19978;&#38754;&#30340;&#20195;&#30721;&#26681;&#26412;&#19981;&#20250;&#36755;&#20986;&#20219;&#20309;&#20449;&#24687;.</span>
+cat $<span style="color: #7590db;">filename</span> <span style="color: #a45bad;">2</span>&gt;/dev/null &gt;/dev/null
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21629;&#20196;&#34892;&#30340;&#37325;&#23450;&#21521;, &#26159;&#22312;&#25191;&#34892;&#21629;&#20196;&#20043;&#21069;&#23601;&#20934;&#22791;&#22909;&#20102;&#30340;. &#35299;&#37322;&#39034;&#24207;&#20174;&#24038;&#33267;&#21491;&#20381;&#27425;&#36827;&#34892;&#65292;2&gt;&amp;1&#65292;&#32780; 1 &#26159;&#23631;&#24149;,</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25152;&#20197;&#26631;&#20934;&#38169;&#35823;&#37325;&#23450;&#21521;&#21040;&#23631;&#24149;, &#20877;&#32780; 1&gt;/dev/null, &#21363;&#26631;&#20934;&#36755;&#20986;&#37325;&#23450;&#21521;&#21040; /dev/null</span>
+cat $<span style="color: #7590db;">filename</span> &gt;/dev/null <span style="color: #a45bad;">2</span>&gt;&amp;<span style="color: #a45bad;">1</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19981;&#31649;&#26159;&#20160;&#20040;&#25991;&#20214;&#25551;&#36848;&#31526;&#65292;&#20840;&#37096;&#37325;&#23450;&#21521;&#21040;/dev/null</span>
+cat $<span style="color: #7590db;">filename</span> &amp;&gt;/dev/null
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24403;&#21482;&#24819;&#27979;&#35797;&#21629;&#20196;&#30340;&#36864;&#20986;&#30721;&#32780;&#19981;&#24819;&#26377;&#20219;&#20309;&#36755;&#20986;&#26102;&#38750;&#24120;&#26377;&#29992;&#12290;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36755;&#20986;&#21629;&#20196;&#36864;&#20986;&#20195;&#30721;&#65306;0 &#20026;&#21629;&#20196;&#27491;&#24120;&#25191;&#34892;&#65292;1-255 &#20026;&#26377;&#20986;&#38169;&#12290;</span>
+ls dddd <span style="color: #a45bad;">2</span>&gt;/dev/null
+<span style="color: #4f97d7;">echo</span> $<span style="color: #7590db;">?</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36890;&#36807;&#36825;&#31181;&#29305;&#24615;&#26469;&#25191;&#34892;&#21629;&#20196;</span>
+<span style="color: #4f97d7; font-weight: bold;">if </span><span style="color: #4f97d7;">which</span> rbenv &gt;/dev/null; <span style="color: #4f97d7; font-weight: bold;">then </span><span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">'rbenv exists'</span>; <span style="color: #4f97d7; font-weight: bold;">else </span><span style="color: #4f97d7;">echo</span> <span style="color: #2d9574;">'rbenv not found'</span>; <span style="color: #4f97d7; font-weight: bold;">fi</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4741505" class="outline-4">
+<h4 id="org4741505"><span class="section-number-4">25.1.4</span> 清除日志文件内容</h4>
+<div class="outline-text-4" id="text-25-1-4">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">:&gt;/var/log/messages &#26377;&#21516;&#26679;&#30340;&#25928;&#26524;, &#20294;&#19981;&#20250;&#20135;&#29983;&#26032;&#30340;&#36827;&#31243;.&#65288;&#22240;&#20026;:&#26159;&#20869;&#24314;&#30340;&#65289;</span>
+cat /dev/null &gt; /var/log/messages
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org03fd592" class="outline-2">
+<h2 id="org03fd592"><span class="section-number-2">26</span> 好玩的配置</h2>
+<div class="outline-text-2" id="text-26">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25918;&#21040;&#20320;&#30340; ~/.bashrc &#37197;&#32622;&#25991;&#20214;&#20013;&#65292;&#32473; man &#22686;&#21152;&#28418;&#20142;&#30340;&#33394;&#24425;&#39640;&#20142;</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_mb</span>=$<span style="color: #2d9574;">'\E[1m\E[32m'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_mh</span>=$<span style="color: #2d9574;">'\E[2m'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_mr</span>=$<span style="color: #2d9574;">'\E[7m'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_md</span>=$<span style="color: #2d9574;">'\E[1m\E[36m'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_ZW</span>=<span style="color: #2d9574;">""</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_us</span>=$<span style="color: #2d9574;">'\E[4m\E[1m\E[37m'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_me</span>=$<span style="color: #2d9574;">'\E(B\E[m'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_ue</span>=$<span style="color: #2d9574;">'\E[24m\E(B\E[m'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_ZO</span>=<span style="color: #2d9574;">""</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_ZN</span>=<span style="color: #2d9574;">""</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_se</span>=$<span style="color: #2d9574;">'\E[27m\E(B\E[m'</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_ZV</span>=<span style="color: #2d9574;">""</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">LESS_TERMCAP_so</span>=$<span style="color: #2d9574;">'\E[1m\E[33m\E[44m'</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">ALT+hjkl/HJKL &#24555;&#36895;&#31227;&#21160;&#20809;&#26631;&#65292;&#23558;&#19979;&#38754;&#20869;&#23481;&#28155;&#21152;&#21040; ~/.inputrc &#20013;&#21487;&#20316;&#29992;&#25152;&#26377;&#24037;&#20855;&#65292;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21253;&#25324; bash/zsh/python/lua &#31561;&#20351;&#29992; readline &#30340;&#24037;&#20855;&#65292;&#24110;&#21161;&#35265;&#65306;info rluserman</span>
+<span style="color: #2d9574;">"\eh"</span>: backward-char
+<span style="color: #2d9574;">"\el"</span>: forward-char
+<span style="color: #2d9574;">"\ej"</span>: next-history
+<span style="color: #2d9574;">"\ek"</span>: previous-history
+<span style="color: #2d9574;">"\eH"</span>: backward-word
+<span style="color: #2d9574;">"\eL"</span>: forward-word
+<span style="color: #2d9574;">"\eJ"</span>: beginning-of-line
+<span style="color: #2d9574;">"\eK"</span>: end-of-line
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcb0a166" class="outline-2">
+<h2 id="orgcb0a166"><span class="section-number-2">27</span> References</h2>
+<div class="outline-text-2" id="text-27">
+<ul class="org-ul">
+<li><a href="https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh">https://github.com/skywind3000/awesome-cheatsheets/blob/master/languages/bash.sh</a></li>
+<li><a href="https://github.com/Idnan/bash-guide">https://github.com/Idnan/bash-guide</a></li>
+<li><a href="http://www.linuxstall.com/linux-command-line-tips-that-every-linux-user-should-know/">http://www.linuxstall.com/linux-command-line-tips-that-every-linux-user-should-know/</a></li>
+<li><a href="https://ss64.com/bash/syntax-keyboard.html">https://ss64.com/bash/syntax-keyboard.html</a></li>
+<li><a href="http://wiki.bash-hackers.org/commands/classictest">http://wiki.bash-hackers.org/commands/classictest</a></li>
+<li><a href="https://www.ibm.com/developerworks/library/l-bash-test/index.html">https://www.ibm.com/developerworks/library/l-bash-test/index.html</a></li>
+<li><a href="https://www.cyberciti.biz/faq/bash-loop-over-file/">https://www.cyberciti.biz/faq/bash-loop-over-file/</a></li>
+<li><a href="https://linuxconfig.org/bash-scripting-tutorial">https://linuxconfig.org/bash-scripting-tutorial</a></li>
+<li><a href="https://github.com/LeCoupa/awesome-cheatsheets/blob/master/languages/bash.sh">https://github.com/LeCoupa/awesome-cheatsheets/blob/master/languages/bash.sh</a></li>
+<li><a href="https://devhints.io/bash">https://devhints.io/bash</a></li>
+<li><a href="https://github.com/jlevy/the-art-of-command-line">https://github.com/jlevy/the-art-of-command-line</a></li>
+<li><a href="https://yq.aliyun.com/articles/68541">https://yq.aliyun.com/articles/68541</a></li>
+</ul>
+</div>
+</div>

@@ -1,0 +1,1223 @@
+---
+layout: post
+title: "Rails 学习"
+date: 2018-07-30
+categories: 程序设计
+tags:
+    - Rails
+---
+
+
+<div id="outline-container-org26328aa" class="outline-2">
+<h2 id="org26328aa"><span class="section-number-2">1</span> 命令缩写</h2>
+<div class="outline-text-2" id="text-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">完整命令</th>
+<th scope="col" class="org-left">缩写命令</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">bundle install</td>
+<td class="org-left">bundle</td>
+</tr>
+
+<tr>
+<td class="org-left">rails server</td>
+<td class="org-left">rails s</td>
+</tr>
+
+<tr>
+<td class="org-left">rails console</td>
+<td class="org-left">rails c</td>
+</tr>
+
+<tr>
+<td class="org-left">rails generate</td>
+<td class="org-left">rails g</td>
+</tr>
+
+<tr>
+<td class="org-left">rails test</td>
+<td class="org-left">rails t</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org74c2c61" class="outline-2">
+<h2 id="org74c2c61"><span class="section-number-2">2</span> Rails 指令</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+我们已经陆续使用过一些指令了，让我们看看全部的指令吧：
+</p>
+</div>
+
+<div id="outline-container-orgd170046" class="outline-3">
+<h3 id="orgd170046"><span class="section-number-3">2.1</span> generate 可缩写为 g</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+产生各种不同类型的档案，例如
+</p>
+
+<pre class="example">
+bin/rails generate model person
+bin/rails g controller people
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd02fe7b" class="outline-3">
+<h3 id="orgd02fe7b"><span class="section-number-3">2.2</span> console 可缩写为 c</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+开启一个 Rails 主控台
+</p>
+
+<pre class="example">
+bin/rails console
+bin/rails c
+</pre>
+
+<p>
+默认的环境是
+developement，如果需要指定环境，请多输入环境名称即可，例如：
+</p>
+
+<pre class="example">
+bin/rails c production
+</pre>
+
+<p>
+Rails
+也有提供沙箱模式(Sandbox)，任何数据库的修改都会在离开时回复(原理是数据库
+Transaction)：
+</p>
+
+<pre class="example">
+bin/rails c --sandbox
+</pre>
+
+<p>
+在主控台中输入 exit 就会离开。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7116b15" class="outline-3">
+<h3 id="org7116b15"><span class="section-number-3">2.3</span> server 可缩写为 s</h3>
+<div class="outline-text-3" id="text-2-3">
+<p>
+开启一个 Rails 服务器
+</p>
+
+<pre class="example">
+bin/rails s
+</pre>
+
+<p>
+默认是使用 Port 3000 和 development 环境，如果需要指定：
+</p>
+
+<pre class="example">
+bin/rails s -p 4000 -e production
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3c19b99" class="outline-3">
+<h3 id="org3c19b99"><span class="section-number-3">2.4</span> new</h3>
+<div class="outline-text-3" id="text-2-4">
+<p>
+建立一个新 Rails 专案
+</p>
+
+<pre class="example">
+bin/rails new my_app
+</pre>
+
+<p>
+将会建立一个叫做 MyApp 的 Rails 专案在 ./my_app 目录下。加上&#x2013;database
+参数可以改变设定档的默认值，例如：
+</p>
+
+<pre class="example">
+bin/rails new my_app --database=mysql
+</pre>
+
+<p>
+其他说明可以输入 rails 看到全部的指令。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgab64ed4" class="outline-3">
+<h3 id="orgab64ed4"><span class="section-number-3">2.5</span> 其他指令</h3>
+<div class="outline-text-3" id="text-2-5">
+<ul class="org-ul">
+<li>dbconsole 开起一个数据库主控台 (可简写为 rails db)，让你直接输入 SQL
+指令。</li>
+<li>destroy 删除 "generate" 所产生的档案</li>
+<li>runner 在 Rails 环境中执行一段程式，例如 rails runner "puts
+Person.count"</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2a34266" class="outline-2">
+<h2 id="org2a34266"><span class="section-number-2">3</span> Rails 启动与应用程式设定</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+不同的 Rails 版本产生的设定档可能会略有差异，这些设定档也没有列出所有
+Rails 设定，只有列出比较常用的。
+</p>
+
+<p>
+启动整个 Rails 程序(包括 rails server, rails runner, rails console 等)
+时，会执行 application.rb
+的应用程式设定，让我们来看看这个档案一些比较重要的部分吧。如果你对这个档案有修改，无论在什么模式下，都必须重新启动
+Rails 设定才会生效。
+</p>
+
+<pre class="example">
+# Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
+# Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
+# config.time_zone = 'Central Time (US &amp; Canada)'
+</pre>
+
+<p>
+设定默认的应用程式时区，默认是 UTC。在 Rails
+中，数据库里面储存的时间皆为 UTC
+时间，而设定此时区会自动帮你处理转换动作。例如设定 Taipei
+的话，从数据库读取出来时会自动加八小时，存进数据库时会自动减八小时。
+</p>
+
+<pre class="example">
+# The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
+# config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+# config.i18n.default_locale = :de
+</pre>
+
+<p>
+设定默认的应用程式语系，默认是:en。在"I18n 多国语系及时区"查询如何使用。
+</p>
+</div>
+
+<div id="outline-container-org865f126" class="outline-3">
+<h3 id="org865f126"><span class="section-number-3">3.1</span> 其他初始设定档(initialzers)</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+如果将所有的设定都放到 application.rb 就太混乱了，所以非 Rails
+核心的设定，我们会放在 config/initializers 目录下。这个目录下的所有.rb
+档案会在 Rails 启动时都会自动加载执行。默认产生的档案有五个：
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9884355" class="outline-3">
+<h3 id="org9884355"><span class="section-number-3">3.2</span> filter_parameter_logging</h3>
+<div class="outline-text-3" id="text-3-2">
+<pre class="example">
+# Configure sensitive parameters which will be filtered from the log file.
+Rails.application.config.filter_parameters += [:password]
+</pre>
+
+<p>
+设定 filter_paramsters 可以避免任何叫做 password 的参数值记录到 log
+中，有效防止使用者的原始密码外洩到 log 档案。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5a67f37" class="outline-3">
+<h3 id="org5a67f37"><span class="section-number-3">3.3</span> backtrace silencers</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+可以让你选择性地移除例外追踪(exception
+backtrace)讯息，例如有些套件可能会很吵，妨碍你除错。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8f92663" class="outline-3">
+<h3 id="org8f92663"><span class="section-number-3">3.4</span> inflections</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+Rails 的命名惯例十分倚赖英文的单复数，例如将单数的类别名称 Person
+转成复数的表格名称 people。Inflector
+就是负责将字串转换成单复数的类别，虽然它内建了一些基本的转换规格，但是英文常常有例外的时候，你可以在这个档案中加上新的规格来做修正。如果你不太确定
+Rails 转换的对不对，请进入 console 主控台试试看：
+</p>
+
+<pre class="example">
+$ rails c
+$ Loading development environment (Rails 3.2.8)
+$ &gt; "Business".singularize  =&gt; "Busines" # 转单数
+$ &gt; "moose".pluralize =&gt; "mooses"  # 转复数
+</pre>
+
+<p>
+很不幸地这两个例子 Rails 都没转对，这时候你就可以利用 inflections.rb
+来修正。
+</p>
+
+<p>
+Rails 核心不接受有关单复数转换的单字错误回报，毕竟它不是想做字典。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org270244a" class="outline-3">
+<h3 id="org270244a"><span class="section-number-3">3.5</span> mime_types</h3>
+<div class="outline-text-3" id="text-3-5">
+<p>
+Rails 默认支援了如下常见的标准 MIME(Multipurpose Internet Mail
+Extensions) 格式，MIME 被用在 HTTP 通讯协定中的请求标头 Accept
+和回应标头 Content-Type 中，来说明此文件的格式。例如
+Accept:application/xml,application/xhtml+xml,text/html; 和
+Content-Type:text/html; charset=UTF-8。而 Rails 会在 Controller 的
+respond_to 方法中辨识并回应所请求的格式样板，例如浏览器请求
+application/xml 就会回应 xml 格式
+</p>
+
+<p class="verse">
+type/subtype | respond_to symbol | 别名/说明 |<br />
+text/html | :html, :xhtml | application/xhtml+xml |<br />
+text/plain | :text, :txt | |<br />
+text/javascript | :js | application/javascript, application/x-javascript |<br />
+text/css | :css | |<br />
+text/calendar | :ics | iCalendar 格式 |<br />
+text/csv | :csv | |<br />
+application/xml | :xml | text/xml, application/x-xml |<br />
+application/rss+xml | :rss | |<br />
+application/atom+xml | :atom | |<br />
+application/x-yaml | :yaml | text/yaml |<br />
+application/x-www-form-urlencoded | :url_encoded_form | 默认的 HTML forms 格式 |<br />
+multipart/form-data | :multipart_form | HTML forms 格式(包含二进制档案资料) |<br />
+application/json | :json | text/x-json application/jsonrequest |<br />
+</p>
+
+<p>
+如果你需要定制，可以在这里注册。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4fd280c" class="outline-3">
+<h3 id="org4fd280c"><span class="section-number-3">3.6</span> sesssion_store</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+Rails 默认使用了 Cookie 来储存 Session 讯息。它会用上述的 key
+编码之后，直接存放在使用者浏览器 Cookie 上。除了 Cookie
+Session，我们也可以使用 ActiveRecord 储存在数据库中。我们会在 Controller
+一章中详细介绍及比较。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3d1a8e5" class="outline-3">
+<h3 id="org3d1a8e5"><span class="section-number-3">3.7</span> config/secrets.yml</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+这个设定档包括了乱数产生的一组 secret_key_base 用来编码需要保护的 Cookie
+讯息。修改这组 key 会让已经存放在使用者浏览器上的 Cookie Session 和
+Signed Cookie 失效。你可以用来强制使用者需要重新登入。
+</p>
+
+<pre class="example">
+development:
+  secret_key_base: 8dd8d723d33d474710ab65b....
+  some_api_key: SOMEKEY
+
+test:
+  secret_key_base: 175fa99b200ba23cf82fec6c....
+
+# Do not keep production secrets in the repository,
+# instead read values from the environment.
+production:
+  secret_key_base: &lt;%= ENV["SECRET_KEY_BASE"] %&gt;
+</pre>
+
+<p>
+除了本来的 secret_key_base
+之外，你也可以用这个档案放其他设定，例如第三方应用的 Key 或
+Token。上述的例子透过 Rails.application.secrets.some_api_key
+方法就会回传 SOMEKEY。
+</p>
+
+<blockquote>
+<p>
+请小心这个档案不要将 production 用的 secret 公开，例如上传到 Github
+的公开储存库。因为如果有人拿到 secret_key_base 那他就可以破解 Rails
+默认的 Cookie-based Session，造成安全上的严重漏洞。一般 Production
+环境的作法是会将含有 production 完整设定的 config/secrets.yml
+只放一份在服务器上，或是透过环境变量来设定。详细的作法可以参考布署一章。
+</p>
+</blockquote>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1519286" class="outline-2">
+<h2 id="org1519286"><span class="section-number-2">4</span> 环境设定档</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+我们在上一节”多重环境设定”曾经介绍不同环境会有不同的设定档，让我们来更深入看看有哪些设定值，以及这些值是如果影响
+Development、Production 和 Test 环境的不同：
+</p>
+</div>
+
+<div id="outline-container-orgf76b584" class="outline-3">
+<h3 id="orgf76b584"><span class="section-number-3">4.1</span> 多重环境</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+Rails 应用程式默认提供了三种不同的执行模式：
+</p>
+
+<ul class="org-ul">
+<li>development environment 开发模式，用在你的开发的时候</li>
+<li>test environment 测试模式，用在执行测试程式时</li>
+<li>production environment 正式上线模式，用在实际的上线运作环境</li>
+</ul>
+
+<p>
+不同环境的差异在于有不同的设定，除了数据库设定 database.yml
+里分开设定之外，个别的环境设定放在
+config/environments/development.rb、config/environments/test.rb 和
+config/environments/production.rb，它们可以有不同的 Log 层级、Session
+设定、Email
+设定等等。除了默认的这三种模式，我们也可以自定模式，只需要建立对应的档案即可，例如
+config/environments/staging.rb。我们会在下一节详述这些档案里面的设定。
+</p>
+
+<p>
+staging 可以用来表示准上线模式，用来做正式上线前的 QA 测试用途。
+</p>
+
+<p>
+因为程式本身是不是写死是哪一种执行模式，那么要怎么区分呢？根据不同情况有不同方法，包括：
+</p>
+
+<p>
+根据环境变量 RAILS_ENV 或 RACK_ENV 来决定使用哪一种模式，例如使用 rake
+时：
+</p>
+
+<pre class="example">
+RAILS_ENV=production bin/rake db:migrate
+</pre>
+
+<p>
+指令根据参数决定:
+</p>
+
+<pre class="example">
+bin/rails console production
+bin/rails server -e production
+</pre>
+
+<p>
+最后，应用程式服务器则看服务器设定档，例如 Passenger 里会设定 RackEnv
+参数，布署一章会详细介绍。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5f9cae5" class="outline-3">
+<h3 id="org5f9cae5"><span class="section-number-3">4.2</span> 环境判断</h3>
+<div class="outline-text-3" id="text-4-2">
+<pre class="example">
+Rails.env.development?
+Rails.env.test?
+Rails.env.production?
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org5a38e08" class="outline-3">
+<h3 id="org5a38e08"><span class="section-number-3">4.3</span> 生成生产环境数据库</h3>
+<div class="outline-text-3" id="text-4-3">
+<div class="org-src-container">
+<pre class="src src-sh">rails db:migrate <span style="color: #7590db;">RAILS_ENV</span>=production
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5a1ea05" class="outline-3">
+<h3 id="org5a1ea05"><span class="section-number-3">4.4</span> 启动生产环境</h3>
+<div class="outline-text-3" id="text-4-4">
+<div class="org-src-container">
+<pre class="src src-sh">rails server -- environment production
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb8a6aec" class="outline-3">
+<h3 id="orgb8a6aec"><span class="section-number-3">4.5</span> Development 模式</h3>
+<div class="outline-text-3" id="text-4-5">
+<pre class="example">
+# In the development environment your application's code is reloaded on
+# every request. This slows down response time but is perfect for development
+# since you don't have to restart the web server when you make code changes.
+config.cache_classes = false
+</pre>
+
+<p>
+使用 Rails
+开发可以快速的原因之一，就是当你修改一个小东西，只要重新整理浏览器就可以马上看到修改后的结果。这个秘诀就在于
+cache_classes = false 会让每一次的 HTTP
+请求都重新加载类别档案。更仔细的说，当这个值是 false 的时候，Rails
+会改用 Ruby 的 load 方法，每次执行都会重新加载一次。相反地，如果这个值是
+true，则会用 Ruby 的 require 方法，只会在第一次碰到的时候加载，之后碰到
+require 相同的档案，就会自动忽略，也就是说如果你启动 Rails
+后，档案有修改想看到结果，必须重新启动 Rails
+才行，否则无法立即看到结果。
+</p>
+
+<pre class="example">
+# Show full error reports and disable caching
+config.consider_all_requests_local = true
+</pre>
+
+<p>
+Rails 只有在连线是来自本地端的时候，才会将发生错误时的 Call stack trace
+资讯给浏览器显示。这个设定将所有连线都当做本地端连线，好让开发模式时所有人连线都可以看到错误讯息。
+</p>
+
+<pre class="example">
+config.action_controller.perform_caching = false
+</pre>
+
+<p>
+是否启用 Controller 层级的快取(我们会在 Controller
+一章介绍到有哪些快取方法)，一般来说在开发模式不会启用，除非你要测试它。
+</p>
+
+<pre class="example">
+# Don't care if the mailer can't send
+config.action_mailer.raise_delivery_errors = false
+</pre>
+
+<p>
+如果寄信失败，是否要丢出例外。建议可以改成 true。
+</p>
+
+<p>
+建议可以在开发模式设定 config.action_mailer.perform_deliveries =
+false，这样就不会真的寄信出去。我们会再 ActionMailer
+一章详细介绍如何实作寄信功能。
+</p>
+
+<pre class="example">
+# Print deprecation notices to the Rails logger
+config.active_support.deprecation = :log
+</pre>
+
+<p>
+随着 Rails 版本的升级，如果有方法会在之后的版本中移除，deprecation
+会提示你如何因应。这里的 :log 表示会记录到 log 档案中。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9ea29e3" class="outline-3">
+<h3 id="org9ea29e3"><span class="section-number-3">4.6</span> Production 模式</h3>
+<div class="outline-text-3" id="text-4-6">
+<pre class="example">
+# The production environment is meant for finished, "live" apps.
+# Code is not reloaded between requests
+config.cache_classes = true
+</pre>
+
+<p>
+cache_classes = true 表示在 production
+中，类别档案加载进内存中就快取起来了，大大获得效能。不像在 development
+环境中每一次 HTTP 请求就会重新加载一次。
+</p>
+
+<pre class="example">
+# Full error reports are disabled and caching is turned on
+ config.consider_all_requests_local       = false
+config.action_controller.perform_caching = true
+</pre>
+
+<p>
+不同于 development，如果在 production 环境出现例外错误，不会显示程式
+call stack 讯息，而是回传 public/500.html 页面。
+</p>
+
+<pre class="example">
+# Disable Rails's static asset server (Apache or nginx will already do this)
+config.serve_static_assets = false
+</pre>
+
+<p>
+"X-Sendfile"
+是网页服务器提供的功能，可以让下载档案的动作完全委派给网页服务器，Rails
+送出 X-Sendfile 标头后就毋需再佔住资源。
+</p>
+
+<pre class="example">
+# Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+# config.force_ssl = true
+</pre>
+
+<p>
+是否限制全站必须 SSL 才能使用。
+</p>
+
+<pre class="example">
+# See everything in the log (default is :info)
+# config.log_level = :debug
+</pre>
+
+<p>
+我们在 RESTful 应用程式 一章最后介绍了 Logger。这里可以设定 Logger
+的层级。默认 production 是 :info，其他则是 :debug
+</p>
+
+<pre class="example">
+# Use a different logger for distributed setups
+# config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
+</pre>
+
+<p>
+可以更换掉 Rails 内建的 Logger，例如换成使用 syslog 的 SyslogLogger。
+</p>
+
+<pre class="example">
+# Use a different cache store in production
+# config.cache_store = :mem_cache_store
+</pre>
+
+<p>
+设定不同的快取储存库，默认是 :memory_store，也就是每个 Rails process
+各自用内存存放。业界最常用的则是 memcached 内存快取服务器。
+</p>
+
+<pre class="example">
+# Enable serving of images, stylesheets, and javascripts from an asset server
+# config.action_controller.asset_host = "http://assets.example.com"
+</pre>
+
+<p>
+默认的静态档案位置是目前主机的 public 目录，你可以透过修改 asset_host
+变更位置。例如你的静态档案放在不同台机器或 CDN(Content delivery network)
+上。
+</p>
+
+<p>
+这就是为什么 Rails 在 View 中会使用 Helper
+方法的原因之一，我们不会平舖直叙的写 ，而是使用 &lt;%=
+image_tag("rails.png") %&gt;
+目的就在于透过程式来获得修改位置的弹性。其他还包括
+stylesheets、javascripts 等静态档案都有 Helper 可以使用。
+</p>
+
+<pre class="example">
+# Disable delivery errors, bad email addresses will be ignored
+# config.action_mailer.raise_delivery_errors = false
+
+# Enable locale fallbacks for I18n (makes lookups for any locale fall back to
+# the I18n.default_locale when a translation can not be found)
+config.i18n.fallbacks = true
+</pre>
+
+<p>
+如果 I18n 翻译档找不到，则找用默认语系的文字。我们会在 I18n
+一章详细介绍多国语系功能。
+</p>
+
+<pre class="example">
+# Send deprecation notices to registered listeners
+config.active_support.deprecation = :notify
+</pre>
+
+<p>
+将 deprecation 讯息传到 Notifications
+频道，你可以用以下程式去订阅这个讯息：
+</p>
+
+<pre class="example">
+ActiveSupport::Notifications.subscribe("deprecation.rails") do |message, callstack|
+  # deprecation message
+end
+</pre>
+
+<p>
+如果没有订阅的话，就什么事都不会发生。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb03b09c" class="outline-3">
+<h3 id="orgb03b09c"><span class="section-number-3">4.7</span> Test 模式</h3>
+<div class="outline-text-3" id="text-4-7">
+<pre class="example">
+# Show full error reports and disable caching
+config.consider_all_requests_local       = true
+config.action_controller.perform_caching = false
+
+# Raise exceptions instead of rendering exception templates
+config.action_dispatch.show_exceptions = false
+</pre>
+
+<p>
+不同于 development 或 production 碰到例外会捕捉例外后，给浏览器显示出
+call stack trace 或 public/500.html 画面，在 test
+模式就不处理，让例外直接爆出。
+</p>
+
+<pre class="example">
+# Tell Action Mailer not to deliver emails to the real world.
+# The :test delivery method accumulates sent emails in the
+# ActionMailer::Base.deliveries array.
+config.action_mailer.delivery_method = :test
+</pre>
+
+<p>
+测试模式下不会真的去寄送 email
+</p>
+
+<pre class="example">
+# Print deprecation notices to the stderr
+config.active_support.deprecation = :stderr
+</pre>
+
+<p>
+让 deprecation 讯息会直接显示到视窗之中。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3a4ffb7" class="outline-2">
+<h2 id="org3a4ffb7"><span class="section-number-2">5</span> 数据库设定档 database.yml</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+几乎每一个 Rails 应用程式都会与数据库互动。而数据库需要一个设定档是
+config/database.yml。如果你打开这个档案，你会发现默认设定是
+SQLite3。这个档案包含三个不同的部分，对应到三个 Rails 默认环境。
+</p>
+
+<p>
+一个 Mysql 的设定档范例如下：
+</p>
+
+<pre class="example">
+development:
+  adapter: mysql
+  encoding: utf8mb4
+  database: blog_development
+  username: root
+  password:
+production:
+  adapter: mysql
+  encoding: utf8mb4
+  database: blog_production
+  username: root
+  password:
+test:
+  adapter: mysql
+  encoding: utf8mb4
+  database: blog_test
+  username: root
+  password:
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org98b6093" class="outline-2">
+<h2 id="org98b6093"><span class="section-number-2">6</span> Bundler 与 Gemfile 设定档</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Bundler <a href="http://gembundler.com/">http://gembundler.com/</a> 是管理应用程式 Gem
+依存性(dependencies)管理工具，它会根据 Gemfile 的设定自动下载及安装 Gem
+套件，并且帮你解决不同套件之间的依存关系，更重要的是，它可以让不同开发者之间和布署时，所有依存套件的版本都能够一致。
+</p>
+
+<p>
+在 Rails3 之后要使用的 Gems，都必须宣告在 Gemfile
+设定档中，没写在里面的话，就算手动 require 也找不到。这跟 Rails2
+以前可以直接 require 任意 rubygems 不同，在使用 Bundler 的环境中，要
+require 什么 rubygems 必须透过 Gemfile 管理。
+</p>
+
+<blockquote>
+<p>
+Bundler 不只用在 Rails，其他例如 Sinatra 或是旧版 Rails2 也都可以使用
+</p>
+</blockquote>
+
+<p>
+Gemfile 的写法说明如下：
+</p>
+
+<pre class="example">
+# 第二个参数可以指定版本
+gem "rails", "5.1.0"
+
+# 也可以不指定版本，这样会安装最新的稳定版本 (不包括 .pre 或 .rc 结尾的版本)
+gem 'mysql2'
+
+# 如果 require 的档名不同，可以加上 :require
+gem 'yajl-ruby', :require =&gt; 'yajl'
+
+# 可以用 Git 当做来源(根目录要有 .gemspec 档案)，甚至可以指定 branch, tag 或 ref。
+gem 'authlogic', :git =&gt; 'git://github.com/odorcicd/authlogic.git',
+                          :branch =&gt; 'rails3'
+
+# 也可以直接用电脑里的其他目录
+# gem "rails", :path =&gt; '/Users/ihower/github/rails'
+
+# Group 功能可以让特定环境才会加载
+group :development, :test do
+    gem "rspec", "~&gt; 2.0"
+    gem "rspec-rails", "~&gt; 2.0"
+end
+</pre>
+
+<p>
+版号的指定方式除了指定特定版本，还可以指定大于等于 &gt;=
+某个版本。不过最建议的方式则是使用 ~&gt; 的语法。”~&gt; x.y.z” 的意思是版号
+x,y 固定，但可以大于等于 z。例如 "~&gt; 1.3.5" 的意思是 1.3.5, 1.3.6, 1.3.9
+可以安装，但是 1.4.0, 1.5.5, 2.0.1
+就不行。这种写法的好处是，通常版号的命名有其惯例：x major 版号升级表示有
+API 发生不向后的相容性变动，y minor 版号升级表示有功能新增，z tiny
+版号升级表示 bugs 修正。因此 "~&gt; x.y.z"
+可以让我们保有升级弹性，又不致于升级太多让程式发生不相容错误。这种命名是开放源码社群的惯例，叫做
+Semantic Versioning。
+</p>
+</div>
+
+<div id="outline-container-orgdadf3b5" class="outline-3">
+<h3 id="orgdadf3b5"><span class="section-number-3">6.1</span> 安装及更新 Gems</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+如果你修改了这个档案，请执行 bundle install，这样 Bundler
+就会检查并安装这些函式库，并产生一个 Gemfile.lock 档案。Gemfile.lock
+档案会详细列出所有使用到的套件版本，你应该把这个档案也 commit
+送进版本控制系统，这样其他开发者及上线的版本就都会安装完全一样的版本了。
+</p>
+
+<p>
+执行 bundle update gem_name 则会更新此 gem 的版本。bundle update
+则会检查所有的 gem 更新到最新版本。一般来说你只需要在每次 Gemfile
+修改后，执行 bundle install 即可。如果有套件关连性 bundle install
+无法解决，它会提示你执行 bundle update。
+</p>
+
+<p>
+什么时候该执行 bundle install 或 bundle update 呢？一般来说，总是执行
+bundle install 即可。这个指令只会做必要的更新到
+Gemfile.lock，执行速度较快，它不会帮你升级现有的 Gem。而 bundle update
+会重新产生整个 Gemfile.lock 档案，更新所有 Gem
+到最新版本。但是，一次升级太多套件，可能会造成除错上的困难。因此会建议如果要升级，请执行
+bundle update gem_name 一次升级一个套件。
+</p>
+
+<p>
+怎么知道可以升级哪些 Gem 呢？
+</p>
+
+<pre class="example">
+bundle outdated
+</pre>
+
+<p>
+这个指令就会列出有新版本可以升级的 gems。
+</p>
+
+<p>
+如果你想知道打开套件的原始码，可以输入：
+</p>
+
+<pre class="example">
+bundle open GEM_NAME
+</pre>
+
+<p>
+这样就会用默认的编辑器打开了。
+</p>
+
+<p>
+如何设定默认编辑器呢? 如果你使用 Mac 和 Bash 的话，编辑~/.bash_profile
+加上 export EDITOR="vim"这样就会用 VIM 当作默认编辑器。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeac407e" class="outline-3">
+<h3 id="orgeac407e"><span class="section-number-3">6.2</span> 打包 Gems</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+执行以下指令，会将所有用到的 Gems 打包进 vendor/cache 目录。如此执行
+bundle install 时就不会连线到 <a href="http://rubygems.org">http://rubygems.org</a> 下载套件。
+</p>
+
+<pre class="example">
+bundle package
+</pre>
+
+<p>
+什么时候需要用到这个功能呢？例如你希望布署的时候避免外部连线，或是你有非公开的
+gems 不会上传到 <a href="http://rubygems.org">http://rubygems.org</a> 网站上。
+</p>
+
+<p>
+如果你有非 Rails 的 script 需要执行(也就是放在 Gemfile 档案中的 Gem
+所自行提供的执行档)，使用 bundle exec 可以正确的加载 Bundler
+的环境。例如 bundle exec rspec spec/
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6e171e2" class="outline-2">
+<h2 id="org6e171e2"><span class="section-number-2">7</span> 名称惯例</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+在 Rails 中有一些命名上的惯例：
+</p>
+</div>
+
+<div id="outline-container-orgf74661c" class="outline-3">
+<h3 id="orgf74661c"><span class="section-number-3">7.1</span> 类别命名与自动加载</h3>
+<div class="outline-text-3" id="text-7-1">
+<p>
+档名使用小写、单数，用底线区隔。例如当 Rails 看到一个 OrderItem
+的类别或模组(Module)，它会在 Rails 设定的自动加载目录(包括 app/models 和
+app/models/concerns 等等)中去加载叫做 order_item.rb 的档案，也就是自动
+require "order_item"。
+</p>
+
+<p>
+如果是有嵌套的类别或模组，例如
+Admin::OrderItem，则会多一层目录，例如加载
+app/models/admin/order_item.rb 的档案，也就是自动 require
+"admin/order_item"。
+</p>
+
+<p>
+如果你想要新增目录到 Rails 设定的自动加载目录，可以编辑
+config/application.rb 加上
+</p>
+
+<p>
+config.eager_load_paths += %W( #{config.root}/lib ) 这样就会自动加载 lib
+目录了。如果你没有设定
+eager_load_paths，或是你的档案没有依照惯例命名，那么你会需要在程式中手动
+require 它。基本上，只要依照命名惯例，你不太需要在程式中写 require。
+</p>
+
+<p>
+eager_load_paths 目录是指 Rails 会自动根据命名惯例加载，而 Ruby 的
+$LOAD_PATH 常数则是 require 时会寻找的目录。像 lib 这个目录 Rails
+默认就只有加到 $LOAD_PATH 之中，所以你放在 lib 的档案是可以 require
+到，但是因为默认没有加到 eager_load_paths 之中，所以没有自动加载的机制。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org180c455" class="outline-3">
+<h3 id="org180c455"><span class="section-number-3">7.2</span> Model 命名</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+类别名称使用大写、单数，没有底线。而档名使用小写、单数，用底线。数据库表格名称用小写且为复数。例如：
+</p>
+
+<ul class="org-ul">
+<li>数据库表格 line_items</li>
+<li>档名 app/models/line_item.rb</li>
+<li>类别名称 LineItem</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orga008e7b" class="outline-3">
+<h3 id="orga008e7b"><span class="section-number-3">7.3</span> Controller 命名</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+假设有一个 stores controller 的话：
+</p>
+
+<ul class="org-ul">
+<li>档名 app/controllers/stores_controller.rb</li>
+<li>类别名称 StoresController</li>
+</ul>
+
+<p>
+如果需要将 controllers 档案做分类，这时候可以使用
+Module，将档案放在子目录下，例如后台专用的 controllers：
+</p>
+
+<ul class="org-ul">
+<li>档名 app/controllers/admin/stores_controller.rb</li>
+<li>类别名称 Admin::StoresController</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org4c42e6b" class="outline-3">
+<h3 id="org4c42e6b"><span class="section-number-3">7.4</span> View 命名</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+例如一个叫做 People 的 controller，其中的 index action：
+</p>
+
+<ul class="org-ul">
+<li>档名 app/views/people/index.html.erb</li>
+<li>Helper 名称 module PeopleHelper</li>
+<li>档名 app/helpers/people_helper.rb</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5311d0c" class="outline-2">
+<h2 id="org5311d0c"><span class="section-number-2">8</span> Rails 元件导览</h2>
+<div class="outline-text-2" id="text-8">
+<p>
+Rails 包含许多个别的函式库元件：
+</p>
+
+<ul class="org-ul">
+<li>Action Pack</li>
+<li>Action Controller</li>
+<li>Action Dispatch</li>
+<li>Action View</li>
+<li>Action Mailer</li>
+<li>Active Model</li>
+<li>Active Record</li>
+<li>Active Support</li>
+<li>Railties</li>
+</ul>
+</div>
+
+<div id="outline-container-org924b9f0" class="outline-3">
+<h3 id="org924b9f0"><span class="section-number-3">8.1</span> Action Pack</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+Action Pack 是个包含 Action Controller、Action View 和 Action Dispatch
+的 gem。也就是 "MVC" 中的 "VC" 部分。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org137c7fb" class="outline-3">
+<h3 id="org137c7fb"><span class="section-number-3">8.2</span> Action Controller</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+Action Controller 是 Rails 应用程式中，管理 Controllers 的元件。Action
+Controller 框架处理传给 Rails 的 HTTP 请求，萃取出参数，然后分派给所属的
+Action。Action Controller 还提供了 session 管理、样板演算显示(template
+rendering) 和 redirect 功能。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org357154e" class="outline-3">
+<h3 id="org357154e"><span class="section-number-3">8.3</span> Action View</h3>
+<div class="outline-text-3" id="text-8-3">
+<p>
+Action View 负责 Rails 应用程式中的 Views。它默认可以产生 HTML 或 XML
+输出。Action View 负责样板的演算显示(template
+rendering)，包括嵌套(nesting)或局部(partial)样板，甚至也内建支援一些
+Ajax。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgda74a01" class="outline-3">
+<h3 id="orgda74a01"><span class="section-number-3">8.4</span> Action Dispatch</h3>
+<div class="outline-text-3" id="text-8-4">
+<p>
+Action Dispatch 处理 HTTP 请求的路由(routing)，它把 HTTP
+请求发派(dispatch)到它该去的地方，也许是你的应用程式或其他 Rack 程式。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc955cee" class="outline-3">
+<h3 id="orgc955cee"><span class="section-number-3">8.5</span> Action Mailer</h3>
+<div class="outline-text-3" id="text-8-5">
+<p>
+Action Mailer 是个建构 E-mail 功能的框架。你可以使用 Action Mailer
+来接收来信，或是使用样板来寄出纯文字或复杂的 multipart 信件。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org15deda4" class="outline-3">
+<h3 id="org15deda4"><span class="section-number-3">8.6</span> Active Model</h3>
+<div class="outline-text-3" id="text-8-6">
+<p>
+Active Model 在 Action Pack gem 和 ORM gem (例如 Active Record)
+之间定义了一组接口。Active Model 允许 Rails 可以依你的需求把 Active
+Record 换成其他 ORM 框架。Active Model 通常应用在无数据库的模型中，使用
+<code>include ActiveModel::Validations</code> 类似方式包含相应功能。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb870eed" class="outline-3">
+<h3 id="orgb870eed"><span class="section-number-3">8.7</span> Active Record</h3>
+<div class="outline-text-3" id="text-8-7">
+<p>
+Active Record 是 Rails 应用程式中的 Models
+基础。它不依存特定的数据库系统，提供了 CRUD
+功能、先进的查询能力以及可以跟其他 Models 关联的本事。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org88e3c77" class="outline-3">
+<h3 id="org88e3c77"><span class="section-number-3">8.8</span> Active Support</h3>
+<div class="outline-text-3" id="text-8-8">
+<p>
+Active Support 是 Rails 里的工具函式库，它也扩充了一些 Ruby
+标准函式库。除了被用在 Rails 核心程式中，你也可以在你的程式中使用。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbb26de9" class="outline-3">
+<h3 id="orgbb26de9"><span class="section-number-3">8.9</span> Railties</h3>
+<div class="outline-text-3" id="text-8-9">
+<p>
+Railties 是 Rails 的核心程式码，用来把以上各种的框架函式库以及 Plugin
+全部组合在一起。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgca7cb54" class="outline-2">
+<h2 id="orgca7cb54"><span class="section-number-2">9</span> 国际化 i18</h2>
+<div class="outline-text-2" id="text-9">
+</div>
+<div id="outline-container-org10eb18e" class="outline-3">
+<h3 id="org10eb18e"><span class="section-number-3">9.1</span> 普通信息国际化</h3>
+<div class="outline-text-3" id="text-9-1">
+<p>
+到 application.rb 中添加
+</p>
+
+<pre class="example">
+config.i18n.default_locale = 'zh-CN'
+</pre>
+
+<p>
+修改配置文件之后不忘忘记重启 rails 来加载新的配置。 然后的要来添加
+config/locals/zh-CN.yml 文件。
+</p>
+
+<p>
+可以参考 这里 来书写 zh-CN.yml
+文件，注意缩进关系，使用两个空格做为一个缩进级别，不要用
+tab。基本上就是写成
+</p>
+
+<pre class="example">
+zh-CN:
+  hello: 你好
+</pre>
+
+<p>
+先举个简单的例子，到 application.html.erb 中
+</p>
+
+<pre class="example">
+
+``` html+erb
+&lt;li&gt;&lt;%= link_to t("navbar.about"), "/about" %&gt;&lt;/li&gt;
+</pre>
+
+<p>
+这样再来查看一下 html 源码，就可以知道该添加什么内容了。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd0735d1" class="outline-3">
+<h3 id="orgd0735d1"><span class="section-number-3">9.2</span> 表单报错信息国际化</h3>
+<div class="outline-text-3" id="text-9-2">
+<p>
+再来到 signup 页面。点击注册按钮，看到如下的报错信息：
+</p>
+
+<pre class="example">
+translation missing: zh-CN.activerecord.errors.models.user.attributes.name.blank
+</pre>
+
+<p>
+这样就知道应该添加点什么内容到 zh-CN.yml
+中了，实际操作的时候也可以直接从 rails-i18n gem 中拷贝。
+</p>
+
+<pre class="example">
+zh-CN:
+  navbar:
+    about: 关于
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            name:
+              blank: 用户名不能为空
+              taken: 用户已经存在
+            email:
+              blank: 请填写邮箱地址
+              taken: 邮箱已经被占用
+            password:
+              blank: 密码不能为空
+            password_confirmation:
+              confirmation: 两次输入密码不相同
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org74b9711" class="outline-3">
+<h3 id="org74b9711"><span class="section-number-3">9.3</span> 更改 local 设置</h3>
+<div class="outline-text-3" id="text-9-3">
+<p>
+刚才咱们是用手动修改 application.rb
+文件实现的，咱们的网站就是个中文网站，所以这样就够了。
+对于一个要同时支持多国语言的网站，就要考虑到和更加灵活的改变 local
+设置的方法了。 可以参考
+<a href="https://guides.rubyonrails.org/i18n.html#setup-the-rails-application-for-internationalization">这里</a>
+。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga1f9b5a" class="outline-2">
+<h2 id="orga1f9b5a"><span class="section-number-2">10</span> References</h2>
+<div class="outline-text-2" id="text-10">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li><a href="https://ihower.tw/rails/index-cn.html">https://ihower.tw/rails/index-cn.html</a></li>
+</ul>
+</div>
+</div>

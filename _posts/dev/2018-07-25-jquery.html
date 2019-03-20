@@ -1,0 +1,2420 @@
+---
+layout: post
+title: "jQuery 学习"
+date: 2018-07-25
+categories: 程序设计
+tags:
+    - jQuery
+---
+
+<div id="outline-container-org3441a8f" class="outline-2">
+<h2 id="org3441a8f"><span class="section-number-2">1</span> jQuery</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org5def852" class="outline-3">
+<h3 id="org5def852"><span class="section-number-3">1.1</span> jQuery 安装</h3>
+</div>
+
+<div id="outline-container-org04ba79a" class="outline-3">
+<h3 id="org04ba79a"><span class="section-number-3">1.2</span> 网页中添加 jQuery</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+可以通过多种方法在网页中添加 jQuery。 您可以使用以下方法：
+</p>
+
+<ul class="org-ul">
+<li>从 jquery.com 下载 jQuery 库</li>
+<li>从 CDN 中载入 jQuery, 如从 Google 中加载 jQuery</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org66cec1a" class="outline-3">
+<h3 id="org66cec1a"><span class="section-number-3">1.3</span> 下载 jQuery</h3>
+<div class="outline-text-3" id="text-1-3">
+<p>
+有两个版本的 jQuery 可供下载：
+</p>
+
+<ul class="org-ul">
+<li>Production version - 用于实际的网站中，已被精简和压缩。</li>
+<li>Development version - 用于测试和开发（未压缩，是可读的代码）</li>
+</ul>
+
+<p>
+以上两个版本都可以从 jquery.com 中下载。
+</p>
+
+<p>
+jQuery 库是一个 JavaScript 文件，您可以使用 HTML 的 <code>&lt;script&gt;</code>
+标签引用它：
+</p>
+
+<pre class="example">
+&lt;head&gt;
+&lt;script src="jquery-1.10.2.min.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+</pre>
+
+<p>
+提示： 将下载的文件放在网页的同一目录下，就可以使用 jQuery。
+</p>
+
+<p>
+您是否很疑惑为什么我们没有在 <code>&lt;script&gt;</code> 标签中使用
+<code>type</code>"text/javascript"= ？
+</p>
+
+<p>
+在 HTML5 中，不必那样做了。JavaScript 是 HTML5
+以及所有现代浏览器中的默认脚本语言！
+</p>
+</div>
+</div>
+
+<div id="outline-container-org79e1f98" class="outline-3">
+<h3 id="org79e1f98"><span class="section-number-3">1.4</span> 替代方案</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+如果您不希望下载并存放 jQuery，那么也可以通过 CDN（内容分发网络）
+引用它。BootCDN、百度、又拍云、新浪、谷歌和微软的服务器都存有 jQuery。
+如果你的站点用户是国内的，建议使用百度、又拍云、新浪等国内 CDN
+地址，如果你站点用户是国外的可以使用谷歌和微软。
+</p>
+
+<p>
+注：本站实例均采用菜鸟教程 CDN 库。
+</p>
+
+<p>
+如需从 BootCDN、又拍云、新浪、谷歌或微软引用
+jQuery，请使用以下代码之一：BootCDN:
+</p>
+
+<pre class="example">
+&lt;head&gt;
+&lt;script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+</pre>
+
+<p>
+百度 CDN:
+</p>
+
+<pre class="example">
+&lt;head&gt;
+&lt;script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+</pre>
+
+<p>
+又拍云 CDN:
+</p>
+
+<pre class="example">
+&lt;head&gt;
+&lt;script src="http://upcdn.b0.upaiyun.com/libs/jquery/jquery-2.0.2.min.js"&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+</pre>
+
+<p>
+新浪 CDN:
+</p>
+
+<pre class="example">
+&lt;head&gt;
+&lt;script src="http://lib.sinaapp.com/js/jquery/2.0.2/jquery-2.0.2.min.js"&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+</pre>
+
+<p>
+Google CDN:
+</p>
+
+<pre class="example">
+&lt;head&gt;
+&lt;script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+</pre>
+
+<p>
+不推荐使用 Google CDN 来获取版本，因为 Google 产品在中国很不稳定。
+</p>
+
+<p>
+Microsoft CDN:
+</p>
+
+<pre class="example">
+&lt;head&gt;
+&lt;script src="http://ajax.htmlnetcdn.com/ajax/jQuery/jquery-1.10.2.min.js"&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+</pre>
+
+<p>
+使用 BootCDN、百度、又拍云、新浪、谷歌或微软的
+jQuery，有一个很大的优势：
+</p>
+
+<p>
+许多用户在访问其他站点时，已经从百度、又拍云、新浪、谷歌或微软加载过
+jQuery。所以结果是，当他们访问您的站点时，会从缓存中加载
+jQuery，这样可以减少加载时间。同时，大多数 CDN
+都可以确保当用户向其请求文件时，会从离用户最近的服务器上返回响应，这样也可以提高加载速度。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org214206c" class="outline-3">
+<h3 id="org214206c"><span class="section-number-3">1.5</span> jQuery 语法</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+通过 jQuery，您可以选取（查询，query）HTML
+元素，并对它们执行"操作"（actions）。jQuery 语法是通过选取 HTML
+元素，并对选取的元素执行某些操作。
+</p>
+
+<p>
+基础语法： <code>$(selector).action()</code>
+</p>
+
+<ul class="org-ul">
+<li>美元符号定义 jQuery</li>
+<li>选择符（selector）"查询"和"查找" HTML 元素</li>
+<li>jQuery 的 action() 执行对元素的操作</li>
+</ul>
+
+<p>
+实例:
+</p>
+
+<ul class="org-ul">
+<li>$(this).hide() - 隐藏当前元素</li>
+<li>$("p").hide() - 隐藏所有 <code>&lt;p&gt;</code> 元素</li>
+<li>$("p.test").hide() - 隐藏所有 class="test" 的 <code>&lt;p&gt;</code> 元素</li>
+<li>$("#test").hide() - 隐藏所有 id="test" 的元素</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org64a1906" class="outline-3">
+<h3 id="org64a1906"><span class="section-number-3">1.6</span> 你对 CSS 选择器熟悉吗？</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+jQuery 使用的语法是 XPath 与 CSS
+选择器语法的组合。在本教程接下来的章节，您将学习到更多有关选择器的语法。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgdf82170" class="outline-3">
+<h3 id="orgdf82170"><span class="section-number-3">1.7</span> 文档就绪事件</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+您也许已经注意到在我们的实例中的所有 jQuery 函数位于一个 document ready
+函数中：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+   <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#24320;&#22987;&#20889; jQuery &#20195;&#30721;...</span>
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+这是为了防止文档在完全加载（就绪）之前运行 jQuery 代码，即在 DOM
+加载完成后才可以对 DOM 进行操作。
+如果在文档没有完全加载之前就运行函数，操作可能失败。下面是两个具体的例子：
+</p>
+
+<ul class="org-ul">
+<li>试图隐藏一个不存在的元素</li>
+<li>获得未完全加载的图像的大小</li>
+</ul>
+
+<p>
+提示：简洁写法（与以上写法效果相同）:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+   <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#24320;&#22987;&#20889; jQuery &#20195;&#30721;...</span>
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+以上两种方式你可以选择你喜欢的方式实现文档就绪后执行 jQuery 方法。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org191354d" class="outline-3">
+<h3 id="org191354d"><span class="section-number-3">1.8</span> jQuery 选择器</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+jQuery 选择器允许您对 HTML 元素组或单个元素进行操作。jQuery
+选择器基于元素的 id、类、类型、属性、属性值等"查找"（或选择）HTML 元素。
+它基于已经存在的 CSS 选择器，除此之外，它还有一些自定义的选择器。
+</p>
+
+<p>
+jQuery 中所有选择器都以美元符号开头：$()。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9f70421" class="outline-3">
+<h3 id="org9f70421"><span class="section-number-3">1.9</span> 元素选择器</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+jQuery 元素选择器基于元素名选取元素。 在页面中选取所有 <code>&lt;p&gt;</code> 元素:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<p>
+实例
+</p>
+
+<p>
+用户点击按钮后，所有 <code>&lt;p&gt;</code> 元素都隐藏：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #2d9574;">)</span>.click<span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #67b11d;">(){</span>
+    $<span style="color: #b1951d;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #b1951d;">)</span>.hide<span style="color: #b1951d;">()</span>;
+  <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdb36d70" class="outline-3">
+<h3 id="orgdb36d70"><span class="section-number-3">1.10</span> <code>#id</code> 选择器</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+jQuery <code>#id</code> 选择器通过 HTML 元素的 id 属性选取指定的元素。 页面中元素的
+id 应该是唯一的，所以您要在页面中选取唯一的元素需要通过 <code>#id</code> 选择器。
+通过 id 选取元素语法如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#test"</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<p>
+当用户点击按钮后，有 id="test" 属性的元素将被隐藏：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #2d9574;">)</span>.click<span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #67b11d;">(){</span>
+    $<span style="color: #b1951d;">(</span><span style="color: #2d9574;">"#test"</span><span style="color: #b1951d;">)</span>.hide<span style="color: #b1951d;">()</span>;
+  <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4d959f5" class="outline-3">
+<h3 id="org4d959f5"><span class="section-number-3">1.11</span> <code>.class</code> 选择器</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+jQuery 类选择器可以通过指定的 class 查找元素。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">".test"</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+
+<p>
+用户点击按钮后所有带有 class="test" 属性的元素都隐藏：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #2d9574;">)</span>.click<span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #67b11d;">(){</span>
+    $<span style="color: #b1951d;">(</span><span style="color: #2d9574;">".test"</span><span style="color: #b1951d;">)</span>.hide<span style="color: #b1951d;">()</span>;
+  <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">语法</th>
+<th scope="col" class="org-left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">$("*")</td>
+<td class="org-left">选取所有元素</td>
+</tr>
+
+<tr>
+<td class="org-left">$(this)</td>
+<td class="org-left">选取当前 HTML 元素</td>
+</tr>
+
+<tr>
+<td class="org-left">$("p.intro")</td>
+<td class="org-left">选取 class 为 intro 的 <code>&lt;p&gt;</code> 元素</td>
+</tr>
+
+<tr>
+<td class="org-left">$("p:first")</td>
+<td class="org-left">选取第一个 <code>&lt;p&gt;</code> 元素</td>
+</tr>
+
+<tr>
+<td class="org-left">$("ul li:first")</td>
+<td class="org-left">选取第一个 <code>&lt;ul&gt;</code> 元素的第一个 <code>&lt;li&gt;</code> 元素</td>
+</tr>
+
+<tr>
+<td class="org-left">$("ul li:first-child")</td>
+<td class="org-left">选取每个 <code>&lt;ul&gt;</code> 元素的第一个 <code>&lt;li&gt;</code> 元素</td>
+</tr>
+
+<tr>
+<td class="org-left">$("[href]")</td>
+<td class="org-left">选取带有 href 属性的元素</td>
+</tr>
+
+<tr>
+<td class="org-left">$("a[target='_blank']")</td>
+<td class="org-left">选取所有 target 属性值等于 "_blank" 的 <code>&lt;a&gt;</code> 元素</td>
+</tr>
+
+<tr>
+<td class="org-left">$("a[target!='_blank']")</td>
+<td class="org-left">选取所有 target 属性值不等于 "_blank" 的 <code>&lt;a&gt;</code> 元素</td>
+</tr>
+
+<tr>
+<td class="org-left">$(":button")</td>
+<td class="org-left">选取所有 type="button" 的 <code>&lt;input&gt;</code> 元素 和 <code>&lt;button&gt;</code> 元素</td>
+</tr>
+
+<tr>
+<td class="org-left">$("tr:even")</td>
+<td class="org-left">选取偶数位置的 <code>&lt;tr&gt;</code> 元素</td>
+</tr>
+
+<tr>
+<td class="org-left">$("tr:odd")</td>
+<td class="org-left">选取奇数位置的 <code>&lt;tr&gt;</code> 元素</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org9bde8c0" class="outline-3">
+<h3 id="org9bde8c0"><span class="section-number-3">1.12</span> 独立文件中使用 jQuery 函数</h3>
+<div class="outline-text-3" id="text-1-12">
+<p>
+如果您的网站包含许多页面，并且您希望您的 jQuery
+函数易于维护，那么请把您的 jQuery 函数放到独立的 .js 文件中。
+当我们在教程中演示 jQuery 时，会将函数直接添加到 <code>&lt;head&gt;</code>
+部分中。不过，把它们放到一个单独的文件中会更好，就像这样（通过 src
+属性来引用文件）：
+</p>
+
+<pre class="example">
+&lt;head&gt;
+&lt;script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"&gt;
+&lt;/script&gt;
+&lt;script src="my_jquery_functions.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8fa0755" class="outline-3">
+<h3 id="org8fa0755"><span class="section-number-3">1.13</span> jQuery 事件</h3>
+<div class="outline-text-3" id="text-1-13">
+<p>
+jQuery 是为事件处理特别设计的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8fab4ec" class="outline-3">
+<h3 id="org8fab4ec"><span class="section-number-3">1.14</span> 什么是事件？</h3>
+<div class="outline-text-3" id="text-1-14">
+<p>
+页面对不同访问者的响应叫做事件。 事件处理程序指的是当 HTML
+中发生某些事件时所调用的方法。
+</p>
+
+<ul class="org-ul">
+<li>在元素上移动鼠标。</li>
+<li>选取单选按钮</li>
+<li>点击元素</li>
+</ul>
+
+<p>
+在事件中经常使用术语"触发"（或"激发"）例如： "当您按下按键时触发
+keypress 事件"。 常见 DOM 事件：
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">鼠标事件</th>
+<th scope="col" class="org-left">键盘事件</th>
+<th scope="col" class="org-left">表单事件</th>
+<th scope="col" class="org-left">文档/窗口事件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">click</td>
+<td class="org-left">keypress</td>
+<td class="org-left">submit</td>
+<td class="org-left">load</td>
+</tr>
+
+<tr>
+<td class="org-left">dblclick</td>
+<td class="org-left">keydown</td>
+<td class="org-left">change</td>
+<td class="org-left">resize</td>
+</tr>
+
+<tr>
+<td class="org-left">mouseenter</td>
+<td class="org-left">keyup</td>
+<td class="org-left">focus</td>
+<td class="org-left">scroll</td>
+</tr>
+
+<tr>
+<td class="org-left">mouseleave</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">blur</td>
+<td class="org-left">unload</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org828947c" class="outline-3">
+<h3 id="org828947c"><span class="section-number-3">1.15</span> jQuery 事件方法语法</h3>
+<div class="outline-text-3" id="text-1-15">
+<p>
+在 jQuery 中，大多数 DOM 事件都有一个等效的 jQuery 方法。
+页面中指定一个点击事件：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">()</span>;
+</pre>
+</div>
+
+<p>
+下一步是定义什么时间触发事件。您可以通过一个事件函数实现：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#21160;&#20316;&#35302;&#21457;&#21518;&#25191;&#34892;&#30340;&#20195;&#30721;!!</span>
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd6666cf" class="outline-3">
+<h3 id="orgd6666cf"><span class="section-number-3">1.16</span> 常用的 jQuery 事件方法</h3>
+<div class="outline-text-3" id="text-1-16">
+</div>
+<div id="outline-container-org95c6b59" class="outline-4">
+<h4 id="org95c6b59"><span class="section-number-4">1.16.1</span> $(document).ready()</h4>
+<div class="outline-text-4" id="text-1-16-1">
+<p>
+$(document).ready() 方法允许我们在文档完全加载完后执行函数。该事件方法在
+jQuery 语法 章节中已经提到过。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb0ae60e" class="outline-4">
+<h4 id="orgb0ae60e"><span class="section-number-4">1.16.2</span> click()</h4>
+<div class="outline-text-4" id="text-1-16-2">
+<p>
+click() 方法是当按钮点击事件被触发时会调用一个函数。 该函数在用户点击
+HTML 元素时执行。 在下面的实例中，当点击事件在某个 <code>&lt;p&gt;</code>
+元素上触发时，隐藏当前的 <code>&lt;p&gt;</code> 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #a45bad;">this</span><span style="color: #2d9574;">)</span>.hide<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga0f881e" class="outline-4">
+<h4 id="orga0f881e"><span class="section-number-4">1.16.3</span> dblclick()</h4>
+<div class="outline-text-4" id="text-1-16-3">
+<p>
+当双击元素时，会发生 dblclick 事件。dblclick() 方法触发 dblclick
+事件，或规定当发生 dblclick 事件时运行的函数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #4f97d7;">)</span>.dblclick<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #a45bad;">this</span><span style="color: #2d9574;">)</span>.hide<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga7091d2" class="outline-4">
+<h4 id="orga7091d2"><span class="section-number-4">1.16.4</span> mouseenter()</h4>
+<div class="outline-text-4" id="text-1-16-4">
+<p>
+当鼠标指针穿过元素时，会发生 mouseenter 事件。mouseenter() 方法触发
+mouseenter 事件，或规定当发生 mouseenter 事件时运行的函数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#p1"</span><span style="color: #4f97d7;">)</span>.mouseenter<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+    alert<span style="color: #2d9574;">(</span><span style="color: #2d9574;">'&#24744;&#30340;&#40736;&#26631;&#31227;&#21040;&#20102; id="p1" &#30340;&#20803;&#32032;&#19978;!'</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga784284" class="outline-4">
+<h4 id="orga784284"><span class="section-number-4">1.16.5</span> mouseleave()</h4>
+<div class="outline-text-4" id="text-1-16-5">
+<p>
+当鼠标指针离开元素时，会发生 mouseleave 事件。mouseleave() 方法触发
+mouseleave 事件，或规定当发生 mouseleave 事件时运行的函数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#p1"</span><span style="color: #4f97d7;">)</span>.mouseleave<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+    alert<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"&#20877;&#35265;&#65292;&#24744;&#30340;&#40736;&#26631;&#31163;&#24320;&#20102;&#35813;&#27573;&#33853;&#12290;"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org931cd2f" class="outline-4">
+<h4 id="org931cd2f"><span class="section-number-4">1.16.6</span> mousedown()</h4>
+<div class="outline-text-4" id="text-1-16-6">
+<p>
+当鼠标指针移动到元素上方，并按下鼠标按键时，会发生 mousedown 事件。
+mousedown() 方法触发 mousedown 事件，或规定当发生 mousedown
+事件时运行的函数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#p1"</span><span style="color: #4f97d7;">)</span>.mousedown<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+    alert<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"&#40736;&#26631;&#22312;&#35813;&#27573;&#33853;&#19978;&#25353;&#19979;&#65281;"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeec7191" class="outline-4">
+<h4 id="orgeec7191"><span class="section-number-4">1.16.7</span> mouseup()</h4>
+<div class="outline-text-4" id="text-1-16-7">
+<p>
+当在元素上松开鼠标按钮时，会发生 mouseup 事件。mouseup() 方法触发
+mouseup 事件，或规定当发生 mouseup 事件时运行的函数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#p1"</span><span style="color: #4f97d7;">)</span>.mouseup<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+    alert<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"&#40736;&#26631;&#22312;&#27573;&#33853;&#19978;&#26494;&#24320;&#12290;"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0620c10" class="outline-4">
+<h4 id="org0620c10"><span class="section-number-4">1.16.8</span> hover()</h4>
+<div class="outline-text-4" id="text-1-16-8">
+<p>
+hover()方法用于模拟光标悬停事件。
+当鼠标移动到元素上时，会触发指定的第一个函数(mouseenter);当鼠标移出这个元素时，会触发指定的第二个函数(mouseleave)。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#p1"</span><span style="color: #4f97d7;">)</span>.hover<span style="color: #4f97d7;">(</span>
+    <span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+        alert<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"&#20320;&#36827;&#20837;&#20102; p1!"</span><span style="color: #2d9574;">)</span>;
+    <span style="color: #bc6ec5;">}</span>,
+    <span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+        alert<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"&#25308;&#25308;! &#29616;&#22312;&#20320;&#31163;&#24320;&#20102; p1!"</span><span style="color: #2d9574;">)</span>;
+    <span style="color: #bc6ec5;">}</span>
+<span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org75b0103" class="outline-4">
+<h4 id="org75b0103"><span class="section-number-4">1.16.9</span> focus()</h4>
+<div class="outline-text-4" id="text-1-16-9">
+<p>
+当元素获得焦点时，发生 focus 事件。 当通过鼠标点击选中元素或通过 tab
+键定位到元素时，该元素就会获得焦点。focus() 方法触发 focus
+事件，或规定当发生 focus 事件时运行的函数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"input"</span><span style="color: #4f97d7;">)</span>.focus<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #a45bad;">this</span><span style="color: #2d9574;">)</span>.css<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"background-color"</span>,<span style="color: #2d9574;">"#cccccc"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org28e18d2" class="outline-4">
+<h4 id="org28e18d2"><span class="section-number-4">1.16.10</span> blur()</h4>
+<div class="outline-text-4" id="text-1-16-10">
+<p>
+当元素失去焦点时，发生 blur 事件。blur() 方法触发 blur
+事件，或规定当发生 blur 事件时运行的函数：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"input"</span><span style="color: #4f97d7;">)</span>.blur<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #a45bad;">this</span><span style="color: #2d9574;">)</span>.css<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"background-color"</span>,<span style="color: #2d9574;">"#ffffff"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga3f5e2e" class="outline-2">
+<h2 id="orga3f5e2e"><span class="section-number-2">2</span> jQuery 效果</h2>
+</div>
+
+<div id="outline-container-orgb669d4d" class="outline-2">
+<h2 id="orgb669d4d"><span class="section-number-2">3</span> 隐藏和显示</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+隐藏、显示、切换，滑动，淡入淡出，以及动画，哇哦！
+</p>
+</div>
+
+<div id="outline-container-orgbe572b3" class="outline-3">
+<h3 id="orgbe572b3"><span class="section-number-3">3.1</span> jQuery hide() 和 show()</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+通过 jQuery，您可以使用 hide() 和 show() 方法来隐藏和显示 HTML 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#hide"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #2d9574;">)</span>.hide<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+
+$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#show"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #2d9574;">)</span>.show<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+语法:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>selector<span style="color: #4f97d7;">)</span>.hide<span style="color: #4f97d7;">(</span>speed,callback<span style="color: #4f97d7;">)</span>;
+$<span style="color: #4f97d7;">(</span>selector<span style="color: #4f97d7;">)</span>.show<span style="color: #4f97d7;">(</span>speed,callback<span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+可选的 speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast"
+或毫秒。 可选的 callback 参数是隐藏或显示完成后所执行的函数名称。
+</p>
+
+<p>
+下面的例子演示了带有 speed 参数的 hide() 方法：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #2d9574;">)</span>.hide<span style="color: #2d9574;">(</span><span style="color: #a45bad;">1000</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0b476bf" class="outline-3">
+<h3 id="org0b476bf"><span class="section-number-3">3.2</span> jQuery toggle()</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+通过 jQuery，您可以使用 toggle() 方法来切换 hide() 和 show() 方法。
+显示被隐藏的元素，并隐藏已显示的元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #2d9574;">)</span>.toggle<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+语法:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>selector<span style="color: #4f97d7;">)</span>.toggle<span style="color: #4f97d7;">(</span>speed,callback<span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+可选的 speed 参数规定隐藏/显示的速度，可以取以下值："slow"、"fast"
+或毫秒。 可选的 callback 参数是隐藏或显示完成后所执行的函数名称。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgba425b5" class="outline-3">
+<h3 id="orgba425b5"><span class="section-number-3">3.3</span> 链（Chaining）</h3>
+<div class="outline-text-3" id="text-3-3">
+<p>
+通过 jQuery，可以把动作/方法链接在一起。Chaining
+允许我们在一条语句中运行多个 jQuery 方法（在相同的元素上）。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org83e41df" class="outline-3">
+<h3 id="org83e41df"><span class="section-number-3">3.4</span> jQuery 方法链接</h3>
+<div class="outline-text-3" id="text-3-4">
+<p>
+直到现在，我们都是一次写一条 jQuery 语句（一条接着另一条）。
+不过，有一种名为链接（chaining）的技术，允许我们在相同的元素上运行多条
+jQuery 命令，一条接着另一条。 提示：
+这样的话，浏览器就不必多次查找相同的元素。
+</p>
+
+<p>
+如需链接一个动作，您只需简单地把该动作追加到之前的动作上。 下面的例子把
+css()、slideUp() 和 slideDown() 链接在一起。"p1"
+元素首先会变为红色，然后向上滑动，再然后向下滑动：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#p1"</span><span style="color: #4f97d7;">)</span>.css<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"color"</span>,<span style="color: #2d9574;">"red"</span><span style="color: #4f97d7;">)</span>.slideUp<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2000</span><span style="color: #4f97d7;">)</span>.slideDown<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2000</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+如果需要，我们也可以添加多个方法调用。
+提示：当进行链接时，代码行会变得很长。不过，jQuery
+语法不是很严格；您可以按照希望的格式来写，包含换行和缩进。
+如下书写也可以很好地运行：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#p1"</span><span style="color: #4f97d7;">)</span>.css<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"color"</span>,<span style="color: #2d9574;">"red"</span><span style="color: #4f97d7;">)</span>
+  .slideUp<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2000</span><span style="color: #4f97d7;">)</span>
+  .slideDown<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2000</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org271e02d" class="outline-3">
+<h3 id="org271e02d"><span class="section-number-3">3.5</span> jQuery Html</h3>
+</div>
+
+<div id="outline-container-orgb5405b7" class="outline-3">
+<h3 id="orgb5405b7"><span class="section-number-3">3.6</span> 获取内容和属性</h3>
+<div class="outline-text-3" id="text-3-6">
+<p>
+jQuery 拥有可操作 HTML 元素和属性的强大方法。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb25e714" class="outline-3">
+<h3 id="orgb25e714"><span class="section-number-3">3.7</span> jQuery DOM 操作</h3>
+<div class="outline-text-3" id="text-3-7">
+<p>
+jQuery 中非常重要的部分，就是操作 DOM 的能力。jQuery 提供一系列与 DOM
+相关的方法，这使访问和操作元素和属性变得很容易。
+</p>
+
+<p>
+DOM = Document Object Model（文档对象模型）
+</p>
+</div>
+
+<div id="outline-container-org3ff6d3f" class="outline-4">
+<h4 id="org3ff6d3f"><span class="section-number-4">3.7.1</span> DOM 定义访问 HTML 和 XML 文档的标准：</h4>
+<div class="outline-text-4" id="text-3-7-1">
+<p>
+"W3C
+文档对象模型独立于平台和语言的界面，允许程序和脚本动态访问和更新文档的内容、结构以及样式。"
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org92fbef4" class="outline-3">
+<h3 id="org92fbef4"><span class="section-number-3">3.8</span> 获得内容 - text()、html() 以及 val()</h3>
+<div class="outline-text-3" id="text-3-8">
+<p>
+三个简单实用的用于 DOM 操作的 jQuery 方法：
+</p>
+
+<ul class="org-ul">
+<li>text() - 设置或返回所选元素的文本内容</li>
+<li>html() - 设置或返回所选元素的内容（包括 HTML 标记）</li>
+<li>val() - 设置或返回表单字段的值</li>
+</ul>
+
+<p>
+下面的例子演示如何通过 jQuery text() 和 html() 方法来获得内容：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#btn1"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  alert<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"Text: "</span> + $<span style="color: #67b11d;">(</span><span style="color: #2d9574;">"#test"</span><span style="color: #67b11d;">)</span>.text<span style="color: #67b11d;">()</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#btn2"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  alert<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"HTML: "</span> + $<span style="color: #67b11d;">(</span><span style="color: #2d9574;">"#test"</span><span style="color: #67b11d;">)</span>.html<span style="color: #67b11d;">()</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+下面的例子演示如何通过 jQuery val() 方法获得输入字段的值：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#btn1"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  alert<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"&#20540;&#20026;: "</span> + $<span style="color: #67b11d;">(</span><span style="color: #2d9574;">"#test"</span><span style="color: #67b11d;">)</span>.val<span style="color: #67b11d;">()</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4946d99" class="outline-3">
+<h3 id="org4946d99"><span class="section-number-3">3.9</span> 获取属性 - attr()</h3>
+<div class="outline-text-3" id="text-3-9">
+<p>
+jQuery attr() 方法用于获取属性值。 下面的例子演示如何获得链接中 href
+属性的值：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  alert<span style="color: #2d9574;">(</span>$<span style="color: #67b11d;">(</span><span style="color: #2d9574;">"#runoob"</span><span style="color: #67b11d;">)</span>.attr<span style="color: #67b11d;">(</span><span style="color: #2d9574;">"href"</span><span style="color: #67b11d;">)</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0af9b2a" class="outline-3">
+<h3 id="org0af9b2a"><span class="section-number-3">3.10</span> 设置内容和属性</h3>
+</div>
+
+<div id="outline-container-org0a8bb5b" class="outline-3">
+<h3 id="org0a8bb5b"><span class="section-number-3">3.11</span> 设置内容 - text()、html() 以及 val()</h3>
+<div class="outline-text-3" id="text-3-11">
+<p>
+我们将使用前一章中的三个相同的方法来设置内容：
+</p>
+
+<ul class="org-ul">
+<li>text() - 设置或返回所选元素的文本内容</li>
+<li>html() - 设置或返回所选元素的内容（包括 HTML 标记）</li>
+<li>val() - 设置或返回表单字段的值</li>
+</ul>
+
+<p>
+下面的例子演示如何通过 text()、html() 以及 val() 方法来设置内容：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#btn1"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+    $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#test1"</span><span style="color: #2d9574;">)</span>.text<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"Hello world!"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#btn2"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+    $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#test2"</span><span style="color: #2d9574;">)</span>.html<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"&lt;b&gt;Hello world!&lt;/b&gt;"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#btn3"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+    $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#test3"</span><span style="color: #2d9574;">)</span>.val<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"RUNOOB"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3df55d3" class="outline-3">
+<h3 id="org3df55d3"><span class="section-number-3">3.12</span> text()、html() 以及 val() 的回调函数</h3>
+<div class="outline-text-3" id="text-3-12">
+<p>
+上面的三个 jQuery 方法：text()、html() 以及
+val()，同样拥有回调函数。回调函数有两个参数：被选元素列表中当前元素的下标，以及原始（旧的）值。然后以函数新值返回您希望使用的字符串。
+下面的例子演示带有回调函数的 text() 和 html()：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#btn1"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+    $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#test1"</span><span style="color: #2d9574;">)</span>.text<span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #67b11d;">(</span><span style="color: #7590db;">i</span>,<span style="color: #7590db;">origText</span><span style="color: #67b11d;">){</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"&#26087;&#25991;&#26412;: "</span> + origText + <span style="color: #2d9574;">" &#26032;&#25991;&#26412;: Hello world! (index: "</span> + i + <span style="color: #2d9574;">")"</span>;
+    <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+
+$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#btn2"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+    $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#test2"</span><span style="color: #2d9574;">)</span>.html<span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #67b11d;">(</span><span style="color: #7590db;">i</span>,<span style="color: #7590db;">origText</span><span style="color: #67b11d;">){</span>
+        <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #2d9574;">"&#26087; html: "</span> + origText + <span style="color: #2d9574;">" &#26032; html: Hello &lt;b&gt;world!&lt;/b&gt; (index: "</span> + i + <span style="color: #2d9574;">")"</span>;
+    <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0319067" class="outline-3">
+<h3 id="org0319067"><span class="section-number-3">3.13</span> 设置属性 - attr()</h3>
+<div class="outline-text-3" id="text-3-13">
+<p>
+jQuery attr() 方法也用于设置/改变属性值。
+下面的例子演示如何改变（设置）链接中 href 属性的值：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#runoob"</span><span style="color: #2d9574;">)</span>.attr<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"href"</span>,<span style="color: #2d9574;">"http://www.runoob.com/jquery"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+attr() 方法也允许您同时设置多个属性。 下面的例子演示如何同时设置 href 和
+title 属性：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+    $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#runoob"</span><span style="color: #2d9574;">)</span>.attr<span style="color: #2d9574;">(</span><span style="color: #67b11d;">{</span>
+        <span style="color: #2d9574;">"href"</span> : <span style="color: #2d9574;">"http://www.runoob.com/jquery"</span>,
+        <span style="color: #2d9574;">"title"</span> : <span style="color: #2d9574;">"jQuery &#25945;&#31243;"</span>
+    <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org67843b3" class="outline-3">
+<h3 id="org67843b3"><span class="section-number-3">3.14</span> attr() 的回调函数</h3>
+<div class="outline-text-3" id="text-3-14">
+<p>
+jQuery 方法
+attr()，也提供回调函数。回调函数有两个参数：被选元素列表中当前元素的下标，以及原始（旧的）值。然后以函数新值返回您希望使用的字符串。
+下面的例子演示带有回调函数的 attr() 方法：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#runoob"</span><span style="color: #2d9574;">)</span>.attr<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"href"</span>, <span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #67b11d;">(</span><span style="color: #7590db;">i</span>,<span style="color: #7590db;">origValue</span><span style="color: #67b11d;">){</span>
+    <span style="color: #4f97d7; font-weight: bold;">return</span> origValue + <span style="color: #2d9574;">"/jquery"</span>;
+  <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5ad6798" class="outline-3">
+<h3 id="org5ad6798"><span class="section-number-3">3.15</span> 添加元素</h3>
+<div class="outline-text-3" id="text-3-15">
+<p>
+通过 jQuery，可以很容易地添加新元素/内容。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4a360d6" class="outline-3">
+<h3 id="org4a360d6"><span class="section-number-3">3.16</span> 添加新的 HTML 内容</h3>
+<div class="outline-text-3" id="text-3-16">
+<p>
+我们将学习用于添加新内容的四个 jQuery 方法：
+</p>
+
+<ul class="org-ul">
+<li>append() - 在被选元素的结尾插入内容</li>
+<li>prepend() - 在被选元素的开头插入内容</li>
+<li>after() - 在被选元素之后插入内容</li>
+<li>before() - 在被选元素之前插入内容</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd39ec83" class="outline-3">
+<h3 id="orgd39ec83"><span class="section-number-3">3.17</span> jQuery append() 方法</h3>
+<div class="outline-text-3" id="text-3-17">
+<p>
+jQuery append() 方法在被选元素的结尾插入内容（仍然该元素的内部）。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #4f97d7;">)</span>.append<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"&#36861;&#21152;&#25991;&#26412;"</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5382cb3" class="outline-3">
+<h3 id="org5382cb3"><span class="section-number-3">3.18</span> jQuery prepend() 方法</h3>
+<div class="outline-text-3" id="text-3-18">
+<p>
+jQuery prepend() 方法在被选元素的开头插入内容。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #4f97d7;">)</span>.prepend<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"&#22312;&#24320;&#22836;&#36861;&#21152;&#25991;&#26412;"</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3a33f7e" class="outline-3">
+<h3 id="org3a33f7e"><span class="section-number-3">3.19</span> 通过 append() 和 prepend() 方法添加若干新元素</h3>
+<div class="outline-text-3" id="text-3-19">
+<p>
+在上面的例子中，我们只在被选元素的开头/结尾插入文本/HTML。
+不过，append() 和 prepend()
+方法能够通过参数接收无限数量的新元素。可以通过 jQuery
+来生成文本/HTML（就像上面的例子那样），或者通过 JavaScript 代码和 DOM
+元素。
+</p>
+
+<p>
+在下面的例子中，我们创建若干个新元素。这些元素可以通过 text/HTML、jQuery
+或者 JavaScript/DOM 来创建。然后我们通过 append()
+方法把这些新元素追加到文本中（对 prepend() 同样有效）：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">appendText</span><span style="color: #4f97d7;">()</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">txt1</span>=<span style="color: #2d9574;">"&lt;p&gt;&#25991;&#26412;&#12290;&lt;/p&gt;"</span>;              <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; HTML &#26631;&#31614;&#21019;&#24314;&#25991;&#26412;</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">txt2</span>=$<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"&lt;p&gt;&lt;/p&gt;"</span><span style="color: #bc6ec5;">)</span>.text<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"&#25991;&#26412;&#12290;"</span><span style="color: #bc6ec5;">)</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; jQuery &#21019;&#24314;&#25991;&#26412;</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">txt3</span>=document.createElement<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #bc6ec5;">)</span>;
+    txt3.innerHTML=<span style="color: #2d9574;">"&#25991;&#26412;&#12290;"</span>;               <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; DOM &#21019;&#24314;&#25991;&#26412; text with DOM</span>
+    $<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"body"</span><span style="color: #bc6ec5;">)</span>.append<span style="color: #bc6ec5;">(</span>txt1,txt2,txt3<span style="color: #bc6ec5;">)</span>;        <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#36861;&#21152;&#26032;&#20803;&#32032;</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3d4512e" class="outline-3">
+<h3 id="org3d4512e"><span class="section-number-3">3.20</span> jQuery after() 和 before() 方法</h3>
+<div class="outline-text-3" id="text-3-20">
+<p>
+jQuery after() 方法在被选元素之后插入内容。jQuery before()
+方法在被选元素之前插入内容。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"img"</span><span style="color: #4f97d7;">)</span>.after<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"&#22312;&#21518;&#38754;&#28155;&#21152;&#25991;&#26412;"</span><span style="color: #4f97d7;">)</span>;
+$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"img"</span><span style="color: #4f97d7;">)</span>.before<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"&#22312;&#21069;&#38754;&#28155;&#21152;&#25991;&#26412;"</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6185552" class="outline-3">
+<h3 id="org6185552"><span class="section-number-3">3.21</span> 通过 after() 和 before() 方法添加若干新元素</h3>
+<div class="outline-text-3" id="text-3-21">
+<p>
+after() 和 before() 方法能够通过参数接收无限数量的新元素。可以通过
+text/HTML、jQuery 或者 JavaScript/DOM 来创建新元素。
+</p>
+
+<p>
+在下面的例子中，我们创建若干新元素。这些元素可以通过 text/HTML、jQuery
+或者 JavaScript/DOM 来创建。然后我们通过 after()
+方法把这些新元素插到文本中（对 before() 同样有效）：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">function</span> <span style="color: #bc6ec5; font-weight: bold;">afterText</span><span style="color: #4f97d7;">()</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">txt1</span>=<span style="color: #2d9574;">"&lt;b&gt;I &lt;/b&gt;"</span>;                    <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; HTML &#21019;&#24314;&#20803;&#32032;</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">txt2</span>=$<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"&lt;i&gt;&lt;/i&gt;"</span><span style="color: #bc6ec5;">)</span>.text<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"love "</span><span style="color: #bc6ec5;">)</span>;     <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; jQuery &#21019;&#24314;&#20803;&#32032;</span>
+    <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">txt3</span>=document.createElement<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"big"</span><span style="color: #bc6ec5;">)</span>;  <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#20351;&#29992; DOM &#21019;&#24314;&#20803;&#32032;</span>
+    txt3.innerHTML=<span style="color: #2d9574;">"jQuery!"</span>;
+    $<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">"img"</span><span style="color: #bc6ec5;">)</span>.after<span style="color: #bc6ec5;">(</span>txt1,txt2,txt3<span style="color: #bc6ec5;">)</span>;          <span style="color: #2aa1ae; background-color: #292e34;">// </span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#22270;&#29255;&#21518;&#28155;&#21152;&#25991;&#26412;</span>
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc83b693" class="outline-3">
+<h3 id="orgc83b693"><span class="section-number-3">3.22</span> 删除元素</h3>
+<div class="outline-text-3" id="text-3-22">
+<p>
+通过 jQuery，可以很容易地删除已有的 HTML 元素。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4d02e7f" class="outline-3">
+<h3 id="org4d02e7f"><span class="section-number-3">3.23</span> 删除元素/内容</h3>
+<div class="outline-text-3" id="text-3-23">
+<p>
+如需删除元素和内容，一般可使用以下两个 jQuery 方法：
+</p>
+
+<ul class="org-ul">
+<li>remove() - 删除被选元素（及其子元素）</li>
+<li>empty() - 从被选元素中删除子元素</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgeb5858d" class="outline-3">
+<h3 id="orgeb5858d"><span class="section-number-3">3.24</span> jQuery remove() 方法</h3>
+<div class="outline-text-3" id="text-3-24">
+<p>
+jQuery remove() 方法删除被选元素及其子元素。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #4f97d7;">)</span>.remove<span style="color: #4f97d7;">()</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga968cca" class="outline-3">
+<h3 id="orga968cca"><span class="section-number-3">3.25</span> jQuery empty() 方法</h3>
+<div class="outline-text-3" id="text-3-25">
+<p>
+jQuery empty() 方法删除被选元素的子元素。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #4f97d7;">)</span>.empty<span style="color: #4f97d7;">()</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgef29bcd" class="outline-3">
+<h3 id="orgef29bcd"><span class="section-number-3">3.26</span> 过滤被删除的元素</h3>
+<div class="outline-text-3" id="text-3-26">
+<p>
+jQuery remove() 方法也可接受一个参数，允许您对被删元素进行过滤。
+该参数可以是任何 jQuery 选择器的语法。 下面的例子删除 class="italic"
+的所有 <code>&lt;p&gt;</code> 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #4f97d7;">)</span>.remove<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">".italic"</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org816f6f2" class="outline-3">
+<h3 id="org816f6f2"><span class="section-number-3">3.27</span> 获取并设置 CSS 类</h3>
+<div class="outline-text-3" id="text-3-27">
+<p>
+通过 jQuery，可以很容易地对 CSS 元素进行操作。 切换 CSS 类
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeb81cb3" class="outline-3">
+<h3 id="orgeb81cb3"><span class="section-number-3">3.28</span> jQuery 操作 CSS</h3>
+<div class="outline-text-3" id="text-3-28">
+<p>
+jQuery 拥有若干进行 CSS 操作的方法。我们将学习下面这些：
+</p>
+
+<ul class="org-ul">
+<li>addClass() - 向被选元素添加一个或多个类</li>
+<li>removeClass() - 从被选元素删除一个或多个类</li>
+<li>toggleClass() - 对被选元素进行添加/删除类的切换操作</li>
+<li>css() - 设置或返回样式属性</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org570129a" class="outline-3">
+<h3 id="org570129a"><span class="section-number-3">3.29</span> 实例样式表</h3>
+<div class="outline-text-3" id="text-3-29">
+<p>
+下面的样式表将用于本页的所有例子：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">.important</span>
+<span style="color: #4f97d7;">{</span>
+        <span style="color: #4f97d7; font-weight: bold;">font-weight</span>:bold;
+        <span style="color: #4f97d7; font-weight: bold;">font-size</span>:xx-large;
+<span style="color: #4f97d7;">}</span>
+
+<span style="color: #bc6ec5; font-weight: bold;">.blue</span>
+<span style="color: #4f97d7;">{</span>
+        <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #0000ff;">blue</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2e589ef" class="outline-3">
+<h3 id="org2e589ef"><span class="section-number-3">3.30</span> jQuery addClass() 方法</h3>
+<div class="outline-text-3" id="text-3-30">
+<p>
+下面的例子展示如何向不同的元素添加 class
+属性。当然，在添加类时，您也可以选取多个元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"h1,h2,p"</span><span style="color: #2d9574;">)</span>.addClass<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"blue"</span><span style="color: #2d9574;">)</span>;
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"div"</span><span style="color: #2d9574;">)</span>.addClass<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"important"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+您也可以在 addClass() 方法中规定多个类：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"body div:first"</span><span style="color: #2d9574;">)</span>.addClass<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"important blue"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org93d8961" class="outline-3">
+<h3 id="org93d8961"><span class="section-number-3">3.31</span> jQuery removeClass() 方法</h3>
+<div class="outline-text-3" id="text-3-31">
+<p>
+下面的例子演示如何在不同的元素中删除指定的 class 属性：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"h1,h2,p"</span><span style="color: #2d9574;">)</span>.removeClass<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"blue"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org41383e2" class="outline-3">
+<h3 id="org41383e2"><span class="section-number-3">3.32</span> jQuery toggleClass() 方法</h3>
+<div class="outline-text-3" id="text-3-32">
+<p>
+下面的例子将展示如何使用 jQuery toggleClass()
+方法。该方法对被选元素进行添加/删除类的切换操作：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"h1,h2,p"</span><span style="color: #2d9574;">)</span>.toggleClass<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"blue"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org787e5ed" class="outline-3">
+<h3 id="org787e5ed"><span class="section-number-3">3.33</span> css() 方法</h3>
+<div class="outline-text-3" id="text-3-33">
+<p>
+css() 方法设置或返回被选元素的一个或多个样式属性。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9f5253c" class="outline-3">
+<h3 id="org9f5253c"><span class="section-number-3">3.34</span> 返回 CSS 属性</h3>
+<div class="outline-text-3" id="text-3-34">
+<p>
+如需返回指定的 CSS 属性的值，请使用如下语法：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">css<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"propertyname"</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+下面的例子将返回首个匹配元素的 background-color 值：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #4f97d7;">)</span>.css<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"background-color"</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org07e6aa8" class="outline-3">
+<h3 id="org07e6aa8"><span class="section-number-3">3.35</span> 设置 CSS 属性</h3>
+<div class="outline-text-3" id="text-3-35">
+<p>
+如需设置指定的 CSS 属性，请使用如下语法：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">css<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"propertyname"</span>,<span style="color: #2d9574;">"value"</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+下面的例子将为所有匹配元素设置 background-color 值：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #4f97d7;">)</span>.css<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"background-color"</span>,<span style="color: #2d9574;">"yellow"</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga8c4b55" class="outline-3">
+<h3 id="orga8c4b55"><span class="section-number-3">3.36</span> 设置多个 CSS 属性</h3>
+<div class="outline-text-3" id="text-3-36">
+<p>
+如需设置多个 CSS 属性，请使用如下语法：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">css<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">{</span><span style="color: #2d9574;">"propertyname"</span>:<span style="color: #2d9574;">"value"</span>,<span style="color: #2d9574;">"propertyname"</span>:<span style="color: #2d9574;">"value"</span>,...<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+下面的例子将为所有匹配元素设置 background-color 和 font-size：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #4f97d7;">)</span>.css<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">{</span><span style="color: #2d9574;">"background-color"</span>:<span style="color: #2d9574;">"yellow"</span>,<span style="color: #2d9574;">"font-size"</span>:<span style="color: #2d9574;">"200%"</span><span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgda735df" class="outline-3">
+<h3 id="orgda735df"><span class="section-number-3">3.37</span> 尺寸</h3>
+<div class="outline-text-3" id="text-3-37">
+<p>
+通过 jQuery，很容易处理元素和浏览器窗口的尺寸。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org707dc40" class="outline-3">
+<h3 id="org707dc40"><span class="section-number-3">3.38</span> jQuery 尺寸方法</h3>
+<div class="outline-text-3" id="text-3-38">
+<p>
+jQuery 提供多个处理尺寸的重要方法：
+</p>
+
+<ul class="org-ul">
+<li>width()</li>
+<li>height()</li>
+<li>innerWidth()</li>
+<li>innerHeight()</li>
+<li>outerWidth()</li>
+<li>outerHeight()</li>
+<li>jQuery 尺寸</li>
+<li>jQuery Dimensions</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgde33f25" class="outline-3">
+<h3 id="orgde33f25"><span class="section-number-3">3.39</span> jQuery width() 和 height() 方法</h3>
+<div class="outline-text-3" id="text-3-39">
+<p>
+width() 方法设置或返回元素的宽度（不包括内边距、边框或外边距）。
+height() 方法设置或返回元素的高度（不包括内边距、边框或外边距）。
+</p>
+
+<p>
+下面的例子返回指定的 <code>&lt;div&gt;</code> 元素的宽度和高度：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">txt</span>=<span style="color: #2d9574;">""</span>;
+  txt+=<span style="color: #2d9574;">"div &#30340;&#23485;&#24230;&#26159;: "</span> + $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #2d9574;">)</span>.width<span style="color: #2d9574;">()</span> + <span style="color: #2d9574;">"&lt;/br&gt;"</span>;
+  txt+=<span style="color: #2d9574;">"div &#30340;&#39640;&#24230;&#26159;: "</span> + $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #2d9574;">)</span>.height<span style="color: #2d9574;">()</span>;
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #2d9574;">)</span>.html<span style="color: #2d9574;">(</span>txt<span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org095b6b9" class="outline-3">
+<h3 id="org095b6b9"><span class="section-number-3">3.40</span> jQuery innerWidth() 和 innerHeight() 方法</h3>
+<div class="outline-text-3" id="text-3-40">
+<p>
+innerWidth() 方法返回元素的宽度（包括内边距）。innerHeight()
+方法返回元素的高度（包括内边距）。
+</p>
+
+<p>
+下面的例子返回指定的 <code>&lt;div&gt;</code> 元素的 inner-width/height：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">txt</span>=<span style="color: #2d9574;">""</span>;
+  txt+=<span style="color: #2d9574;">"div &#23485;&#24230;&#65292;&#21253;&#21547;&#20869;&#36793;&#36317;: "</span> + $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #2d9574;">)</span>.innerWidth<span style="color: #2d9574;">()</span> + <span style="color: #2d9574;">"&lt;/br&gt;"</span>;
+    txt+=<span style="color: #2d9574;">"div &#39640;&#24230;&#65292;&#21253;&#21547;&#20869;&#36793;&#36317;: "</span> + $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #2d9574;">)</span>.innerHeight<span style="color: #2d9574;">()</span>;
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #2d9574;">)</span>.html<span style="color: #2d9574;">(</span>txt<span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf4b4a10" class="outline-3">
+<h3 id="orgf4b4a10"><span class="section-number-3">3.41</span> jQuery outerWidth() 和 outerHeight() 方法</h3>
+<div class="outline-text-3" id="text-3-41">
+<p>
+outerWidth() 方法返回元素的宽度（包括外边距和边框）。outerHeight()
+方法返回元素的高度（包括外边距和边框）。
+</p>
+
+<p>
+下面的例子返回指定的 <code>&lt;div&gt;</code> 元素的 outer-width/height：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  <span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">txt</span>=<span style="color: #2d9574;">""</span>;
+  txt+=<span style="color: #2d9574;">"div &#23485;&#24230;&#65292;&#21253;&#21547;&#22806;&#36793;&#36317;&#21644;&#36793;&#26694;: "</span> + $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #2d9574;">)</span>.outerWidth<span style="color: #2d9574;">()</span> + <span style="color: #2d9574;">"&lt;/br&gt;"</span>;
+  txt+=<span style="color: #2d9574;">"div &#39640;&#24230;&#65292;&#21253;&#21547;&#22806;&#36793;&#36317;&#21644;&#36793;&#26694;: "</span> + $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #2d9574;">)</span>.outerHeight<span style="color: #2d9574;">()</span>;
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #2d9574;">)</span>.html<span style="color: #2d9574;">(</span>txt<span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org06bf3bd" class="outline-2">
+<h2 id="org06bf3bd"><span class="section-number-2">4</span> jQuery 遍历</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-orge63d466" class="outline-3">
+<h3 id="orge63d466"><span class="section-number-3">4.1</span> 祖先</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+祖先是父、祖父或曾祖父等等。 通过 jQuery，您能够向上遍历 DOM
+树，以查找元素的祖先。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf7a0192" class="outline-3">
+<h3 id="orgf7a0192"><span class="section-number-3">4.2</span> 向上遍历 DOM 树</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+这些 jQuery 方法很有用，它们用于向上遍历 DOM 树：
+</p>
+
+<ul class="org-ul">
+<li>parent()</li>
+<li>parents()</li>
+<li>parentsUntil()</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org46bdb30" class="outline-3">
+<h3 id="org46bdb30"><span class="section-number-3">4.3</span> jQuery parent() 方法</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+parent() 方法返回被选元素的直接父元素。 该方法只会向上一级对 DOM
+树进行遍历。 下面的例子返回每个 元素的的直接父元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"span"</span><span style="color: #2d9574;">)</span>.parent<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org13bd6cf" class="outline-3">
+<h3 id="org13bd6cf"><span class="section-number-3">4.4</span> jQuery parents() 方法</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+parents() 方法返回被选元素的所有祖先元素，它一路向上直到文档的根元素 (
+</p>
+
+<div class="HTML">
+<p>
+&lt;html&gt;
+</p>
+
+</div>
+
+<p>
+)。 下面的例子返回所有 <code>&lt;span&gt;</code> 元素的所有祖先：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"span"</span><span style="color: #2d9574;">)</span>.parents<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+您也可以使用可选参数来过滤对祖先元素的搜索。 下面的例子返回所有 <code>&lt;span&gt;</code>
+元素的所有祖先，并且它是 <code>&lt;ul&gt;</code> 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"span"</span><span style="color: #2d9574;">)</span>.parents<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"ul"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org96236ed" class="outline-3">
+<h3 id="org96236ed"><span class="section-number-3">4.5</span> jQuery parentsUntil() 方法</h3>
+<div class="outline-text-3" id="text-4-5">
+<p>
+parentsUntil() 方法返回介于两个给定元素之间的所有祖先元素。
+下面的例子返回介于 <code>&lt;span&gt;</code> 与 <code>&lt;div&gt;</code> 元素之间的所有祖先元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"span"</span><span style="color: #2d9574;">)</span>.parentsUntil<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"div"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf55b370" class="outline-3">
+<h3 id="orgf55b370"><span class="section-number-3">4.6</span> 后代</h3>
+<div class="outline-text-3" id="text-4-6">
+<p>
+后代是子、孙、曾孙等等。 通过 jQuery，您能够向下遍历 DOM
+树，以查找元素的后代。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc1a5fb8" class="outline-3">
+<h3 id="orgc1a5fb8"><span class="section-number-3">4.7</span> 向下遍历 DOM 树</h3>
+<div class="outline-text-3" id="text-4-7">
+<p>
+下面是两个用于向下遍历 DOM 树的 jQuery 方法：
+</p>
+
+<ul class="org-ul">
+<li>children()</li>
+<li>find()</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgd006aaa" class="outline-3">
+<h3 id="orgd006aaa"><span class="section-number-3">4.8</span> jQuery children() 方法</h3>
+<div class="outline-text-3" id="text-4-8">
+<p>
+children() 方法返回被选元素的所有直接子元素。 该方法只会向下一级对 DOM
+树进行遍历。 下面的例子返回每个 <code>&lt;div&gt;</code> 元素的所有直接子元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"div"</span><span style="color: #2d9574;">)</span>.children<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+您也可以使用可选参数来过滤对子元素的搜索。 下面的例子返回类名为 "1"
+的所有 <code>&lt;p&gt;</code> 元素，并且它们是 <code>&lt;div&gt;</code> 的直接子元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"div"</span><span style="color: #2d9574;">)</span>.children<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"p.1"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8bf1f9a" class="outline-3">
+<h3 id="org8bf1f9a"><span class="section-number-3">4.9</span> jQuery find() 方法</h3>
+<div class="outline-text-3" id="text-4-9">
+<p>
+find() 方法返回被选元素的后代元素，一路向下直到最后一个后代。
+下面的例子返回属于 <code>&lt;div&gt;</code> 后代的所有 <code>&lt;span&gt;</code> 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"div"</span><span style="color: #2d9574;">)</span>.find<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"span"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+下面的例子返回 <code>&lt;div&gt;</code> 的所有后代：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"div"</span><span style="color: #2d9574;">)</span>.find<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"*"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeb6b56e" class="outline-3">
+<h3 id="orgeb6b56e"><span class="section-number-3">4.10</span> 同胞</h3>
+<div class="outline-text-3" id="text-4-10">
+<p>
+同胞拥有相同的父元素。 通过 jQuery，您能够在 DOM
+树中遍历元素的同胞元素。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgefbe7bc" class="outline-3">
+<h3 id="orgefbe7bc"><span class="section-number-3">4.11</span> 在 DOM 树中水平遍历</h3>
+<div class="outline-text-3" id="text-4-11">
+<p>
+有许多有用的方法让我们在 DOM 树进行水平遍历：
+</p>
+
+<ul class="org-ul">
+<li>siblings()</li>
+<li>next()</li>
+<li>nextAll()</li>
+<li>nextUntil()</li>
+<li>prev()</li>
+<li>prevAll()</li>
+<li>prevUntil()</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgf83db05" class="outline-3">
+<h3 id="orgf83db05"><span class="section-number-3">4.12</span> jQuery siblings() 方法</h3>
+<div class="outline-text-3" id="text-4-12">
+<p>
+siblings() 方法返回被选元素的所有同胞元素。 下面的例子返回 <code>&lt;h2&gt;</code>
+的所有同胞元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"h2"</span><span style="color: #2d9574;">)</span>.siblings<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+您也可以使用可选参数来过滤对同胞元素的搜索。 下面的例子返回属于 <code>&lt;h2&gt;</code>
+的同胞元素的所有 <code>&lt;p&gt;</code> 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"h2"</span><span style="color: #2d9574;">)</span>.siblings<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf5c9f7b" class="outline-3">
+<h3 id="orgf5c9f7b"><span class="section-number-3">4.13</span> jQuery next() 方法</h3>
+<div class="outline-text-3" id="text-4-13">
+<p>
+next() 方法返回被选元素的下一个同胞元素。 该方法只返回一个元素。
+下面的例子返回 <code>&lt;h2&gt;</code> 的下一个同胞元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"h2"</span><span style="color: #2d9574;">)</span>.next<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1e48978" class="outline-3">
+<h3 id="org1e48978"><span class="section-number-3">4.14</span> jQuery nextAll() 方法</h3>
+<div class="outline-text-3" id="text-4-14">
+<p>
+nextAll() 方法返回被选元素的所有跟随的同胞元素。 下面的例子返回 <code>&lt;h2&gt;</code>
+的所有跟随的同胞元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"h2"</span><span style="color: #2d9574;">)</span>.nextAll<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7ecbaf9" class="outline-3">
+<h3 id="org7ecbaf9"><span class="section-number-3">4.15</span> jQuery nextUntil() 方法</h3>
+<div class="outline-text-3" id="text-4-15">
+<p>
+nextUntil() 方法返回介于两个给定参数之间的所有跟随的同胞元素。
+下面的例子返回介于 <code>&lt;h2&gt;</code> 与 <code>&lt;h6&gt;</code> 元素之间的所有同胞元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"h2"</span><span style="color: #2d9574;">)</span>.nextUntil<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"h6"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2eab80d" class="outline-3">
+<h3 id="org2eab80d"><span class="section-number-3">4.16</span> jQuery prev(), prevAll() &amp; prevUntil() 方法</h3>
+<div class="outline-text-3" id="text-4-16">
+<p>
+prev(), prevAll() 以及 prevUntil()
+方法的工作方式与上面的方法类似，只不过方向相反而已：它们返回的是前面的同胞元素（在
+DOM 树中沿着同胞之前元素遍历，而不是之后元素遍历）。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd2fa520" class="outline-3">
+<h3 id="orgd2fa520"><span class="section-number-3">4.17</span> 过滤</h3>
+<div class="outline-text-3" id="text-4-17">
+<p>
+缩小搜索元素的范围 三个最基本的过滤方法是：first(), last() 和
+eq()，它们允许您基于其在一组元素中的位置来选择一个特定的元素。
+其他过滤方法，比如 filter() 和 not()
+允许您选取匹配或不匹配某项指定标准的元素。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf99236e" class="outline-3">
+<h3 id="orgf99236e"><span class="section-number-3">4.18</span> jQuery first() 方法</h3>
+<div class="outline-text-3" id="text-4-18">
+<p>
+first() 方法返回被选元素的首个元素。 下面的例子选取首个 <code>&lt;div&gt;</code>
+元素内部的第一个 <code>&lt;p&gt;</code> 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"div p"</span><span style="color: #2d9574;">)</span>.first<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgefa50c7" class="outline-3">
+<h3 id="orgefa50c7"><span class="section-number-3">4.19</span> jQuery last() 方法</h3>
+<div class="outline-text-3" id="text-4-19">
+<p>
+last() 方法返回被选元素的最后一个元素。 下面的例子选择最后一个 <code>&lt;div&gt;</code>
+元素中的最后一个 <code>&lt;p&gt;</code> 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"div p"</span><span style="color: #2d9574;">)</span>.last<span style="color: #2d9574;">()</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgab59da0" class="outline-3">
+<h3 id="orgab59da0"><span class="section-number-3">4.20</span> jQuery eq() 方法</h3>
+<div class="outline-text-3" id="text-4-20">
+<p>
+eq() 方法返回被选元素中带有指定索引号的元素。 索引号从 0
+开始，因此首个元素的索引号是 0 而不是 1。下面的例子选取第二个 <code>&lt;p&gt;</code>
+元素（索引号 1）：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #2d9574;">)</span>.eq<span style="color: #2d9574;">(</span><span style="color: #a45bad;">1</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org73df22a" class="outline-3">
+<h3 id="org73df22a"><span class="section-number-3">4.21</span> jQuery filter() 方法</h3>
+<div class="outline-text-3" id="text-4-21">
+<p>
+filter()
+方法允许您规定一个标准。不匹配这个标准的元素会被从集合中删除，匹配的元素会被返回。
+下面的例子返回带有类名 "url" 的所有 <code>&lt;p&gt;</code> 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #2d9574;">)</span>.filter<span style="color: #2d9574;">(</span><span style="color: #2d9574;">".url"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb95f2c2" class="outline-3">
+<h3 id="orgb95f2c2"><span class="section-number-3">4.22</span> jQuery not() 方法</h3>
+<div class="outline-text-3" id="text-4-22">
+<p>
+not() 方法返回不匹配标准的所有元素。 提示：not() 方法与 filter() 相反。
+下面的例子返回不带有类名 "url" 的所有 <code>&lt;p&gt;</code> 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #2d9574;">)</span>.not<span style="color: #2d9574;">(</span><span style="color: #2d9574;">".url"</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb51446a" class="outline-2">
+<h2 id="orgb51446a"><span class="section-number-2">5</span> jQuery AjAx</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgf4957e6" class="outline-3">
+<h3 id="orgf4957e6"><span class="section-number-3">5.1</span> load() 方法</h3>
+<div class="outline-text-3" id="text-5-1">
+<p>
+jQuery load() 方法是简单但强大的 AJAX 方法。load()
+方法从服务器加载数据，并把返回的数据放入被选元素中。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span>selector<span style="color: #4f97d7;">)</span>.load<span style="color: #4f97d7;">(</span>URL,data,callback<span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+必需的 URL 参数规定您希望加载的 URL。 可选的 data
+参数规定与请求一同发送的查询字符串键/值对集合。 可选的 callback 参数是
+load() 方法完成后所执行的函数名称。
+这是示例文件（"demo_test.txt"）的内容：
+</p>
+
+<p>
+<code>&lt;h2&gt;</code> jQuery AJAX 是个非常棒的功能！=&lt;/h2&gt;= <code>&lt;p id</code>"p1"&gt;=
+这是段落的一些文本。=&lt;/p&gt;=
+</p>
+
+<p>
+下面的例子会把文件 "demo_test.txt" 的内容加载到指定的
+</p>
+
+<div class="HTML">
+<p>
+&lt;div&gt;
+</p>
+
+</div>
+
+<p>
+元素中：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #4f97d7;">)</span>.load<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"demo_test.txt"</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+也可以把 jQuery 选择器添加到 URL 参数。 下面的例子把 "demo_test.txt"
+文件中 id="p1" 的元素的内容，加载到指定的
+</p>
+
+<div class="HTML">
+<p>
+&lt;div&gt;
+</p>
+
+</div>
+
+<p>
+元素中：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #4f97d7;">)</span>.load<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"demo_test.txt #p1"</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+可选的 callback 参数规定当 load()
+方法完成后所要允许的回调函数。回调函数可以设置不同的参数：
+</p>
+
+<ul class="org-ul">
+<li>responseTxt - 包含调用成功时的结果内容</li>
+<li>statusTXT - 包含调用的状态</li>
+<li>xhr - 包含 XMLHttpRequest 对象</li>
+</ul>
+
+<p>
+下面的例子会在 load() 方法完成后显示一个提示框。如果 load()
+方法已成功，则显示"外部内容加载成功！"，而如果失败，则显示错误消息：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"#div1"</span><span style="color: #2d9574;">)</span>.load<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"demo_test.txt"</span>,<span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #67b11d;">(</span><span style="color: #7590db;">responseTxt</span>,<span style="color: #7590db;">statusTxt</span>,<span style="color: #7590db;">xhr</span><span style="color: #67b11d;">){</span>
+    <span style="color: #4f97d7; font-weight: bold;">if</span><span style="color: #b1951d;">(</span>statusTxt==<span style="color: #2d9574;">"success"</span><span style="color: #b1951d;">)</span>
+      alert<span style="color: #b1951d;">(</span><span style="color: #2d9574;">"&#22806;&#37096;&#20869;&#23481;&#21152;&#36733;&#25104;&#21151;!"</span><span style="color: #b1951d;">)</span>;
+    <span style="color: #4f97d7; font-weight: bold;">if</span><span style="color: #b1951d;">(</span>statusTxt==<span style="color: #2d9574;">"error"</span><span style="color: #b1951d;">)</span>
+      alert<span style="color: #b1951d;">(</span><span style="color: #2d9574;">"Error: "</span>+xhr.status+<span style="color: #2d9574;">": "</span>+xhr.statusText<span style="color: #b1951d;">)</span>;
+  <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge000041" class="outline-3">
+<h3 id="orge000041"><span class="section-number-3">5.2</span> get() 和 post() 方法</h3>
+<div class="outline-text-3" id="text-5-2">
+<p>
+jQuery get() 和 post() 方法用于通过 HTTP GET 或 POST
+请求从服务器请求数据。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfa3fa2d" class="outline-3">
+<h3 id="orgfa3fa2d"><span class="section-number-3">5.3</span> HTTP 请求：GET vs. POST</h3>
+<div class="outline-text-3" id="text-5-3">
+<p>
+两种在客户端和服务器端进行请求-响应的常用方法是：GET 和 POST。
+</p>
+
+<ul class="org-ul">
+<li>GET - 从指定的资源请求数据</li>
+<li>POST - 向指定的资源提交要处理的数据</li>
+<li>GET 基本上用于从服务器获得（取回）数据。注释：GET
+方法可能返回缓存数据。</li>
+</ul>
+
+<p>
+POST 也可用于从服务器获取数据。不过，POST
+方法不会缓存数据，并且常用于连同请求一起发送数据。 如需学习更多有关 GET
+和 POST 以及两方法差异的知识，请阅读我们的 HTTP 方法 - GET 对比 POST。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org53c5ad5" class="outline-3">
+<h3 id="org53c5ad5"><span class="section-number-3">5.4</span> jQuery $.get() 方法</h3>
+<div class="outline-text-3" id="text-5-4">
+<p>
+$.get() 方法通过 HTTP GET 请求从服务器上请求数据。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$.get<span style="color: #4f97d7;">(</span>URL,callback<span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+必需的 URL 参数规定您希望请求的 URL。 可选的 callback
+参数是请求成功后所执行的函数名。
+</p>
+
+<p>
+下面的例子使用 $.get() 方法从服务器上的一个文件中取回数据：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  $.get<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"demo_test.php"</span>,<span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #67b11d;">(</span><span style="color: #7590db;">data</span>,<span style="color: #7590db;">status</span><span style="color: #67b11d;">){</span>
+    alert<span style="color: #b1951d;">(</span><span style="color: #2d9574;">"&#25968;&#25454;: "</span> + data + <span style="color: #2d9574;">"\n &#29366;&#24577;: "</span> + status<span style="color: #b1951d;">)</span>;
+  <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+$.get() 的第一个参数是我们希望请求的 URL（"demo_test.php"）。
+第二个参数是回调函数。第一个回调参数存有被请求页面的内容，第二个回调参数存有请求的状态。
+提示： 这个 PHP 文件 ("demo_test.php") 类似这样：
+</p>
+
+<p>
+demo_test.php 文件代码:
+</p>
+
+<pre class="example">
+&lt;?php
+echo '这是个从 PHP 文件中读取的数据。';
+?&gt;
+
+jQuery $.post() 方法
+$.post() 方法通过 HTTP POST 请求向服务器提交数据。
+</pre>
+
+<p>
+语法:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$.post<span style="color: #4f97d7;">(</span>URL,data,callback<span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+必需的 URL 参数规定您希望请求的 URL。 可选的 data
+参数规定连同请求发送的数据。 可选的 callback
+参数是请求成功后所执行的函数名。 下面的例子使用 $.post()
+连同请求一起发送数据：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7;">)</span>.click<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+    $.post<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"/try/ajax/demo_test_post.php"</span>,
+    <span style="color: #67b11d;">{</span>
+        name:<span style="color: #2d9574;">"&#33756;&#40479;&#25945;&#31243;"</span>,
+        url:<span style="color: #2d9574;">"http://www.runoob.com"</span>
+    <span style="color: #67b11d;">}</span>,
+        <span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #67b11d;">(</span><span style="color: #7590db;">data</span>,<span style="color: #7590db;">status</span><span style="color: #67b11d;">){</span>
+        alert<span style="color: #b1951d;">(</span><span style="color: #2d9574;">"&#25968;&#25454;: \n"</span> + data + <span style="color: #2d9574;">"\n &#29366;&#24577;: "</span> + status<span style="color: #b1951d;">)</span>;
+    <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+$.post() 的第一个参数是我们希望请求的 URL ("demo_test_post.php")。
+然后我们连同请求（name 和 url）一起发送数据。 "demo_test_post.php" 中的
+PHP 脚本读取这些参数，对它们进行处理，然后返回结果。
+第三个参数是回调函数。第一个回调参数存有被请求页面的内容，而第二个参数存有请求的状态。
+提示： 这个 PHP 文件 ("demo_test_post.php") 类似这样：
+</p>
+
+<p>
+demo_test_post.php 文件代码:
+</p>
+
+<pre class="example">
+&lt;?php
+$name = isset($_POST['name']) ? htmlspecialchars($_POST['name']) : '';
+$url = isset($_POST['url']) ? htmlspecialchars($_POST['url']) : '';
+echo '网站名: ' . $name;
+echo "\n";
+echo 'URL 地址: ' .$url;
+?&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org71b0c90" class="outline-2">
+<h2 id="org71b0c90"><span class="section-number-2">6</span> jQuery 其他</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgc1277be" class="outline-3">
+<h3 id="orgc1277be"><span class="section-number-3">6.1</span> noConflict() 方法</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+如何在页面上同时使用 jQuery 和其他框架？
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga158e32" class="outline-3">
+<h3 id="orga158e32"><span class="section-number-3">6.2</span> jQuery 和其他 JavaScript 框架</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+正如您已经了解到的，jQuery 使用 $ 符号作为 jQuery 的简写。 如果其他
+JavaScript 框架也使用 $ 符号作为简写怎么办？ 其他一些 JavaScript
+框架包括：MooTools、Backbone、Sammy、Cappuccino、Knockout、JavaScript
+MVC、Google Web Toolkit、Google Closure、Ember、Batman 以及 Ext JS。
+其中某些框架也使用 $ 符号作为简写（就像
+jQuery），如果您在用的两种不同的框架正在使用相同的简写符号，有可能导致脚本停止运行。
+jQuery 的团队考虑到了这个问题，并实现了 noConflict() 方法。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcd42110" class="outline-3">
+<h3 id="orgcd42110"><span class="section-number-3">6.3</span> jQuery noConflict() 方法</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+noConflict() 方法会释放对 $ 标识符的控制，这样其他脚本就可以使用它了。
+当然，您仍然可以通过全名替代简写的方式来使用 jQuery：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$.noConflict<span style="color: #4f97d7;">()</span>;
+jQuery<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  jQuery<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #2d9574;">)</span>.click<span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #67b11d;">(){</span>
+    jQuery<span style="color: #b1951d;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #b1951d;">)</span>.text<span style="color: #b1951d;">(</span><span style="color: #2d9574;">"jQuery &#20173;&#28982;&#22312;&#24037;&#20316;!"</span><span style="color: #b1951d;">)</span>;
+  <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+您也可以创建自己的简写。noConflict() 可返回对 jQuery
+的引用，您可以把它存入变量，以供稍后使用。请看这个例子：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js"><span style="color: #4f97d7; font-weight: bold;">var</span> <span style="color: #7590db;">jq</span> = $.noConflict<span style="color: #4f97d7;">()</span>;
+jq<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(){</span>
+  jq<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #2d9574;">)</span>.click<span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #67b11d;">(){</span>
+    jq<span style="color: #b1951d;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #b1951d;">)</span>.text<span style="color: #b1951d;">(</span><span style="color: #2d9574;">"jQuery &#20173;&#28982;&#22312;&#24037;&#20316;!"</span><span style="color: #b1951d;">)</span>;
+  <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+
+<p>
+如果你的 jQuery 代码块使用 $
+简写，并且您不愿意改变这个快捷方式，那么您可以把 $ 符号作为变量传递给
+ready 方法。这样就可以在函数内使用 $ 符号了 - 而在函数外，依旧不得不使用
+"jQuery"：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-js">$.noConflict<span style="color: #4f97d7;">()</span>;
+jQuery<span style="color: #4f97d7;">(</span>document<span style="color: #4f97d7;">)</span>.ready<span style="color: #4f97d7;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #bc6ec5;">(</span><span style="color: #7590db;">$</span><span style="color: #bc6ec5;">){</span>
+  $<span style="color: #2d9574;">(</span><span style="color: #2d9574;">"button"</span><span style="color: #2d9574;">)</span>.click<span style="color: #2d9574;">(</span><span style="color: #4f97d7; font-weight: bold;">function</span><span style="color: #67b11d;">(){</span>
+    $<span style="color: #b1951d;">(</span><span style="color: #2d9574;">"p"</span><span style="color: #b1951d;">)</span>.text<span style="color: #b1951d;">(</span><span style="color: #2d9574;">"jQuery &#20173;&#28982;&#22312;&#24037;&#20316;!"</span><span style="color: #b1951d;">)</span>;
+  <span style="color: #67b11d;">}</span><span style="color: #2d9574;">)</span>;
+<span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd6528da" class="outline-3">
+<h3 id="orgd6528da"><span class="section-number-3">6.4</span> JSONP 教程</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+本章节我们将向大家介绍 JSONP 的知识。Jsonp(JSON with Padding) 是 json
+的一种"使用模式"，可以让网页从别的域名（网站）那获取资料，即跨域读取数据。
+为什么我们从不同的域（网站）访问数据需要一个特殊的技术(JSONP
+)呢？这是因为同源策略。 同源策略，它是由 Netscape
+提出的一个著名的安全策略，现在所有支持 JavaScript
+的浏览器都会使用这个策略。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org50ab4ca" class="outline-3">
+<h3 id="org50ab4ca"><span class="section-number-3">6.5</span> JSONP 应用</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+如客户想访问 :
+<a href="http://www.runoob.com/try/ajax/jsonp.php?jsonp=callbackFunction">http://www.runoob.com/try/ajax/jsonp.php?jsonp=callbackFunction</a>。
+假设客户期望返回 JSON 数据：["customername1","customername2"]。
+真正返回到客户端的数据显示为:
+callbackFunction(["customername1","customername2"])。
+</p>
+</div>
+
+<div id="outline-container-orge306bba" class="outline-4">
+<h4 id="orge306bba"><span class="section-number-4">6.5.1</span> 服务端文件 jsonp.php 代码为：</h4>
+<div class="outline-text-4" id="text-6-5-1">
+<p>
+jsonp.php 文件代码
+</p>
+
+<pre class="example">
+&lt;?php
+header('Content-type: application/json');
+//获取回调函数名
+$jsoncallback = htmlspecialchars($_REQUEST ['jsoncallback']);
+//json 数据
+$json_data = '["customername1","customername2"]';
+//输出 jsonp 格式的数据
+echo $jsoncallback . "(" . $json_data . ")";
+?&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd1f44a0" class="outline-4">
+<h4 id="orgd1f44a0"><span class="section-number-4">6.5.2</span> 客户端页面完整代码</h4>
+<div class="outline-text-4" id="text-6-5-2">
+<pre class="example">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta charset="utf-8"&gt;
+&lt;title&gt;JSONP 实例&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="divCustomers"&gt;&lt;/div&gt;
+&lt;script type="text/javascript"&gt;
+function callbackFunction(result, methodName)
+{
+    var html = '&lt;ul&gt;';
+    for(var i = 0; i &lt; result.length; i++)
+    {
+        html += '&lt;li&gt;' + result[i] + '&lt;/li&gt;';
+    }
+    html += '&lt;/ul&gt;';
+    document.getElementById('divCustomers').innerHTML = html;
+}
+&lt;/script&gt;
+&lt;script type="text/javascript" src="http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=callbackFunction"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga6ae8e5" class="outline-3">
+<h3 id="orga6ae8e5"><span class="section-number-3">6.6</span> jQuery 使用 JSONP</h3>
+<div class="outline-text-3" id="text-6-6">
+<p>
+以上代码可以使用 jQuery 代码实例：
+</p>
+
+<pre class="example">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;JSONP 实例&lt;/title&gt;
+    &lt;script src="http://cdn.static.runoob.com/libs/jquery/1.8.3/jquery.js"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="divCustomers"&gt;&lt;/div&gt;
+&lt;script&gt;
+$.getJSON("http://www.runoob.com/try/ajax/jsonp.php?jsoncallback=?", function(data) {
+    var html = '&lt;ul&gt;';
+    for(var i = 0; i &lt; data.length; i++)
+    {
+        html += '&lt;li&gt;' + data[i] + '&lt;/li&gt;';
+    }
+    html += '&lt;/ul&gt;';
+
+    $('#divCustomers').html(html);
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org75d0f52" class="outline-2">
+<h2 id="org75d0f52"><span class="section-number-2">7</span> References</h2>
+<div class="outline-text-2" id="text-7">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li><a href="http://www.runoob.com/">http://www.runoob.com/</a></li>
+</ul>
+</div>
+</div>

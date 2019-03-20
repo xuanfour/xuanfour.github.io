@@ -1,0 +1,1621 @@
+---
+layout: post
+title: "Bootstrap 4 学习"
+date: 2018-07-25
+categories: 程序设计
+tags:
+    - Bootstrap
+---
+
+<div id="outline-container-orgca47cc0" class="outline-2">
+<h2 id="orgca47cc0"><span class="section-number-2">1</span> Bootstrap4</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org8388ce6" class="outline-3">
+<h3 id="org8388ce6"><span class="section-number-3">1.1</span> Bootstrap4 安装使用</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+我们可以通过以下两种方式来安装 Bootstrap4：
+</p>
+
+<ul class="org-ul">
+<li>使用 Bootstrap 4 CDN。</li>
+<li>从官网 getbootstrap.com 下载 Bootstrap 4。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org646a682" class="outline-3">
+<h3 id="org646a682"><span class="section-number-3">1.2</span> Bootstrap 4 CDN</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+国内推荐使用 BootCDN 上的库：
+</p>
+
+<p>
+Bootstrap4 CDN
+</p>
+
+<pre class="example">
+&lt;!-- 官方 --&gt;
+&lt;!-- CSS only --&gt;
+&lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"&gt;
+
+&lt;!-- JS, Popper.js, and jQuery --&gt;
+&lt;script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"&gt;&lt;/script&gt;
+
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"&gt;&lt;/script&gt;
+
+&lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"&gt;&lt;/script&gt;
+
+&lt;!-- 国内推荐 --&gt;
+&lt;!-- 新 Bootstrap4 核心 CSS 文件 --&gt;
+&lt;link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css"&gt;
+
+&lt;!-- jQuery 文件。务必在 bootstrap.min.js 之前引入 --&gt;
+&lt;script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- popper.min.js 用于弹窗、提示、下拉菜单 --&gt;
+&lt;script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- 最新的 Bootstrap4 核心 JavaScript 文件 --&gt;
+&lt;script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"&gt;&lt;/script&gt;
+</pre>
+
+<p>
+此外，你还可以使用以下的 CDN 服务：
+</p>
+
+<ul class="org-ul">
+<li>国内推荐使用 : <a href="https://www.staticfile.org/">https://www.staticfile.org/</a></li>
+<li>国际推荐使用：<a href="https://cdnjs.com/">https://cdnjs.com/</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org72ff47e" class="outline-3">
+<h3 id="org72ff47e"><span class="section-number-3">1.3</span> 样例模版</h3>
+<div class="outline-text-3" id="text-1-3">
+<pre class="example">
+&lt;!doctype html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;!-- Required meta tags --&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;
+
+    &lt;!-- Bootstrap CSS --&gt;
+    &lt;link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"&gt;
+
+    &lt;title&gt;Hello, world!&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, world!&lt;/h1&gt;
+
+    &lt;!-- Optional JavaScript --&gt;
+    &lt;!-- jQuery first, then Popper.js, then Bootstrap JS --&gt;
+    &lt;script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"&gt;&lt;/script&gt;
+    &lt;script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"&gt;&lt;/script&gt;
+    &lt;script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"&gt;&lt;/script&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org7f647e5" class="outline-3">
+<h3 id="org7f647e5"><span class="section-number-3">1.4</span> 下载 Bootstrap 4</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+你可以去官网 <a href="https://getbootstrap.com/">https://getbootstrap.com/</a> 下载 Bootstrap4 资源库。
+</p>
+
+<p>
+注：此外你还可以通过包的管理工具 npm、gem、composer 等来安装：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">npm install bootstrap
+gem install bootstrap -v <span style="color: #a45bad;">4.1.3</span>
+composer require twbs/bootstrap:4.1.3
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org08e388a" class="outline-3">
+<h3 id="org08e388a"><span class="section-number-3">1.5</span> 创建第一个 Bootstrap 4 页面</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-org6da5524" class="outline-4">
+<h4 id="org6da5524"><span class="section-number-4">1.5.1</span> 添加 HTML5 doctype</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+Bootstrap 要求使用 HTML5 文件类型，所以需要添加 HTML5 doctype 声明。
+HTML5 doctype 在文档头部声明，并设置对应编码:
+</p>
+
+<pre class="example">
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+  &lt;/head&gt;
+&lt;/html&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org76051a3" class="outline-4">
+<h4 id="org76051a3"><span class="section-number-4">1.5.2</span> 移动设备优先</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<p>
+为了让 Bootstrap
+开发的网站对移动设备友好，确保适当的绘制和触屏缩放，需要在网页的 head
+之中添加 viewport meta 标签，如下所示：
+</p>
+
+<pre class="example">
+&lt;meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"&gt;
+</pre>
+
+<ul class="org-ul">
+<li>width=device-width 表示宽度是设备屏幕的宽度。</li>
+<li>initial-scale=1 表示初始的缩放比例。</li>
+<li>shrink-to-fit=no 自动适应手机屏幕的宽度。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7886c6e" class="outline-4">
+<h4 id="org7886c6e"><span class="section-number-4">1.5.3</span> 容器类</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<p>
+Bootstrap 4 需要一个容器元素来包裹网站的内容。
+我们可以使用以下两个容器类：
+</p>
+
+<ul class="org-ul">
+<li>.container 类用于固定宽度并支持响应式布局的容器。</li>
+<li>.container-fluid 类用于 100% 宽度，占据全部视口（viewport）的容器。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org984b915" class="outline-4">
+<h4 id="org984b915"><span class="section-number-4">1.5.4</span> 两个 Bootstrap 4 页面</h4>
+<div class="outline-text-4" id="text-1-5-4">
+<p>
+Bootstrap4 .container 实例
+</p>
+
+<pre class="example">
+&lt;div class="container"&gt;
+  &lt;h1&gt;我的第一个 Bootstrap 页面&lt;/h1&gt;
+  &lt;p&gt;这是一些文本。&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+
+<p>
+以下实例展示了占据全部视口（viewport）的容器。Bootstrap4
+.container-fluid 实例
+</p>
+
+<pre class="example">
+&lt;div class="container-fluid"&gt;
+  &lt;h1&gt;我的第一个 Bootstrap 页面&lt;/h1&gt;
+  &lt;p&gt;使用了 .container-fluid，100% 宽度，占据全部视口（viewport）的容器。&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd5004ff" class="outline-3">
+<h3 id="orgd5004ff"><span class="section-number-3">1.6</span> Bootstrap4 网格系统</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+Bootstrap
+提供了一套响应式、移动设备优先的流式网格系统，随着屏幕或视口（viewport）尺寸的增加，系统会自动分为最多
+12 列。 我们也可以根据自己的需要，定义列数：Bootstrap 4
+的网格系统是响应式的，列会根据屏幕大小自动重新排列。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc200113" class="outline-3">
+<h3 id="orgc200113"><span class="section-number-3">1.7</span> 网格类</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+Bootstrap 4 网格系统有以下 5 个类:
+</p>
+
+<ul class="org-ul">
+<li>.col- 针对所有设备</li>
+<li>.col-sm- 平板 - 屏幕宽度等于或大于 576px</li>
+<li>.col-md- 桌面显示器 - 屏幕宽度等于或大于 768px)</li>
+<li>.col-lg- 大桌面显示器 - 屏幕宽度等于或大于 992px)</li>
+<li>.col-xl- 超大桌面显示器 - 屏幕宽度等于或大于 1200px)</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org3cdea33" class="outline-3">
+<h3 id="org3cdea33"><span class="section-number-3">1.8</span> 网格系统规则</h3>
+<div class="outline-text-3" id="text-1-8">
+</div>
+<div id="outline-container-org5b064f6" class="outline-4">
+<h4 id="org5b064f6"><span class="section-number-4">1.8.1</span> Bootstrap4 网格系统规则:</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<ul class="org-ul">
+<li>网格每一行需要放在设置了 .container (固定宽度) 或 .container-fluid
+(全屏宽度) 类的容器中，这样就可以自动设置一些外边距与内边距。</li>
+<li>使用行来创建水平的列组。</li>
+<li>内容需要放置在列中，并且只有列可以是行的直接子节点。</li>
+<li>预定义的类如 .row 和 .col-sm-4 可用于快速制作网格布局。</li>
+<li>列通过填充创建列内容之间的间隙。 这个间隙是通过 .rows
+类上的负边距设置第一行和最后一列的偏移。</li>
+<li>网格列是通过跨越指定的 12 个可用列来创建。
+例如，设置三个相等的列，需要使用用三个.col-sm-4 来设置。</li>
+<li>Bootstrap 3 和 Bootstrap 4 最大的区别在于 Bootstrap 4 现在使用
+flexbox（弹性盒子） 而不是浮动。Flexbox
+的一大优势是，没有指定宽度的网格列将自动设置为等宽与等高列 。
+如果您想了解有关 Flexbox 的更多信息，可以阅读我们的 CSS Flexbox 教程。</li>
+</ul>
+
+<p>
+下表总结了 Bootstrap 网格系统如何在不同设备上工作的：
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">超小设备 &lt;576pxn</th>
+<th scope="col" class="org-left">平板 ≥576px</th>
+<th scope="col" class="org-left">桌面显示器 ≥768px</th>
+<th scope="col" class="org-left">大桌面显示器 ≥992px</th>
+<th scope="col" class="org-left">超大桌面显示器 ≥1200px</th>
+<th scope="col" class="org-left">&#xa0;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">容器最大宽度</td>
+<td class="org-left">None(auto)</td>
+<td class="org-left">540px</td>
+<td class="org-left">720px</td>
+<td class="org-left">960px</td>
+<td class="org-left">1140px</td>
+</tr>
+
+<tr>
+<td class="org-left">类前缀</td>
+<td class="org-left">.col-</td>
+<td class="org-left">.col-sm-</td>
+<td class="org-left">.col-md-</td>
+<td class="org-left">.col-lg-</td>
+<td class="org-left">.col-xl-</td>
+</tr>
+
+<tr>
+<td class="org-left">列数量和</td>
+<td class="org-left">12</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">间隙宽度</td>
+<td class="org-left">30px（一个列的每边分别 15px）</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">可嵌套</td>
+<td class="org-left">Yes</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">列排序</td>
+<td class="org-left">Yes</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+
+<p>
+以下各个类可以一起使用，从而创建更灵活的页面布局。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0e33bc5" class="outline-3">
+<h3 id="org0e33bc5"><span class="section-number-3">1.9</span> Bootstrap 4 网格的基本结构</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+以下代码为 Bootstrap 4 网格的基本结构: Bootstrap4 网格基本结构
+</p>
+
+<pre class="example">
+&lt;!-- 第一个例子：控制列的宽度及在不同的设备上如何显示 --&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col-*-*"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col-*-*"&gt;&lt;/div&gt;
+  &lt;div class="col-*-*"&gt;&lt;/div&gt;
+  &lt;div class="col-*-*"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 第二个例子：或让 Bootstrap 者自动处理布局 --&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col"&gt;&lt;/div&gt;
+  &lt;div class="col"&gt;&lt;/div&gt;
+  &lt;div class="col"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<p>
+第一个例子：创建一行(<code>&lt;div class</code>"row"&gt;=)。然后， 添加是需要的列(
+.col-<i>-</i> 类中设置)。 第一个星号 (<i>) 表示响应的设备: sm, md, lg 或 xl,
+第二个星号 (</i>) 表示一个数字, 同一行的数字相加为 12。
+</p>
+
+<p>
+第二个例子: 不在每个 col 上添加数字，让 bootstrap
+自动处理布局，同一行的每个列宽度相等： 两个 "col" ，每个就为 50%
+的宽度。三个 "col"每个就为 33.33% 的宽度，四个 "col"每个就为 25%
+的宽度，以此类推。同样，你可以使用 .col-sm|md|lg|xl 来设置列的响应规则。
+</p>
+
+<p>
+接下来我们可以看看实例。
+</p>
+
+<p>
+创建相等宽度的列，Bootstrap 自动布局
+</p>
+
+<pre class="example">
+&lt;div class="row"&gt;
+  &lt;div class="col"&gt;.col&lt;/div&gt;
+  &lt;div class="col"&gt;.col&lt;/div&gt;
+  &lt;div class="col"&gt;.col&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+
+<p>
+等宽响应式列 以下实例演示了如何在平板及更大屏幕上创建等宽度的响应式列。
+在移动设备上，即屏幕宽度小于 576px 时，四个列将会上下堆叠排版:
+</p>
+
+<pre class="example">
+&lt;div class="col-sm-3"&gt;.col-sm-3&lt;/div&gt;
+&lt;div class="col-sm-3"&gt;.col-sm-3&lt;/div&gt;
+&lt;div class="col-sm-3"&gt;.col-sm-3&lt;/div&gt;
+&lt;div class="col-sm-3"&gt;.col-sm-3&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org64b71a4" class="outline-3">
+<h3 id="org64b71a4"><span class="section-number-3">1.10</span> 不等宽响应式列</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+以下实例演示了在平板及更大屏幕上创建不等宽度的响应式列。
+在移动设备上，即屏幕宽度小于 576px 时，四个列将会上下堆叠排版:
+</p>
+
+<pre class="example">
+&lt;div class="row"&gt;
+  &lt;div class="col-sm-4"&gt;.col-sm-4&lt;/div&gt;
+  &lt;div class="col-sm-8"&gt;.col-sm-8&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org66ac84e" class="outline-3">
+<h3 id="org66ac84e"><span class="section-number-3">1.11</span> 平板和桌面端</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+以下实例演示了在桌面设备的显示器上两个列的宽度各占
+50%，如果在平板端则左边的宽度为 25%，右边的宽度为 75%,
+在移动手机等小型设备上会堆叠显示。
+</p>
+
+<pre class="example">
+&lt;div class="container-fluid"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-sm-3 col-md-6"&gt;
+      &lt;p&gt;RUNOOB&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="col-sm-9 col-md-6"&gt;
+      &lt;p&gt;菜鸟教程&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb20be20" class="outline-3">
+<h3 id="orgb20be20"><span class="section-number-3">1.12</span> 平板、桌面、大桌面显示器、超大桌面显示器</h3>
+<div class="outline-text-3" id="text-1-12">
+<p>
+以下实例在平板、桌面、大桌面显示器、超大桌面显示器的宽度比例为分别为：25%/75%、50%/50%、33.33%/66.67%、16.67/83.33%,
+在移动手机等小型设备上会堆叠显示。
+</p>
+
+<pre class="example">
+&lt;div class="container-fluid"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-sm-3 col-md-6 col-lg-4 col-xl-2"&gt;
+      &lt;p&gt;RUNOOB&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="col-sm-9 col-md-6 col-lg-8 col-xl-10"&gt;
+      &lt;p&gt;菜鸟教程&lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4b81715" class="outline-3">
+<h3 id="org4b81715"><span class="section-number-3">1.13</span> 偏移列</h3>
+<div class="outline-text-3" id="text-1-13">
+<p>
+偏移列通过 offset-<i>-</i> 类来设置。第一个星号( * )可以是
+sm、md、lg、xl，表示屏幕设备类型，第二个星号( * )可以是 1 到 11 的数字。
+为了在大屏幕显示器上使用偏移，请使用 .offset-md-*
+类。这些类会把一个列的左外边距（margin）增加 * 列，其中 * 范围是从 1 到
+11。 例如：.offset-md-4 是把.col-md-4 往右移了四列格。
+</p>
+
+<pre class="example">
+&lt;div class="row"&gt;
+  &lt;div class="col-md-4"&gt;.col-md-4&lt;/div&gt;
+  &lt;div class="col-md-4 offset-md-4"&gt;.col-md-4 .offset-md-4&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col-md-3 offset-md-3"&gt;.col-md-3 .offset-md-3&lt;/div&gt;
+  &lt;div class="col-md-3 offset-md-3"&gt;.col-md-3 .offset-md-3&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="row"&gt;
+  &lt;div class="col-md-6 offset-md-3"&gt;.col-md-6 .offset-md-3&lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd7f9a13" class="outline-3">
+<h3 id="orgd7f9a13"><span class="section-number-3">1.14</span> Bootstrap4 文字排版</h3>
+</div>
+
+<div id="outline-container-org593f5df" class="outline-3">
+<h3 id="org593f5df"><span class="section-number-3">1.15</span> Bootstrap 4 默认设置</h3>
+<div class="outline-text-3" id="text-1-15">
+<p>
+Bootstrap 4 默认的 font-size 为 16px, line-height 为 1.5。 默认的
+font-family 为 "Helvetica Neue", Helvetica, Arial, sans-serif。
+此外，所有的 <code>&lt;p&gt;</code> 元素 margin-top: 0、margin-bottom: 1rem (16px)。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7c1b771" class="outline-3">
+<h3 id="org7c1b771"><span class="section-number-3">1.16</span> <code>&lt;h1&gt; - &lt;h6&gt;</code></h3>
+<div class="outline-text-3" id="text-1-16">
+<p>
+Bootstrap 中定义了所有的 HTML 标题（h1 到 h6）的样式。请看下面的实例：
+</p>
+
+<pre class="example">
+&lt;div class="container"&gt;
+  &lt;h1&gt;h1 Bootstrap 标题 (2.5rem = 40px)&lt;/h1&gt;
+  &lt;h2&gt;h2 Bootstrap 标题 (2rem = 32px)&lt;/h2&gt;
+  &lt;h3&gt;h3 Bootstrap 标题 (1.75rem = 28px)&lt;/h3&gt;
+  &lt;h4&gt;h4 Bootstrap 标题 (1.5rem = 24px)&lt;/h4&gt;
+  &lt;h5&gt;h5 Bootstrap 标题 (1.25rem = 20px)&lt;/h5&gt;
+  &lt;h6&gt;h6 Bootstrap 标题 (1rem = 16px)&lt;/h6&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga96734f" class="outline-3">
+<h3 id="orga96734f"><span class="section-number-3">1.17</span> Display 标题类</h3>
+<div class="outline-text-3" id="text-1-17">
+<p>
+Bootstrap 还提供了四个 Display 类来控制标题的样式: .display-1,
+.display-2, .display-3, .display-4。
+</p>
+
+<pre class="example">
+&lt;div class="container"&gt;
+  &lt;h1&gt;Display 标题&lt;/h1&gt;
+  &lt;p&gt;Display 标题可以输出更大更粗的字体样式。&lt;/p&gt;
+  &lt;h1 class="display-1"&gt;Display 1&lt;/h1&gt;
+  &lt;h1 class="display-2"&gt;Display 2&lt;/h1&gt;
+  &lt;h1 class="display-3"&gt;Display 3&lt;/h1&gt;
+  &lt;h1 class="display-4"&gt;Display 4&lt;/h1&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8d45849" class="outline-3">
+<h3 id="org8d45849"><span class="section-number-3">1.18</span> <code>&lt;small&gt;</code></h3>
+<div class="outline-text-3" id="text-1-18">
+<p>
+在 Bootstrap 4 中 HTML 元素用于创建字号更小的颜色更浅的文本:
+</p>
+
+<pre class="example">
+&lt;div class="container"&gt;
+  &lt;h1&gt;更小文本标题&lt;/h1&gt;
+  &lt;p&gt;small 元素用于字号更小的颜色更浅的文本:&lt;/p&gt;
+  &lt;h1&gt;h1 标题 &lt;small&gt;副标题&lt;/small&gt;&lt;/h1&gt;
+  &lt;h2&gt;h2 标题 &lt;small&gt;副标题&lt;/small&gt;&lt;/h2&gt;
+  &lt;h3&gt;h3 标题 &lt;small&gt;副标题&lt;/small&gt;&lt;/h3&gt;
+  &lt;h4&gt;h4 标题 &lt;small&gt;副标题&lt;/small&gt;&lt;/h4&gt;
+  &lt;h5&gt;h5 标题 &lt;small&gt;副标题&lt;/small&gt;&lt;/h5&gt;
+  &lt;h6&gt;h6 标题 &lt;small&gt;副标题&lt;/small&gt;&lt;/h6&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgab812f7" class="outline-3">
+<h3 id="orgab812f7"><span class="section-number-3">1.19</span> <code>&lt;mark&gt;</code></h3>
+<div class="outline-text-3" id="text-1-19">
+<p>
+Bootstrap 4 定义 为黄色背景及有一定的内边距:
+</p>
+
+<pre class="example">
+&lt;div class="container"&gt;
+  &lt;h1&gt;高亮文本&lt;/h1&gt;
+  &lt;p&gt;使用 mark 元素来 &lt;mark&gt;高亮&lt;/mark&gt; 文本。&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgd051488" class="outline-3">
+<h3 id="orgd051488"><span class="section-number-3">1.20</span> <code>&lt;abbr&gt;</code></h3>
+<div class="outline-text-3" id="text-1-20">
+<p>
+Bootstrap 4 定义 HTML 元素的样式为显示在文本底部的一条虚线边框:
+</p>
+
+<pre class="example">
+&lt;div class="container"&gt;
+  &lt;h1&gt;Abbreviations&lt;/h1&gt;
+  &lt;p&gt;The abbr element is used to mark up an abbreviation or acronym:&lt;/p&gt;
+  &lt;p&gt;The &lt;abbr title="World Health Organization"&gt;WHO&lt;/abbr&gt; was founded in 1948.&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4a2fc4a" class="outline-3">
+<h3 id="org4a2fc4a"><span class="section-number-3">1.21</span> <code>&lt;blockquote&gt;</code></h3>
+<div class="outline-text-3" id="text-1-21">
+<p>
+对于引用的内容可以在
+</p>
+
+<div class="HTML">
+<p>
+&lt;blockquote&gt;
+</p>
+
+</div>
+
+<p>
+上添加 .blockquote 类 :
+</p>
+
+<pre class="example">
+&lt;div class="container"&gt;
+  &lt;h1&gt;Blockquotes&lt;/h1&gt;
+  &lt;p&gt;The blockquote element is used to present content from another source:&lt;/p&gt;
+  &lt;blockquote class="blockquote"&gt;
+    &lt;p&gt;For 50 years, WWF has been protecting the future of nature. The world's leading conservation organization, WWF works in 100 countries and is supported by 1.2 million members in the United States and close to 5 million globally.&lt;/p&gt;
+    &lt;footer class="blockquote-footer"&gt;From WWF's website&lt;/footer&gt;
+  &lt;/blockquote&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3c69c88" class="outline-3">
+<h3 id="org3c69c88"><span class="section-number-3">1.22</span> <code>&lt;dl&gt;</code></h3>
+<div class="outline-text-3" id="text-1-22">
+<p>
+Bootstrap 4 定义 HTML
+</p>
+
+<div class="HTML">
+<p>
+&lt;dl&gt;
+</p>
+
+</div>
+
+<p>
+元素的样式如下:
+</p>
+
+<pre class="example">
+&lt;div class="container"&gt;
+  &lt;h1&gt;Description Lists&lt;/h1&gt;
+  &lt;p&gt;The dl element indicates a description list:&lt;/p&gt;
+  &lt;dl&gt;
+    &lt;dt&gt;Coffee&lt;/dt&gt;
+    &lt;dd&gt;- black hot drink&lt;/dd&gt;
+    &lt;dt&gt;Milk&lt;/dt&gt;
+    &lt;dd&gt;- white cold drink&lt;/dd&gt;
+  &lt;/dl&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8466eea" class="outline-3">
+<h3 id="org8466eea"><span class="section-number-3">1.23</span> <code>&lt;code&gt;</code></h3>
+<div class="outline-text-3" id="text-1-23">
+<p>
+Bootstrap 4 定义 HTML 元素的样式如下:
+</p>
+
+<pre class="example">
+&lt;div class="container"&gt;
+  &lt;h1&gt;代码片段&lt;/h1&gt;
+  &lt;p&gt;可以将一些代码元素放到 code 元素里面:&lt;/p&gt;
+  &lt;p&gt;以下 HTML 元素: &lt;code&gt;span&lt;/code&gt;, &lt;code&gt;section&lt;/code&gt;, 和 &lt;code&gt;div&lt;/code&gt; 用于定义部分文档内容。&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org34a5ca3" class="outline-3">
+<h3 id="org34a5ca3"><span class="section-number-3">1.24</span> <code>&lt;kbd&gt;</code></h3>
+<div class="outline-text-3" id="text-1-24">
+<p>
+Bootstrap 4 定义 HTML 元素的样式如下:
+</p>
+
+<pre class="example">
+&lt;div class="container"&gt;
+  &lt;h1&gt;Keyboard Inputs&lt;/h1&gt;
+  &lt;p&gt;To indicate input that is typically entered via the keyboard, use the kbd element:&lt;/p&gt;
+  &lt;p&gt;Use &lt;kbd&gt;ctrl + p&lt;/kbd&gt; to open the Print dialog box.&lt;/p&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org54a9606" class="outline-3">
+<h3 id="org54a9606"><span class="section-number-3">1.25</span> <code>&lt;pre&gt;</code></h3>
+<div class="outline-text-3" id="text-1-25">
+<p>
+Bootstrap 4 定义 HTML
+</p>
+
+<div class="HTML">
+<p>
+&lt;pre&gt;
+</p>
+
+</div>
+
+<p>
+元素的样式如下:
+</p>
+
+<pre class="example">
+&lt;div class="container"&gt;
+&lt;h1&gt;Multiple Code Lines&lt;/h1&gt;
+&lt;p&gt;For multiple lines of code, use the pre element:&lt;/p&gt;
+&lt;pre&gt;
+Text in a pre element
+is displayed in a fixed-width
+font, and it preserves
+both      spaces and
+line breaks.
+&lt;/pre&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org390aaa3" class="outline-3">
+<h3 id="org390aaa3"><span class="section-number-3">1.26</span> 更多排版类</h3>
+<div class="outline-text-3" id="text-1-26">
+<p>
+下表提供了 Bootstrap4 更多排版类的实例：
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">类名</th>
+<th scope="col" class="org-left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">.font-weight-bold</td>
+<td class="org-left">加粗文本</td>
+</tr>
+
+<tr>
+<td class="org-left">.font-weight-normal</td>
+<td class="org-left">普通文本</td>
+</tr>
+
+<tr>
+<td class="org-left">.font-weight-light</td>
+<td class="org-left">更细的文本</td>
+</tr>
+
+<tr>
+<td class="org-left">.font-italic</td>
+<td class="org-left">斜体文本</td>
+</tr>
+
+<tr>
+<td class="org-left">.lead</td>
+<td class="org-left">让段落更突出</td>
+</tr>
+
+<tr>
+<td class="org-left">.small</td>
+<td class="org-left">指定更小文本 (为父元素的 85% )</td>
+</tr>
+
+<tr>
+<td class="org-left">.text-left</td>
+<td class="org-left">左对齐</td>
+</tr>
+
+<tr>
+<td class="org-left">.text-center</td>
+<td class="org-left">居中</td>
+</tr>
+
+<tr>
+<td class="org-left">.text-right</td>
+<td class="org-left">右对齐</td>
+</tr>
+
+<tr>
+<td class="org-left">.text-justify</td>
+<td class="org-left">设定文本对齐,段落中超出屏幕部分文字自动换行</td>
+</tr>
+
+<tr>
+<td class="org-left">.text-nowrap</td>
+<td class="org-left">段落中超出屏幕部分不换行</td>
+</tr>
+
+<tr>
+<td class="org-left">.text-lowercase</td>
+<td class="org-left">设定文本小写</td>
+</tr>
+
+<tr>
+<td class="org-left">.text-uppercase</td>
+<td class="org-left">设定文本大写</td>
+</tr>
+
+<tr>
+<td class="org-left">.text-capitalize</td>
+<td class="org-left">设定单词首字母大写</td>
+</tr>
+
+<tr>
+<td class="org-left">.initialism</td>
+<td class="org-left">显示在 <code>&lt;abbr&gt;</code> 元素中的文本以小号字体展示，且可以将小写字母转换为大写字母</td>
+</tr>
+
+<tr>
+<td class="org-left">.list-unstyled</td>
+<td class="org-left">移除默认的列表样式，列表项中左对齐 ( <code>&lt;ul&gt;</code> 和 <code>&lt;ol&gt;</code> 中)。 这个类仅适用于直接子列表项 (如果需要移除嵌套的列表项，你需要在嵌套的列表中使用该样式)</td>
+</tr>
+
+<tr>
+<td class="org-left">.list-inline</td>
+<td class="org-left">将所有列表项放置同一行</td>
+</tr>
+
+<tr>
+<td class="org-left">.pre-scrollable</td>
+<td class="org-left">使 <code>&lt;pre&gt;</code> 元素可滚动，代码块区域最大高度为 340px,一旦超出这个高度,就会在 Y 轴出现滚动条</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org1b5c6f9" class="outline-3">
+<h3 id="org1b5c6f9"><span class="section-number-3">1.27</span> Bootstrap4 信息提示</h3>
+<div class="outline-text-3" id="text-1-27">
+<p>
+提示框可以使用 .alert 类, 后面加上 .alert-success, .alert-info,
+.alert-warning, .alert-danger, .alert-primary, .alert-secondary,
+.alert-light 或 .alert-dark 类来实现:
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">link</th>
+<th scope="col" class="org-left">info</th>
+<th scope="col" class="org-left">color</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">alert-success</td>
+<td class="org-left">成功</td>
+<td class="org-left">绿色</td>
+</tr>
+
+<tr>
+<td class="org-left">alert-info</td>
+<td class="org-left">信息</td>
+<td class="org-left">浅蓝</td>
+</tr>
+
+<tr>
+<td class="org-left">alert-warning</td>
+<td class="org-left">警告</td>
+<td class="org-left">黄色</td>
+</tr>
+
+<tr>
+<td class="org-left">alert-danger</td>
+<td class="org-left">错误</td>
+<td class="org-left">红色</td>
+</tr>
+
+<tr>
+<td class="org-left">alert-primary</td>
+<td class="org-left">首选</td>
+<td class="org-left">深蓝</td>
+</tr>
+
+<tr>
+<td class="org-left">alert-secondary</td>
+<td class="org-left">次要</td>
+<td class="org-left">浅灰</td>
+</tr>
+
+<tr>
+<td class="org-left">alert-light</td>
+<td class="org-left">高亮</td>
+<td class="org-left">亮白</td>
+</tr>
+
+<tr>
+<td class="org-left">calert-dark</td>
+<td class="org-left">深灰</td>
+<td class="org-left">深灰</td>
+</tr>
+</tbody>
+</table>
+
+<pre class="example">
+&lt;div class="alert alert-success"&gt;
+  &lt;strong&gt;成功!&lt;/strong&gt; 指定操作成功提示信息。
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org541d737" class="outline-3">
+<h3 id="org541d737"><span class="section-number-3">1.28</span> 提示框添加链接</h3>
+<div class="outline-text-3" id="text-1-28">
+<p>
+提示框中在链接的标签上添加 alert-link 类来设置匹配提示框颜色的链接：
+</p>
+
+<pre class="example">
+&lt;div class="alert alert-success"&gt;
+  &lt;strong&gt;成功!&lt;/strong&gt; 你应该认真阅读 &lt;a href="#" class="alert-link"&gt;这条信息&lt;/a&gt;。
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org54889c5" class="outline-3">
+<h3 id="org54889c5"><span class="section-number-3">1.29</span> 关闭提示框</h3>
+<div class="outline-text-3" id="text-1-29">
+<p>
+我们可以在提示框中的 div 中添加 .alert-dismissable
+类，然后在关闭按钮的链接上添加 class="close" 和 data-dismiss="alert"
+类来设置提示框的关闭操作。
+</p>
+
+<pre class="example">
+&lt;div class="alert alert-success alert-dismissable"&gt;
+  &lt;button type="button" class="close" data-dismiss="alert"&gt;&amp;times;&lt;/button&gt;
+  &lt;strong&gt;成功!&lt;/strong&gt; 指定操作成功提示信息。
+&lt;/div&gt;
+</pre>
+
+<p>
+提示: × (×) 是 HTML 实体字符，来表示关闭操作，而不是字母 "x"。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcb311f4" class="outline-3">
+<h3 id="orgcb311f4"><span class="section-number-3">1.30</span> 提示框动画</h3>
+<div class="outline-text-3" id="text-1-30">
+<p>
+.fade 和 .show 类用于设置提示框在关闭时的淡出和淡入效果：
+</p>
+
+<pre class="example">
+&lt;div class="alert alert-danger alert-dismissable fade show"&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org759f618" class="outline-3">
+<h3 id="org759f618"><span class="section-number-3">1.31</span> Bootstrap4 按钮</h3>
+<div class="outline-text-3" id="text-1-31">
+<p>
+Bootstrap 4 提供了不同样式的按钮。
+</p>
+
+<pre class="example">
+&lt;button type="button" class="btn"&gt;基本按钮&lt;/button&gt;
+&lt;button type="button" class="btn btn-primary"&gt;主要按钮&lt;/button&gt;
+&lt;button type="button" class="btn btn-secondary"&gt;次要按钮&lt;/button&gt;
+&lt;button type="button" class="btn btn-success"&gt;成功&lt;/button&gt;
+&lt;button type="button" class="btn btn-info"&gt;信息&lt;/button&gt;
+&lt;button type="button" class="btn btn-warning"&gt;警告&lt;/button&gt;
+&lt;button type="button" class="btn btn-danger"&gt;危险&lt;/button&gt;
+&lt;button type="button" class="btn btn-dark"&gt;黑色&lt;/button&gt;
+&lt;button type="button" class="btn btn-light"&gt;浅色&lt;/button&gt;
+&lt;button type="button" class="btn btn-link"&gt;链接&lt;/button&gt;
+</pre>
+
+<p>
+按钮类可用于 <code>&lt;a&gt;</code>, <code>&lt;button&gt;</code>, 或 <code>&lt;input&gt;</code> 元素上:
+</p>
+
+<pre class="example">
+&lt;a href="#" class="btn btn-info" role="button"&gt;链接按钮&lt;/a&gt;
+&lt;button type="button" class="btn btn-info"&gt;按钮&lt;/button&gt;
+&lt;input type="button" class="btn btn-info" value="输入框按钮"&gt;
+&lt;input type="submit" class="btn btn-info" value="提交按钮"&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org914f001" class="outline-3">
+<h3 id="org914f001"><span class="section-number-3">1.32</span> 按钮设置边框</h3>
+<div class="outline-text-3" id="text-1-32">
+<pre class="example">
+&lt;button type="button" class="btn btn-outline-primary"&gt;主要按钮&lt;/button&gt;
+&lt;button type="button" class="btn btn-outline-secondary"&gt;次要按钮&lt;/button&gt;
+&lt;button type="button" class="btn btn-outline-success"&gt;成功&lt;/button&gt;
+&lt;button type="button" class="btn btn-outline-info"&gt;信息&lt;/button&gt;
+&lt;button type="button" class="btn btn-outline-warning"&gt;警告&lt;/button&gt;
+&lt;button type="button" class="btn btn-outline-danger"&gt;危险&lt;/button&gt;
+&lt;button type="button" class="btn btn-outline-dark"&gt;黑色&lt;/button&gt;
+&lt;button type="button" class="btn btn-outline-light text-dark"&gt;浅色&lt;/button&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3f4137c" class="outline-3">
+<h3 id="org3f4137c"><span class="section-number-3">1.33</span> 不同大小的按钮</h3>
+<div class="outline-text-3" id="text-1-33">
+<p>
+Bootstrap 4 可以设置按钮的大小：
+</p>
+
+<pre class="example">
+&lt;button type="button" class="btn btn-primary btn-lg"&gt;大号按钮&lt;/button&gt;
+&lt;button type="button" class="btn btn-primary"&gt;默认按钮&lt;/button&gt;
+&lt;button type="button" class="btn btn-primary btn-sm"&gt;小号按钮&lt;/button&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfa1c5f1" class="outline-3">
+<h3 id="orgfa1c5f1"><span class="section-number-3">1.34</span> 块级按钮</h3>
+<div class="outline-text-3" id="text-1-34">
+<p>
+通过添加 .btn-block 类可以设置块级按钮：
+</p>
+
+<pre class="example">
+&lt;button type="button" class="btn btn-primary btn-block"&gt;按钮 1&lt;/button&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb127b1e" class="outline-3">
+<h3 id="orgb127b1e"><span class="section-number-3">1.35</span> 激活和禁用的按钮</h3>
+<div class="outline-text-3" id="text-1-35">
+<p>
+按钮可设置为激活或者禁止点击的状态。
+</p>
+
+<p>
+.active 类可以设置按钮是可用的，disabled 属性可以设置按钮是不可点击的。
+注意 <code>&lt;a&gt;</code> 元素不支持 disabled 属性，你可以通过添加 .disabled
+类来禁止链接的点击。
+</p>
+
+<pre class="example">
+&lt;button type="button" class="btn btn-primary active"&gt;点击后的按钮&lt;/button&gt;
+&lt;button type="button" class="btn btn-primary" disabled&gt;禁止点击的按钮&lt;/button&gt;
+&lt;a href="#" class="btn btn-primary disabled"&gt;禁止点击的链接&lt;/a&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org694368f" class="outline-3">
+<h3 id="org694368f"><span class="section-number-3">1.36</span> Bootstrap4 分页</h3>
+<div class="outline-text-3" id="text-1-36">
+<p>
+网页开发过程，如果碰到内容过多，一般都会做分页处理。Bootstrap 4
+可以很简单的实现分页效果。 要创建一个基本的分页可以在 <code>&lt;ul&gt;</code> 元素上添加
+.pagination 类。然后在 <code>&lt;li&gt;</code> 元素上添加 .page-item 类：:
+</p>
+
+<pre class="example">
+&lt;ul class="pagination"&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;Previous&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;Next&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org6c633b2" class="outline-3">
+<h3 id="org6c633b2"><span class="section-number-3">1.37</span> 当前页页码状态</h3>
+<div class="outline-text-3" id="text-1-37">
+<p>
+当前页可以使用 .active 类来高亮显示：
+</p>
+
+<pre class="example">
+&lt;ul class="pagination"&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;Previous&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item active"&gt;&lt;a class="page-link" href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;Next&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+<p>
+不可点击的分页链接 .disabled 类可以设置分页链接不可点击:
+</p>
+
+<pre class="example">
+&lt;ul class="pagination"&gt;
+  &lt;li class="page-item disabled"&gt;&lt;a class="page-link" href="#"&gt;Previous&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;Next&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2a3f23f" class="outline-3">
+<h3 id="org2a3f23f"><span class="section-number-3">1.38</span> 分页显示大小</h3>
+<div class="outline-text-3" id="text-1-38">
+<p>
+可以将分页条目设置为不同的大小。
+</p>
+
+<p>
+.pagination-lg 类设置大字体的分页条目，.pagination-sm
+类设置小字体的分页条目:
+</p>
+
+<pre class="example">
+&lt;ul class="pagination pagination-lg"&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;Previous&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;Next&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ul class="pagination pagination-sm"&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;Previous&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;1&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;2&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;3&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="page-item"&gt;&lt;a class="page-link" href="#"&gt;Next&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+
+<p>
+面包屑导航 .breadcrumb 和 .breadcrumb-item 类用于设置面包屑导航：
+</p>
+
+<pre class="example">
+&lt;ul class="breadcrumb"&gt;
+  &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Photos&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Summer 2017&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="breadcrumb-item"&gt;&lt;a href="#"&gt;Italy&lt;/a&gt;&lt;/li&gt;
+  &lt;li class="breadcrumb-item active"&gt;Rome&lt;/li&gt;
+&lt;/ul&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org1a242b4" class="outline-3">
+<h3 id="org1a242b4"><span class="section-number-3">1.39</span> Bootstrap4 表单</h3>
+<div class="outline-text-3" id="text-1-39">
+<p>
+在本章中，我们将学习如何使用 Bootstrap 创建表单。Bootstrap
+通过一些简单的 HTML 标签和扩展的类即可创建出不同样式的表单。 表单元素
+<code>&lt;input&gt;</code>, <code>&lt;textarea&gt;</code>, 和 <code>&lt;select&gt;</code> elements 在使用 .form-control
+类的情况下，宽度都是设置为 100%。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgce9d601" class="outline-3">
+<h3 id="orgce9d601"><span class="section-number-3">1.40</span> Bootstrap4 表单布局</h3>
+<div class="outline-text-3" id="text-1-40">
+<ul class="org-ul">
+<li>堆叠表单 (全屏宽度)：垂直方向</li>
+<li>内联表单：水平方向</li>
+</ul>
+
+<p>
+Bootstrap 提供了两种类型的表单布局:
+</p>
+</div>
+</div>
+
+<div id="outline-container-org226b88d" class="outline-3">
+<h3 id="org226b88d"><span class="section-number-3">1.41</span> 堆叠表单</h3>
+<div class="outline-text-3" id="text-1-41">
+<p>
+以下实例使用两个输入框，一个复选框，一个提交按钮来创建堆叠表单：
+</p>
+
+<pre class="example">
+&lt;form&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="email"&gt;Email address:&lt;/label&gt;
+    &lt;input type="email" class="form-control" id="email"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-group"&gt;
+    &lt;label for="pwd"&gt;Password:&lt;/label&gt;
+    &lt;input type="password" class="form-control" id="pwd"&gt;
+  &lt;/div&gt;
+  &lt;div class="form-check"&gt;
+    &lt;label class="form-check-label"&gt;
+      &lt;input class="form-check-input" type="checkbox"&gt; Remember me
+    &lt;/label&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge9ce6ec" class="outline-3">
+<h3 id="orge9ce6ec"><span class="section-number-3">1.42</span> 内联表单</h3>
+<div class="outline-text-3" id="text-1-42">
+<p>
+所有内联表单中的元素都是左对齐的。 注意：在屏幕宽度小于 576px
+时为垂直堆叠，如果屏幕宽度大于等于 576px
+时表单元素才会显示在同一个水平线上。 内联表单需要在 <code>&lt;form&gt;</code> 元素上添加
+.form-inline 类。
+</p>
+
+<p>
+以下实例使用两个输入框，一个复选框，一个提交按钮来创建内联表单：
+</p>
+
+<pre class="example">
+&lt;form class="form-inline"&gt;
+  &lt;label for="email"&gt;Email address:&lt;/label&gt;
+  &lt;input type="email" class="form-control" id="email"&gt;
+  &lt;label for="pwd"&gt;Password:&lt;/label&gt;
+  &lt;input type="password" class="form-control" id="pwd"&gt;
+  &lt;div class="form-check"&gt;
+    &lt;label class="form-check-label"&gt;
+      &lt;input class="form-check-input" type="checkbox"&gt; Remember me
+    &lt;/label&gt;
+  &lt;/div&gt;
+  &lt;button type="submit" class="btn btn-primary"&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org726b32b" class="outline-3">
+<h3 id="org726b32b"><span class="section-number-3">1.43</span> Bootstrap4 表单控件</h3>
+<div class="outline-text-3" id="text-1-43">
+<p>
+Bootstrap4 支持以下表单控件：
+</p>
+
+<ul class="org-ul">
+<li>input</li>
+<li>textarea</li>
+<li>checkbox</li>
+<li>radio</li>
+<li>select</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org8e51106" class="outline-3">
+<h3 id="org8e51106"><span class="section-number-3">1.44</span> Bootstrap Input</h3>
+<div class="outline-text-3" id="text-1-44">
+<p>
+Bootstrap 支持所有的 HTML5 输入类型: text, password, datetime,
+datetime-local, date, month, time, week, number, email, url, search,
+tel, 以及 color。 注意：: 如果 input 的 type
+属性未正确声明，输入框的样式将不会显示。 以下实例使用两个 input
+元素，一个是 text，一个是 password：
+</p>
+
+<pre class="example">
+&lt;div class="form-group"&gt;
+  &lt;label for="usr"&gt;用户名:&lt;/label&gt;
+  &lt;input type="text" class="form-control" id="usr"&gt;
+&lt;/div&gt;
+&lt;div class="form-group"&gt;
+  &lt;label for="pwd"&gt;密码:&lt;/label&gt;
+  &lt;input type="password" class="form-control" id="pwd"&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4249261" class="outline-3">
+<h3 id="org4249261"><span class="section-number-3">1.45</span> Bootstrap textarea</h3>
+<div class="outline-text-3" id="text-1-45">
+<p>
+以下实例演示了 textarea 的样式。
+</p>
+
+<pre class="example">
+&lt;div class="form-group"&gt;
+  &lt;label for="comment"&gt;评论:&lt;/label&gt;
+  &lt;textarea class="form-control" rows="5" id="comment"&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org2242dd7" class="outline-3">
+<h3 id="org2242dd7"><span class="section-number-3">1.46</span> Bootstrap 复选框(checkbox)</h3>
+<div class="outline-text-3" id="text-1-46">
+<p>
+复选框用于让用户从一系列预设置的选项中进行选择，可以选一个或多个。
+以下实例包含了三个选项。最后一个是禁用的：
+</p>
+
+<pre class="example">
+&lt;div class="form-check"&gt;
+  &lt;label class="form-check-label"&gt;
+    &lt;input type="checkbox" class="form-check-input" value=""&gt;Option 1
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="form-check"&gt;
+  &lt;label class="form-check-label"&gt;
+    &lt;input type="checkbox" class="form-check-input" value=""&gt;Option 2
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="form-check disabled"&gt;
+  &lt;label class="form-check-label"&gt;
+    &lt;input type="checkbox" class="form-check-input" value="" disabled&gt;Option 3
+  &lt;/label&gt;
+&lt;/div&gt;
+</pre>
+
+<p>
+使用 .form-check-inline 类可以让选项显示在同一行上：
+</p>
+
+<pre class="example">
+&lt;div class="form-check form-check-inline"&gt;
+  &lt;label class="form-check-label"&gt;
+    &lt;input type="checkbox" class="form-check-input" value=""&gt;Option 1
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="form-check form-check-inline"&gt;
+  &lt;label class="form-check-label"&gt;
+    &lt;input type="checkbox" class="form-check-input" value=""&gt;Option 2
+  &lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="form-check form-check-inline disabled"&gt;
+  &lt;label class="form-check-label"&gt;
+    &lt;input type="checkbox" class="form-check-input" value="" disabled&gt;Option 3
+  &lt;/label&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org78982dd" class="outline-3">
+<h3 id="org78982dd"><span class="section-number-3">1.47</span> Bootstrap 单选框(Radio)</h3>
+<div class="outline-text-3" id="text-1-47">
+<p>
+复选框用于让用户从一系列预设置的选项中进行选择，只能选一个。
+以下实例包含了三个选项。最后一个是禁用的：
+</p>
+
+<pre class="example">
+&lt;div class="radio"&gt;
+  &lt;label&gt;&lt;input type="radio" name="optradio"&gt;Option 1&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="radio"&gt;
+  &lt;label&gt;&lt;input type="radio" name="optradio"&gt;Option 2&lt;/label&gt;
+&lt;/div&gt;
+&lt;div class="radio disabled"&gt;
+  &lt;label&gt;&lt;input type="radio" name="optradio" disabled&gt;Option 3&lt;/label&gt;
+&lt;/div&gt;
+</pre>
+
+<p>
+使用 .radio-inline 类可以让选项显示在同一行上：
+</p>
+
+<pre class="example">
+&lt;label class="radio-inline"&gt;&lt;input type="radio" name="optradio"&gt;Option 1&lt;/label&gt;
+&lt;label class="radio-inline"&gt;&lt;input type="radio" name="optradio"&gt;Option 2&lt;/label&gt;
+&lt;label class="radio-inline"&gt;&lt;input type="radio" name="optradio"&gt;Option 3&lt;/label&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8fb145d" class="outline-3">
+<h3 id="org8fb145d"><span class="section-number-3">1.48</span> Bootstrap select 下拉菜单</h3>
+<div class="outline-text-3" id="text-1-48">
+<p>
+当您想让用户从多个选项中进行选择，但是默认情况下只能选择一个选项时，则使用选择框。
+以下实例包含了两个下拉菜单：
+</p>
+
+<pre class="example">
+&lt;div class="form-group"&gt;
+  &lt;label for="sel1"&gt;下拉菜单:&lt;/label&gt;
+  &lt;select class="form-control" id="sel1"&gt;
+    &lt;option&gt;1&lt;/option&gt;
+    &lt;option&gt;2&lt;/option&gt;
+    &lt;option&gt;3&lt;/option&gt;
+    &lt;option&gt;4&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org4196691" class="outline-3">
+<h3 id="org4196691"><span class="section-number-3">1.49</span> Bootstrap4 轮播</h3>
+<div class="outline-text-3" id="text-1-49">
+<p>
+轮播是一个循环的幻灯片：
+</p>
+</div>
+</div>
+
+<div id="outline-container-org30a92e7" class="outline-3">
+<h3 id="org30a92e7"><span class="section-number-3">1.50</span> 如何创建轮播</h3>
+<div class="outline-text-3" id="text-1-50">
+<p>
+以下实例创建了一个简单的图片轮播效果 ：
+</p>
+
+<pre class="example">
+&lt;div id="demo" class="carousel slide" data-ride="carousel"&gt;
+
+  &lt;!-- 指示符 --&gt;
+  &lt;ul class="carousel-indicators"&gt;
+    &lt;li data-target="#demo" data-slide-to="0" class="active"&gt;&lt;/li&gt;
+    &lt;li data-target="#demo" data-slide-to="1"&gt;&lt;/li&gt;
+    &lt;li data-target="#demo" data-slide-to="2"&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;!-- 轮播图片 --&gt;
+  &lt;div class="carousel-inner"&gt;
+    &lt;div class="carousel-item active"&gt;
+      &lt;img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg"&gt;
+    &lt;/div&gt;
+    &lt;div class="carousel-item"&gt;
+      &lt;img src="https://static.runoob.com/images/mix/img_nature_wide.jpg"&gt;
+    &lt;/div&gt;
+    &lt;div class="carousel-item"&gt;
+      &lt;img src="https://static.runoob.com/images/mix/img_mountains_wide.jpg"&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;!-- 左右切换按钮 --&gt;
+  &lt;a class="carousel-control-prev" href="#demo" data-slide="prev"&gt;
+    &lt;span class="carousel-control-prev-icon"&gt;&lt;/span&gt;
+  &lt;/a&gt;
+  &lt;a class="carousel-control-next" href="#demo" data-slide="next"&gt;
+    &lt;span class="carousel-control-next-icon"&gt;&lt;/span&gt;
+  &lt;/a&gt;
+
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga09f0e1" class="outline-3">
+<h3 id="orga09f0e1"><span class="section-number-3">1.51</span> 轮播图片上添加描述</h3>
+<div class="outline-text-3" id="text-1-51">
+<p>
+在每个 <code>&lt;div class</code>"carousel-item"&gt;= 内添加
+<code>&lt;div class</code>"carousel-caption"&gt;= 来设置轮播图片的描述文本：:
+</p>
+
+<pre class="example">
+&lt;div class="carousel-item"&gt;
+  &lt;img src="https://static.runoob.com/images/mix/img_fjords_wide.jpg"&gt;
+  &lt;div class="carousel-caption"&gt;
+    &lt;h3&gt;第一张图片描述标题&lt;/h3&gt;
+    &lt;p&gt;描述文字!&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org3ac7423" class="outline-3">
+<h3 id="org3ac7423"><span class="section-number-3">1.52</span> 以上实例中使用的类说明</h3>
+<div class="outline-text-3" id="text-1-52">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">类</th>
+<th scope="col" class="org-left">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">.carousel</td>
+<td class="org-left">创建一个轮播</td>
+</tr>
+
+<tr>
+<td class="org-left">.carousel-indicators</td>
+<td class="org-left">为轮播添加一个指示符，就是轮播图底下的一个个小点，</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">轮播的过程可以显示目前是第几张图。</td>
+</tr>
+
+<tr>
+<td class="org-left">.carousel-inner</td>
+<td class="org-left">添加要切换的图片</td>
+</tr>
+
+<tr>
+<td class="org-left">.carousel-item</td>
+<td class="org-left">指定每个图片的内容</td>
+</tr>
+
+<tr>
+<td class="org-left">.carousel-control-prev</td>
+<td class="org-left">添加左侧的按钮，点击会返回上一张。</td>
+</tr>
+
+<tr>
+<td class="org-left">.carousel-control-next</td>
+<td class="org-left">添加右侧按钮，点击会切换到下一张。</td>
+</tr>
+
+<tr>
+<td class="org-left">.carousel-control-prev-icon</td>
+<td class="org-left">与 .carousel-control-prev 一起使用，设置左侧的按钮</td>
+</tr>
+
+<tr>
+<td class="org-left">.carousel-control-next-icon</td>
+<td class="org-left">与 .carousel-control-next 一起使用，设置右侧的按钮</td>
+</tr>
+
+<tr>
+<td class="org-left">.slide</td>
+<td class="org-left">切换图片的过渡和动画效果，如果你不需要这样的效果，</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">可以删除这个类。</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcdd357a" class="outline-2">
+<h2 id="orgcdd357a"><span class="section-number-2">2</span> References</h2>
+<div class="outline-text-2" id="text-2">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li><a href="http://www.runoob.com/">http://www.runoob.com/</a></li>
+</ul>
+</div>
+</div>

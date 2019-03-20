@@ -1,0 +1,1332 @@
+<p>
++begin_export html
+&#x2014;
+layout: post
+title: "Ruby 学习"
+date: 2018-09-13
+categories: 程序设计
+tags:
+</p>
+<ul class="org-ul">
+<li>Ruby</li>
+</ul>
+<p>
+&#x2014;
+#+end_export
+</p>
+
+<div id="outline-container-orgd0eab04" class="outline-2">
+<h2 id="orgd0eab04"><span class="section-number-2">1</span> 数据类型</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgc131691" class="outline-3">
+<h3 id="orgc131691"><span class="section-number-3">1.1</span> 字符串 String</h3>
+</div>
+
+<div id="outline-container-org5d1b845" class="outline-3">
+<h3 id="org5d1b845"><span class="section-number-3">1.2</span> 字符串拼接</h3>
+<div class="outline-text-3" id="text-1-2">
+<ul class="org-ul">
+<li>可以使用字符串插值 <code>"#{a} and #{b}"</code> 或 <code>String#concat</code> 或 <code>&lt;&lt;=、=+</code>
+运算符。</li>
+<li>如果不确定变量是否为 <code>nil=，推荐使用插值的形式，其他方法如果有 =nil</code>
+值，会报异常。</li>
+<li>如果明确异常可控，推荐使用 <code>concat=， =+=</code>
+方法是先复制原字符串后，在复制本字符串尾部追加。
+这种方法会吃掉大量的内存。 而 concat 方法是直接在原字符串尾部追加。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org29bde65" class="outline-3">
+<h3 id="org29bde65"><span class="section-number-3">1.3</span> 符号 Symbol</h3>
+<div class="outline-text-3" id="text-1-3">
+<ul class="org-ul">
+<li>符号可以简单看作没有约束的字符串，符号是整体的，比较的时候只比较一次，不像字符串需要每个字符去比较。</li>
+<li>符号的命名一般是字母、下划线、数字，数字不能用于首位。</li>
+</ul>
+
+<pre class="example">
+symb = :symbol
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge202676" class="outline-3">
+<h3 id="orge202676"><span class="section-number-3">1.4</span> 数组 Array</h3>
+<div class="outline-text-3" id="text-1-4">
+<pre class="example">
+arr = [0, 1, 2]
+chs = %w[a b c]
+</pre>
+
+<ul class="org-ul">
+<li>数组的索引可以是负数，=-1= 是最后一个数组项。</li>
+<li><code>%w</code> 用于创建元素为字符串的数组。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org642b46c" class="outline-3">
+<h3 id="org642b46c"><span class="section-number-3">1.5</span> 值域 Range</h3>
+<div class="outline-text-3" id="text-1-5">
+<pre class="example">
+val = 0..3
+arr = ('a'..'g').to_a
+av = arr[val]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgfa8213f" class="outline-3">
+<h3 id="orgfa8213f"><span class="section-number-3">1.6</span> 散列 Hash</h3>
+<div class="outline-text-3" id="text-1-6">
+<ul class="org-ul">
+<li>散列（Hash）本质上就是数组，只不过它的索引不局限于只能使用数字。三列的索引几乎可以使用任何对象，一般我们称之为"键值"。</li>
+<li>调用方法时，如果散列是最后一个参数，可以省略花括号。</li>
+</ul>
+
+<pre class="example">
+# 空散列
+user = { }
+# 键为 ":first_name"，值为 "Michael"
+user[:first_name] = 'Michael'
+
+# 散列的定义
+ha = { 'name' =&gt; 'Bob', 'age' =&gt; 33 }
+# 符号做键值的时候散列的定义可以使用简洁的语法
+hasym = { name: 'Bob', age: 33}
+
+# 散列迭代
+hasym.each do |key, value|
+  puts "Key #{key.inspect} has value #{value.inspect}"
+end
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org8404e46" class="outline-3">
+<h3 id="org8404e46"><span class="section-number-3">1.7</span> 块</h3>
+<div class="outline-text-3" id="text-1-7">
+<pre class="example">
+(1..5).each { |i| puts 2 * i }
+
+(1..5).each do |i|
+  puts 2 * i
+end
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org52cf7e4" class="outline-3">
+<h3 id="org52cf7e4"><span class="section-number-3">1.8</span> 类</h3>
+</div>
+
+<div id="outline-container-org79786b5" class="outline-3">
+<h3 id="org79786b5"><span class="section-number-3">1.9</span> 具名构造方法</h3>
+<div class="outline-text-3" id="text-1-9">
+<pre class="example">
+Object.new
+String.new
+Array.new
+Range.new(m, n)
+Hash.new
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orge4e8761" class="outline-3">
+<h3 id="orge4e8761"><span class="section-number-3">1.10</span> 类的初始化</h3>
+<div class="outline-text-3" id="text-1-10">
+<pre class="example">
+class User
+  attr_accessor :name, :age
+
+  def initialize(args = {})
+    @name = args[:name]
+    @age  = args[:age]
+  end
+end
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org66b580f" class="outline-3">
+<h3 id="org66b580f"><span class="section-number-3">1.11</span> 类的继承</h3>
+<div class="outline-text-3" id="text-1-11">
+<ul class="org-ul">
+<li>Ruby 的类继承：=String-&gt;Object-&gt;BasicObject=。</li>
+<li>类定义里，self 代表的是对象本身。</li>
+</ul>
+
+<pre class="example">
+class MyClass &lt; Object
+end
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgcdd8e93" class="outline-3">
+<h3 id="orgcdd8e93"><span class="section-number-3">1.12</span> 修改类</h3>
+<div class="outline-text-3" id="text-1-12">
+<pre class="example">
+class String
+  # 回文字符串返回 true
+  def palindrome?
+    self == self.reverse
+  end
+end
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaa90350" class="outline-2">
+<h2 id="orgaa90350"><span class="section-number-2">2</span> 伪变量</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+伪变量是特殊的变量，有着局部变量的外观，但行为却像常量。您不能给这些变量赋任何值。
+</p>
+
+<ul class="org-ul">
+<li>self : 当前方法的接收器对象。</li>
+<li>true : 代表 true 的值。</li>
+<li>false: 代表 false 的值。</li>
+<li>nil : 代表 undefined 的值。</li>
+<li><b>FILE</b>: 当前源文件的名称。</li>
+<li><b>LINE</b>: 当前行在源文件中的编号。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orge4a1f86" class="outline-2">
+<h2 id="orge4a1f86"><span class="section-number-2">3</span> 变量作用域</h2>
+<div class="outline-text-2" id="text-3">
+<ul class="org-ul">
+<li>常量
+：以大写字母开头。定义在类或模块内的常量可以从类或模块的内部访问，定义在类或模块外的常量可以被全局访问。常量不能定义在方法内。引用一个未初始化的常量会产生错误。对已经初始化的常量赋值会产生警告。在外部引用常量名需要使用
+=::=。</li>
+<li>全局变量：以 <code>$</code> 为前缀，对整个程序可见。未初始化的值为 <code>nil=，在使用
+  =-w</code> 选项后，会产生警告。</li>
+<li>类变量 ：以 <code>@@</code>
+为前缀，仅对定义该类变量的类及其子类可见。必须初始化后才能在方法定义中使用。在使用
+<code>-w</code> 选项后，重载类变量会产生警告。</li>
+<li>实例变量：以 <code>@</code>
+为前缀，对定义该变量的类的实例及其实例方法可见，但不可以直接被类使用。未初始化的值为
+<code>nil=，在使用 =-w</code> 选项后，会产生警告。</li>
+<li>局部变量：仅在局部代码块中可见，局部变量的作用域从
+<code>class=、=module=、=def</code> 或 <code>do</code>
+到相对应的结尾或者从左大括号到右大括号。当调用一个未初始化的局部变量时，它被解释为调用一个不带参数的方法。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org39a2101" class="outline-2">
+<h2 id="org39a2101"><span class="section-number-2">4</span> module and class</h2>
+<div class="outline-text-2" id="text-4">
+<ol class="org-ol">
+<li>module
+比较关注的是功能方面，它把方法收集在一起，组成一个特殊的上下文，通常表示一种能力，比如
+Enumerable。</li>
+<li>class
+就是我们所理解的经典的类，它可以创建实例对象，包含实例变量和类变量，一般通过对象来与外界交流。</li>
+</ol>
+
+<p>
+class 和 module 很相似，类只不过是增加强了 module，它比 module
+多了三个方法：new()、allocate()和 superclass()。
+</p>
+
+<p>
+class 扩展 module 时用的两种方法：include 和
+extend，当然它们是有区别的。
+</p>
+
+<ul class="org-ul">
+<li>include 包含一个 module 时，把它的实例方法和变量变成了 class
+的实例方法和变量，这样类的祖先链中会出现这个 module。</li>
+<li>extend 扩展一个 module 时，会把它的实例方法作为类方法加入到
+class，并且祖先链里不会出现这个 module。</li>
+<li>可以通过 <code>extend self</code>
+的方式暴露本模块的实例方，多混合时慎用。还可以通过匿名形式
+<code>extend Module.new { def hello; 'hello'; end}</code> 的形式处理，避免
+<code>include</code> 后的污染。</li>
+<li>module 中定义的静态方法只能通过模块名引用，通过 <code>extend self</code>
+暴露的可以被类 =extend=、=include=。</li>
+<li>通过 <code>extend=、=include</code> 引用的模块，不能嵌套引用。</li>
+<li>通过 <code>extend</code> 引用的多个模块，数据独立，相互之间不能互通。</li>
+<li>通过 <code>A::B</code> 的形式定义模块时，左边的 <code>A</code> 需要提前定义。</li>
+</ul>
+
+<p>
+所有的类都继承自 object 类，object 类又继承 basicobject 类，basicobject
+它是一个白板类。object 类是 ruby
+类和对象默认的根类，它的方法在所有子类中可用，它包含了 kernel 内核。
+</p>
+
+<p>
+class 通常都是逻辑完整的，甚至能在现实世界中找到对应物，而对 module
+来说却很难是逻辑完整的，因为 module
+只能描述一个特殊的上下文，而这个上下文通常无法组成一个完整的对象，需要被找一个宿主，而这个宿主有可能是
+class，也有可能是 module。
+</p>
+
+<p>
+需要用于做命名空间或用于 mixin 的时候用 module, 其他时候用 class。 当
+class 中或多个 class 中有重复代码需要抽象出来时，可以使用 module。
+</p>
+
+<p>
+更容易解耦，继承哪个类，只能选一个，但具体要 include 哪几个 module
+可以根据不同需求选择不同的 module. 有了 autoload 更加能优化性能。
+可以考虑先用 class 去写代码， 当多个 class 的代码逻辑相似的时候，
+可以考虑用基类/继承来提取相似的逻辑。当继承无法实现提取的时候，
+比如有时候，两个 class 代码逻辑相似， 但是，两个 class 的基类不同，而
+ruby 又不支持多继承。 所以，这个时候， 就可以考虑使用 module
+来实现，相似代码的提取。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2b0c8c7" class="outline-2">
+<h2 id="org2b0c8c7"><span class="section-number-2">5</span> 单例 singleton</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+instance 方法定义在 Singleton
+这个模块里，运行时将这个模块引入，类就可以访问 Singleton 中的 instance
+方法。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7;">require</span> <span style="color: #2d9574;">'singleton'</span>
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Logger</span>
+  <span style="color: #4f97d7;">include</span> <span style="color: #ce537a; font-weight: bold;">Singleton</span>
+
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org98d5ea8" class="outline-2">
+<h2 id="org98d5ea8"><span class="section-number-2">6</span> <code>self</code> 说明</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li><code>self</code> 在 <code>class</code> 内, 代表当前类。</li>
+<li><code>self</code> 在 <code>class &lt;&lt; self</code> 内,
+代表当前类，此范围内定义为类方法和类变量。</li>
+<li><code>self</code> 在 <code>def self.class_method</code> 内, 代表当前类。</li>
+<li><code>self</code> 在 <code>def instance_method</code> 内, 代表当前类的实例。</li>
+<li><code>extend self</code> 在 <code>module</code> 内, 模块方法不能直接调用，通过 <code>extend self</code>
+让实例方法同时为类方法，可以直接使用模块方法，如果被 <code>include</code> 到
+<code>class</code> 中，依然还是类的实例方法。</li>
+</ul>
+</div>
+
+<div id="outline-container-org5fee5b6" class="outline-3">
+<h3 id="org5fee5b6"><span class="section-number-3">6.1</span> <code>self</code> 和 <code>@</code> 使用区别</h3>
+<div class="outline-text-3" id="text-6-1">
+<ul class="org-ul">
+<li>通过 <code>attr_accessor :val</code> 定义实例变量，会创建实例变量
+<code>val=，并在构造函数中对它初始化，同时创建读方法 =val</code> 和写方法 <code>val=</code>
+的变量访问器。外部可以直接通过实例对象的变量访问器来访问变量。在类的方法内访问可以使用
+<code>@val</code> 访问，也可以使用 <code>self.val</code> 访问实例方法。</li>
+<li>通过 <code>@</code>
+定义实例变量，外部不能直接访问，只能通过定义的方法访问。在类的方法内访问需要加
+<code>@</code> 符号。</li>
+<li>类的实例变量不一定先要在构造函数中定义和初始化。
+可以在类的任意方法中定义和使用，使用前也不需要初始化。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgef2678b" class="outline-3">
+<h3 id="orgef2678b"><span class="section-number-3">6.2</span> 注意</h3>
+<div class="outline-text-3" id="text-6-2">
+<ul class="org-ul">
+<li>左值不要省略 <code>self</code> 或 =@=。</li>
+<li><code>self.</code>
+前缀默认调用方法。没有前缀的同名的变量会以较高的优先级覆盖掉同名的方法，可以通过在方法调用时显式添加括号或者在调用方法前显式添加
+<code>self</code> 作为方法接收对象。</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge746f66" class="outline-2">
+<h2 id="orge746f66"><span class="section-number-2">7</span> 方法</h2>
+<div class="outline-text-2" id="text-7">
+<ul class="org-ul">
+<li>方法后缀感叹号，表示会修改对象的值。</li>
+</ul>
+</div>
+
+<div id="outline-container-org24f6edc" class="outline-3">
+<h3 id="org24f6edc"><span class="section-number-3">7.1</span> 方法参数</h3>
+</div>
+
+<div id="outline-container-orgd926eef" class="outline-3">
+<h3 id="orgd926eef"><span class="section-number-3">7.2</span> 可变参数数组</h3>
+<div class="outline-text-3" id="text-7-2">
+<p>
+所有不确定的参数都被作为数组赋值给变量 <code>args=，=*args</code>
+这种形式的参数，只能在方法定义的参数列表中出现一次。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #4f97d7;">(</span>first, *args, last<span style="color: #4f97d7;">)</span>
+  <span style="color: #4f97d7;">[</span>first, args, last<span style="color: #4f97d7;">]</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #4f97d7;">p</span> foo<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">5</span><span style="color: #4f97d7;">)</span>   <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [1, [2, 3, 4], 5]</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4210d9b" class="outline-3">
+<h3 id="org4210d9b"><span class="section-number-3">7.3</span> 符号散列参数</h3>
+<div class="outline-text-3" id="text-7-3">
+<p>
+符号参数在 Ruby 2.0
+中定义。可以使用符号将参数名与参数值成对地传给方法内部使用，设置默认值后不用关心参数个数和参数调用顺序。符号参数可以与普通参数搭配使用。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #4f97d7;">(</span>arg, <span style="color: #a45bad;">x:</span> <span style="color: #a45bad;">0</span>, <span style="color: #a45bad;">y:</span> <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">z:</span> <span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>
+  <span style="color: #4f97d7;">[</span>arg, x, y, z<span style="color: #4f97d7;">]</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2353037" class="outline-3">
+<h3 id="org2353037"><span class="section-number-3">7.4</span> 可变参数符号散列</h3>
+<div class="outline-text-3" id="text-7-4">
+<p>
+可以使用 <code>options = {}</code> 的形式定义不确定的散列参数，但更推荐采用 Ruby
+2.0 中定义的参数使用 <code>*变量名</code>
+的形式，可以将参数列表以外的关键字参数以散列形式保存。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">x:</span> <span style="color: #a45bad;">0</span>, <span style="color: #a45bad;">y:</span> <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">z:</span> <span style="color: #a45bad;">2</span>, *args<span style="color: #4f97d7;">)</span>
+  <span style="color: #4f97d7;">[</span>x, y, z, args<span style="color: #4f97d7;">]</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">bar</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">x:</span> <span style="color: #a45bad;">0</span>, <span style="color: #a45bad;">y:</span> <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">z:</span> <span style="color: #a45bad;">2</span>, options = <span style="color: #bc6ec5;">{}</span><span style="color: #4f97d7;">)</span>
+  <span style="color: #4f97d7;">[</span>x, y, z, options<span style="color: #4f97d7;">]</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+foo<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">z:</span> <span style="color: #a45bad;">11</span>, <span style="color: #a45bad;">y:</span> <span style="color: #a45bad;">12</span>, <span style="color: #a45bad;">x:</span> <span style="color: #a45bad;">13</span><span style="color: #4f97d7;">)</span>                  <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [13, 12, 11, {}]</span>
+foo<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">z:</span> <span style="color: #a45bad;">11</span>, <span style="color: #a45bad;">y:</span> <span style="color: #a45bad;">12</span>, <span style="color: #a45bad;">x:</span> <span style="color: #a45bad;">13</span>, <span style="color: #a45bad;">a:</span> <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">b:</span> <span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>      <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [13, 12, 11, {:a=&gt;1, :b=&gt;2}]</span>
+bar<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">z:</span> <span style="color: #a45bad;">11</span>, <span style="color: #a45bad;">y:</span> <span style="color: #a45bad;">12</span>, <span style="color: #a45bad;">x:</span> <span style="color: #a45bad;">13</span><span style="color: #4f97d7;">)</span>                  <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [13, 12, 11, {}]</span>
+bar<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">z:</span> <span style="color: #a45bad;">11</span>, <span style="color: #a45bad;">y:</span> <span style="color: #a45bad;">12</span>, <span style="color: #a45bad;">x:</span> <span style="color: #a45bad;">13</span>, <span style="color: #a45bad;">a:</span> <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">b:</span> <span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>      <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [13, 12, 11, {:a=&gt;1, :b=&gt;2}]</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd60df17" class="outline-3">
+<h3 id="orgd60df17"><span class="section-number-3">7.5</span> 方法调用</h3>
+</div>
+
+<div id="outline-container-org7656ea7" class="outline-3">
+<h3 id="org7656ea7"><span class="section-number-3">7.6</span> 数组分解为参数</h3>
+<div class="outline-text-3" id="text-7-6">
+<p>
+调用方法是，如果以 <code>*数组</code>
+的形式指定参数，这时传递给方法的不是数组本身，而是数组的各元素被按照顺序传递给方法。但需要注意的是，元素个数必须和方法定义的参数个数一致。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #4f97d7;">(</span>a, b, c<span style="color: #4f97d7;">)</span>
+  a + b + c
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+args = <span style="color: #4f97d7;">[</span><span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span><span style="color: #4f97d7;">]</span>
+<span style="color: #4f97d7;">p</span> foo<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span>, *agrs<span style="color: #4f97d7;">)</span>   <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 6</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdfea2ef" class="outline-3">
+<h3 id="orgdfea2ef"><span class="section-number-3">7.7</span> 把散列作为参数传递</h3>
+<div class="outline-text-3" id="text-7-7">
+<p>
+散列的字面量是 <code>{}=，将散列的字面量作为最后一个参数传递给方法时可以省略
+={}=。可以表示一组散列参数或其他类型参数，和参数前面有 =*</code>
+双星号定义的区别是定义不明确，可以接收任意参数，而双星号定义的参数明确为散列参数。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #4f97d7;">(</span>arg1, arg2<span style="color: #4f97d7;">)</span>
+  <span style="color: #4f97d7;">[</span>arg1, arg2<span style="color: #4f97d7;">]</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #4f97d7;">p</span> foo<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">100</span>, <span style="color: #a45bad;">a:</span> <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">b:</span> <span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>   <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [100, {:a=&gt;1, :b=&gt;2}]</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org09f5d25" class="outline-2">
+<h2 id="org09f5d25"><span class="section-number-2">8</span> Include、Extend、ClassMethods、Load、Require 的使用区别</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org2982986" class="outline-3">
+<h3 id="org2982986"><span class="section-number-3">8.1</span> Include</h3>
+<div class="outline-text-3" id="text-8-1">
+<p>
+当你 Include 一个模块到某个类时,
+相当于把模块中定义的方法插入到类中。它允许使用 mixin。它用来 DRY
+你的代码, 避免重复。例如, 当你有多个类时, 需要相同的函数时,
+可以把函数定义到 module 中, 进行 include。 下例假设模块 Log 和类
+TestClass 在相同的.rb 文件。如果它们存在于多个文件, 则需要使用 load 或
+require 导入文件。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">Log</span>
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">class_type</span>
+    <span style="color: #2d9574;">"This class is of type: </span><span style="color: #7590db;">#{self.class}</span><span style="color: #2d9574;">"</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">TestClass</span>
+  <span style="color: #4f97d7;">include</span> <span style="color: #ce537a; font-weight: bold;">Log</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+tc = <span style="color: #ce537a; font-weight: bold;">TestClass</span>.new.class_type
+<span style="color: #4f97d7;">puts</span> tc <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">This class is of type: TestClass</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org838aa1c" class="outline-3">
+<h3 id="org838aa1c"><span class="section-number-3">8.2</span> Extend</h3>
+<div class="outline-text-3" id="text-8-2">
+<p>
+当你使用 Extend 来替换 Include 的时候, 在类定义中使用的 extend Log
+实际是一种简写，实际运行的是 self.extend(Log)。 并不是说使用 Extend
+时就是类方法。而是需要注意到我们实际使用的是一种简写，由于是
+self(即类本身) 调用了 Extend
+这个方法，才使得添加模块中的方法被设定成了类方法。
+</p>
+
+<p>
+所以如果希望避免这一误会，可以在类定义中使用 self.extend(module, &#x2026;)
+而非 extend(module, &#x2026;)。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">Mod</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span>
+      <span style="color: #2d9574;">"Hello from Mod.\n"</span>
+    <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Klass</span>
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">hello</span>
+    <span style="color: #2d9574;">"Hello from Klass.\n"</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+k = <span style="color: #ce537a; font-weight: bold;">Klass</span>.new
+k.hello         <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; "Hello from Klass.\n"</span>
+k.extend<span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">Mod</span><span style="color: #4f97d7;">)</span>   <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; #&lt;Klass:0x401b3bc8&gt;</span>
+k.hello         <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; "Hello from Mod.\n"</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">Log</span>
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">class_type</span>
+    <span style="color: #2d9574;">"This class is of type: </span><span style="color: #7590db;">#{self.class}</span><span style="color: #2d9574;">"</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">TestClass</span>
+  <span style="color: #4f97d7;">extend</span> <span style="color: #ce537a; font-weight: bold;">Log</span>
+  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">...</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #ce537a; font-weight: bold;">TestClass</span>.new.class <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; TestClass</span>
+<span style="color: #ce537a; font-weight: bold;">TestClass</span>.class <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; Class</span>
+
+tc = <span style="color: #ce537a; font-weight: bold;">TestClass</span>.class_type
+<span style="color: #4f97d7;">puts</span> tc  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; This class is of type: Class</span>
+</pre>
+</div>
+
+<p>
+当你在类中使用 Extend 来代替 Include, 如果你实例化 TestClass 并调用
+class_type 方法时，你将会得到 NoMethodError。再一次强调, 使用 Extend
+时方法是类方法。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcbdfb0b" class="outline-3">
+<h3 id="orgcbdfb0b"><span class="section-number-3">8.3</span> 混入时回调</h3>
+<div class="outline-text-3" id="text-8-3">
+<ul class="org-ul">
+<li><code>append_features=在执行 =include</code> 或 <code>extend</code>
+语句时被调用，是真正的混入执行操作，不是回调方法，必须使用 <code>super</code>
+来执行混入操作，否则模块不会被混入。</li>
+<li><code>included</code> 的方式在被 <code>include</code> 的时候回调。</li>
+<li><code>extended</code> 的方式在被 <code>extend</code> 的时候回调。</li>
+<li><code>append_features=在 =included</code> 之前操作。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">M</span>
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #bc6ec5; font-weight: bold;">append_features</span><span style="color: #4f97d7;">(</span>parent<span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7;">puts</span> <span style="color: #2d9574;">"append_features: </span><span style="color: #7590db;">#{self}</span><span style="color: #2d9574;"> is included in </span><span style="color: #7590db;">#{parent}</span><span style="color: #2d9574;">"</span>
+    <span style="color: #4f97d7; font-weight: bold;">super</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #bc6ec5; font-weight: bold;">included</span><span style="color: #4f97d7;">(</span>base<span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7;">puts</span> <span style="color: #2d9574;">"</span><span style="color: #7590db;">#{self}</span><span style="color: #2d9574;"> is included in </span><span style="color: #7590db;">#{base}</span><span style="color: #2d9574;">"</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org927281a" class="outline-3">
+<h3 id="org927281a"><span class="section-number-3">8.4</span> ClassMethods</h3>
+<div class="outline-text-3" id="text-8-4">
+<p>
+为了将代码更好的模块化，Ruby 的提供了不同类型的混入(include 和
+extend)来实现混入类方法和实例方法。但是不管是类的类方法还是实例方法，最终都是模块的实例方法，因此，为了同时实现类方法和实例方法的混入，必须定义两个模块，然后分别
+include 和 extend，如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">ClassMethods</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">InstanceMethods</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Foo</span>
+    <span style="color: #4f97d7;">extend</span> <span style="color: #ce537a; font-weight: bold;">ClassMethods</span>
+    <span style="color: #4f97d7;">include</span> <span style="color: #ce537a; font-weight: bold;">InstanceMethods</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+可能是觉得这种方法将模块的粒度分得太开(模块的划分粒度的确是个经常遇到问题)，因此在
+Ruby 中出现了下面一种惯例，将类方法定义在一个子模块中，使用
+included()回调，这个子模块常常命名为 ClassMethods。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">Mod</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #bc6ec5; font-weight: bold;">included</span><span style="color: #4f97d7;">(</span>base<span style="color: #4f97d7;">)</span>
+        base.extend<span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">ClassMothods</span><span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">end</span>
+    <span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">ClassMethods</span>
+        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#31867;&#26041;&#27861;&#23450;&#20041;</span>
+    <span style="color: #4f97d7; font-weight: bold;">end</span>
+    <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#23454;&#20363;&#26041;&#27861;&#23450;&#20041;</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">Bar</span>
+    <span style="color: #4f97d7;">include</span> <span style="color: #ce537a; font-weight: bold;">Mod</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+上面代码将实现了在 Mod 中同时定义类方法和实例方法。需要注意的是，即使在
+ClassMethods 中定义的是类方法，也不能在方法前加
+self，否者，该方法会成为模块方法，混入时会被自动忽略了。
+</p>
+
+<p>
+当某个对象执行时 =include MyModule=，可以使用
+=extend MyModule::ClassMethods=。如果你想要一个
+=mixin=，它不仅可以为类的实例添加一些方法，而且可以添加到类本身。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">M</span>
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">mul</span>
+    <span style="color: #7590db;">@x</span> * <span style="color: #7590db;">@y</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+
+  <span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">ClassMethods</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">factory</span><span style="color: #4f97d7;">(</span>x<span style="color: #4f97d7;">)</span>
+      new<span style="color: #4f97d7;">(</span>x, <span style="color: #a45bad;">2</span>*x<span style="color: #4f97d7;">)</span>
+    <span style="color: #4f97d7; font-weight: bold;">end</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #4f97d7; font-weight: bold;">self</span>.<span style="color: #bc6ec5; font-weight: bold;">included</span><span style="color: #4f97d7;">(</span>base<span style="color: #4f97d7;">)</span>
+    base.extend <span style="color: #ce537a; font-weight: bold;">ClassMethods</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">P</span>
+  <span style="color: #4f97d7;">include</span> <span style="color: #ce537a; font-weight: bold;">M</span>
+
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">initialize</span><span style="color: #4f97d7;">(</span>x, y<span style="color: #4f97d7;">)</span>
+    <span style="color: #7590db;">@x</span> = x
+    <span style="color: #7590db;">@y</span> = y
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">sum</span>
+    <span style="color: #7590db;">@x</span> + <span style="color: #7590db;">@y</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+p1 = <span style="color: #ce537a; font-weight: bold;">P</span>.new<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span>,<span style="color: #a45bad;">15</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7;">puts</span> <span style="color: #2d9574;">"</span><span style="color: #7590db;">#{p1.sum}</span><span style="color: #2d9574;"> </span><span style="color: #7590db;">#{p1.mul}</span><span style="color: #2d9574;">"</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 20 75</span>
+
+p2=<span style="color: #ce537a; font-weight: bold;">P</span>.factory<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">10</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7;">puts</span> <span style="color: #2d9574;">"</span><span style="color: #7590db;">#{p2.sum}</span><span style="color: #2d9574;"> </span><span style="color: #7590db;">#{p2.mul}</span><span style="color: #2d9574;">"</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 30 200</span>
+
+p3=p2.factory<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">5</span><span style="color: #4f97d7;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; NoMethodError: undefined method `factory' for #&lt;P:0x00007fc5f1fe6820 @x=10, @y=20&gt;</span>
+</pre>
+</div>
+
+<p>
+可以使用 Rails 的 <code>ActiveSupport::Concern</code> 模块来便捷操作
+</p>
+
+<ul class="org-ul">
+<li>Concern 中定义的 self.extended()告诉我们，必须通过 extend 混入，而不是
+include；</li>
+<li>声明类方法的模块的名字为 ClassMethods，如果拼写错误，会直接被忽略；</li>
+<li>Concern 类为每个通过 extend 混入它的类提供了一个 included 类方法(Class
+Macro)，可以传入一个块(Block)，从而实现回调。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7;">require</span> <span style="color: #2d9574;">'active_support/concern'</span>
+
+<span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">A</span>
+  <span style="color: #4f97d7;">extend</span> <span style="color: #ce537a; font-weight: bold;">ActiveSupport</span>::<span style="color: #ce537a; font-weight: bold;">Concern</span>
+  <span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">ClassMethods</span>
+    <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">method_injected_by_a</span>
+      <span style="color: #4f97d7;">puts</span> <span style="color: #2d9574;">'method_injected_by_a'</span>
+    <span style="color: #4f97d7; font-weight: bold;">end</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #4f97d7; font-weight: bold;">module</span> <span style="color: #ce537a; font-weight: bold;">B</span>
+  <span style="color: #4f97d7;">include</span> <span style="color: #ce537a; font-weight: bold;">A</span>
+  <span style="color: #4f97d7;">extend</span> <span style="color: #ce537a; font-weight: bold;">ActiveSupport</span>::<span style="color: #ce537a; font-weight: bold;">Concern</span>
+  included <span style="color: #4f97d7; font-weight: bold;">do</span>
+    <span style="color: #4f97d7;">puts</span> <span style="color: #2d9574;">'include callback in B'</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">C</span>
+  <span style="color: #4f97d7;">include</span> <span style="color: #ce537a; font-weight: bold;">B</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #ce537a; font-weight: bold;">C</span>.method_injected_by_a
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; include callback in B</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; method_injected_by_a</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>没有手动的为模块 A 定义 self.included(base)也实现了将 A::ClassMethods
+混入为 C 类的类方法，代码变干净了；</li>
+<li>对于仍然有需要 includ 回调的需求，可以直接使用 ActiveSupport::Concern
+中定义的 included 方法来满足；</li>
+<li>在模块 A 中定义的方法 method_injected_by_a()没有变成模块 B
+的模块方法，而仍然是 C 类的类方法，依赖问题也被解决了。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org66424c7" class="outline-3">
+<h3 id="org66424c7"><span class="section-number-3">8.5</span> Require</h3>
+<div class="outline-text-3" id="text-8-5">
+<p>
+Require 方法允许你载入一个库并且会阻止你加载多次。当你使用 require
+重复加载同一个 library 时，require 方法 将会返回
+false。当你要载入的库在不同的文件时才能使用 require 方法。下例将演示
+require 的使用方式。
+</p>
+
+<p>
+文件 test_library.rb 和 test_require.rb 在同一个目录下。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">test_library.rb</span>
+<span style="color: #4f97d7;">puts</span> <span style="color: #2d9574;">" load this libary "</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">test_require.rb</span>
+<span style="color: #4f97d7;">puts</span> <span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">require</span> <span style="color: #2d9574;">'./test_library'</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7;">puts</span> <span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">require</span> <span style="color: #2d9574;">'./test_library'</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7;">puts</span> <span style="color: #4f97d7;">(</span><span style="color: #4f97d7;">require</span> <span style="color: #2d9574;">'./test_library'</span><span style="color: #4f97d7;">)</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#32467;&#26524;&#20026;</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#  </span><span style="color: #2aa1ae; background-color: #292e34;">load this libary</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">true</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">false</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">false</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3700be6" class="outline-3">
+<h3 id="org3700be6"><span class="section-number-3">8.6</span> Load</h3>
+<div class="outline-text-3" id="text-8-6">
+<p>
+Load 方法基本和 require
+方法功能一致，但它不会跟踪要导入的库是否已被加载。因此当重复使用 load
+方法时，也会载入多次。大部分情况你都会使用 require 来代替
+load。但当你需要每次都要加载时候你才会使用 load,
+例如模块的状态会频繁地变化, 你会使用 load 进行加载，获取最新的状态。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7;">puts</span> <span style="color: #4f97d7;">load</span> <span style="color: #2d9574;">"./test_library.rb"</span>  <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#22312;&#36825;&#37324;&#19981;&#33021;&#30465;&#30053; .rb, require &#21487;&#20197;&#30465;&#30053;</span>
+<span style="color: #4f97d7;">puts</span> <span style="color: #4f97d7;">load</span> <span style="color: #2d9574;">"./test_library.rb"</span>
+<span style="color: #4f97d7;">puts</span> <span style="color: #4f97d7;">load</span> <span style="color: #2d9574;">"./test_library.rb"</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#32467;&#26524;</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">load this libary</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">true</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">load this libary</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">true</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">load this libary</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">true</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org614d3b0" class="outline-3">
+<h3 id="org614d3b0"><span class="section-number-3">8.7</span> 综述</h3>
+<div class="outline-text-3" id="text-8-7">
+<ul class="org-ul">
+<li>模块方法 self.module 在混入的时候仍然被忽略。</li>
+<li>使用 extend 混入时，模块中的方法成为类的类方法，而使用 include
+混入时，模块中的方法成为类的实例方法。</li>
+<li>如果同时需要类方法和实例方法，可以使用 <code>include ClassMethods</code> 的方式。</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfa2e557" class="outline-2">
+<h2 id="orgfa2e557"><span class="section-number-2">9</span> autoload</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+使用
+autoload，只有使用到需要的常量或类文件才被加载。。我们真正需要用某个文件时才加载，而
+require 是直接加载，不管你是否会用到。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7;">autoload</span><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">:Bar</span>, <span style="color: #2d9574;">'foo/bar'</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4f36a81" class="outline-2">
+<h2 id="org4f36a81"><span class="section-number-2">10</span> map(collect)、each、select、find(detect)、inject、reject</h2>
+<div class="outline-text-2" id="text-10">
+</div>
+<div id="outline-container-orgee0af1e" class="outline-3">
+<h3 id="orgee0af1e"><span class="section-number-3">10.1</span> map（别名函数 collect）</h3>
+<div class="outline-text-3" id="text-10-1">
+<p>
+对数组中每个元素进行表达式操作，原始数组不会被改变，返回执行表达式结果的新数组
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">6</span>, <span style="color: #a45bad;">7</span>, <span style="color: #a45bad;">8</span>, <span style="color: #a45bad;">9</span>, <span style="color: #a45bad;">10</span><span style="color: #4f97d7;">]</span>.map<span style="color: #4f97d7;">{</span> |e| e * <span style="color: #a45bad;">3</span> <span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [3, 6, 9, 12, 15, 18, 21, 24, 27, 30]</span>
+
+<span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">6</span>, <span style="color: #a45bad;">7</span>, <span style="color: #a45bad;">8</span>, <span style="color: #a45bad;">9</span>, <span style="color: #a45bad;">10</span><span style="color: #4f97d7;">]</span>.collect<span style="color: #4f97d7;">{</span> |e| e == <span style="color: #a45bad;">3</span> <span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt;[false, false, true, false, false, false, false, false, false, false]</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd7977d2" class="outline-3">
+<h3 id="orgd7977d2"><span class="section-number-3">10.2</span> each</h3>
+<div class="outline-text-3" id="text-10-2">
+<p>
+常用作数组的循环操作，对循环的参数做表达式操作，原数组不会被改变，返回原始数组
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">6</span>, <span style="color: #a45bad;">7</span>, <span style="color: #a45bad;">8</span>, <span style="color: #a45bad;">9</span>, <span style="color: #a45bad;">10</span><span style="color: #4f97d7;">]</span>.each<span style="color: #4f97d7;">{</span>|e| <span style="color: #4f97d7;">print</span> e.to_s + <span style="color: #2d9574;">"###"</span><span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 1###2###3###4###5###6###7###8###9###10###=&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgff40631" class="outline-3">
+<h3 id="orgff40631"><span class="section-number-3">10.3</span> select</h3>
+<div class="outline-text-3" id="text-10-3">
+<p>
+相当于过滤器，返回符合表达式元素的新数组，如果所有都不符合表达式则返回空数组
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">6</span>, <span style="color: #a45bad;">7</span>, <span style="color: #a45bad;">8</span>, <span style="color: #a45bad;">9</span>, <span style="color: #a45bad;">10</span><span style="color: #4f97d7;">]</span>.select<span style="color: #4f97d7;">{</span> |e| e == <span style="color: #a45bad;">3</span> <span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [3]</span>
+
+<span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">6</span>, <span style="color: #a45bad;">7</span>, <span style="color: #a45bad;">8</span>, <span style="color: #a45bad;">9</span>, <span style="color: #a45bad;">10</span><span style="color: #4f97d7;">]</span>.select<span style="color: #4f97d7;">{</span> |e| e * <span style="color: #a45bad;">3</span> <span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbc50c4e" class="outline-3">
+<h3 id="orgbc50c4e"><span class="section-number-3">10.4</span> find（别名函数 detect）</h3>
+<div class="outline-text-3" id="text-10-4">
+<p>
+返回列表中第一个符合条件的元素
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">6</span>, <span style="color: #a45bad;">7</span>, <span style="color: #a45bad;">8</span>, <span style="color: #a45bad;">9</span>, <span style="color: #a45bad;">10</span><span style="color: #4f97d7;">]</span>.detect<span style="color: #4f97d7;">{</span> |e| e == <span style="color: #a45bad;">3</span> || e == <span style="color: #a45bad;">2</span> <span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt;  2</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1d2d732" class="outline-3">
+<h3 id="org1d2d732"><span class="section-number-3">10.5</span> inject</h3>
+<div class="outline-text-3" id="text-10-5">
+<p>
+在所声明的容器中注入符合条件的元素，通常为累加器作用
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">
+<span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">6</span>, <span style="color: #a45bad;">7</span>, <span style="color: #a45bad;">8</span>, <span style="color: #a45bad;">9</span>, <span style="color: #a45bad;">10</span><span style="color: #4f97d7;">]</span>.inject<span style="color: #4f97d7;">{</span> |sum, e| sum += e <span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20854;&#20013; sum &#20026;&#25152;&#22768;&#26126;&#30340;&#27880;&#20837;&#22120; &#23558;&#32047;&#21152;&#21518;&#30340;&#32467;&#26524;&#26368;&#21518;&#27880;&#20837;&#21040; sum &#20013;&#24182;&#36820;&#22238;&#27880;&#20837;&#22120;&#26368;&#21518;&#32467;&#26524;</span>
+
+<span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span>,<span style="color: #a45bad;">2</span>,<span style="color: #a45bad;">3</span>,<span style="color: #a45bad;">4</span>,<span style="color: #a45bad;">5</span>,<span style="color: #a45bad;">6</span>,<span style="color: #a45bad;">7</span>,<span style="color: #a45bad;">8</span>,<span style="color: #a45bad;">9</span>,<span style="color: #a45bad;">10</span><span style="color: #4f97d7;">]</span>.inject<span style="color: #4f97d7;">{</span> |result, elem| result + elem<span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 55</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#27492;&#26102; inject &#27809;&#26377;&#24102;&#21442;&#25968;&#65292;&#36825;&#26159; result &#20250;&#20026;&#25968;&#32452;&#20013;&#31532;&#19968;&#20010;&#20803;&#32032;&#65292;elem &#20026;&#31532;&#20108;&#20010;&#20803;&#32032;&#65292;&#20381;&#27425;&#32047;&#21152;&#36820;&#22238;&#26368;&#21518;&#32467;&#26524;</span>
+
+<span style="color: #4f97d7;">{</span><span style="color: #a45bad;">1</span> =&gt; <span style="color: #2d9574;">'a'</span>, <span style="color: #a45bad;">2</span> =&gt; <span style="color: #2d9574;">'b'</span>, <span style="color: #a45bad;">3</span> =&gt;<span style="color: #2d9574;">'c'</span><span style="color: #4f97d7;">}</span>.inject<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">{}</span><span style="color: #4f97d7;">){</span> |key, value| value <span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [3, "c"]</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org253ec42" class="outline-3">
+<h3 id="org253ec42"><span class="section-number-3">10.6</span> reject</h3>
+<div class="outline-text-3" id="text-10-6">
+<p>
+去除列表中符合条件的元素
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span>, <span style="color: #a45bad;">3</span>, <span style="color: #a45bad;">4</span>, <span style="color: #a45bad;">5</span>, <span style="color: #a45bad;">6</span>, <span style="color: #a45bad;">7</span>, <span style="color: #a45bad;">8</span>, <span style="color: #a45bad;">9</span>, <span style="color: #a45bad;">10</span><span style="color: #4f97d7;">]</span>.reject<span style="color: #4f97d7;">{</span> |e| e == <span style="color: #a45bad;">2</span> || e == <span style="color: #a45bad;">8</span> <span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [1, 3, 4, 5, 6, 7, 9, 10]</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgacf5780" class="outline-2">
+<h2 id="orgacf5780"><span class="section-number-2">11</span> 符号</h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-orgdc10134" class="outline-3">
+<h3 id="orgdc10134"><span class="section-number-3">11.1</span> <code>*</code> 号的作用</h3>
+<div class="outline-text-3" id="text-11-1">
+<p>
+星号有乘和取元素两种含义。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf690ff9" class="outline-3">
+<h3 id="orgf690ff9"><span class="section-number-3">11.2</span> 1. 有正常的算数功能</h3>
+<div class="outline-text-3" id="text-11-2">
+<ul class="org-ul">
+<li>一个星号表示乘法。</li>
+<li>两个星号表示指数计算。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #a45bad;">3</span> * <span style="color: #a45bad;">3</span>   <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 9</span>
+<span style="color: #a45bad;">3</span> * <span style="color: #a45bad;">3</span>  <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; 27</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge9ff189" class="outline-3">
+<h3 id="orge9ff189"><span class="section-number-3">11.3</span> 2. 数组 * integer</h3>
+<div class="outline-text-3" id="text-11-3">
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span>,<span style="color: #a45bad;">2</span> ,<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">3</span> , <span style="color: #2d9574;">[</span><span style="color: #a45bad;">4</span> ,<span style="color: #a45bad;">5</span><span style="color: #2d9574;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">]</span> * <span style="color: #a45bad;">2</span> <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [1,2 ,[3 , [4 ,5]] , 1,2 ,[3 , [4 ,5]]]</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd0de27b" class="outline-3">
+<h3 id="orgd0de27b"><span class="section-number-3">11.4</span> 3. 字符串 * integer</h3>
+<div class="outline-text-3" id="text-11-4">
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2d9574;">"hello"</span> * <span style="color: #a45bad;">2</span>   <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; "hellohello"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8f33a88" class="outline-3">
+<h3 id="org8f33a88"><span class="section-number-3">11.5</span> 4. 创建数组</h3>
+<div class="outline-text-3" id="text-11-5">
+<div class="org-src-container">
+<pre class="src src-ruby">*a = <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">3</span>, <span style="color: #2d9574;">"as"</span> <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [1, 3, "as"]</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcdc2b8b" class="outline-3">
+<h3 id="orgcdc2b8b"><span class="section-number-3">11.6</span> 5. 可变参数</h3>
+<div class="outline-text-3" id="text-11-6">
+<p>
+一个星号表示数组元素迭代，在方法参数定义中可变参数数组。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #4f97d7;">(</span>*args<span style="color: #4f97d7;">)</span>
+  <span style="color: #4f97d7;">p</span> args
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+a = <span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span> , <span style="color: #a45bad;">2</span><span style="color: #4f97d7;">]</span>
+foo<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>     <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [1, 2]</span>
+foo<span style="color: #4f97d7;">(</span>*a<span style="color: #4f97d7;">)</span>       <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [1, 2]</span>
+foo<span style="color: #4f97d7;">(</span>a<span style="color: #4f97d7;">)</span>        <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [[1, 2]]</span>
+foo<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">2</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">)</span>   <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [[1, 2]]</span>
+</pre>
+</div>
+
+<p>
+两个星号表示符号散列元素迭代，在方法参数定义中可变参数符号散列。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">foo</span><span style="color: #4f97d7;">(</span>*args<span style="color: #4f97d7;">)</span>
+  <span style="color: #4f97d7;">p</span> args
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+as = <span style="color: #4f97d7;">{</span><span style="color: #a45bad;">a:</span> <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">b:</span> <span style="color: #a45bad;">2</span><span style="color: #4f97d7;">}</span>
+foo<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">a:</span> <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">b:</span> <span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>    <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; {a: 1, b: 2}</span>
+foo<span style="color: #4f97d7;">(</span><span style="color: #bc6ec5;">{</span><span style="color: #a45bad;">a:</span> <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">b:</span> <span style="color: #a45bad;">2</span><span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span>  <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; {a: 1, b: 2}</span>
+foo<span style="color: #4f97d7;">(</span>as<span style="color: #4f97d7;">)</span>            <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; {a: 1, b: 2}</span>
+foo<span style="color: #4f97d7;">(</span>*as<span style="color: #4f97d7;">)</span>          <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; {a: 1, b: 2}</span>
+</pre>
+</div>
+
+<p>
+注意，只能用于符号关键字散列，不能用于其他类型关键字散列。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">h1 = <span style="color: #4f97d7;">{</span><span style="color: #a45bad;">a:</span> <span style="color: #2d9574;">'aa'</span>, <span style="color: #a45bad;">b:</span> <span style="color: #2d9574;">'bb'</span><span style="color: #4f97d7;">}</span>
+h2 = <span style="color: #4f97d7;">{</span>*h1, <span style="color: #a45bad;">c:</span> <span style="color: #2d9574;">'cc'</span><span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; {a=&gt;'aa', b=&gt;'bb', c=&gt;'cc'}</span>
+h3 = <span style="color: #4f97d7;">{</span><span style="color: #2d9574;">'a'</span> =&gt; <span style="color: #2d9574;">'aa'</span>, <span style="color: #2d9574;">'b'</span> =&gt; <span style="color: #2d9574;">'bb'</span><span style="color: #4f97d7;">}</span>
+h4 = <span style="color: #4f97d7;">{</span>*h3, <span style="color: #2d9574;">'c'</span> =&gt; <span style="color: #2d9574;">'cc'</span><span style="color: #4f97d7;">}</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; TypeError: wrong argument type String (expected Symbol)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7a06b06" class="outline-3">
+<h3 id="org7a06b06"><span class="section-number-3">11.7</span> <code>#</code> 号的作用</h3>
+<div class="outline-text-3" id="text-11-7">
+<p>
+<code>#</code> 号用来调用一个方法。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga724e2d" class="outline-3">
+<h3 id="orga724e2d"><span class="section-number-3">11.8</span> <code>%</code> 号的作用</h3>
+<div class="outline-text-3" id="text-11-8">
+<p>
+百分号表示法：
+</p>
+
+<ul class="org-ul">
+<li>%{String} 用于创建一个使用双引号括起来的字符串</li>
+<li>%Q{String} 用于创建一个使用双引号括起来的字符串</li>
+<li>%q{String} 用于创建一个使用单引号括起来的字符串</li>
+<li>%r{String} 用于创建一个正则表达式字面值</li>
+<li>%w{String}
+用于将一个字符串以空白字符切分成一个字符串数组，进行较少替换</li>
+<li>%W{String}
+用于将一个字符串以空白字符切分成一个字符串数组，进行较多替换</li>
+<li>%s{String} 用于生成一个符号对象</li>
+<li>%x{String} 用于执行 String 所代表的命令</li>
+</ul>
+
+<p>
+字符串格式化：
+</p>
+
+<ul class="org-ul">
+<li>"%05d" % 123 » "00123"</li>
+<li>"%-5s: %08x" % [ "ID", self.id ] » "ID:200e1670"</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org870d116" class="outline-3">
+<h3 id="org870d116"><span class="section-number-3">11.9</span> <code>+</code> 号的作用</h3>
+<div class="outline-text-3" id="text-11-9">
+<p>
+<code>+</code>
+号通常用于数值相加，和字符串连接，但用于字符串连接的时候需要注意，参与连接的字符串为空时会报异常，如果需要可以使用
+<code>#{a}#{b}</code> 的形式连接字符串。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4025a0a" class="outline-3">
+<h3 id="org4025a0a"><span class="section-number-3">11.10</span> <code>=&gt;</code> 号的作用</h3>
+<div class="outline-text-3" id="text-11-10">
+<p>
+<code>=&gt;</code> 是 Hash 字面量的键与值的分隔符。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">h1 = <span style="color: #4f97d7;">{</span><span style="color: #a45bad;">s:</span> <span style="color: #2d9574;">'sss'</span><span style="color: #4f97d7;">}</span>
+h2 = <span style="color: #4f97d7;">{</span><span style="color: #a45bad;">:s</span> =&gt; <span style="color: #2d9574;">'sss'</span><span style="color: #4f97d7;">}</span>
+h3 = <span style="color: #4f97d7;">{</span><span style="color: #2d9574;">'s'</span> =&gt; <span style="color: #2d9574;">'sss'</span><span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org38c2805" class="outline-3">
+<h3 id="org38c2805"><span class="section-number-3">11.11</span> <code>-&gt;</code> 号的作用</h3>
+<div class="outline-text-3" id="text-11-11">
+<p>
+<code>-&gt;</code> 定义一个 lambda 字面量。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">succ = -&gt;<span style="color: #4f97d7;">(</span>x<span style="color: #4f97d7;">){</span> x+<span style="color: #a45bad;">1</span> <span style="color: #4f97d7;">}</span>
+succ.call<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19978;&#36848;&#20195;&#30721;&#19982;&#19979;&#21015;&#20195;&#30721;&#31561;&#21516;</span>
+succ = <span style="color: #4f97d7;">lambda</span> <span style="color: #4f97d7;">{</span> |x| x + <span style="color: #a45bad;">1</span> <span style="color: #4f97d7;">}</span>
+succ.call<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orged4e8e8" class="outline-2">
+<h2 id="orged4e8e8"><span class="section-number-2">12</span> Tips</h2>
+<div class="outline-text-2" id="text-12">
+</div>
+<div id="outline-container-org255878b" class="outline-3">
+<h3 id="org255878b"><span class="section-number-3">12.1</span> and or not 的优先级</h3>
+<div class="outline-text-3" id="text-12-1">
+<p>
+<code>and or not</code> 的优先级较低，而 <code>&amp;&amp; || !</code>
+的优先级是较高的，在使用中如果没有用括号严格界定的话，容易出问题，尤其是
+=and return=语句，需要注意。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org564c114" class="outline-3">
+<h3 id="org564c114"><span class="section-number-3">12.2</span> <code>$LOAD_PATH</code></h3>
+<div class="outline-text-3" id="text-12-2">
+<ul class="org-ul">
+<li><code>$LOAD_PATH</code> 和 <code>$:</code> 的含义是一样的，指的是 Ruby
+读取外部文件的一个环境变量。</li>
+<li><code>$:.unshift</code> 增加路径。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#35013;&#36733;&#24211;&#36335;&#24452;</span>
+libdir = <span style="color: #ce537a; font-weight: bold;">File</span>.dirname<span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">ENV</span><span style="color: #bc6ec5;">[</span><span style="color: #2d9574;">'HOME'</span><span style="color: #bc6ec5;">]</span> + <span style="color: #2d9574;">'/xhome/repo/app/rubykit/lib/my_kit.rb'</span><span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7;">$:</span>.unshift<span style="color: #4f97d7;">(</span>libdir<span style="color: #4f97d7;">)</span> <span style="color: #4f97d7; font-weight: bold;">unless</span> <span style="color: #4f97d7;">$:</span>.include?<span style="color: #4f97d7;">(</span>libdir<span style="color: #4f97d7;">)</span> ||
+                          <span style="color: #4f97d7;">$:</span>.include?<span style="color: #4f97d7;">(</span><span style="color: #ce537a; font-weight: bold;">File</span>.expand_path<span style="color: #bc6ec5;">(</span>libdir<span style="color: #bc6ec5;">)</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdbce65b" class="outline-3">
+<h3 id="orgdbce65b"><span class="section-number-3">12.3</span> 类型判断</h3>
+<div class="outline-text-3" id="text-12-3">
+<ul class="org-ul">
+<li>is_a? 判断某个对象是否是某类或其子类的实例。</li>
+<li>kind_of? 是 is_a? 的别名。</li>
+<li>instance_of?
+与上述两个不同，只有当对象是一个明确的类的实例，而不是其子类时才返回
+true。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgca44dbe" class="outline-3">
+<h3 id="orgca44dbe"><span class="section-number-3">12.4</span> <code>==</code> <code>eql?</code> <code>equal?</code> <code>===</code> 逻辑判断区别</h3>
+<div class="outline-text-3" id="text-12-4">
+<ul class="org-ul">
+<li><code>==</code> ：比较两个对象的值是否相等。</li>
+<li><code>eql?</code> ：比较两个对象的值和类型是否相等。</li>
+<li>=equal?=：比较两个对象是否为同一个对象。</li>
+</ul>
+
+<p>
+上面三组符号的意义是逻辑比较，字符越长比较越严格。 而下面的 <code>===</code>
+的语意是基于包含、匹配的意思，常用于 <code>case</code> 语句。
+</p>
+
+<p>
+<code>===</code> 在通常情况下与 <code>==</code> 比较是一样的，但在某些特定情况下有特殊的含义：
+</p>
+
+<ul class="org-ul">
+<li>值域 <code>Range</code> 中用于判断等号右值是否在左值的范围内。</li>
+<li>正则表达式 <code>RegEx</code> 中用于判断右值是否为匹配左值。</li>
+<li>类 <code>Class</code> 中用于判断右值是否为左值的实例，等同与 is_a? 方法。</li>
+<li>符号=Symbol= 中用于判断右值是否与左值相同。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7;">(</span><span style="color: #a45bad;">1</span>..<span style="color: #a45bad;">10</span><span style="color: #4f97d7;">)</span> === <span style="color: #a45bad;">5</span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">true: 5 &#23646;&#20110; range 1..10</span>
+<span style="color: #2d9574;">/\d+/</span> === <span style="color: #2d9574;">"123"</span> <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">true: &#23383;&#31526;&#20018;&#21305;&#37197;&#36825;&#20010;&#27169;&#24335;</span>
+<span style="color: #ce537a; font-weight: bold;">String</span> === <span style="color: #2d9574;">"s"</span>  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">true: "s" &#26159;&#19968;&#20010;&#23383;&#31526;&#20018;&#31867;&#30340;&#23454;&#20363;</span>
+s = <span style="color: #a45bad;">:s</span>
+<span style="color: #a45bad;">:s</span> === s        <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">true</span>
+<span style="color: #a45bad;">:s</span> === <span style="color: #2d9574;">"s"</span>      <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">false</span>
+val = <span style="color: #a45bad;">17</span>
+val.equal?<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">17</span><span style="color: #4f97d7;">)</span>  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">true</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7ba9218" class="outline-3">
+<h3 id="org7ba9218"><span class="section-number-3">12.5</span> 魔法注释 <code># frozen_string_literal: true</code></h3>
+<div class="outline-text-3" id="text-12-5">
+<p>
+Ruby
+中冻结的对象只会创建一次，以后遇到相同的对象会复用之前创建的对象，这样可以减少对象创建次数和垃圾回收次数。Ruby
+中的符号、整数、浮点数默认都是冻结的，字符串字面量目前还不是。
+</p>
+
+<p>
+为了提高程序性能，在 Ruby 3 中，字符串字面量在所有文件中默认被冻结。
+为了过渡，Ruby2.3 增加了一个魔法注释：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">frozen_string_literal: true</span>
+</pre>
+</div>
+
+<p>
+把该注释加在文件的第一行。它告诉
+Ruby，文件中的所有字符串字面量都被隐式冻结，不可修改，就像每一个字符串都调用了
+freeze 方法一样。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">frozen_string_literal: true</span>
+s = <span style="color: #2d9574;">"string"</span>
+<span style="color: #4f97d7;">puts</span> s.frozen?      =&gt; <span style="color: #a45bad;">true</span>
+s &lt;&lt; <span style="color: #2d9574;">"12"</span>           =&gt; can<span style="color: #2d9574;">'t modify frozen String (RuntimeError)</span>
+</pre>
+</div>
+
+<p>
+另外，在 Ruby 2.3 中使用 =&#x2013;enable=frozen-string-literal 标=志运行
+ruby，也会默认冻结所有文件中的字符串字面量。在单个文件中可以通过
+<code># frozen_string_literal: false</code> 覆盖全局设置（Ruby 3
+中也可以用此方式覆盖全局设置）。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">ruby --enable=frozen-string-literal t.rb
+</pre>
+</div>
+
+<p>
+如果想要修改字符串字面量怎么办？
+无论全局或每个文件如何设置，可以使用一元+运算符（注意优先级）来产生非冻结字符串或调用
+dup 方法来对其进行复制：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">frozen_string_literal: true</span>
+<span style="color: #2d9574;">""</span>.frozen?
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; true</span>
+<span style="color: #4f97d7;">(</span>+<span style="color: #2d9574;">""</span><span style="color: #4f97d7;">)</span>.frozen?
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; false</span>
+<span style="color: #2d9574;">""</span>.dup.frozen?
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; false</span>
+</pre>
+</div>
+
+<p>
+还可以使用一元-运算符冻结可变（未冻结）字符串。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7;">(</span>-<span style="color: #2d9574;">""</span><span style="color: #4f97d7;">)</span>.frozen?
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; true</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge57ba56" class="outline-2">
+<h2 id="orge57ba56"><span class="section-number-2">13</span> References</h2>
+<div class="outline-text-2" id="text-13">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+
+<ul class="org-ul">
+<li><a href="https://ruby-china.org/topics/25706">https://ruby-china.org/topics/25706</a></li>
+<li><a href="http://doudouclever.blog.163.com/blog/static/17511231020110743139240/">http://doudouclever.blog.163.com/blog/static/17511231020110743139240/</a></li>
+<li><a href="https://ruby-china.org/topics/5096">https://ruby-china.org/topics/5096</a></li>
+<li><a href="http://www.cnblogs.com/limx/p/5747523.html">http://www.cnblogs.com/limx/p/5747523.html</a></li>
+</ul>
+</blockquote>
+</div>
+</div>

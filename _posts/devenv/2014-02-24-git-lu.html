@@ -1,0 +1,882 @@
+---
+layout: post
+title: "Git 参考"
+date: 2014-02-24
+categories: 研发环境
+tags:
+    - Git
+---
+
+<div id="outline-container-org1764c42" class="outline-2">
+<h2 id="org1764c42"><span class="section-number-2">1</span> 2. MSysGit 设置</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgf213ca7" class="outline-3">
+<h3 id="orgf213ca7"><span class="section-number-3">1.1</span> 2.1. 初始化配置：</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+进入 Git Bash，运行下列命令
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#37197;&#32622; ID</span>
+git config --global user.name <span style="color: #2d9574;">"your_id"</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#37197;&#32622; EMAIL</span>
+git config --global user.email <span style="color: #2d9574;">"your_name@email_address"</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">git &#36755;&#20986;&#65288;&#27604;&#22914; log&#12289;status&#65289;&#24425;&#33394;&#26174;&#31034;</span>
+git config --global color.ui auto
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20840;&#23616;&#37197;&#32622; Git &#19981;&#20250;&#36827;&#34892;&#25442;&#34892;&#31526;&#30340;&#36716;&#25442;</span>
+git config --global core.autocrlf false
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20840;&#23616;&#37197;&#32622;&#25991;&#20214;&#26435;&#38480;</span>
+git config --global core.filemode false
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8555e86" class="outline-3">
+<h3 id="org8555e86"><span class="section-number-3">1.2</span> 2.2. 配置 SSH 证书：</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org9206a8b" class="outline-4">
+<h4 id="org9206a8b"><span class="section-number-4">1.2.1</span> 2.2.1. 新建 SSH 证书：</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<div class="org-src-container">
+<pre class="src src-sh">ssh-keygen -t rsa -C <span style="color: #2d9574;">"your_name@email_address"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org652d9b1" class="outline-4">
+<h4 id="org652d9b1"><span class="section-number-4">1.2.2</span> 2.2.2. 恢复备份 SSH 证书：</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<ol class="org-ol">
+<li>建立目录“~/.ssh“；</li>
+<li>复制备份的“id_rsa”(私钥) 和“id_rsa.pub”(公钥) 文件至目录“~/.ssh“；</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org555c203" class="outline-4">
+<h4 id="org555c203"><span class="section-number-4">1.2.3</span> 2.2.3. 通过 github 测试 SSH 证书：</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<div class="org-src-container">
+<pre class="src src-sh">ssh -T git@github.com
+</pre>
+</div>
+
+<p>
+如果看到“You've successfully authenticated, but GitHub does not provide shell access”信息，就表示连接成功。
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5e4929c" class="outline-3">
+<h3 id="org5e4929c"><span class="section-number-3">1.3</span> 2.3. 修改或新建 `/etc/fstab`，增加以下内容：</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-sh">d:/LinuxHome /home
+d:/Works/Projects /projects
+d:/Works/Codes /codes
+e:/Downloads /dl
+f:/Repositories/git /local_git
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9372380" class="outline-3">
+<h3 id="org9372380"><span class="section-number-3">1.4</span> 2.4. 设置全局配置文件 `/etc/profile`：</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+#+end_begin_src conf
+</p>
+
+<p>
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+</p>
+
+<p>
+#export HOME='/d/LinuxHome/xuan'
+export VIM='/usr/share/vim'
+export VIMRUNTIME='/usr/share/vim/vim74'
+</p>
+
+<p>
+alias ls='ls -hF &#x2013;color=tty &#x2013;show-control-chars'                 # classify files in colour
+alias dir='ls &#x2013;color=auto &#x2013;format=vertical'
+alias vdir='ls &#x2013;color=auto &#x2013;format=long'
+alias ll='ls -l'                              # long list
+alias la='ls -A'                              # all but . and ..
+alias l='ls -CF'                              #
+#+end_src
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7103a19" class="outline-3">
+<h3 id="org7103a19"><span class="section-number-3">1.5</span> 2.5. 右键菜单打开 Cygwin 在当前目录</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-org8367c2b" class="outline-4">
+<h4 id="org8367c2b"><span class="section-number-4">1.5.1</span> 2.5.1. 增加注册表项：</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<p>
+#+end_begin_src conf
+Windows Registry Editor Version 5.00
+</p>
+
+<p>
+[HKEY_CLASSES_ROOT\Directory\shell\opengit]
+@="打开用 Git Bash"
+[HKEY_CLASSES_ROOT\Directory\shell\opengit\command]
+@="d:\\GSoft\\Linux32\\MinGW\\git\\git-bash.bat %V"
+#+end_src
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcb73618" class="outline-4">
+<h4 id="orgcb73618"><span class="section-number-4">1.5.2</span> 2.5.2. 修改 `git-bash.bat` 文件，增加设置路径变量 `set _T=%*`：</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<div class="org-src-container">
+<pre class="src src-sh">@echo off
+<span style="color: #4f97d7;">set</span> <span style="color: #7590db;">_T</span>=%*
+&#8230;&#8230;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6ea6e1f" class="outline-4">
+<h4 id="org6ea6e1f"><span class="section-number-4">1.5.3</span> 2.5.3. 设置用户配置文件 `\home\${UserName}\.bash_profile`，在最后增加：</h4>
+<div class="outline-text-4" id="text-1-5-3">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21491;&#38190;&#33756;&#21333;&#25171;&#24320; Git &#22312;&#24403;&#21069;&#30446;&#24405;</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">_T</span>=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">_T</span>//<span style="color: #2d9574;">\\</span>//<span style="color: #4f97d7;">}</span>   <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">replace backslash to fowardslash</span>
+<span style="color: #4f97d7; font-weight: bold;">if</span> <span style="color: #4f97d7;">[</span><span style="color: #bc6ec5;">[</span> $<span style="color: #7590db;">_T</span> == <span style="color: #2d9574;">""</span> <span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">]</span>; <span style="color: #4f97d7; font-weight: bold;">then</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">_T</span>=$<span style="color: #4f97d7;">{</span><span style="color: #7590db;">HOME</span><span style="color: #4f97d7;">}</span>
+<span style="color: #4f97d7; font-weight: bold;">fi</span>
+<span style="color: #4f97d7;">cd</span> <span style="color: #2d9574;">"$_T"</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1ef8f52" class="outline-2">
+<h2 id="org1ef8f52"><span class="section-number-2">2</span> 3. Git 常用操作</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org5af683a" class="outline-3">
+<h3 id="org5af683a"><span class="section-number-3">2.1</span> 3.1. 初始化服务仓库</h3>
+<div class="outline-text-3" id="text-2-1">
+</div>
+<div id="outline-container-org1a5c0f7" class="outline-4">
+<h4 id="org1a5c0f7"><span class="section-number-4">2.1.1</span> 3.1.1. 初始化服务仓库，包括工作区，通常为本地仓库</h4>
+<div class="outline-text-4" id="text-2-1-1">
+<div class="org-src-container">
+<pre class="src src-sh">git init
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org49fd500" class="outline-4">
+<h4 id="org49fd500"><span class="section-number-4">2.1.2</span> 3.1.2. 初始化服务仓库，不包括工作区，通常为远程仓库</h4>
+<div class="outline-text-4" id="text-2-1-2">
+<div class="org-src-container">
+<pre class="src src-sh">git init  --bare
+git init  --bare --shared
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb33945e" class="outline-3">
+<h3 id="orgb33945e"><span class="section-number-3">2.2</span> 3.2. 增加文件快照到当前工作区</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-org6d9bf30" class="outline-4">
+<h4 id="org6d9bf30"><span class="section-number-4">2.2.1</span> 3.2.1. 增加所有文件快照到当前工作区</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<div class="org-src-container">
+<pre class="src src-sh">git add .
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org454826e" class="outline-4">
+<h4 id="org454826e"><span class="section-number-4">2.2.2</span> 3.2.2. 增加所有文件快照到当前工作区并更新索引为当前文件状态，通常因本地文件未使用 Git 更新删除。</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<div class="org-src-container">
+<pre class="src src-sh">git add -A .
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgac8f53c" class="outline-3">
+<h3 id="orgac8f53c"><span class="section-number-3">2.3</span> 3.3. 删除文件从当前工作区和索引</h3>
+<div class="outline-text-3" id="text-2-3">
+<div class="org-src-container">
+<pre class="src src-sh">git rm app/user.rb
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6d16b98" class="outline-3">
+<h3 id="org6d16b98"><span class="section-number-3">2.4</span> 3.4. 重命名文件从当前工作区和索引</h3>
+<div class="outline-text-3" id="text-2-4">
+<div class="org-src-container">
+<pre class="src src-sh">git mv app/oldName.rb app/newName.rb
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgba28b25" class="outline-3">
+<h3 id="orgba28b25"><span class="section-number-3">2.5</span> 3.5. 提交文件快照到本地仓库</h3>
+<div class="outline-text-3" id="text-2-5">
+</div>
+<div id="outline-container-org5148d82" class="outline-4">
+<h4 id="org5148d82"><span class="section-number-4">2.5.1</span> 3.5.1. 提交到本地仓库，已进行了文件快照</h4>
+<div class="outline-text-4" id="text-2-5-1">
+<div class="org-src-container">
+<pre class="src src-sh">git commit -m <span style="color: #2d9574;">"commit information"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org90b758a" class="outline-4">
+<h4 id="org90b758a"><span class="section-number-4">2.5.2</span> 3.5.2. 提交到本地仓库，未进行了文件快照（仓库已经存在文件）</h4>
+<div class="outline-text-4" id="text-2-5-2">
+<div class="org-src-container">
+<pre class="src src-sh">git commit -a -m <span style="color: #2d9574;">'commit information'</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org89f4551" class="outline-3">
+<h3 id="org89f4551"><span class="section-number-3">2.6</span> 3.6. 查询当前工作区状态</h3>
+<div class="outline-text-3" id="text-2-6">
+<div class="org-src-container">
+<pre class="src src-sh">git status
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org90d4f50" class="outline-3">
+<h3 id="org90d4f50"><span class="section-number-3">2.7</span> 3.7. 查询提交历史</h3>
+<div class="outline-text-3" id="text-2-7">
+<div class="org-src-container">
+<pre class="src src-sh">git log
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgddbb43a" class="outline-3">
+<h3 id="orgddbb43a"><span class="section-number-3">2.8</span> 3.8. 获取远程仓库克隆</h3>
+<div class="outline-text-3" id="text-2-8">
+</div>
+<div id="outline-container-orgc05b580" class="outline-4">
+<h4 id="orgc05b580"><span class="section-number-4">2.8.1</span> 3.8.1. 获取远程仓库主库克隆</h4>
+<div class="outline-text-4" id="text-2-8-1">
+<p>
+`git clone` 默认会把远程仓库整个给 `clone` 下来，但只会在本地默认创建一个 `master` 分支。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git clone ssh://git@github.com/idxuan/GitTest
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga193e7a" class="outline-4">
+<h4 id="orga193e7a"><span class="section-number-4">2.8.2</span> 3.8.2. 从远程仓库更新克隆</h4>
+<div class="outline-text-4" id="text-2-8-2">
+<p>
+放弃本地版本，获取远程仓库最新版本
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git reset --hard
+git pull
+</pre>
+</div>
+
+<p>
+注：`git pull` 与 `git fetch` 的区别，`git pull` 相当于 `git fetch &amp;&amp; git merge`
+</p>
+
+<p>
+在远程仓库已经修改的情况下，本地也已经修改，那么需要通过一些方法避免同步更新错误，例如可以通过指定合并策略来接受远程修改，丢弃本地的所有修改：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git pull -X theirs
+</pre>
+</div>
+
+<p>
+其中 -X 指定合并策略是 “theirs" ，就是用别人的覆盖自己的。-s 默认就是 recursive，所以省略了。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3a994e2" class="outline-4">
+<h4 id="org3a994e2"><span class="section-number-4">2.8.3</span> 3.8.3. 获取远程仓库分支克隆</h4>
+<div class="outline-text-4" id="text-2-8-3">
+<p>
+查看远程分支信息。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git branch &#8211;r
+</pre>
+</div>
+
+<p>
+查看本地和远程分支信息。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git branch &#8211;a
+</pre>
+</div>
+
+<p>
+获取远程分支到本地，参数 `-t` 设置为本地当前分支。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git checkout -t origin/other_branch
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgec61c4a" class="outline-3">
+<h3 id="orgec61c4a"><span class="section-number-3">2.9</span> 3.9. 增加远程仓库配置</h3>
+<div class="outline-text-3" id="text-2-9">
+<div class="org-src-container">
+<pre class="src src-sh">git remote add github git@github.com:idxuan/GitTest.git <span style="color: #4f97d7;">(</span>&#25512;&#33616;<span style="color: #4f97d7;">)</span>
+git remote add github https://github.com/idxuan/GitTest.git
+git remote add local file://f:/Repositories/git/conv_dict
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf799156" class="outline-3">
+<h3 id="orgf799156"><span class="section-number-3">2.10</span> 3.10. 删除远程仓库配置</h3>
+<div class="outline-text-3" id="text-2-10">
+<div class="org-src-container">
+<pre class="src src-sh">git remote rm github
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge0bc163" class="outline-3">
+<h3 id="orge0bc163"><span class="section-number-3">2.11</span> 3.11. 远程仓库重命名</h3>
+<div class="outline-text-3" id="text-2-11">
+<div class="org-src-container">
+<pre class="src src-sh">git remote rename oldname newname
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf7d379e" class="outline-3">
+<h3 id="orgf7d379e"><span class="section-number-3">2.12</span> 3.12. 修改远程仓库路径</h3>
+<div class="outline-text-3" id="text-2-12">
+<div class="org-src-container">
+<pre class="src src-sh">git remote set-url github git@github.com:idxuan/GitTest.git
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge83c58e" class="outline-3">
+<h3 id="orge83c58e"><span class="section-number-3">2.13</span> 3.13. 查询远程仓库配置</h3>
+<div class="outline-text-3" id="text-2-13">
+<div class="org-src-container">
+<pre class="src src-sh">git remote -v
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfb91a5f" class="outline-3">
+<h3 id="orgfb91a5f"><span class="section-number-3">2.14</span> 3.14. 获取远程仓库</h3>
+<div class="outline-text-3" id="text-2-14">
+<div class="org-src-container">
+<pre class="src src-sh">git pull &#36828;&#31471;&#20179;&#24211;&#21517; &#36828;&#31471;&#20998;&#25903;&#21517;:&#26412;&#22320;&#20998;&#25903;&#21517;
+git pull github master
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org468a438" class="outline-3">
+<h3 id="org468a438"><span class="section-number-3">2.15</span> 3.15. 提交到远程仓库</h3>
+<div class="outline-text-3" id="text-2-15">
+<div class="org-src-container">
+<pre class="src src-sh">git push &#36828;&#31471;&#20179;&#24211;&#21517; &#26412;&#22320;&#20998;&#25903;&#21517;:&#36828;&#31471;&#20998;&#25903;&#21517;
+git push github master
+git push -u github master
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org209ff15" class="outline-3">
+<h3 id="org209ff15"><span class="section-number-3">2.16</span> 3.16. 创建一个没有父节点的分支（github 规定，只有该分支中的页面，才会生成网页文件）</h3>
+<div class="outline-text-3" id="text-2-16">
+<div class="org-src-container">
+<pre class="src src-sh">git checkout --orphan gh-pages
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org49d13d0" class="outline-3">
+<h3 id="org49d13d0"><span class="section-number-3">2.17</span> 3.17. 重置回滚</h3>
+<div class="outline-text-3" id="text-2-17">
+<p>
+重置回滚本地
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git reset --hard &#29256;&#26412;&#21495;
+</pre>
+</div>
+
+<p>
+重置回滚远程
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git push -f
+</pre>
+</div>
+
+<p>
+然后每个本地都要执行 `git reset &#x2013;hard 版本号` 操作。
+该方法只适合小的团队或者个人的项目使用，大的团队还是建议 `git reset &#x2013;hard`版本号，然后比较多所有有变动的文件，然后覆盖回去，然后提交(commit)，然后 push 的远程。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgabd514c" class="outline-3">
+<h3 id="orgabd514c"><span class="section-number-3">2.18</span> 3.18. 强制覆盖本地文件</h3>
+<div class="outline-text-3" id="text-2-18">
+<ol class="org-ol">
+<li>`git fetch` 下载远程最新的，但不尝试或修改任何东西。 然后 `git reset master` 分支重置到刚才。</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-sh">git fetch --all
+git reset --hard origin/master
+</pre>
+</div>
+
+
+<ol class="org-ol">
+<li>试试这个。</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-sh">git reset --hard HEAD
+git pull
+</pre>
+</div>
+
+
+<ol class="org-ol">
+<li>clean -f 如果您有未跟踪目录，还需要-d 选项。</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-sh">git reset --hard HEAD
+git clean -f -d
+git pull
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge32a9f4" class="outline-2">
+<h2 id="orge32a9f4"><span class="section-number-2">3</span> 4. GitHub 创建步骤</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org523fdc8" class="outline-3">
+<h3 id="org523fdc8"><span class="section-number-3">3.1</span> 4.1 Create a new repository on the command line</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-sh">touch README.md
+git init
+git add README.md
+git commit -m <span style="color: #2d9574;">"first commit"</span>
+git remote add origin https://github.com/idxuan/vimim_dict.git
+git push -u origin master
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org69661da" class="outline-3">
+<h3 id="org69661da"><span class="section-number-3">3.2</span> 4.2 Push an existing repository from the command line</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-sh">git remote add origin https://github.com/idxuan/vimim_dict.git
+git push -u origin master
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf40183c" class="outline-2">
+<h2 id="orgf40183c"><span class="section-number-2">4</span> 5. Git 忽略文件</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+Git 忽略文件有 3 种设置方式：
+</p>
+</div>
+
+<div id="outline-container-org63043a4" class="outline-3">
+<h3 id="org63043a4"><span class="section-number-3">4.1</span> 5.1. 方式一</h3>
+<div class="outline-text-3" id="text-4-1">
+<p>
+在仓库目录下新建一个名为.gitignore 的文件（因为是点开头，可能没办法直接在 windows 目录下直接创建，必须通过右键 Git Bash，按照 linux 的方式来新建.gitignore 文件）。
+.gitignore 文件对其所在的目录及所在目录的全部子目录均有效。通过将.gitignore 文件添加到仓库，其他开发者更新该文件到本地仓库，以共享同一套忽略规则。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3c48dfe" class="outline-3">
+<h3 id="org3c48dfe"><span class="section-number-3">4.2</span> 5.2. 方式二</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+通过配置.git/info/exclude 文件来忽略文件。这种方式对仓库全局有效，只能对自己本地仓库有作用，其他人没办法通过这种方式来共享忽略规则，除非他人也修改其本地仓库的该文件。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org60a4832" class="outline-3">
+<h3 id="org60a4832"><span class="section-number-3">4.3</span> 5.3. 方式三</h3>
+<div class="outline-text-3" id="text-4-3">
+<p>
+通过.git/config 配置文件的 core. Excludesfile 选项，指定一个忽略规则文件（完整路径）。忽略规则在文件中（当然该文件名可以任意取），该方式的作用域是也全局的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf631000" class="outline-3">
+<h3 id="orgf631000"><span class="section-number-3">4.4</span> 5.4. 忽略样例</h3>
+<div class="outline-text-3" id="text-4-4">
+<p>
+#+end_begin_src conf
+#忽略掉所有文件名是 foo.txt 的文件
+foo.txt
+#忽略所有生成的 html 文件,
+*.html
+#foo.html 是手工维护的，所以例外
+!foo.html
+#忽略所有.o 和 .a 文件
+*.[oa]
+#忽略 foo 目录
+foo/
+#忽略所有 foo.txt 以外文件.
+!foo.txt
+#+end_src
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3837e50" class="outline-2">
+<h2 id="org3837e50"><span class="section-number-2">5</span> 6. Git Config 配置项</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgf6cc506" class="outline-3">
+<h3 id="orgf6cc506"><span class="section-number-3">5.1</span> 6.1 默认远程仓库</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+<pre class="src src-sh">git config branch.master.remote origin
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3de0370" class="outline-2">
+<h2 id="org3de0370"><span class="section-number-2">6</span> 7. Git 使用点滴</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgc969f70" class="outline-3">
+<h3 id="orgc969f70"><span class="section-number-3">6.1</span> 7.1 系统警告：`LF will be replaced by CRLF`</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+<b><b>原因分析：</b></b>
+</p>
+
+<p>
+各操作系统在文本文件中使用的换行符并不一致，如下：
+</p>
+
+<ul class="org-ul">
+<li>`CRLF` 就是回车换行符，一般 Windows 系统使用；</li>
+<li>`CR` 就是回车符，一般 Mac 系统使用；</li>
+<li>`LF` 就是换行符，一般 Unix/Linux 系统使用；</li>
+</ul>
+
+<p>
+在 Windows 系统中使用 Git 来生成一个项目，如果文件中的换行符为 `LF`， 当执行`git add .`时，系统提示：`LF` 将被转换成 `CRLF`。
+</p>
+
+<p>
+<b><b>解决方法：</b></b>
+</p>
+
+<p>
+删除生成的.git 文件（删除 Git 仓库）
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">rm -rf .git
+</pre>
+</div>
+
+<p>
+全局配置 Git 不会进行换行符的转换
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git config --global core.autocrlf false
+</pre>
+</div>
+
+<p>
+最后重新执行
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git init
+git add .
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3f92eeb" class="outline-3">
+<h3 id="org3f92eeb"><span class="section-number-3">6.2</span> 7.2 系统错误：`failed to push some refs to`</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+<b><b>原因分析：</b></b>
+</p>
+
+<p>
+远程仓库中代码版本与本地不一致冲突导致。
+</p>
+
+<p>
+<b><b>解决方法：</b></b>
+</p>
+
+<ol class="org-ol">
+<li>git pull github master</li>
+<li>自动 merge 或手动 merge 冲突</li>
+<li>git push github master</li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-orge14bc1b" class="outline-3">
+<h3 id="orge14bc1b"><span class="section-number-3">6.3</span> 7.2 系统错误：`commit your changes or stash them before you can merge`</h3>
+<div class="outline-text-3" id="text-6-3">
+<p>
+<b><b>原因分析：</b></b>
+</p>
+
+<p>
+更新本地代码时远程仓库中代码版本与本地不一致冲突导致。
+</p>
+
+<p>
+<b><b>解决方法：</b></b>
+</p>
+</div>
+
+<div id="outline-container-org3e9720a" class="outline-4">
+<h4 id="org3e9720a"><span class="section-number-4">6.3.1</span> 7.2.1 放弃本地版本，获取远程仓库最新版本</h4>
+<div class="outline-text-4" id="text-6-3-1">
+<div class="org-src-container">
+<pre class="src src-sh">git reset --hard
+git pull
+</pre>
+</div>
+
+<p>
+其中 `git reset` 是针对版本,如果想针对文件回退本地修改,使用
+</p>
+
+<p>
+#+end_src
+git checkout HEAD file/to/restore
+#+end_src
+</p>
+</div>
+</div>
+
+<div id="outline-container-org26d407e" class="outline-4">
+<h4 id="org26d407e"><span class="section-number-4">6.3.2</span> 7.2.2 使用 `git stash` 保留生产服务器上所做的改动,仅仅并入新配置项。</h4>
+<div class="outline-text-4" id="text-6-3-2">
+<div class="org-src-container">
+<pre class="src src-sh">git stash
+git pull
+git stash pop
+</pre>
+</div>
+
+<p>
+然后可以使用 `git diff -w +filename` 来确认代码自动合并的情况，并作出相应修改。
+</p>
+
+<ul class="org-ul">
+<li>git stash: 备份当前的工作区的内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致。同时，将当前的工作区内容保存到 Git 栈中。</li>
+<li>git stash pop: 从 Git 栈中读取最近一次保存的内容，恢复工作区的相关内容。由于可能存在多个 Stash 的内容，所以用栈来管理，pop 会从最近的一个 stash 中读取内容并恢复。</li>
+<li>git stash list: 显示 Git 栈内的所有备份，可以利用这个列表来决定从那个地方恢复。</li>
+<li>git stash clear: 清空 Git 栈。此时使用 gitg 等图形化工具会发现，原来 stash 的哪些节点都消失了。</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb1913f1" class="outline-3">
+<h3 id="orgb1913f1"><span class="section-number-3">6.4</span> 7.3 关于回滚</h3>
+<div class="outline-text-3" id="text-6-4">
+<p>
+Git 的历史记录是不可修改的，也就是不能更改任何已经发生的事情。
+任何操作都只是在原来的操作上修改。也就是说，即使删除了一个分支，修改了一个提交，或者强制重置，仍然可以回滚这些操作。
+</p>
+
+<p>
+样例：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git init
+$ touch foo.txt
+$ git add foo.txt
+$ git commit -m <span style="color: #2d9574;">"initial commit"</span>
+
+$ echo <span style="color: #2d9574;">'new data'</span> &gt;&gt; foo.txt
+$ git commit -a -m <span style="color: #2d9574;">"more stuff added to foo"</span>
+</pre>
+</div>
+
+<p>
+现在看 Git 的历史记录，可以看到两次提交：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git log
+<span style="color: #a45bad;">98abc5a</span> <span style="color: #4f97d7;">(</span>HEAD, master<span style="color: #4f97d7;">)</span> more stuff added to foo
+b7057a9 initial commit
+</pre>
+</div>
+
+<p>
+现在重置回第一次提交的状态：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git reset --hard b7057a9
+$ git log
+<span style="color: #bc6ec5; font-weight: bold;">b7057a9</span> <span style="color: #4f97d7;">(</span>HEAD, master<span style="color: #4f97d7;">)</span> initial commit
+</pre>
+</div>
+
+<p>
+这看起来是丢掉了第二次的提交，没有办法找回来了。但是 `reflog` 就是用来解决这个问题的。简单的说，它会记录所有 `HEAD` 的历史，也就是说当做 `reset`，`checkout`等操作的时候，这些操作会被记录在 `reflog` 中。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git reflog
+b7057a9 HEAD@<span style="color: #4f97d7;">{</span><span style="color: #a45bad;">0</span><span style="color: #4f97d7;">}</span>: reset: moving to b7057a9
+<span style="color: #a45bad;">98abc5a</span> HEAD@<span style="color: #4f97d7;">{</span><span style="color: #a45bad;">1</span><span style="color: #4f97d7;">}</span>: commit: more stuff added to foo
+b7057a9 HEAD@<span style="color: #4f97d7;">{</span><span style="color: #a45bad;">2</span><span style="color: #4f97d7;">}</span>: commit <span style="color: #4f97d7;">(</span>initial<span style="color: #4f97d7;">)</span>: initial commit
+</pre>
+</div>
+
+<p>
+所以要找回第二次 `commit`，只需要做如下操作：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git reset --hard <span style="color: #a45bad;">98abc5a</span>
+</pre>
+</div>
+
+<p>
+再来看一下 Git 记录：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">$ git log
+<span style="color: #a45bad;">98abc5a</span> <span style="color: #4f97d7;">(</span>HEAD, master<span style="color: #4f97d7;">)</span> more stuff added to foo
+b7057a9 initial commit
+</pre>
+</div>
+
+<p>
+所以如果因为 `reset` 等操作丢失一个提交的时候，总是可以把它找回来。除非操作已经被 Git 当做垃圾处理掉了，一般是 30 天以后。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgcecbe45" class="outline-3">
+<h3 id="orgcecbe45"><span class="section-number-3">6.5</span> 7.4 Clone 错误 `does not appear to be a git repository`</h3>
+<div class="outline-text-3" id="text-6-5">
+<p>
+Clone 用绝对路径，不要使用相对路径
+错误：git@ip:gitosis-admin.git
+正确：git@ip:/home/git/repositories/gitosis-admin.git
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3576945" class="outline-2">
+<h2 id="org3576945"><span class="section-number-2">7</span> References</h2>
+<div class="outline-text-2" id="text-7">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+</blockquote>
+</div>
+</div>

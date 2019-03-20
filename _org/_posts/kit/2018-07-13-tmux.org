@@ -14,7 +14,7 @@ tags:
 
 ** Session 命令
 
-#+begin_src shell
+#+begin_src sh
 tmux                      # 创建新的 session
 tmux new -S name          # 创建新的 session 并指定一个 name
 tmux ls                   # 查看多少个后台工作的 session
@@ -96,7 +96,7 @@ tmux kill-ses -a -t myses # kill 所有 session, 除了 myses
 
 ** Pane 同步
 
-#+begin_src shell
+#+begin_src sh
 :setw synchronize-panes  # 打开(关闭) pane 同步模式, 发送命令到所有的 pane 中
                          # 只影响当前 window 的 pane
 #+end_src
@@ -106,7 +106,7 @@ tmux kill-ses -a -t myses # kill 所有 session, 除了 myses
 
 添加下面一行到 $HOME/.tmux.conf, 通过 vim 的快捷键实现浏览, 复制等操作;
 
-#+begin_src shell
+#+begin_src sh
 setw -g mode-keys vi
 #+end_src
 
@@ -152,7 +152,7 @@ setw -g mode-keys vi
 
 ** mouse mode
 
-#+begin_src shell
+#+begin_src sh
 :setw -g mode-mouse on           # 打开鼠标模式
 :set -g mouse-select-pane on     # 通过鼠标选择 pane
 :set -g mouse-resize-pane on     # 通过鼠标更改 pane 大小
@@ -166,7 +166,7 @@ setw -g mode-keys vi
 
 ** 安装
 
-#+begin_src shell
+#+begin_src sh
 cd
 git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf
@@ -327,7 +327,7 @@ tmux_conf_theme_right_separator_sub=' '
 克里斯·约翰逊创造的 reattach-to-user-namespace  工具，使得 pbcopy 和 pbpasteTMUX 内再次工作。
 要安装 reattach-to-user-namespace， 请使用 MacPorts 或  Homebrew：
 
-#+begin_src shell
+#+begin_src sh
 port install tmux-pasteboard
 # 或者
 $ brew install reattach-to-user-namespace
@@ -367,13 +367,13 @@ Tmux 是一个强大的终端复用软件，我们可以轻易地为它列举出
 
 Tmux Plugin Manager 的程式码托管在 GitHub 上，它的专案地址是：<https://github.com/tmux-plugins/tpm>。首先，我们需要将 Tmux Plugin Manager 的程式码克隆到本地。
 
-#+begin_src shell
+#+begin_src sh
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 #+end_src
 
 而后，我们需要在 Tmux 的配置文件底部加上这么几行：
 
-#+begin_src shell
+#+begin_src sh
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-sensible'
 
@@ -390,7 +390,7 @@ run '~/.tmux/plugins/tpm/tpm'
 
 如果你尚未启动 Tmux，那么现在就可以执行 ~tmux new -s foobar~ 打开一个新的窗口了。如果你已经启动了 Tmux，那么需要在 Tmux 环境里重新加载配置文件：
 
-#+begin_src shell
+#+begin_src sh
 tmux source ~/.tmux.conf
 #+end_src
 
@@ -402,7 +402,7 @@ tmux source ~/.tmux.conf
 
 如果你的环境里命令执行正常，那么 Tmux 会提示：
 
-#+begin_src shell
+#+begin_src sh
 Already installed "tpm"
 Installing "tmux-sensible"
   "tmux-sensible" download success
@@ -418,7 +418,7 @@ Done, press ESCAPE to continue.
 
 在 Tmux Plugin Manager 中安装、升级和反安装插件都很简单，他们的 Tmux 快捷键分别是：
 
-#+begin_src shell
+#+begin_src sh
 prefix shift-i      # install
 prefix shift-u      # update
 prefix alt-u        # uninstall plugins not on the plugin list
@@ -432,7 +432,7 @@ tmux-resurrect
 有了插件管理器，安装插件就变得很简单了。
 首先，我们需要修改 ~/.tmux.conf 文件，在插件列表中加上：
 
-#+begin_src shell
+#+begin_src sh
 set -g @plugin 'tmux-plugins/tmux-resurrect'
 #+end_src
 
@@ -442,7 +442,7 @@ set -g @plugin 'tmux-plugins/tmux-resurrect'
 
 同样是打开配置文件，插件配置中加上：
 
-#+begin_src shell
+#+begin_src sh
 # tmux-resurrect
 set -g @resurrect-save-bash-history 'on'
 set -g @resurrect-capture-pane-contents 'on'
@@ -457,7 +457,7 @@ set -g @resurrect-strategy-vim 'session'
 
 至此，tmux-resurrect 已经配置好，可以保存和加载 Tmux 会话的状态了，快捷键是：
 
-#+begin_src shell
+#+begin_src sh
 prefix Ctrl-s       # save tmux session to local file
 prefix Ctrl-r       # reload tmux session from local file
 #+end_src

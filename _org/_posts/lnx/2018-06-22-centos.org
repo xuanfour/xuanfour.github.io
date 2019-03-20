@@ -1,0 +1,487 @@
+#+begin_export html
+---
+layout: post
+title: "CentOS 7 安装配置"
+date: 2018-06-22
+categories: Linux
+tags:
+- CentOS
+excerpt:
+keywords: ""
+---
+#+end_export
+
+#+BEGIN_QUOTE
+  趁着打折，买了个阿里云主机玩。记录一下整个 CentOS
+  的安装配置过程，避免遗忘。
+#+END_QUOTE
+
+* 增加用户
+
+#+BEGIN_SRC sh
+    adduser xuanfour
+    passwd xuanfour
+#+END_SRC
+
+* 设置 sudo
+
+#+BEGIN_SRC sh
+    # 切换到超级用户
+    su -
+    vim /etc/sudoers
+    # 找到 root ALL=(ALL) ALL，在下方插入新行，使用 x! 强制保存并退出
+    xuanfour ALL=(ALL) ALL
+#+END_SRC
+
+* 修改主机名称
+
+#+BEGIN_SRC sh
+    sudo hostnamectl set-hostname newhostname
+    # 或者
+    sudo vim /etc/hostname
+    sudo vim /etc/hosts
+    # 重启
+    sudo reboot
+#+END_SRC
+
+* ssh key 登录
+
+#+BEGIN_SRC sh
+    # 本地
+    scp -r ~/.ssh xuanfour@wozouwokan.com:/home/xuanfour/
+    # 如果需要同时复制 git 配置文件
+    scp ~/.gitconfig xuanfour@wozouwokan.com:/home/xuanfour/
+    scp ~/.gitignore_global xuanfour@wozouwokan.com:/home/xuanfour/
+    # 远程
+    cat xuanfour_mbp.pub >> authorized_keys
+    chmod 600 ~/.ssh/*
+    chmod 644 ~/.ssh/*.pub
+    chmod 700 ~/.ssh
+    # 本地
+    ssh xuanfour@wozouwokan.com
+#+END_SRC
+
+* 配置国内 yum 源
+
+#+BEGIN_SRC sh
+    # 进入 /etc/yum.repos.d/ 目录下，新建一个 repo_bak 目录，用于保存系统中原来的 repo 文件
+    cd /etc/yum.repos.d/
+    sudo mkdir repo_bak
+    sudo mv *.repo repo_bak/
+    # 配置使用网易和阿里的开源镜像
+    sudo wget http://mirrors.aliyun.com/repo/Centos-7.repo
+    sudo  wget http://mirrors.163.com/.help/CentOS7-Base-163.repo
+    # 清除系统 yum 缓存并生成新的缓存
+    sudo yum clean all
+    sudo yum makecache
+#+END_SRC
+
+* 配置国内 epel 源
+
+#+BEGIN_SRC sh
+    yum list | grep epel-release
+    sudo yum install -y epel-release
+    # 安装成功，比原来多了一个 epel.repo 和 epel-testing.repo 文件
+    ls
+    # ==> Centos-7.repo  CentOS-Base-163.repo  epel.repo  epel-testing.repo  repo.bak
+    # 使用阿里开源镜像提供的 epel 源
+    sudo wget -O /etc/yum.repos.d/epel-7.repo http://mirrors.aliyun.com/repo/epel-7.repo
+    # 安装成功，比原来多了一个 epel-7.repo 文件
+    ls
+    # ==> CentOS7-Base-163.repo  Centos-7.repo  epel-7.repo  epel.repo  epel-testing.repo  repo_bak
+    # 再次清除系统 yum 缓存，并重新生成新的缓存
+    sudo yum clean all
+    sudo yum makecache
+#+END_SRC
+
+* 更新源
+
+#+BEGIN_SRC sh
+    sudo yum update -y
+#+END_SRC
+
+* 安装 git
+
+#+BEGIN_SRC sh
+    sudo yum install -y git
+#+END_SRC
+
+* 下载配置文件
+
+#+BEGIN_SRC sh
+    # 远程
+    mkdir -p ~/xhome/dep
+    cd ~/xhome
+    git clone git@gitee.com:xuanfour/cfg.git
+    $XCFG/os/linketc.sh
+    sudo reboot
+    # 本地
+    scp -r ~/xhome/dep/theme xuanfour@wozouwokan.com:/home/xuanfour/xhome/dep/
+    # 远程
+    ln -s ~/xhome/dep/theme/dircolors-solarized/dircolors.ansi-dark ~/.dir_colors
+    $XCFG/devkit/git/linkgit.sh
+#+END_SRC
+
+* 安装 zsh
+
+#+BEGIN_SRC sh
+    # 安装 zsh
+    sudo yum install -y zsh
+    # 设置默认 shell
+    chsh -s /bin/zsh
+    # 显示当前 shell： /bin/zsh
+    echo $SHELL
+    # 安装 oh-my-zsh:
+    git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+    # 安装 autojump
+    sudo yum install -y autojump
+    sudo yum install -y autojump-zsh
+    # 如果提示错误，没有那个文件或目录: /etc/profile.d/autojump.zsh
+    wget https://raw.githubusercontent.com/joelthelion/autojump/master/bin/autojump.zsh -O /etc/profile.d/autojump.zsh
+    sed -i 's/--add/-a/g' /etc/profile.d/autojump.zsh
+#+END_SRC
+
+* 初始化系统启动文件
+
+#+BEGIN_SRC sh
+    $XCFG/os/linketc.sh
+    sudo reboot
+#+END_SRC
+
+* 安装 lrzsz
+
+#+BEGIN_SRC sh
+    sudo yum install -y lrzsz
+#+END_SRC
+
+* 安装 tmux
+
+#+BEGIN_SRC sh
+    # 安装依赖包
+    sudo yum install -y libevent-devel
+    sudo yum install -y ncurses-devel
+    sudo yum install -y glibc-static
+
+    # 安装 tmux，可能版本较低，需要手工下载
+    sudo yum install -y tmux
+    # 或者手工下载安装 tmux
+    mkdir -p ~/Downloads/installed/lnx
+    cd ~/Downloads/installed/lnx
+    git clone https://github.com/tmux/tmux.git
+    cd tmux
+    sh ./autogen.sh
+    # 如果错误提示 aclocal failed，需要安装 automake
+    sudo yum install -y automake
+    ./configure && make
+    sudo make install
+    # 如果曾经编译过，需要清理
+    make clean
+
+    # 配置 tmux
+    git clone https://github.com/gpakosz/.tmux.git ~/.tmux
+    # 安装 tmux 插件管理器
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    $XCFG/tool/tmux/linktmux.sh
+    tmux
+    # 在 tmux 里使用下列快捷键安装插件
+    prefix shift-i
+    # 在 tmux 里使用下列快捷键编辑 ~/.tmux.conf.local
+    prefix e
+    # 在 tmux 里使用下列快捷键重载配置
+    prefix r
+#+END_SRC
+
+* 安装 rbenv ruby rails
+
+#+BEGIN_SRC sh
+    sudo yum update -y
+    sudo yum install -y git bzip2 openssl-devel readline-devel zlib-devel sqlite sqlite-devel gcc-c++
+#+END_SRC
+
+*注：更详细的情况请参考
+[[/mac/2017/07/26/mac/index.html#安装-rbenv-ruby-rails][Mac 安装使用]]*
+
+* 安装 node
+
+#+BEGIN_SRC sh
+    # 安装 nvm
+    curl https://raw.githubusercontent.com/creationix/nvm/v0.32.1/install.sh | bash
+    执行配置
+    source ~/.bashrc
+    # 或者重开一个终端
+    nvm --version
+
+    # 查看 node 版本并安装
+    nvm ls-remote node
+    nvm install v10.5.0
+    node -v
+
+    # 安装切换各版本 node/npm
+    #安装最新稳定版
+    nvm install stable
+    # 设置默认 node 版本
+    nvm alias default 10.6.0
+    # 切换版本
+    nvm use node
+
+    # 使用 cnpm 和淘宝源
+    npm install -g cnpm --registry=https://registry.npm.taobao.org
+
+    # 在全局环境中安装 grunt-cli
+    npm install -g grunt-cli
+    npm install -g vmd
+    npm install -g gitbook-cli
+    npm install -g hexo-cli
+    npm install -g tern
+    npm install -g js-beautify
+    npm install -g js-hint
+#+END_SRC
+
+* 安装 pyenv 和 python
+
+** 安装 pyenv
+
+#+BEGIN_SRC sh
+    # 安装依赖
+    sudo yum install -y gcc gcc-c++ make git patch openssl-devel zlib-devel readline-devel sqlite-devel bzip2-devel bzip2-libs
+    # 安装开发包以支持编译环境，否则会报错 `没有找到 python.h`
+    sudo yum install -y python-devel
+    sudo yum install -y python36-devel
+    # 安装 pyenv 和 virtualenv 插件
+    curl -L https://raw.github.com/yyuu/pyenv-installer/master/bin/pyenv-installer | bash
+    pyenv -v
+    pyenv help
+    # 添加到 `~/.bash_profile` 或 `~/.zprofile` 文件里
+    export PYENV_ROOT=$HOME/.pyenv
+    # 添加到 `~/.bashrc` 或 `~/.zshrc` 文件里
+    if which pyenv >/dev/null; then eval "$(pyenv init -)"; fi
+    # zsh 运行命令使配置生效
+    source ~/.zprofile && source ~/.zshrc
+    # bash 运行命令使配置生效
+    source ~/.bash_profile && source ~/.bashrc
+#+END_SRC
+
+*注：更详细的情况请参考
+[[/mac/2017/07/26/mac/index.html#安装-pyenv-和-python][Mac 安装使用]]*
+
+** 不使用 pyenv 安装 python
+
+#+BEGIN_SRC sh
+    # 不使用 pyenv 安装 python3
+    yum search python3
+    sudo yum install -y python36
+    sudo ln -sf /usr/bin/python3.6 /usr/bin/python3
+    sudo ln -sf /usr/bin/python3.6m /usr/bin/python3m
+#+END_SRC
+
+** 安装 python 时报错
+
+#+BEGIN_SRC sh
+    # 错误：ModuleNotFoundError: No module named ‘_ctypes’
+    # 解决
+    sudo yum update
+    sudo yum upgrade
+    sudo yum install -y gcc gcc-c++
+    sudo yum install -y zlib zlib-devel
+    sudo yum install -y libffi-devel
+#+END_SRC
+
+* 安装 redis
+
+安装 redis。
+
+#+BEGIN_SRC sh
+    # 直接 yum 安装的 redis 不是最新版本
+    yum install -y redis
+
+    # 如果要安装最新的 redis，需要安装 Remi 的软件源，官网地址：http://rpms.famillecollet.com/
+    yum install -y http://rpms.famillecollet.com/enterprise/remi-release-7.rpm
+
+    # 然后可以使用下面的命令安装最新版本的 redis：
+    yum --enablerepo=remi install redis
+
+    # 安装完毕后，即可使用下面的命令启动 redis 服务
+    service redis start
+    # 或者
+    systemctl start redis
+
+    # redis 安装完毕后，我们来查看下 redis 安装时创建的相关文件，如下：
+    rpm -qa |grep redis
+    rpm -ql redis
+
+    # 查看 redis 版本：
+    redis-cli --version
+
+    # 设置为开机自动启动：
+    chkconfig redis on
+    # 或者
+    systemctl enable redis.service
+#+END_SRC
+
+Redis 开启远程登录连接，redis 默认只能 localhost
+访问，所以需要开启远程登录。 在 redis 的配置文件/etc/redis.conf 中将
+=bind 127.0.0.1= 改成了 =bind 0.0.0.0=，然后要配置防火墙开放端口 6379。
+
+连接 redis
+
+#+BEGIN_SRC sh
+    redis-cli
+#+END_SRC
+
+在 azure vm centos7.4 安装了最新的 redis 4.0.6 bind 0.0.0.0
+发现外网连接不上，发现 azure vm
+打开端口的地方已经变了，需要注意：要将源端口设置为 *
+，目标端口为我们要打开的 redis 端口，打开后可以使用 telnet
+命令测试一下：
+
+#+BEGIN_SRC sh
+    telnet 101.200.189.125 6379
+#+END_SRC
+
+另外：redis 3.2 后新增 protected-mode 配置，默认是
+yes，即开启。解决方法分为两种：
+
+1. 设置 protected-mode 为 no
+2. 配置 bind 或者设置密码
+
+测试的时候使用了配置 bind
+方式，没有加密码，正式生产环境可以使用加密码方式。
+
+* 安装 vim
+
+#+BEGIN_SRC sh
+    # 本地
+    scp -r ~/xhome/dep/vim xuanfour@wozouwokan.com:/home/xuanfour/xhome/dep/vim
+
+    # 找到 vim 8 的 repository，并且放到本地
+    cd /etc/yum.repos.d/
+    sudo wget  https://copr.fedorainfracloud.org/coprs/mcepl/vim8/repo/epel-7/mcepl-vim8-epel-7.repo
+    # 查看 repo 文件，如果 gpgchek=1 是 enable 的，需要导入 gpk 的认证文件
+    sudo rpm --import  https://copr-be.cloud.fedoraproject.org/results/mcepl/vim8/pubkey.gpg
+    # 有时候 vim-minimal 有冲突，卸载冲突 rpm，重新升级。
+    sudo yum erase vim-minimal
+    # 注意！删除 vim-minimal 可能会影响 sudo，在安装 vim 完成后重新安装 sudo
+    su -
+    yum update vim
+    yum install -y sudo
+
+    # 如果用 yum 查找源中的 VIM 包，不知安装哪个合适。
+    yum search vim
+    # 到已安装 VIM 的系统中查看 VIM 属于哪个软件包：
+    which vim
+    #>> /usr/bin/vim
+    rpm -qf /usr/bin/vim
+    #>> vim-enhanced-7.0.109-7.el5
+    # 安装 vim
+    yum install -y vim-enhanced
+    # 进入 vim，运行 `:BundleClean :BundleInstall :BundleUpdate` 三次插件清理、安装、更新
+    # 进入 vim 插件 LeaderF 安装目录，运行 `./install.sh` 编译安装检索插件
+#+END_SRC
+
+* 安装 mysql
+
+#+BEGIN_SRC sh
+    #Library not loaded 安装前看是否安装过 mysql，
+    yum list installed mysql*
+    # 如果有就用 yum remove 卸载 mysql
+    # 查看 yum 库下是否有 mysql-server
+    yum list | grep mysql 或 yum -y list mysql*
+    # 如果没有（一般在 centos7 下没有）
+    wget http://repo.mysql.com/mysql80-community-release-el7-1.noarch.rpm
+    sudo rpm -ivh mysql80-community-release-el7-1.noarch.rpm
+
+    # 然后安装 mysql
+    sudo yum install -y mysql-server
+    sudo yum install -y mysql-devel
+
+    # 如果有 mysql-server，则按下面步骤
+    # 安装 mysql 客户端：
+    sudo yum install -y mysql
+    # 安装 mysql 服务器端：
+    sudo yum install -y mysql-server
+    sudo yum install -y mysql-devel
+
+    # 修改配置
+    # file: /etc/my.cnf
+    [mysqld]
+    character-set-server=utf8
+
+    # 然后启动 mysql 服务，可能需要输入 root 密码
+    service mysqld start
+    # 登录 mysql
+    mysql -u root -p
+    # 刚安装密码为空，直接按回车
+    # 如果提示权限错误，是第一次启动后生成的随机密码，可使用下列命令查看
+    grep "temporary password" /var/log/mysqld.log
+
+    # 查看数据库：
+    show databases;
+    # 如果提示错误
+    # ===> ERROR 1820 (HY000): You must reset your password
+    # ===> using ALTER USER statement before executing this statement.
+    # 可以使用如下两种方式修改密码：
+    # 1.
+    SET PASSWORD = PASSWORD(‘12345678’);
+    # 2.
+    ALTER USER USER() IDENTIFIED BY ‘12345678’;
+    # ===> ERROR 1819 (HY000): Your password does not satisfy the current policy requirements
+    # 出现这个错其实是和 validate_password_policy 的值有关。
+    # MySQL 完整的初始密码规则可以通过如下命令查看：
+    use sys;
+    SHOW VARIABLES LIKE 'validate_password%';
+    # validate_password_policy 默认是 1，即 MEDIUM，所以刚开始设置的密码必须符合长度，
+    # 且必须含有数字，小写或大写字母，特殊字符。
+    # 有时候，只是为了自己测试，不想密码设置得那么复杂，
+    # 譬如说，我只想设置 root 的密码为 123456。
+    # 必须修改两个全局参数：
+    set global validate_password_policy=0;
+    # 这样，判断密码的标准就基于密码的长度了。
+    # 这个由 validate_password_length 参数来决定。
+    # 密码的长度是由 validate_password_length 决定的，
+    # 而 validate_password_length 的计算公式是：
+    # validate_password_length = validate_password_number_count +
+    #     validate_password_special_char_count +
+    #     (2 * validate_password_mixed_case_count)
+    # validate_password_number_count 指定了密码中数据的长度
+    # validate_password_special_char_count 指定了密码中特殊字符的长度
+    # validate_password_mixed_case_count 指定了密码中大小字母的长度。
+    set global validate_password_length=1;
+    # 这些参数，默认值均为 1，所以 validate_password_length 最小值为 4，
+    # 如果你显性指定 validate_password_length 的值小于 4，
+    # 尽管不会报错，但 validate_password_length 的值将设为 4。
+    # 刷新系统并使用新密码测试登录
+    flush privileges;
+    mysql -u root -p
+    # 因为安装了 Yum Repository，以后每次 yum 操作都会自动更新，可以卸载：
+    sudo yum -y remove mysql80-community-release-el7-1.noarch.rpm
+#+END_SRC
+
+* 检查磁盘空间
+
+#+BEGIN_SRC sh
+    # 显示所有存储系统空间使用情况,同时显示存储系统的文件系统类型
+    df -aT
+    # 显示指定文件系统的空间使用情况
+    df -t ext3
+    # 人性化显示各存储空间大小
+    df -ah
+    # 有时候挂载了网络文件系统，若只想看本机的文件系统用如下命令
+    df -ahlT
+    # 查看某个文件系统的磁盘使用情况
+    df -h /dev/cdrom
+#+END_SRC
+
+* 检查目录空间
+
+#+BEGIN_SRC sh
+    # 查看当前文件夹大小
+    du -sh
+    # 查看当前文件及文件中包含的子文件夹大小
+    du -ch
+    # 查看文件的大小
+    du -h test1.txt
+    # 同时查看多个文件的大小
+    du -h test1.txt test2.txt
+#+END_SRC
+
+* References

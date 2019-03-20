@@ -12,7 +12,7 @@ tags:
 
 * 安装 rbenv
 
-  #+begin_src shell
+  #+begin_src sh
     # 安装 rbenv
     git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
     source ~/.bash_profile
@@ -33,7 +33,7 @@ tags:
 
 * 安装插件
 
-  #+begin_src shell
+  #+begin_src sh
     # 安装插件 ruby-build
     # 通常安装 ruby 最新版需要安装 ruby-build 插件用来编译安装 ruby
     mkdir -p "$(rbenv root)"/plugins
@@ -59,7 +59,7 @@ tags:
 
 * 安装 ruby
 
-  #+begin_src shell
+  #+begin_src sh
     rbenv install --list         # 列出所有 ruby 版本
     rbenv install 1.9.3-p392     # 安装 1.9.3-p392
     rbenv install jruby-1.7.3    # 安装 jruby-1.7.3

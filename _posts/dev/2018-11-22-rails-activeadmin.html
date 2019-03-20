@@ -1,0 +1,975 @@
+---
+layout: post
+title: "Rails ActiveAdmin 学习"
+date: 2018-11-22
+categories: 程序设计
+tags:
+    - Rails
+    - ActiveAdmin
+---
+
+<div id="outline-container-org54c93c3" class="outline-2">
+<h2 id="org54c93c3"><span class="section-number-2">1</span> 安装</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org536a741" class="outline-3">
+<h3 id="org536a741"><span class="section-number-3">1.1</span> 基础</h3>
+<div class="outline-text-3" id="text-1-1">
+<pre class="example">
+rails new auth
+</pre>
+
+<p>
+添加下面的 Gem 到 Gemfile
+</p>
+
+<ul class="org-ul">
+<li>activeadmin 后台管理</li>
+<li>devise：负责用户注册、登录、退出、找回密码等操作。</li>
+<li>cancancan：负责角色建立、对角色授权、在页面中根据授权是否显示元素，以及模型中超出授权时抛出异常。</li>
+<li>rolify：负责将用户与角色关联。</li>
+<li>draper：model 装饰，添加一个面向对象的表示逻辑层，增强性 helper。</li>
+<li>pundit：针对用户和类的权限管理。</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-ruby">gem <span style="color: #2d9574;">'activeadmin'</span>
+gem <span style="color: #2d9574;">'devise'</span>
+gem <span style="color: #2d9574;">'cancancan'</span>
+gem <span style="color: #2d9574;">'rolify'</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">gem 'draper'</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">gem 'pundit'</span>
+</pre>
+</div>
+
+<pre class="example">
+bundle install
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org79928ad" class="outline-3">
+<h3 id="org79928ad"><span class="section-number-3">1.2</span> 生成 activeadmin 框架</h3>
+<div class="outline-text-3" id="text-1-2">
+<p>
+其中包含了 devise
+</p>
+
+<pre class="example">
+rails g active_admin:install User
+rake db:migrate
+rake db:seed (添加一个用户 admin@example.com:password)
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org72371c1" class="outline-3">
+<h3 id="org72371c1"><span class="section-number-3">1.3</span> 配置 rolify</h3>
+<div class="outline-text-3" id="text-1-3">
+<pre class="example">
+rails g rolify Role User
+rake db:migrate
+</pre>
+
+<p>
+为第一个用户添加角色, 运行 rails console
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #ce537a; font-weight: bold;">User</span>.first.add_role <span style="color: #a45bad;">:admin</span>
+<span style="color: #ce537a; font-weight: bold;">User</span>.first.has_role? <span style="color: #a45bad;">:admin</span>
+</pre>
+</div>
+
+<p>
+如果第二行返回为 true，
+则表示角色设置成功了。另外需要再添加一个普通用户作为测试，同样在 rails
+console 环境下处理
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #ce537a; font-weight: bold;">User</span>.create!<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">email:</span> <span style="color: #2d9574;">'general@example.com'</span>, <span style="color: #a45bad;">password:</span> <span style="color: #2d9574;">'password'</span>, <span style="color: #a45bad;">password_confirmation:</span> <span style="color: #2d9574;">'password'</span><span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org43b91b5" class="outline-3">
+<h3 id="org43b91b5"><span class="section-number-3">1.4</span> 本地化</h3>
+<div class="outline-text-3" id="text-1-4">
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">config/application.rb</span>
+config.i18n.load_path += <span style="color: #ce537a; font-weight: bold;">Dir</span><span style="color: #4f97d7;">[</span><span style="color: #ce537a; font-weight: bold;">Rails</span>.root.join<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'config'</span>, <span style="color: #2d9574;">'locales'</span>, <span style="color: #2d9574;">'*'</span>,
+        <span style="color: #2d9574;">'*.{rb,yml}'</span><span style="color: #bc6ec5;">)</span>.to_s<span style="color: #4f97d7;">]</span>
+config.i18n.default_locale = :<span style="color: #2d9574;">"zh-CN"</span>
+</pre>
+</div>
+
+<p>
+按照 rails 风格，config/locales
+就是放置语言包的地方，不建议更改。然后我们就可以利用这样的风格来管理语言包了。
+</p>
+
+<pre class="example">
++locales--
+ |+zh-CN
+  |default.yml
+  |devise.yml
+  |..
+ |+en
+  |default.yml
+  |devise.yml
+  |..
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org9b75b59" class="outline-3">
+<h3 id="org9b75b59"><span class="section-number-3">1.5</span> 配置 cancan</h3>
+<div class="outline-text-3" id="text-1-5">
+<pre class="example">
+rails g cancan:ability
+</pre>
+
+<p>
+配置 admin 可以干所有的事情，一般用户只能读取数据
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">app/models/ability.rb</span>
+<span style="color: #4f97d7; font-weight: bold;">if</span> user.has_role? <span style="color: #a45bad;">:admin</span>
+  can <span style="color: #a45bad;">:manage</span>, <span style="color: #a45bad;">:all</span>
+<span style="color: #4f97d7; font-weight: bold;">else</span>
+  can <span style="color: #a45bad;">:read</span>, <span style="color: #a45bad;">:all</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1dd40b9" class="outline-3">
+<h3 id="org1dd40b9"><span class="section-number-3">1.6</span> 为 activeadmin 配置 cancan 权限</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+这个应该是最重要的部分
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">config/initialize/active_admin.rb</span>
+config.authorization_adapter = <span style="color: #ce537a; font-weight: bold;">ActiveAdmin</span>::<span style="color: #ce537a; font-weight: bold;">CanCanAdapter</span>
+config.cancan_ability_class = <span style="color: #2d9574;">"Ability"</span>
+config.on_unauthorized_access = <span style="color: #a45bad;">:access_denied</span>
+</pre>
+</div>
+
+<p>
+配置完上面的内容以后
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">app/controller/application_controller.rb</span>
+<span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">access_denied</span><span style="color: #4f97d7;">(</span>exception<span style="color: #4f97d7;">)</span>
+  redirect_to<span style="color: #4f97d7;">(</span>users_path, <span style="color: #a45bad;">alert:</span> exception.message<span style="color: #4f97d7;">)</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">config/routes.rb</span>
+root <span style="color: #a45bad;">to:</span> <span style="color: #2d9574;">'admin/dashboard#index'</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3a60c4b" class="outline-3">
+<h3 id="org3a60c4b"><span class="section-number-3">1.7</span> 配置邮件服务器</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+在开发环境下，需要配置下列内容：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">config/environments/development.rb:</span>
+config.action_mailer.default_url_options = <span style="color: #4f97d7;">{</span> <span style="color: #a45bad;">host:</span> <span style="color: #2d9574;">'localhost'</span>, <span style="color: #a45bad;">port:</span> <span style="color: #a45bad;">3000</span> <span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc0adf0b" class="outline-3">
+<h3 id="orgc0adf0b"><span class="section-number-3">1.8</span> 配置信息提示页面</h3>
+<div class="outline-text-3" id="text-1-8">
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">app/views/layouts/application.html.erb</span>
+
+&lt;<span style="color: #4f97d7;">p</span> <span style="color: #4f97d7; font-weight: bold;">class</span>=<span style="color: #2d9574;">"notice"</span>&gt;&lt;<span style="color: #2d9574;">%= notice %&gt;&lt;/p&gt;</span>
+<span style="color: #2d9574;">&lt;p class="alert"</span>&gt;&lt;<span style="color: #2d9574;">%= alert %&gt;&lt;/p&gt;</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3b637c2" class="outline-3">
+<h3 id="org3b637c2"><span class="section-number-3">1.9</span> 启动服务</h3>
+<div class="outline-text-3" id="text-1-9">
+<pre class="example">
+rails s
+</pre>
+
+<p>
+访问 <a href="http://localhost:3000/admin">http://localhost:3000/admin</a> , 分别利用不同的用户登陆，进入 User
+菜单，可以看到对 admin 和非 admin
+用户所呈现的菜单是不一样的。一般用户只能读取，而 admin
+用户可以修改，增加，删除。由此，activeadmin 对权限的支持也异常漂亮。
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-org82d73a8" class="outline-3">
+<h3 id="org82d73a8"><span class="section-number-3">1.10</span> 如果要关闭用户登录验证功能，可以用：</h3>
+<div class="outline-text-3" id="text-1-10">
+<pre class="example">
+# initializer/active_admin
+config.current_user_method = false
+config.authentication_method = false
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga024ab6" class="outline-3">
+<h3 id="orga024ab6"><span class="section-number-3">1.11</span> Comment</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+因为不需要 comment(注解)这个功能，所以在 initializer 中的 active_admin
+中关闭这个功能
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">For the entire application:</span>
+<span style="color: #ce537a; font-weight: bold;">ActiveAdmin</span>.setup <span style="color: #4f97d7; font-weight: bold;">do</span> |config|
+  config.comments = <span style="color: #a45bad;">false</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">For a namespace:</span>
+<span style="color: #ce537a; font-weight: bold;">ActiveAdmin</span>.setup <span style="color: #4f97d7; font-weight: bold;">do</span> |config|
+  config.namespace <span style="color: #a45bad;">:admin</span> <span style="color: #4f97d7; font-weight: bold;">do</span> |admin|
+    admin.comments = <span style="color: #a45bad;">false</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">For a given resource:</span>
+<span style="color: #ce537a; font-weight: bold;">ActiveAdmin</span>.register <span style="color: #ce537a; font-weight: bold;">Post</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+  config.comments = <span style="color: #a45bad;">false</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5cb4be4" class="outline-2">
+<h2 id="org5cb4be4"><span class="section-number-2">2</span> Utility Navigation（导航）</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+在右上角有一些快速导航按钮，默认的有两个，一个是当前的 admin
+用户，另外一个是登出按钮，我们可以增加导航按钮
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #ce537a; font-weight: bold;">ActiveAdmin</span>.setup <span style="color: #4f97d7; font-weight: bold;">do</span> |config|
+  config.namespace <span style="color: #a45bad;">:admin</span> <span style="color: #4f97d7; font-weight: bold;">do</span> |admin|
+    admin.build_menu <span style="color: #a45bad;">:utility_navigation</span> <span style="color: #4f97d7; font-weight: bold;">do</span> |menu|
+      menu.add <span style="color: #a45bad;">label:</span> <span style="color: #2d9574;">"ActiveAdmin.info"</span>, <span style="color: #a45bad;">url:</span> <span style="color: #2d9574;">"http://www.activeadmin.info"</span>,
+                                          <span style="color: #a45bad;">html_options:</span> <span style="color: #4f97d7;">{</span> <span style="color: #a45bad;">target:</span> <span style="color: #a45bad;">:blank</span> <span style="color: #4f97d7;">}</span>
+      admin.add_current_user_to_menu  menu
+      admin.add_logout_button_to_menu menu
+    <span style="color: #4f97d7; font-weight: bold;">end</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd21cf1a" class="outline-2">
+<h2 id="orgd21cf1a"><span class="section-number-2">3</span> 创建 Resources</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+添加一个 model，然后把 model 加入 active admin resources
+</p>
+
+<pre class="example">
+bin/rails generate model Post name:string title:string content:text
+# =&gt; app/model/post.rb
+bin/rails generate active_admin:resource Post
+# =&gt; app/admin/posts.rb
+</pre>
+
+<p>
+执行后会生成 app/admin/post.rb 文件
+</p>
+</div>
+
+<div id="outline-container-orgfb6de50" class="outline-3">
+<h3 id="orgfb6de50"><span class="section-number-3">3.1</span> permit_params</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+使用 permit_params 方法来定义哪些属性可以被修改,如果修改了没有被
+permit_params 定义的属性，修改不会生效
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #ce537a; font-weight: bold;">ActiveAdmin</span>.register <span style="color: #ce537a; font-weight: bold;">Post</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+  permit_params <span style="color: #a45bad;">:title</span>, <span style="color: #a45bad;">:content</span>, <span style="color: #a45bad;">:publisher_id</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc668360" class="outline-3">
+<h3 id="orgc668360"><span class="section-number-3">3.2</span> 定义一个 Resource 中的 action</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+默认的，所有的 CRUD 的 actions
+都可以操作，如果要禁用其中的某些操作，用如下定义：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #ce537a; font-weight: bold;">ActiveAdmin</span>.register <span style="color: #ce537a; font-weight: bold;">Post</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+  actions <span style="color: #a45bad;">:all</span>, <span style="color: #a45bad;">except:</span> <span style="color: #4f97d7;">[</span><span style="color: #a45bad;">:update</span>, <span style="color: #a45bad;">:destroy</span><span style="color: #4f97d7;">]</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org536bf97" class="outline-2">
+<h2 id="org536bf97"><span class="section-number-2">4</span> 自定义 Menu</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+一个 resource 默认都会在全局导航栏上，如果要禁止一个 resource
+出现在全局导航栏上，我们可以用：
+</p>
+
+<pre class="example">
+ActiveAdmin.register Post do
+  # menu false
+  # menu label: "自定义标题",priority: 1
+end
+</pre>
+
+<p>
+menu 有 4 个选项可以用：
+</p>
+
+<ul class="org-ul">
+<li>:label - 指定该 menu 的名称</li>
+<li>:parent - 指定一个顶级菜单</li>
+<li>:if - 指定一个条件</li>
+<li>:priority - 默认为 10，在全局导航栏上的位置</li>
+</ul>
+</div>
+
+<div id="outline-container-org78a5c34" class="outline-3">
+<h3 id="org78a5c34"><span class="section-number-3">4.1</span> 添加自定义的 menu</h3>
+<div class="outline-text-3" id="text-4-1">
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">config/initializers/active_admin.rb</span>
+
+config.namespace <span style="color: #a45bad;">:admin</span> <span style="color: #4f97d7; font-weight: bold;">do</span> |admin|
+  admin.build_menu <span style="color: #4f97d7; font-weight: bold;">do</span> |menu|
+    menu.add <span style="color: #a45bad;">label:</span> <span style="color: #2d9574;">"The Application"</span>, <span style="color: #a45bad;">url:</span> <span style="color: #2d9574;">"/"</span>, <span style="color: #a45bad;">priority:</span> <span style="color: #a45bad;">0</span>
+
+    menu.add <span style="color: #a45bad;">label:</span> <span style="color: #2d9574;">"Sites"</span> <span style="color: #4f97d7; font-weight: bold;">do</span> |sites|
+      sites.add <span style="color: #a45bad;">label:</span> <span style="color: #2d9574;">"Google"</span>,
+                <span style="color: #a45bad;">url:</span> <span style="color: #2d9574;">"http://google.com"</span>,
+                <span style="color: #a45bad;">html_options:</span> <span style="color: #4f97d7;">{</span> <span style="color: #a45bad;">target:</span> <span style="color: #a45bad;">:blank</span> <span style="color: #4f97d7;">}</span>
+      sites.add <span style="color: #a45bad;">label:</span> <span style="color: #2d9574;">"Github"</span>,
+                <span style="color: #a45bad;">url:</span> <span style="color: #2d9574;">"http://github.com"</span>
+    <span style="color: #4f97d7; font-weight: bold;">end</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1d57eca" class="outline-3">
+<h3 id="org1d57eca"><span class="section-number-3">4.2</span> 自定义 resource 的 index 页面</h3>
+<div class="outline-text-3" id="text-4-2">
+<p>
+提供 4 中样式，Block，Blog，Grid，Table，一般我们用的是
+table，也是默认的样式。这里只介绍 table。 默认的，index 页面会展示对应的
+model 的所以字段，可供查看，修改，删除。 如果要自定义字段，可以用：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">index <span style="color: #4f97d7; font-weight: bold;">do</span>
+  selectable_column
+  column <span style="color: #a45bad;">:title</span>
+  column <span style="color: #2d9574;">"My custom name"</span>, <span style="color: #a45bad;">:name</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+这些自定的字段要被 index 包裹：
+</p>
+
+<ul class="org-ul">
+<li>selectable_column 显示勾选框，用于批量操作</li>
+<li>column 显示什么字段，该字段必须是 model
+的字段名，可以给这个字段另取一个别名</li>
+</ul>
+
+<p>
+还可以根据条件设置特别的 row 样式，这个 some_style 样式放在
+app/asset/stylesheets/active_admin.scss 中
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">index<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">row_class:</span> -&gt;item <span style="color: #bc6ec5;">{</span> <span style="color: #2d9574;">'some_style'</span> <span style="color: #4f97d7; font-weight: bold;">if</span> item.is_show <span style="color: #bc6ec5;">}</span><span style="color: #4f97d7;">)</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge75078c" class="outline-2">
+<h2 id="orge75078c"><span class="section-number-2">5</span> 自定义 Actions</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+如果要给 resource 设置链接到查看，修改，删除这几个按钮，可以用 actions
+方法
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">index <span style="color: #4f97d7; font-weight: bold;">do</span>
+  selectable_column
+  column <span style="color: #a45bad;">:title</span>
+  actions
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+也可以增加自定的链接
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">index <span style="color: #4f97d7; font-weight: bold;">do</span>
+  selectable_column
+  column <span style="color: #a45bad;">:title</span>
+  actions <span style="color: #4f97d7; font-weight: bold;">do</span> |post|
+    item <span style="color: #2d9574;">"Preview"</span>, admin_preview_post_path<span style="color: #4f97d7;">(</span>post<span style="color: #4f97d7;">)</span>, <span style="color: #4f97d7; font-weight: bold;">class</span>: <span style="color: #2d9574;">"member_link"</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+获取重新设置链接
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">index <span style="color: #4f97d7; font-weight: bold;">do</span>
+  column <span style="color: #a45bad;">:title</span>
+  actions <span style="color: #a45bad;">defaults:</span> <span style="color: #a45bad;">false</span> <span style="color: #4f97d7; font-weight: bold;">do</span> |post|
+    item <span style="color: #2d9574;">"View"</span>, admin_post_path<span style="color: #4f97d7;">(</span>post<span style="color: #4f97d7;">)</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org51be820" class="outline-2">
+<h2 id="org51be820"><span class="section-number-2">6</span> Form(model 的创建或者修改表单)</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+默认的表单是展示所有的字段
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">form <span style="color: #4f97d7; font-weight: bold;">do</span> |f|
+  f.semantic_errors <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">shows errors on :base</span>
+  f.inputs          <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">builds an input field for every attribute</span>
+  f.actions         <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">adds the 'Submit' and 'Cancel' buttons</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+示例：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">form <span style="color: #a45bad;">title:</span> <span style="color: #2d9574;">'A custom title'</span> <span style="color: #4f97d7; font-weight: bold;">do</span> |f|
+    inputs <span style="color: #2d9574;">'Details'</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+      input <span style="color: #a45bad;">:part1</span>
+      input <span style="color: #a45bad;">:part2</span>, <span style="color: #a45bad;">label:</span> <span style="color: #2d9574;">"Publish Post At"</span>
+      li <span style="color: #2d9574;">"Created at </span><span style="color: #7590db;">#{f.object.created_at}</span><span style="color: #2d9574;">"</span> <span style="color: #4f97d7; font-weight: bold;">unless</span> f.object.new_record?
+      input <span style="color: #a45bad;">:part3</span>
+    <span style="color: #4f97d7; font-weight: bold;">end</span>
+    panel <span style="color: #2d9574;">'Markup'</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+      <span style="color: #2d9574;">"The following can be used in the content below..."</span>
+    <span style="color: #4f97d7; font-weight: bold;">end</span>
+    inputs <span style="color: #2d9574;">'Content'</span>, <span style="color: #a45bad;">:part3</span>
+    para <span style="color: #2d9574;">"Press cancel to return to the list without saving."</span>
+    input <span style="color: #a45bad;">:created_at</span>, <span style="color: #a45bad;">as:</span> <span style="color: #a45bad;">:datepicker</span>,
+            <span style="color: #a45bad;">datepicker_options:</span> <span style="color: #4f97d7;">{</span>
+                <span style="color: #a45bad;">min_date:</span> <span style="color: #2d9574;">"2013-10-8"</span>,
+                <span style="color: #a45bad;">max_date:</span> <span style="color: #2d9574;">"+3D"</span>
+            <span style="color: #4f97d7;">}</span>
+    actions
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbfacfa0" class="outline-2">
+<h2 id="orgbfacfa0"><span class="section-number-2">7</span> 增加 action 的按钮</h2>
+<div class="outline-text-2" id="text-7">
+<p>
+link_to path 中的 path 指定的方式是
+</p>
+
+<ol class="org-ol">
+<li>命名空间_model 的复数形式_path</li>
+<li>controller 名称_方法名_path</li>
+</ol>
+
+<div class="org-src-container">
+<pre class="src src-ruby">action_item <span style="color: #a45bad;">only:</span> <span style="color: #a45bad;">:index</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+  link_to <span style="color: #2d9574;">'&#21047;&#26032;&#30097;&#20284;&#29366;&#24577;'</span>, admin_app_oral_memories_path, <span style="color: #a45bad;">notice:</span> <span style="color: #2d9574;">"&#21047;&#26032;&#25104;&#21151;"</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+增加 batch 操作按钮
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">batch_action <span style="color: #2d9574;">"&#23553;&#31105;"</span> <span style="color: #4f97d7; font-weight: bold;">do</span> |selection|
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+Index Filter 过滤器
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">filter <span style="color: #a45bad;">:name</span>, <span style="color: #a45bad;">label:</span> <span style="color: #2d9574;">"name"</span>
+</pre>
+</div>
+
+<p>
+一般的，通过上面这个形式就好了，activeadmin 会自动判断其类型。
+</p>
+
+<p>
+或者有另个情况，有个关联表。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">filter <span style="color: #a45bad;">:location_id</span>, <span style="color: #a45bad;">label:</span> <span style="color: #2d9574;">"&#22320;&#28857;"</span>, <span style="color: #a45bad;">as:</span> <span style="color: #a45bad;">:select</span>, <span style="color: #a45bad;">collection:</span> <span style="color: #ce537a; font-weight: bold;">AppExamLocation</span>.all.map<span style="color: #4f97d7;">{</span>|x| <span style="color: #bc6ec5;">[</span>x.location,x.id<span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+
+<p>
+通过:as 可以指定类型，提供这一下这几种类型
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #a45bad;">:string</span> - <span style="color: #ce537a; font-weight: bold;">A</span> drop down <span style="color: #4f97d7; font-weight: bold;">for</span> selecting &#8220;<span style="color: #ce537a; font-weight: bold;">Contains</span>&#8221;, &#8220;<span style="color: #ce537a; font-weight: bold;">Equals</span>&#8221;, &#8220;<span style="color: #ce537a; font-weight: bold;">Starts</span> with&#8221;, &#8220;<span style="color: #ce537a; font-weight: bold;">Ends</span> with&#8221; <span style="color: #4f97d7; font-weight: bold;">and</span> an input <span style="color: #4f97d7; font-weight: bold;">for</span> a value.
+<span style="color: #a45bad;">:date_range</span> - <span style="color: #ce537a; font-weight: bold;">A</span> start <span style="color: #4f97d7; font-weight: bold;">and</span> <span style="color: #4f97d7; font-weight: bold;">end</span> date field with calendar inputs
+<span style="color: #a45bad;">:numeric</span> - <span style="color: #ce537a; font-weight: bold;">A</span> drop down <span style="color: #4f97d7; font-weight: bold;">for</span> selecting &#8220;<span style="color: #ce537a; font-weight: bold;">Equal</span> <span style="color: #ce537a; font-weight: bold;">To</span>&#8221;, &#8220;<span style="color: #ce537a; font-weight: bold;">Greater</span> <span style="color: #ce537a; font-weight: bold;">Than</span>&#8221; <span style="color: #4f97d7; font-weight: bold;">or</span> &#8220;<span style="color: #ce537a; font-weight: bold;">Less</span> <span style="color: #ce537a; font-weight: bold;">Than</span>&#8221; <span style="color: #4f97d7; font-weight: bold;">and</span> an input <span style="color: #4f97d7; font-weight: bold;">for</span> a value.
+<span style="color: #a45bad;">:select</span> - <span style="color: #ce537a; font-weight: bold;">A</span> drop down which filters based on a selected item <span style="color: #4f97d7; font-weight: bold;">in</span> a collection <span style="color: #4f97d7; font-weight: bold;">or</span> all.
+<span style="color: #a45bad;">:check_boxes</span> - <span style="color: #ce537a; font-weight: bold;">A</span> list of check boxes users can turn on <span style="color: #4f97d7; font-weight: bold;">and</span> off to filter
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org87fc17a" class="outline-2">
+<h2 id="org87fc17a"><span class="section-number-2">8</span> 项目汉化</h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org3ac84c0" class="outline-3">
+<h3 id="org3ac84c0"><span class="section-number-3">8.1</span> ActiveAdmin 汉化</h3>
+</div>
+
+<div id="outline-container-org2a77ccd" class="outline-3">
+<h3 id="org2a77ccd"><span class="section-number-3">8.2</span> 第一步：局部汉化</h3>
+<div class="outline-text-3" id="text-8-2">
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #ce537a; font-weight: bold;">ActiveAdmin</span>.register <span style="color: #ce537a; font-weight: bold;">AdminUser</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+  menu <span style="color: #a45bad;">:label</span> =&gt; <span style="color: #2d9574;">"&#29992;&#25143;&#31649;&#29702;"</span>
+
+  index <span style="color: #4f97d7; font-weight: bold;">do</span>
+    column <span style="color: #2d9574;">"&#37038;&#31665;"</span>,<span style="color: #a45bad;">:email</span>
+    column <span style="color: #2d9574;">"&#26368;&#36817;&#30331;&#24405;"</span>,<span style="color: #a45bad;">:current_sign_in_at</span>
+    column <span style="color: #2d9574;">"&#19978;&#27425;&#30331;&#24405;"</span>,<span style="color: #a45bad;">:last_sign_in_at</span>
+    column <span style="color: #2d9574;">"&#30331;&#24405;&#27425;&#25968;"</span>,<span style="color: #a45bad;">:sign_in_count</span>
+    default_actions
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+
+  filter <span style="color: #a45bad;">:email</span>, <span style="color: #a45bad;">:label</span>=&gt;<span style="color: #2d9574;">"&#37038;&#31665;"</span>
+
+  form <span style="color: #4f97d7; font-weight: bold;">do</span> |f|
+    f.inputs <span style="color: #2d9574;">"&#29992;&#25143;&#36164;&#26009;"</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+      f.input <span style="color: #a45bad;">:email</span> ,<span style="color: #a45bad;">:label</span>=&gt;<span style="color: #2d9574;">"&#37038;&#31665;"</span>
+      f.input <span style="color: #a45bad;">:password</span> ,<span style="color: #a45bad;">:label</span>=&gt;<span style="color: #2d9574;">"&#23494;&#30721;"</span>
+      f.input <span style="color: #a45bad;">:password_confirmation</span> ,<span style="color: #a45bad;">:label</span>=&gt;<span style="color: #2d9574;">"&#37325;&#22797;&#23494;&#30721;"</span>
+    <span style="color: #4f97d7; font-weight: bold;">end</span>
+    f.actions
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+
+  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21491;&#20391;&#24110;&#21161;</span>
+  sidebar <span style="color: #a45bad;">:help</span>,<span style="color: #a45bad;">:only</span> =&gt; <span style="color: #a45bad;">:index</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+    <span style="color: #2d9574;">"&#22914;&#26524;&#24744;&#22312;&#20351;&#29992;&#21518;&#21488;&#31649;&#29702;&#26102;&#36935;&#21040;&#38382;&#39064;&#65292;&#35831;&#32852;&#31995; robot.zhu@icitymobile.com"</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+按上述设置后，页面部分内容将变成中文。
+</p>
+
+<ul class="org-ul">
+<li>menu 菜单栏文字</li>
+<li>index column 列表中某列</li>
+<li>filter label 筛选器标签</li>
+<li>form inputs 表单的标题</li>
+<li>form input label 单个文本输入框前的标签</li>
+</ul>
+
+<p>
+这个时候看，整个框架还是英文的。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org41dbcb8" class="outline-3">
+<h3 id="org41dbcb8"><span class="section-number-3">8.3</span> 第二步：框架汉化</h3>
+<div class="outline-text-3" id="text-8-3">
+<p>
+导入 ActiveAdmin 提供的语言文件。根据需要选择。简体中文就选择
+zh-CN.yml。
+</p>
+
+<ul class="org-ul">
+<li>地址：<a href="https://github.com/activeadmin/activeadmin/tree/master/config/locales">https://github.com/activeadmin/activeadmin/tree/master/config/locales</a></li>
+<li>中文：<a href="https://github.com/activeadmin/activeadmin/blob/master/config/locales/zh-CN.yml">https://github.com/activeadmin/activeadmin/blob/master/config/locales/zh-CN.yml</a></li>
+</ul>
+
+<p>
+将 zh-CN.yml 复制到自己的 config/locales/目录下。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeec5344" class="outline-3">
+<h3 id="orgeec5344"><span class="section-number-3">8.4</span> 第三步：修改配置</h3>
+<div class="outline-text-3" id="text-8-4">
+<p>
+修改 config/application.rb 文件，添加下面两行。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">config.i18n.available_locales = <span style="color: #4f97d7;">[</span>:<span style="color: #2d9574;">"zh-CN"</span>, <span style="color: #a45bad;">:en</span><span style="color: #4f97d7;">]</span>
+config.i18n.default_locale = :<span style="color: #2d9574;">"zh-CN"</span>
+</pre>
+</div>
+
+<p>
+重启 Rails Server。
+</p>
+
+<p>
+整个框架就变成中文了。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge988c18" class="outline-3">
+<h3 id="orge988c18"><span class="section-number-3">8.5</span> Model 国际化</h3>
+<div class="outline-text-3" id="text-8-5">
+<p>
+实际上面这么做之后，还有少量地方仍然是英文。
+比如：导航栏上的模块名称（Posts），右侧的"新建 Post"按钮。
+</p>
+
+<p>
+我们肯定希望"Posts"显示为"博文"，"新建 Post"显示为"新建博文"。
+</p>
+
+<p>
+这个时候需要在语言文件 zh-CN.yml 里加上 models 的国际化。
+</p>
+
+<pre class="example">
+activerecord:
+  models:
+    user: '用户'
+    post: '博文'
+    organization: '机构'
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org67f475d" class="outline-3">
+<h3 id="org67f475d"><span class="section-number-3">8.6</span> Device 国际化</h3>
+<div class="outline-text-3" id="text-8-6">
+<p>
+下载汉化包 devise.zh-CN.yml，并复制到自己的 config/locales/目录下。
+下载地址：<a href="https://github.com/plataformatec/devise/wiki/I18n">https://github.com/plataformatec/devise/wiki/I18n</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0160c80" class="outline-3">
+<h3 id="org0160c80"><span class="section-number-3">8.7</span> 错误列表</h3>
+<div class="outline-text-3" id="text-8-7">
+<p>
+错误信息：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #ce537a; font-weight: bold;">ActionView</span>::<span style="color: #ce537a; font-weight: bold;">Template</span>::<span style="color: #ce537a; font-weight: bold;">Error</span> <span style="color: #4f97d7;">(</span>translation <span style="color: #a45bad;">missing:</span> zh-<span style="color: #ce537a; font-weight: bold;">CN</span>.time.formats.long<span style="color: #4f97d7;">)</span>:
+    <span style="color: #a45bad;">1</span>: insert_tag renderer_for<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">:index</span><span style="color: #4f97d7;">)</span>
+  app/admin/admin_user.rb:<span style="color: #a45bad;">6</span>:in <span style="color: #2d9574;">`block (2 levels) in &lt;top (required)&gt;'</span>
+</pre>
+</div>
+
+<p>
+解决办法
+</p>
+
+<p>
+引入 Rails 的语言文件。复制内容至 zh-CN.yml 文件中。
+</p>
+
+<ul class="org-ul">
+<li>地址：<a href="https://github.com/tsechingho/rails-i18n/tree/master/rails/locale">https://github.com/tsechingho/rails-i18n/tree/master/rails/locale</a></li>
+<li>中文：<a href="https://github.com/tsechingho/rails-i18n/blob/master/rails/locale/zh-CN.yml">https://github.com/tsechingho/rails-i18n/blob/master/rails/locale/zh-CN.yml</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga75664c" class="outline-2">
+<h2 id="orga75664c"><span class="section-number-2">9</span> ActiveAdmin 更新</h2>
+<div class="outline-text-2" id="text-9">
+<p>
+你可以键入如下命令进行对它的升级
+</p>
+
+<pre class="example">
+rails generate active_admin:assets
+</pre>
+
+<p>
+如果提示：uninitialized constant Admin::DashboardController
+这个时候，需要 dashboard
+view（app/admin/dashboards.rb）和初始化的时候一样。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb2b6c82" class="outline-2">
+<h2 id="orgb2b6c82"><span class="section-number-2">10</span> Rails Activeadmin 界面构成方法解析</h2>
+<div class="outline-text-2" id="text-10">
+<p>
+以一个 PMS
+系统中的供应商界面的功能来做例子，并没有将界面与后台代码解偶，而是绑定在了一起。controller
+是这个文件，view 也是这个界面，只有 model 是另外的文件，这是 rails
+的要求。该界面数据和数据库的一张表，或者说一个 model
+相对应。一个界面就和一张数据表绑定，非绑定数据界面另放 view 中
+render。理解这一点才能更好的理解功能的实现。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">supplier.rb &#25991;&#20214;&#65306;</span>
+<span style="color: #ce537a; font-weight: bold;">ActiveAdmin</span>.register <span style="color: #ce537a; font-weight: bold;">Supplier</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">permit_params:&#20801;&#35768;&#25968;&#25454;&#24211;&#20256;&#21040;&#30028;&#38754;&#30340;&#21442;&#25968;</span>
+  permit_params <span style="color: #a45bad;">:supplier_code</span>, <span style="color: #a45bad;">:supplier_type</span>, <span style="color: #a45bad;">:supplier_name</span>, <span style="color: #a45bad;">:supplier_simple</span>, <span style="color: #a45bad;">:company_address</span>, <span style="color: #a45bad;">:company_tel</span>, <span style="color: #a45bad;">:company_fax</span>, <span style="color: #a45bad;">:supplier_status</span>, <span style="color: #a45bad;">:company_account</span>,
+                <span style="color: #a45bad;">:account_name</span>, <span style="color: #a45bad;">:company_tax</span>, <span style="color: #a45bad;">:supplier_order</span>, <span style="color: #a45bad;">:contact_count</span>, <span style="color: #a45bad;">:attachment_count</span>, <span style="color: #a45bad;">:material_count</span>, <span style="color: #a45bad;">:remark</span>, <span style="color: #a45bad;">:operator_id</span>, <span style="color: #a45bad;">:payment_term</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#20998;&#39029;&#24320;&#21551;&#65292;&#21644;&#27599;&#39029;&#25968;&#25454;&#37327;</span>
+  config.paginate = <span style="color: #a45bad;">true</span>
+  config.per_page = <span style="color: #a45bad;">20</span>
+  <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#40664;&#35748;&#25490;&#24207;</span>
+  config.sort_order = <span style="color: #2d9574;">'supplier_order'</span>
+
+  <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#31105;&#29992;&#21151;&#33021;</span>
+  config.filters = <span style="color: #a45bad;">false</span>
+  config.batch_actions = <span style="color: #a45bad;">false</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#32465;&#23450;&#30340;&#25968;&#25454;&#34920;&#30340;&#20449;&#24687;&#23637;&#31034;,&#23558;&#23637;&#31034;&#30340;&#20449;&#24687;&#20570;&#22788;&#29702;&#65292;&#22914;&#26524;&#19981;&#20889;&#36825;&#27573;&#65292;&#25968;&#25454;&#34920;&#20013;&#30340;&#25968;&#25454;&#20173;&#28982;&#20250;&#26174;&#31034;&#65292;&#12288;&#20294;&#26159;&#20250;&#26174;&#31034;&#25152;&#26377;&#23383;&#27573;&#65292;&#24182;&#19988;&#26174;&#31034;&#30340;&#21015;&#21517;&#20026;&#25968;&#25454;&#34920;&#30340;&#23383;&#27573;&#21517;&#65292;&#20174;&#32593;&#39029;&#26174;&#31034;&#30340;&#35282;&#24230;&#26469;&#35828;&#24182;&#19981;&#32654;&#35266;</span>
+index <span style="color: #a45bad;">:title</span> =&gt; <span style="color: #2d9574;">'&#20379;&#24212;&#21830;&#21015;&#34920;'</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+    selectable_column
+    <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">id_column</span>
+    column <span style="color: #2d9574;">"&#32534;&#30721;"</span>, <span style="color: #a45bad;">:supplier_code</span>
+    column <span style="color: #2d9574;">"&#31867;&#21035;"</span>, <span style="color: #a45bad;">:supplier_type_name</span>
+    column <span style="color: #2d9574;">"&#21517;&#31216;"</span>, <span style="color: #a45bad;">:supplier_name</span>
+    column <span style="color: #2d9574;">"&#20844;&#21496;&#22320;&#22336;"</span>, <span style="color: #a45bad;">:company_address</span>
+    column <span style="color: #2d9574;">"&#29366;&#24577;"</span>, <span style="color: #a45bad;">:supplier_status_name</span>
+    column <span style="color: #2d9574;">"&#22791;&#27880;"</span>, <span style="color: #a45bad;">:remark</span>
+    column <span style="color: #2d9574;">"&#23646;&#24615;"</span> <span style="color: #4f97d7; font-weight: bold;">do</span> |f|
+
+      <span style="color: #4f97d7; font-weight: bold;">if</span> f.attachment_count &gt; <span style="color: #a45bad;">0</span>
+        span  <span style="color: #4f97d7; font-weight: bold;">do</span>
+          image_tag <span style="color: #2d9574;">"/assets/icons/address.png"</span>, <span style="color: #a45bad;">height:</span> <span style="color: #2d9574;">'20'</span>, <span style="color: #a45bad;">width:</span> <span style="color: #2d9574;">'20'</span>, <span style="color: #a45bad;">title:</span> <span style="color: #2d9574;">"&#26377;&#38468;&#20214;"</span>
+        <span style="color: #4f97d7; font-weight: bold;">end</span>
+      <span style="color: #4f97d7; font-weight: bold;">end</span>
+    <span style="color: #4f97d7; font-weight: bold;">end</span>
+    actions
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#30028;&#38754;&#26041;&#27861;&#65292;&#22914;&#38750;&#32465;&#23450;&#25968;&#25454;&#30028;&#38754;&#30340;&#21518;&#21488;&#26041;&#27861;&#30340;</span>
+ collection_action <span style="color: #a45bad;">:get_users</span>, <span style="color: #a45bad;">:method</span> =&gt; <span style="color: #a45bad;">:post</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+    supplier_id = params<span style="color: #4f97d7;">[</span><span style="color: #a45bad;">:id</span><span style="color: #4f97d7;">]</span>
+    render <span style="color: #a45bad;">json:</span> <span style="color: #ce537a; font-weight: bold;">SupplierContact</span>.format_contact_data<span style="color: #4f97d7;">(</span>supplier_id<span style="color: #4f97d7;">)</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+
+  collection_action <span style="color: #a45bad;">:save_contact</span>, <span style="color: #a45bad;">:method</span> =&gt; <span style="color: #a45bad;">:post</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+    render <span style="color: #a45bad;">json:</span> <span style="color: #ce537a; font-weight: bold;">SupplierContact</span>.save_contact_data<span style="color: #4f97d7;">(</span>params<span style="color: #4f97d7;">)</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+
+&#65283;form &#34920;&#21333;&#26174;&#31034;&#12288;&#21644; index &#19968;&#26679;&#26159;&#19968;&#31181;&#25968;&#25454;&#23637;&#31034;&#30340;&#26041;&#24335;&#65292;&#20854;&#20182;&#30340;&#36824;&#26377; grid,<span style="color: #ce537a; font-weight: bold;">Table</span>,blog,<span style="color: #ce537a; font-weight: bold;">Blocks</span>
+&#65283;
+form <span style="color: #4f97d7; font-weight: bold;">do</span> |f|
+    f.inputs <span style="color: #2d9574;">"&#20379;&#24212;&#21830;&#20449;&#24687;"</span> <span style="color: #4f97d7; font-weight: bold;">do</span>
+
+      <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#21482;&#26377;&#26032;&#24314;&#26102;&#25165;&#26356;&#26032;</span>
+      <span style="color: #4f97d7; font-weight: bold;">if</span> resource.supplier_code.present?
+        supplier_code = resource.supplier_code
+      <span style="color: #4f97d7; font-weight: bold;">else</span>
+        supplier_code = <span style="color: #ce537a; font-weight: bold;">Base</span>.get_model_code<span style="color: #4f97d7;">(</span><span style="color: #2d9574;">'GYS'</span>, <span style="color: #a45bad;">4</span>, <span style="color: #2d9574;">'supplier'</span><span style="color: #4f97d7;">)</span>
+      <span style="color: #4f97d7; font-weight: bold;">end</span>
+
+      f.input <span style="color: #a45bad;">:supplier_code</span>, <span style="color: #a45bad;">:hint</span> =&gt; <span style="color: #2d9574;">"&#20379;&#24212;&#21830;&#21807;&#19968;&#32534;&#21495;"</span>, <span style="color: #a45bad;">:input_html</span> =&gt; <span style="color: #4f97d7;">{</span> <span style="color: #a45bad;">:value</span> =&gt; supplier_code, <span style="color: #a45bad;">:readonly</span> =&gt; <span style="color: #a45bad;">true</span><span style="color: #4f97d7;">}</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#20379;&#24212;&#21830;&#32534;&#21495;"</span>
+
+      f.input <span style="color: #a45bad;">:supplier_name</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#20379;&#24212;&#21830;&#20840;&#31216;"</span>, <span style="color: #a45bad;">:required</span> =&gt; <span style="color: #a45bad;">true</span>
+      f.input <span style="color: #a45bad;">:supplier_simple</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#31616;&#31216;"</span>
+      f.input <span style="color: #a45bad;">:supplier_type</span>, <span style="color: #a45bad;">:as</span> =&gt; <span style="color: #a45bad;">:select</span>, <span style="color: #a45bad;">:collection</span> =&gt;  resource.supplier_type_ary, <span style="color: #a45bad;">:include_blank</span> =&gt; <span style="color: #a45bad;">false</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#20379;&#24212;&#21830;&#31867;&#21035;"</span>
+      f.input <span style="color: #a45bad;">:supplier_status</span>, <span style="color: #a45bad;">:as</span> =&gt; <span style="color: #a45bad;">:select</span>, <span style="color: #a45bad;">:collection</span> =&gt;  resource.supplier_status_ary, <span style="color: #a45bad;">:include_blank</span> =&gt; <span style="color: #a45bad;">false</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#20379;&#24212;&#21830;&#29366;&#24577;"</span>
+      f.input <span style="color: #a45bad;">:company_address</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#20844;&#21496;&#22320;&#22336;"</span>
+      f.input <span style="color: #a45bad;">:company_tel</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#20844;&#21496;&#24231;&#26426;"</span>
+      f.input <span style="color: #a45bad;">:company_fax</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#20844;&#21496;&#20256;&#30495;"</span>
+      f.input <span style="color: #a45bad;">:company_account</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#20844;&#21496;&#36134;&#25143;"</span>
+      f.input <span style="color: #a45bad;">:account_name</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#36134;&#25143;&#21517;&#31216;"</span>
+      f.input <span style="color: #a45bad;">:company_tax</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#31246;&#21495;"</span>
+      f.input <span style="color: #a45bad;">:payment_term</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#20184;&#27454;&#21608;&#26399;"</span>
+      f.input <span style="color: #a45bad;">:remark</span>, <span style="color: #a45bad;">:input_html</span> =&gt; <span style="color: #4f97d7;">{</span> <span style="color: #a45bad;">:rows</span> =&gt; <span style="color: #2d9574;">"5"</span><span style="color: #4f97d7;">}</span>, <span style="color: #a45bad;">:label</span>=&gt; <span style="color: #2d9574;">"&#22791;&#27880;"</span>
+      f.input <span style="color: #a45bad;">:operator_id</span>, <span style="color: #a45bad;">:as</span> =&gt; <span style="color: #a45bad;">:hidden</span>, <span style="color: #a45bad;">:input_html</span> =&gt; <span style="color: #4f97d7;">{</span><span style="color: #a45bad;">:value</span> =&gt; current_active_admin_user.id<span style="color: #4f97d7;">}</span>
+    <span style="color: #4f97d7; font-weight: bold;">end</span>
+    f.actions
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+
+
+ <span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org98c78e7" class="outline-2">
+<h2 id="org98c78e7"><span class="section-number-2">11</span> 增加全局错误信息提示</h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-org02cae66" class="outline-3">
+<h3 id="org02cae66"><span class="section-number-3">11.1</span> 定义错误</h3>
+<div class="outline-text-3" id="text-11-1">
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">User</span> &lt; <span style="color: #ce537a; font-weight: bold;">ActiveRecord</span>::<span style="color: #ce537a; font-weight: bold;">Base</span>
+  before_destroy <span style="color: #a45bad;">:before_destroy_check</span>
+
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">before_destroy_check</span>
+    errors.add<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">:base</span>, <span style="color: #2d9574;">'&#19981;&#33021;&#21024;&#38500;&#31649;&#29702;&#21592;'</span><span style="color: #4f97d7;">)</span> <span style="color: #4f97d7; font-weight: bold;">if</span> id &lt; <span style="color: #a45bad;">2</span>
+    <span style="color: #4f97d7;">throw</span> <span style="color: #a45bad;">:abort</span> <span style="color: #4f97d7; font-weight: bold;">if</span> errors.anyblank?
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org22eae37" class="outline-3">
+<h3 id="org22eae37"><span class="section-number-3">11.2</span> 显示错误</h3>
+<div class="outline-text-3" id="text-11-2">
+<div class="org-src-container">
+<pre class="src src-ruby">form <span style="color: #4f97d7; font-weight: bold;">do</span> |f|
+  f.semantic_errors *f.object.errors.keys
+  <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">...</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+
+<p>
+或者直接打补丁
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby">config/initializers/active_admin_patches.rb.
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">ActiveAdmin</span>::<span style="color: #ce537a; font-weight: bold;">ResourceController</span>
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">check_model_errors</span><span style="color: #4f97d7;">(</span>object<span style="color: #4f97d7;">)</span>
+      <span style="color: #4f97d7; font-weight: bold;">return</span> <span style="color: #4f97d7; font-weight: bold;">unless</span> object.errors.any?
+      flash<span style="color: #4f97d7;">[</span><span style="color: #a45bad;">:error</span><span style="color: #4f97d7;">]</span> ||= <span style="color: #4f97d7;">[]</span>
+      flash<span style="color: #4f97d7;">[</span><span style="color: #a45bad;">:error</span><span style="color: #4f97d7;">]</span>.concat<span style="color: #4f97d7;">(</span>object.errors.full_messages<span style="color: #4f97d7;">)</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+<span style="color: #4f97d7; font-weight: bold;">end</span>
+
+<span style="color: #4f97d7; font-weight: bold;">class</span> <span style="color: #ce537a; font-weight: bold;">ActiveAdmin</span>::<span style="color: #ce537a; font-weight: bold;">ResourceDSL</span>
+  <span style="color: #4f97d7;">alias_method</span> <span style="color: #a45bad;">:old_run_registration_block</span>, <span style="color: #a45bad;">:run_registration_block</span>
+  <span style="color: #4f97d7; font-weight: bold;">def</span> <span style="color: #bc6ec5; font-weight: bold;">run_registration_block</span><span style="color: #4f97d7;">(</span>&amp;block<span style="color: #4f97d7;">)</span>
+    old_run_registration_block<span style="color: #4f97d7;">(</span>&amp;block<span style="color: #4f97d7;">)</span>
+    instance_exec <span style="color: #4f97d7;">{</span> after_destroy <span style="color: #a45bad;">:check_model_errors</span> <span style="color: #4f97d7;">}</span>
+  <span style="color: #4f97d7; font-weight: bold;">end</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4fd9407" class="outline-2">
+<h2 id="org4fd9407"><span class="section-number-2">12</span> 相关资源</h2>
+<div class="outline-text-2" id="text-12">
+<ul class="org-ul">
+<li>GitHub: <a href="https://github.com/activeadmin/activeadmin">https://github.com/activeadmin/activeadmin</a></li>
+<li>官方文档：<a href="https://activeadmin.info/index.html">https://activeadmin.info/index.html</a></li>
+<li>示例网址：<a href="https://demo.activeadmin.info">https://demo.activeadmin.info</a></li>
+<li>邮箱列表：<a href="https://groups.google.com/group/activeadmin">https://groups.google.com/group/activeadmin</a></li>
+<li>其他相关：<a href="http://blog.csdn.net/feng88724/article/details/49124281">http://blog.csdn.net/feng88724/article/details/49124281</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org7b9206e" class="outline-2">
+<h2 id="org7b9206e"><span class="section-number-2">13</span> References</h2>
+<div class="outline-text-2" id="text-13">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li><a href="https://www.jianshu.com/p/0512a168733d">https://www.jianshu.com/p/0512a168733d</a></li>
+<li><a href="https://blog.csdn.net/feng88724/article/details/49101487">https://blog.csdn.net/feng88724/article/details/49101487</a></li>
+<li><a href="https://blog.csdn.net/life_is_crazy/article/details/72778227">https://blog.csdn.net/life_is_crazy/article/details/72778227</a></li>
+</ul>
+</div>
+</div>

@@ -1,0 +1,999 @@
+---
+layout: post
+title:      "Git 学习"
+date:       2015-07-12
+categories: 研发环境
+tags:
+    - Git
+---
+
+<div id="outline-container-orgc659751" class="outline-2">
+<h2 id="orgc659751"><span class="section-number-2">1</span> Git</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgc435258" class="outline-3">
+<h3 id="orgc435258"><span class="section-number-3">1.1</span> Git 配置</h3>
+<div class="outline-text-3" id="text-1-1">
+</div>
+<div id="outline-container-org8d12b0a" class="outline-4">
+<h4 id="org8d12b0a"><span class="section-number-4">1.1.1</span> 列出 git 当前配置</h4>
+<div class="outline-text-4" id="text-1-1-1">
+<div class="org-src-container">
+<pre class="src src-sh">git config --list
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8d75eb1" class="outline-4">
+<h4 id="org8d75eb1"><span class="section-number-4">1.1.2</span> 列出本地配置</h4>
+<div class="outline-text-4" id="text-1-1-2">
+<div class="org-src-container">
+<pre class="src src-sh">git config --local --list
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org04b0a38" class="outline-4">
+<h4 id="org04b0a38"><span class="section-number-4">1.1.3</span> 列出全局配置</h4>
+<div class="outline-text-4" id="text-1-1-3">
+<div class="org-src-container">
+<pre class="src src-sh">git config --global --list
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7e647bd" class="outline-4">
+<h4 id="org7e647bd"><span class="section-number-4">1.1.4</span> 列出系统配置</h4>
+<div class="outline-text-4" id="text-1-1-4">
+<div class="org-src-container">
+<pre class="src src-sh">git config --system --list
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org473a04d" class="outline-4">
+<h4 id="org473a04d"><span class="section-number-4">1.1.5</span> 设置用户名</h4>
+<div class="outline-text-4" id="text-1-1-5">
+<div class="org-src-container">
+<pre class="src src-sh">git config --global user.name &#8220;<span style="color: #4f97d7;">[</span>firstname lastname<span style="color: #4f97d7;">]</span>&#8221;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga65873d" class="outline-4">
+<h4 id="orga65873d"><span class="section-number-4">1.1.6</span> 设置用户邮箱</h4>
+<div class="outline-text-4" id="text-1-1-6">
+<div class="org-src-container">
+<pre class="src src-sh">git config --global user.email &#8220;<span style="color: #4f97d7;">[</span>valid-email<span style="color: #4f97d7;">]</span>&#8221;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb951c9a" class="outline-4">
+<h4 id="orgb951c9a"><span class="section-number-4">1.1.7</span> 设置 git 命令输出为彩色</h4>
+<div class="outline-text-4" id="text-1-1-7">
+<div class="org-src-container">
+<pre class="src src-sh">git config --global color.ui auto
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org81397a9" class="outline-4">
+<h4 id="org81397a9"><span class="section-number-4">1.1.8</span> 设置 git 使用的文本编辑器设</h4>
+<div class="outline-text-4" id="text-1-1-8">
+<div class="org-src-container">
+<pre class="src src-sh">git config --global core.editor vi
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org843f07f" class="outline-3">
+<h3 id="org843f07f"><span class="section-number-3">1.2</span> Git 配置文件</h3>
+<div class="outline-text-3" id="text-1-2">
+</div>
+<div id="outline-container-org3106f4f" class="outline-4">
+<h4 id="org3106f4f"><span class="section-number-4">1.2.1</span> 本地仓库配置对应的配置文件路径 [local]</h4>
+<div class="outline-text-4" id="text-1-2-1">
+<div class="org-src-container">
+<pre class="src src-sh">&lt;repo&gt;/.git/config
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org0b4dee0" class="outline-4">
+<h4 id="org0b4dee0"><span class="section-number-4">1.2.2</span> 用户全局配置对应的配置文件路径 [global]</h4>
+<div class="outline-text-4" id="text-1-2-2">
+<div class="org-src-container">
+<pre class="src src-sh">~/.gitconfig
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbc948d2" class="outline-4">
+<h4 id="orgbc948d2"><span class="section-number-4">1.2.3</span> 系统配置对应的配置文件路径 [system]</h4>
+<div class="outline-text-4" id="text-1-2-3">
+<div class="org-src-container">
+<pre class="src src-sh">/etc/gitconfig
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9e6b121" class="outline-3">
+<h3 id="org9e6b121"><span class="section-number-3">1.3</span> 创建仓库</h3>
+<div class="outline-text-3" id="text-1-3">
+</div>
+<div id="outline-container-org853d998" class="outline-4">
+<h4 id="org853d998"><span class="section-number-4">1.3.1</span> 复制一个已创建的仓库:</h4>
+<div class="outline-text-4" id="text-1-3-1">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36890;&#36807; SSH</span>
+git clone ssh://user@domain.com/repo.git
+<span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">&#36890;&#36807; HTTP</span>
+git clone http://domain.com/user/repo.git
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf755165" class="outline-4">
+<h4 id="orgf755165"><span class="section-number-4">1.3.2</span> 创建一个新的本地仓库:</h4>
+<div class="outline-text-4" id="text-1-3-2">
+<div class="org-src-container">
+<pre class="src src-sh">git init
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3d2a1b1" class="outline-3">
+<h3 id="org3d2a1b1"><span class="section-number-3">1.4</span> 本地文件修改</h3>
+<div class="outline-text-3" id="text-1-4">
+</div>
+<div id="outline-container-orgbe59a09" class="outline-4">
+<h4 id="orgbe59a09"><span class="section-number-4">1.4.1</span> 显示工作路径下已修改的文件</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<div class="org-src-container">
+<pre class="src src-sh">git status
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6435712" class="outline-4">
+<h4 id="org6435712"><span class="section-number-4">1.4.2</span> 显示与上次提交版本文件的不同</h4>
+<div class="outline-text-4" id="text-1-4-2">
+<div class="org-src-container">
+<pre class="src src-sh">git diff
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc2ebb48" class="outline-4">
+<h4 id="orgc2ebb48"><span class="section-number-4">1.4.3</span> 把当前所有修改添加到下次提交中</h4>
+<div class="outline-text-4" id="text-1-4-3">
+<div class="org-src-container">
+<pre class="src src-sh">git add .
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge8a4df7" class="outline-4">
+<h4 id="orge8a4df7"><span class="section-number-4">1.4.4</span> 把对某个文件的修改添加到下次提交中</h4>
+<div class="outline-text-4" id="text-1-4-4">
+<div class="org-src-container">
+<pre class="src src-sh">git add -p &lt;file&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2e22b55" class="outline-4">
+<h4 id="org2e22b55"><span class="section-number-4">1.4.5</span> 提交本地的所有修改</h4>
+<div class="outline-text-4" id="text-1-4-5">
+<div class="org-src-container">
+<pre class="src src-sh">git commit -a
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge4bdb2c" class="outline-4">
+<h4 id="orge4bdb2c"><span class="section-number-4">1.4.6</span> 提交之前已标记的变化</h4>
+<div class="outline-text-4" id="text-1-4-6">
+<div class="org-src-container">
+<pre class="src src-sh">git commit
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge0437fa" class="outline-4">
+<h4 id="orge0437fa"><span class="section-number-4">1.4.7</span> 附加消息提交</h4>
+<div class="outline-text-4" id="text-1-4-7">
+<div class="org-src-container">
+<pre class="src src-sh">git commit -m <span style="color: #2d9574;">'message here'</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org585ed3b" class="outline-4">
+<h4 id="org585ed3b"><span class="section-number-4">1.4.8</span> 提交，并将提交时间设置为之前的某个日期:</h4>
+<div class="outline-text-4" id="text-1-4-8">
+<div class="org-src-container">
+<pre class="src src-sh">git commit --date=<span style="color: #2d9574;">"date --date='n day ago'"</span> -am <span style="color: #2d9574;">"Commit Message"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org55cce05" class="outline-4">
+<h4 id="org55cce05"><span class="section-number-4">1.4.9</span> 修改上次提交</h4>
+<div class="outline-text-4" id="text-1-4-9">
+<p>
+<code>请勿修改已发布的提交记录!</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git commit --amend
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org94e07e7" class="outline-4">
+<h4 id="org94e07e7"><span class="section-number-4">1.4.10</span> 修改上次提交的 committer date</h4>
+<div class="outline-text-4" id="text-1-4-10">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #7590db;">GIT_COMMITTER_DATE</span>=<span style="color: #2d9574;">"date"</span> git commit --amend
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge0321b2" class="outline-4">
+<h4 id="orge0321b2"><span class="section-number-4">1.4.11</span> 修改上次提交的 author date</h4>
+<div class="outline-text-4" id="text-1-4-11">
+<div class="org-src-container">
+<pre class="src src-sh">git commit --amend --date=<span style="color: #2d9574;">"date"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge2cb9d8" class="outline-4">
+<h4 id="orge2cb9d8"><span class="section-number-4">1.4.12</span> 把当前分支中未提交的修改移动到其他分支</h4>
+<div class="outline-text-4" id="text-1-4-12">
+<div class="org-src-container">
+<pre class="src src-sh">git stash
+git checkout branch2
+git stash pop
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org755274b" class="outline-4">
+<h4 id="org755274b"><span class="section-number-4">1.4.13</span> 将 stashed changes 应用到当前分支</h4>
+<div class="outline-text-4" id="text-1-4-13">
+<div class="org-src-container">
+<pre class="src src-sh">git stash apply
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga4f07ea" class="outline-4">
+<h4 id="orga4f07ea"><span class="section-number-4">1.4.14</span> 删除最新一次的 stashed changes</h4>
+<div class="outline-text-4" id="text-1-4-14">
+<div class="org-src-container">
+<pre class="src src-sh">git stash drop
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5b588d9" class="outline-3">
+<h3 id="org5b588d9"><span class="section-number-3">1.5</span> 本地文件搜索</h3>
+<div class="outline-text-3" id="text-1-5">
+</div>
+<div id="outline-container-org646af2c" class="outline-4">
+<h4 id="org646af2c"><span class="section-number-4">1.5.1</span> 从当前目录的所有文件中查找文本内容</h4>
+<div class="outline-text-4" id="text-1-5-1">
+<div class="org-src-container">
+<pre class="src src-sh">git grep <span style="color: #2d9574;">"Hello"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org16913b8" class="outline-4">
+<h4 id="org16913b8"><span class="section-number-4">1.5.2</span> 在某一版本中搜索文本</h4>
+<div class="outline-text-4" id="text-1-5-2">
+<div class="org-src-container">
+<pre class="src src-sh">git grep <span style="color: #2d9574;">"Hello"</span> v2.5
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8e38eca" class="outline-3">
+<h3 id="org8e38eca"><span class="section-number-3">1.6</span> 提交历史</h3>
+<div class="outline-text-3" id="text-1-6">
+</div>
+<div id="outline-container-orgce73895" class="outline-4">
+<h4 id="orgce73895"><span class="section-number-4">1.6.1</span> 从最新提交开始，显示所有的提交记录（显示 hash， 作者信息，提交的标题和时间）</h4>
+<div class="outline-text-4" id="text-1-6-1">
+<div class="org-src-container">
+<pre class="src src-sh">git log
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd40405c" class="outline-4">
+<h4 id="orgd40405c"><span class="section-number-4">1.6.2</span> 显示所有提交（仅显示提交的 hash 和 message）</h4>
+<div class="outline-text-4" id="text-1-6-2">
+<div class="org-src-container">
+<pre class="src src-sh">git log --oneline
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org60c8365" class="outline-4">
+<h4 id="org60c8365"><span class="section-number-4">1.6.3</span> 显示某个用户的所有提交</h4>
+<div class="outline-text-4" id="text-1-6-3">
+<div class="org-src-container">
+<pre class="src src-sh">git log --author=<span style="color: #2d9574;">"username"</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgce4ed90" class="outline-4">
+<h4 id="orgce4ed90"><span class="section-number-4">1.6.4</span> 显示某个文件的所有修改</h4>
+<div class="outline-text-4" id="text-1-6-4">
+<div class="org-src-container">
+<pre class="src src-sh">git log -p &lt;file&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org84b88ed" class="outline-4">
+<h4 id="org84b88ed"><span class="section-number-4">1.6.5</span> 仅显示远端&lt;remote/master&gt;分支与远端&lt;origin/master&gt;分支提交记录的差集</h4>
+<div class="outline-text-4" id="text-1-6-5">
+<div class="org-src-container">
+<pre class="src src-sh">git log --oneline &lt;origin/master&gt;..&lt;remote/master&gt; --left-right
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org24b6de9" class="outline-4">
+<h4 id="org24b6de9"><span class="section-number-4">1.6.6</span> 谁，在什么时间，修改了文件的什么内容</h4>
+<div class="outline-text-4" id="text-1-6-6">
+<div class="org-src-container">
+<pre class="src src-sh">git blame &lt;file&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge523a42" class="outline-4">
+<h4 id="orge523a42"><span class="section-number-4">1.6.7</span> 显示 reflog</h4>
+<div class="outline-text-4" id="text-1-6-7">
+<div class="org-src-container">
+<pre class="src src-sh">git reflog show
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7f979ff" class="outline-4">
+<h4 id="org7f979ff"><span class="section-number-4">1.6.8</span> 删除 reflog</h4>
+<div class="outline-text-4" id="text-1-6-8">
+<div class="org-src-container">
+<pre class="src src-sh">git reflog delete
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org13aa9e1" class="outline-3">
+<h3 id="org13aa9e1"><span class="section-number-3">1.7</span> 分支与标签</h3>
+<div class="outline-text-3" id="text-1-7">
+</div>
+<div id="outline-container-orgeaa1d58" class="outline-4">
+<h4 id="orgeaa1d58"><span class="section-number-4">1.7.1</span> 列出所有的分支</h4>
+<div class="outline-text-4" id="text-1-7-1">
+<div class="org-src-container">
+<pre class="src src-sh">git branch
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6b3d3ea" class="outline-4">
+<h4 id="org6b3d3ea"><span class="section-number-4">1.7.2</span> 列出所有的远端分支</h4>
+<div class="outline-text-4" id="text-1-7-2">
+<div class="org-src-container">
+<pre class="src src-sh">git branch -r
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8be11f5" class="outline-4">
+<h4 id="org8be11f5"><span class="section-number-4">1.7.3</span> 切换分支</h4>
+<div class="outline-text-4" id="text-1-7-3">
+<div class="org-src-container">
+<pre class="src src-sh">git checkout &lt;branch&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org012b8c4" class="outline-4">
+<h4 id="org012b8c4"><span class="section-number-4">1.7.4</span> 创建并切换到新分支</h4>
+<div class="outline-text-4" id="text-1-7-4">
+<div class="org-src-container">
+<pre class="src src-sh">git checkout -b &lt;branch&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd72ead1" class="outline-4">
+<h4 id="orgd72ead1"><span class="section-number-4">1.7.5</span> 基于当前分支创建新分支</h4>
+<div class="outline-text-4" id="text-1-7-5">
+<div class="org-src-container">
+<pre class="src src-sh">git branch &lt;new-branch&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1d01dec" class="outline-4">
+<h4 id="org1d01dec"><span class="section-number-4">1.7.6</span> 基于远程分支创建新的可追溯的分支</h4>
+<div class="outline-text-4" id="text-1-7-6">
+<div class="org-src-container">
+<pre class="src src-sh">git branch --track &lt;new-branch&gt; &lt;remote-branch&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbde5cf7" class="outline-4">
+<h4 id="orgbde5cf7"><span class="section-number-4">1.7.7</span> 删除本地分支</h4>
+<div class="outline-text-4" id="text-1-7-7">
+<div class="org-src-container">
+<pre class="src src-sh">git branch -d &lt;branch&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd6290f2" class="outline-4">
+<h4 id="orgd6290f2"><span class="section-number-4">1.7.8</span> 强制删除一个本地分支</h4>
+<div class="outline-text-4" id="text-1-7-8">
+<p>
+<code>将会丢失未合并的修改！</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git branch -D &lt;branch&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgeac788f" class="outline-4">
+<h4 id="orgeac788f"><span class="section-number-4">1.7.9</span> 查看标签</h4>
+<div class="outline-text-4" id="text-1-7-9">
+<div class="org-src-container">
+<pre class="src src-sh">git tag
+git tag -l <span style="color: #2d9574;">'v0.1.-'</span>
+git show v0.1
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf29aae9" class="outline-4">
+<h4 id="orgf29aae9"><span class="section-number-4">1.7.10</span> 给当前版本打标签</h4>
+<div class="outline-text-4" id="text-1-7-10">
+<div class="org-src-container">
+<pre class="src src-sh">git tag &lt;tag-name&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf67c01b" class="outline-4">
+<h4 id="orgf67c01b"><span class="section-number-4">1.7.11</span> 给当前版本打标签并附加消息</h4>
+<div class="outline-text-4" id="text-1-7-11">
+<div class="org-src-container">
+<pre class="src src-sh">git tag -a &lt;tag-name&gt;
+git tag -a &lt;tag-name&gt; -m <span style="color: #2d9574;">'my version'</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga3ecc4b" class="outline-3">
+<h3 id="orga3ecc4b"><span class="section-number-3">1.8</span> 更新与发布</h3>
+<div class="outline-text-3" id="text-1-8">
+</div>
+<div id="outline-container-org648d4ea" class="outline-4">
+<h4 id="org648d4ea"><span class="section-number-4">1.8.1</span> 列出当前配置的远程端</h4>
+<div class="outline-text-4" id="text-1-8-1">
+<div class="org-src-container">
+<pre class="src src-sh">git remote -v
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgebf7bf9" class="outline-4">
+<h4 id="orgebf7bf9"><span class="section-number-4">1.8.2</span> 显示远程端的信息</h4>
+<div class="outline-text-4" id="text-1-8-2">
+<div class="org-src-container">
+<pre class="src src-sh">git remote show &lt;remote&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga850c6c" class="outline-4">
+<h4 id="orga850c6c"><span class="section-number-4">1.8.3</span> 添加新的远程端</h4>
+<div class="outline-text-4" id="text-1-8-3">
+<div class="org-src-container">
+<pre class="src src-sh">git remote add &lt;remote&gt; &lt;url&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7a4a229" class="outline-4">
+<h4 id="org7a4a229"><span class="section-number-4">1.8.4</span> 下载远程端版本，但不合并到 HEAD 中</h4>
+<div class="outline-text-4" id="text-1-8-4">
+<div class="org-src-container">
+<pre class="src src-sh">git fetch &lt;remote&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org783781d" class="outline-4">
+<h4 id="org783781d"><span class="section-number-4">1.8.5</span> 下载远程端版本，并自动与 HEAD 版本合并</h4>
+<div class="outline-text-4" id="text-1-8-5">
+<div class="org-src-container">
+<pre class="src src-sh">git remote pull &lt;remote&gt; &lt;url&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org79e006e" class="outline-4">
+<h4 id="org79e006e"><span class="section-number-4">1.8.6</span> 将远程端版本合并到本地版本中</h4>
+<div class="outline-text-4" id="text-1-8-6">
+<div class="org-src-container">
+<pre class="src src-sh">git pull origin master
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4ef6186" class="outline-4">
+<h4 id="org4ef6186"><span class="section-number-4">1.8.7</span> 以 rebase 方式将远端分支与本地合并</h4>
+<div class="outline-text-4" id="text-1-8-7">
+<div class="org-src-container">
+<pre class="src src-sh">git pull --rebase &lt;remote&gt; &lt;branch&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfa1643e" class="outline-4">
+<h4 id="orgfa1643e"><span class="section-number-4">1.8.8</span> 将本地版本发布到远程端</h4>
+<div class="outline-text-4" id="text-1-8-8">
+<div class="org-src-container">
+<pre class="src src-sh">git push remote &lt;remote&gt; &lt;branch&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6b204ba" class="outline-4">
+<h4 id="org6b204ba"><span class="section-number-4">1.8.9</span> 删除远程端分支</h4>
+<div class="outline-text-4" id="text-1-8-9">
+<div class="org-src-container">
+<pre class="src src-sh">git push &lt;remote&gt; :&lt;branch&gt; <span style="color: #4f97d7;">(</span>since Git v1.5.0<span style="color: #4f97d7;">)</span>
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25110;&#32773;</span>
+git push &lt;remote&gt; --delete &lt;branch&gt; <span style="color: #4f97d7;">(</span>since Git v1.7.0<span style="color: #4f97d7;">)</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org3bffe8d" class="outline-4">
+<h4 id="org3bffe8d"><span class="section-number-4">1.8.10</span> 发布标签:</h4>
+<div class="outline-text-4" id="text-1-8-10">
+<div class="org-src-container">
+<pre class="src src-sh">git push --tags
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9c74265" class="outline-3">
+<h3 id="org9c74265"><span class="section-number-3">1.9</span> 合并与重置(Rebase)</h3>
+<div class="outline-text-3" id="text-1-9">
+</div>
+<div id="outline-container-orgeba536d" class="outline-4">
+<h4 id="orgeba536d"><span class="section-number-4">1.9.1</span> 将分支合并到当前 HEAD 中</h4>
+<div class="outline-text-4" id="text-1-9-1">
+<div class="org-src-container">
+<pre class="src src-sh">git merge &lt;branch&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7d5930c" class="outline-4">
+<h4 id="org7d5930c"><span class="section-number-4">1.9.2</span> 将当前 HEAD 版本重置到分支中</h4>
+<div class="outline-text-4" id="text-1-9-2">
+<p>
+<code>请勿重置已发布的提交!</code>
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">git rebase &lt;branch&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org74af6f6" class="outline-4">
+<h4 id="org74af6f6"><span class="section-number-4">1.9.3</span> 退出重置</h4>
+<div class="outline-text-4" id="text-1-9-3">
+<div class="org-src-container">
+<pre class="src src-sh">git rebase --abort
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org8419974" class="outline-4">
+<h4 id="org8419974"><span class="section-number-4">1.9.4</span> 解决冲突后继续重置</h4>
+<div class="outline-text-4" id="text-1-9-4">
+<div class="org-src-container">
+<pre class="src src-sh">git rebase --continue
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga4caa71" class="outline-4">
+<h4 id="orga4caa71"><span class="section-number-4">1.9.5</span> 使用配置好的 merge tool 解决冲突</h4>
+<div class="outline-text-4" id="text-1-9-5">
+<div class="org-src-container">
+<pre class="src src-sh">git mergetool
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org14812a9" class="outline-4">
+<h4 id="org14812a9"><span class="section-number-4">1.9.6</span> 在编辑器中手动解决冲突后，标记文件为已解决冲突</h4>
+<div class="outline-text-4" id="text-1-9-6">
+<div class="org-src-container">
+<pre class="src src-sh">git add &lt;resolved-file&gt;
+git rm &lt;resolved-file&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org278495f" class="outline-4">
+<h4 id="org278495f"><span class="section-number-4">1.9.7</span> 合并提交</h4>
+<div class="outline-text-4" id="text-1-9-7">
+<div class="org-src-container">
+<pre class="src src-sh">git rebase -i &lt;commit-just-before-first&gt;
+</pre>
+</div>
+
+<p>
+把下面两段命令的上段内容替换为下段内容
+</p>
+
+<p>
+<code>原内容</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">pick &lt;commit_id&gt;
+pick &lt;commit_id2&gt;
+pick &lt;commit_id3&gt;
+</pre>
+</div>
+
+<p>
+<code>替换为</code>
+</p>
+<div class="org-src-container">
+<pre class="src src-sh">pick &lt;commit_id&gt;
+squash &lt;commit_id2&gt;
+squash &lt;commit_id3&gt;
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org370bdfb" class="outline-3">
+<h3 id="org370bdfb"><span class="section-number-3">1.10</span> 撤销</h3>
+<div class="outline-text-3" id="text-1-10">
+</div>
+<div id="outline-container-orgfd40329" class="outline-4">
+<h4 id="orgfd40329"><span class="section-number-4">1.10.1</span> 放弃工作目录下的所有修改</h4>
+<div class="outline-text-4" id="text-1-10-1">
+<div class="org-src-container">
+<pre class="src src-sh">git reset --hard HEAD
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6303ece" class="outline-4">
+<h4 id="org6303ece"><span class="section-number-4">1.10.2</span> 移除缓存区的所有文件（i.e. 撤销上次 <code>git add</code> ）</h4>
+<div class="outline-text-4" id="text-1-10-2">
+<div class="org-src-container">
+<pre class="src src-sh">git reset HEAD
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5cd23ac" class="outline-4">
+<h4 id="org5cd23ac"><span class="section-number-4">1.10.3</span> 放弃某个文件的所有本地修改</h4>
+<div class="outline-text-4" id="text-1-10-3">
+<div class="org-src-container">
+<pre class="src src-sh">git checkout HEAD &lt;file&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge2f9671" class="outline-4">
+<h4 id="orge2f9671"><span class="section-number-4">1.10.4</span> 重置一个提交（通过创建一个截然不同的新提交）</h4>
+<div class="outline-text-4" id="text-1-10-4">
+<div class="org-src-container">
+<pre class="src src-sh">git revert &lt;commit&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge31ceab" class="outline-4">
+<h4 id="orge31ceab"><span class="section-number-4">1.10.5</span> 将 HEAD 重置到指定的版本，并抛弃该版本之后的所有修改</h4>
+<div class="outline-text-4" id="text-1-10-5">
+<div class="org-src-container">
+<pre class="src src-sh">git reset --hard &lt;commit&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc6a8a23" class="outline-4">
+<h4 id="orgc6a8a23"><span class="section-number-4">1.10.6</span> 用远端分支强制覆盖本地分支</h4>
+<div class="outline-text-4" id="text-1-10-6">
+<div class="org-src-container">
+<pre class="src src-sh">git reset --hard &lt;remote/branch&gt; e.g., upstream/master, origin/my-feature
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9d569f5" class="outline-4">
+<h4 id="org9d569f5"><span class="section-number-4">1.10.7</span> 将 HEAD 重置到上一次提交的版本，并将之后的修改标记为未添加到缓存区的修改</h4>
+<div class="outline-text-4" id="text-1-10-7">
+<div class="org-src-container">
+<pre class="src src-sh">git reset &lt;commit&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org43f1fe2" class="outline-4">
+<h4 id="org43f1fe2"><span class="section-number-4">1.10.8</span> 将 HEAD 重置到上一次提交的版本，并保留未提交的本地修改</h4>
+<div class="outline-text-4" id="text-1-10-8">
+<div class="org-src-container">
+<pre class="src src-sh">git reset --keep &lt;commit&gt;
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6962dfb" class="outline-4">
+<h4 id="org6962dfb"><span class="section-number-4">1.10.9</span> 删除添加 <code>.gitignore</code> 文件前错误提交的文件</h4>
+<div class="outline-text-4" id="text-1-10-9">
+<div class="org-src-container">
+<pre class="src src-sh">git rm -r --cached .
+git add .
+git commit -m <span style="color: #2d9574;">"remove xyz file"</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd48edac" class="outline-2">
+<h2 id="orgd48edac"><span class="section-number-2">2</span> Tips</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org93be9db" class="outline-3">
+<h3 id="org93be9db"><span class="section-number-3">2.1</span> 查看某文件的修改历史 **</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+先进入此文件所在的目录下
+</p>
+
+<ol class="org-ol">
+<li>查看 fileName 相关的 commit 记录： <code>git log filename</code></li>
+<li>显示每次提交的 diff： <code>git log -p filename</code></li>
+<li>查看某次提交中的某个文件变化，可以直接加上 fileName： <code>git show commit-id filename</code></li>
+<li>根据 commit-id 查看某个提交： <code>git show -s --pretty=raw ca53e82</code></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org8c84ffb" class="outline-3">
+<h3 id="org8c84ffb"><span class="section-number-3">2.2</span> git log 的常用选项</h3>
+<div class="outline-text-3" id="text-2-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">选项</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">-p</td>
+<td class="org-left">按补丁格式显示每个更新之间的差异。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;stat</td>
+<td class="org-left">显示每次更新的文件修改统计信息。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;shortstat</td>
+<td class="org-left">只显示 –stat 中最后的行数修改添加移除统计。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;name-only</td>
+<td class="org-left">仅在提交信息后显示已修改的文件清单。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;name-status</td>
+<td class="org-left">显示新增、修改、删除的文件清单。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;abbrev-commit</td>
+<td class="org-left">仅显示 SHA-1 的前几个字符，而非所有的 40 个字符。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;relative-date</td>
+<td class="org-left">使用较短的相对时间显示（比如，“2 weeks ago”）。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;graph</td>
+<td class="org-left">显示 ASCII 图形表示的分支合并历史。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;pretty</td>
+<td class="org-left">使用其他格式显示历史提交信息。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">可用选项 oneline，short，full，fuller 和 format（后跟指定格式）。</td>
+</tr>
+
+<tr>
+<td class="org-left">-(n)</td>
+<td class="org-left">仅显示最近的 n 条提交</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;since,&#x2013;after</td>
+<td class="org-left">仅显示指定时间之后的提交。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;until,&#x2013;before</td>
+<td class="org-left">仅显示指定时间之前的提交。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;author</td>
+<td class="org-left">仅显示指定作者相关的提交。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;committer</td>
+<td class="org-left">仅显示指定提交者相关的提交。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#x2013;grep</td>
+<td class="org-left">仅显示含指定关键字的提交</td>
+</tr>
+
+<tr>
+<td class="org-left">-S</td>
+<td class="org-left">仅显示添加或移除了某个关键字的提交</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org144c0e9" class="outline-2">
+<h2 id="org144c0e9"><span class="section-number-2">3</span> References</h2>
+<div class="outline-text-2" id="text-3">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+</p>
+
+<p>
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+
+<ul class="org-ul">
+<li><a href="https://github.com/arslanbilal/git-cheat-sheet/blob/master/other-sheets/git-cheat-sheet-zh.md">https://github.com/arslanbilal/git-cheat-sheet/blob/master/other-sheets/git-cheat-sheet-zh.md</a></li>
+</ul>
+</blockquote>
+</div>
+</div>

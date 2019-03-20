@@ -105,5 +105,3 @@ C-h r               Emacs 手册
 - <https://github.com/skywind3000/awesome-cheatsheets/blob/master/editors/vim.txt>
 - <http://blog.csdn.net/garfielder007/article/details/49557441>
 - <http://blog.csdn.net/ryuali2010/article/details/7887776>
-
-> [返回目录](#目录)

@@ -1,0 +1,231 @@
+#+begin_export html
+---
+layout: post
+title: "Cygwin  安装配置"
+date: 2014-02-22
+categories: Linux
+tags:
+    - Cygwin
+---
+#+end_export
+
+* 1. 概述
+
+* 2. 安装 Cygwin
+
+略......
+
+* 3. 安装包
+
+- 安装"vim"
+- 安装"util-tool"
+- 安装"libiconv"
+- 安装"git"
+
+* 4. 环境设置
+
+** 4.1. 设置全局配置文件 =Cygwin\etc\profile=：
+
+#+BEGIN_EXAMPLE
+    #-----------------------------------------------------------
+    # BuXing Settings
+    #-----------------------------------------------------------
+    # 定义语言环境变量
+    export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
+
+    # 定义用户 HOME 环境变量
+    HOME='/cygdrive/d/LinuxHome/xuan'
+
+    # Interactive operation...
+    # alias rm='rm -i'
+    # alias cp='cp -i'
+    # alias mv='mv -i'
+    #
+    # Default to human readable figures
+    alias df='df -h'
+    alias du='du -h'
+    #
+    # Misc :)
+    alias less='less -r'                          # raw control characters
+    alias whence='type -a'                        # where, of a sort
+    alias grep='grep --color'                     # show differences in colour
+    alias egrep='egrep --color=auto'              # show differences in colour
+    alias fgrep='fgrep --color=auto'              # show differences in colour
+    #
+    # Some shortcuts for different directory listings
+    alias ls='ls -hF --color=tty'                 # classify files in colour
+    alias dir='ls --color=auto --format=vertical'
+    alias vdir='ls --color=auto --format=long'
+    alias ll='ls -l'                              # long list
+    alias la='ls -A'                              # all but . and ..
+    alias l='ls -CF'                              #
+
+    # Umask
+    #
+    # /etc/profile sets 022, removing write perms to group + others.
+    # Set a more restrictive umask: i.e. no exec perms for others:
+    # umask 027
+    # Paranoid: neither group nor others have any perms:
+    # umask 077
+#+END_EXAMPLE
+
+** 4.2. 设置用户配置文件 =${HOME}\.bashrc=：
+
+#+BEGIN_SRC sh
+    # 自动补全不区分大小写
+    shopt -s nocaseglob
+#+END_SRC
+
+** 4.3. 设置用户配置文件 =${HOME}\.inputrc=：
+
+#+BEGIN_SRC sh
+    # 自动补全不区分大小写
+    set completion-ignore-case on
+
+    # 按单词移动/删除
+    # Ctrl+Left/Right to move by whole words
+    "\e[1;5C": forward-word
+    "\e[1;5D": backward-word
+    # Ctrl+Backspace/Delete to delete whole words
+    "\e[3;5~": kill-word
+    "\C-_": backward-kill-word
+#+END_SRC
+
+** 4.4. 链接磁盘及常用文件夹：
+
+#+BEGIN_SRC sh
+    ln -s /cygdrive/c /c
+    ln -s /cygdrive/d /d
+    ln -s /cygdrive/e /e
+    ln -s /cygdrive/f /f
+    d:/UserData/LinuxHome /home
+    d:/UserData/Tech/Repositories/git /repo
+    d:/UserData/Work/Projects /projects
+    d:/UserData/Work/Codes /codes
+    e:/Downloads /dl
+    f:/Repositories/git /lrepo
+#+END_SRC
+
+** 4.5. 修改 =Cygwin.bat= 文件，增加设置环境变量 =HOME=：
+
+#+BEGIN_EXAMPLE
+    set HOME=d:/UserData/LinuxHome/xuan
+#+END_EXAMPLE
+
+* 5. 右键菜单打开 Cygwin 在当前目录
+
+** 5.1. 增加注册表项：
+
+#+BEGIN_EXAMPLE
+    Windows Registry Editor Version 5.00
+
+    [HKEY_CLASSES_ROOT\Directory\shell\opencygwin]
+    @="打开用 Cygwin"
+    [HKEY_CLASSES_ROOT\Directory\shell\opencygwin\command]
+    @="d:\\GSoft\\Linux\\Cygwin\\Cygwin.bat %V"
+#+END_EXAMPLE
+
+** 5.2. 修改 =Cygwin.bat= 文件，增加设置路径变量 =set _T=%*=：
+
+#+BEGIN_EXAMPLE
+    @echo off
+    set _T=%*
+    set HOME=d:/UserData/LinuxHome/xuan
+    D:
+    chdir d:/GSoft/Linux/Cygwin/bin
+
+    bash --login -i
+    REM mintty.exe -i /Cygwin-Terminal.ico -
+#+END_EXAMPLE
+
+** 5.3. 设置用户配置文件 =${HOME}\.bash_profile=，在最后增加：
+
+#+BEGIN_SRC sh
+    # 右键菜单打开 Cygwin 在当前目录
+    export _T=${_T//\\//}   # replace backslash to fowardslash
+    if [[ $_T == "" ]]; then
+        export _T=${HOME}
+    fi
+    cd "$_T"
+#+END_SRC
+
+* 6. Git 设置
+
+** 6.1. 初始化配置：
+
+#+BEGIN_SRC sh
+    #配置 ID
+    git config --global user.name "your_id"
+    #配置 EMAIL
+    git config --global user.email "your_name@email_address"
+
+    # git 输出（比如 log、status）彩色显示
+    git config --global color.ui auto
+
+    # 全局配置 Git 不会进行换行符的转换
+    git config --global core.autocrlf false
+
+    # 全局配置文件权限
+    git config --global core.filemode false
+#+END_SRC
+
+** 6.2. 配置 SSH 证书：
+
+*** 6.2.1. 新建 SSH 证书：
+
+#+BEGIN_SRC sh
+    ssh-keygen -t rsa -C "your_name@email_address"
+#+END_SRC
+
+*** 6.2.2. 恢复备份 SSH 证书：
+
+1. 建立目录“~/.ssh“；
+2. 复制备份的"id_rsa"(私钥) 和"id_rsa.pub"(公钥) 文件至目录“~/.ssh“；
+
+** 6.2.3. 通过 github 测试 SSH 证书：
+
+ssh -T git@github.com
+
+如果看到"You've successfully authenticated, but GitHub does not provide
+shell access"信息，就表示连接成功。
+
+* 7. 小技巧
+
+** 7.1. 可以建立指向 Windows 系统的符号链接，例如：
+
+#+BEGIN_SRC sh
+    ln -s /cygdrive/e/Downloads ~/dl
+#+END_SRC
+
+** 7.2.
+Cygwin 下的 cd 命令可以直接使用 Windows 的路径表示，路径加上单引号转义
+=\=，例如：
+
+#+BEGIN_SRC sh
+    cd 'C:\Windows\System32\drivers\etc'
+#+END_SRC
+
+** 7.3. 错误"$'\r': command not
+found"，原因是脚本文件里使用的是 Windows 的回车换行，修改文件为 Unix 的换行即可：
+
+** 7.4.
+Cygwin 字符集设置为 UTF-8 的时候运行 Windows 命令，会因为编码的关系出现乱码。解决方法就是写个 shell 脚本放在"/bin"目录下，例如：
+
+#+BEGIN_SRC sh
+    #!/bin/sh
+    ping.exe $@ 2>&1 | iconv -f gbk -t utf-8
+#+END_SRC
+
+并增加可执行权限：
+
+#+BEGIN_SRC sh
+    chmod +x ping
+#+END_SRC
+
+** 7.5. 同步 Windows 系统用户：
+
+#+BEGIN_SRC sh
+    mkpasswd -l > /etc/passwd
+    mkgroup -l > /etc/group
+#+END_SRC

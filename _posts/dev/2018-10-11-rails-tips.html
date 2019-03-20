@@ -1,0 +1,461 @@
+---
+layout: post
+title: "Rails Tips"
+date: 2018-10-11
+categories: 程序设计
+tags:
+    - Rails
+---
+
+<div id="outline-container-orgd076fc0" class="outline-2">
+<h2 id="orgd076fc0"><span class="section-number-2">1</span> logger</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+日志的层级：
+</p>
+
+<ul class="org-ul">
+<li>debug</li>
+<li>info</li>
+<li>warn</li>
+<li>error</li>
+<li>fatal</li>
+</ul>
+
+<pre class="example">
+def show
+  @cart = current_cart
+  logger.debug "Hello world! #{@cart.to_yaml}"
+  # debug, info, warn, error, fatal
+end
+</pre>
+
+<p>
+可以在 environment.rb 里配置 Logger 的消息格式:
+</p>
+
+<pre class="example">
+class Logger
+  def format_message(level, time, progname, msg)
+    "#{time.to_s(:db)} #{level} -- #{msg}\n"
+  end
+end
+</pre>
+
+<p>
+可以在 environments/production.rb 里配置 log_level
+</p>
+
+<pre class="example">
+config.log_level = :debug
+</pre>
+
+<p>
+使用 rails log:clear 可以清空旧日志 在 .irbrc 里也可以设置 Logger:
+</p>
+
+<pre class="example">
+if ENV.include?('RAILS_ENV') &amp;&amp; !Object.const_defined?('RAILS_DEFAULT_LOGGER')
+  require 'logger'
+  Object.const_set('RAILS_DEFAULT_LOGGER', Logger.new(STDOUT))
+end
+</pre>
+
+<p>
+这样在 script/console 里的 Model 操作就会直接 in place 显示在 console
+里。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3950305" class="outline-2">
+<h2 id="org3950305"><span class="section-number-2">2</span> Puma 服务器支持 SSL</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-sh">puma -b <span style="color: #2d9574;">'ssl://0.0.0.0:3000?key=/home/xuanfour/.ssh/</span><span style="color: #dc752f;">XXX</span><span style="color: #2d9574;">.key&amp;cert=/home/xuanfour/.ssh/</span><span style="color: #dc752f;">XXX</span><span style="color: #2d9574;">.pem'</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc0938b8" class="outline-2">
+<h2 id="orgc0938b8"><span class="section-number-2">3</span> require 引用文件路径方法与问题总结</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+同一目录下的文件，如/usr/local/ruby/foo.rb 与/usr/local/ruby/bar.rb
+两个文件。 如果直接在 foo.rb 中 <code>require 'bar'</code> 执行时会报找不到 bar.rb
+错误。 这是因为运行 ruby /usr/local/ruby/foo.rb 时会在 ruby 安装的 lib
+目录和/home/oldsong/目录下查找 bar.rb。而不会去 rb 文件的目录
+<i>usr/local/ruby</i> 下查找。所以除引用系统 rb 外，require
+中不能用相对路径。
+</p>
+
+<p>
+下面介绍几种引用单个和目录下所有 rb 的方法。
+</p>
+</div>
+
+<div id="outline-container-org27a201b" class="outline-3">
+<h3 id="org27a201b"><span class="section-number-3">3.1</span> 引用一个文件</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+例: 引用当前 rb 同目录下的 file_to_require.rb
+</p>
+
+<ul class="org-ul">
+<li>require File.join(<span class="underline">_FILE</span>, '../file_to_require')。</li>
+<li>require File.expand_path('../file_to_require', <b>FILE</b>)</li>
+<li>require File.dirname(<b>FILE</b>) + '/file_to_require'</li>
+</ul>
+
+<p>
+其中，File.expand_path 是 Rails 常用的做法。
+__FILE__为常量，表示当前文件的绝对路径，如/home/oldsong/test.rb
+</p>
+
+<pre class="example">
+$LOAD_PATH.unshift(File.dirname(__FILE__))
+require 'bar'
+</pre>
+
+<p>
+先把目录加入 LOAD_PATH 变量中，然后可直接引用文件名。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge73a16d" class="outline-3">
+<h3 id="orge73a16d"><span class="section-number-3">3.2</span> 引用一个目录下所有文件</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Ruby 没有 Java 中的 import java.io.*;
+引用时不能用通配符，估计以后的版本有可能加上。
+</p>
+
+<p>
+例：引用当前 rb 相同目录下 lib/文件下所有*.rb 文件。
+</p>
+
+<pre class="example">
+Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
+</pre>
+
+<p>
+使用 gem 搞定
+</p>
+
+<p>
+<a href="https://rubygems.org/gems/require_all">https://rubygems.org/gems/require_all</a>
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org691b01c" class="outline-2">
+<h2 id="org691b01c"><span class="section-number-2">4</span> format.json</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+首先在 controller#action 中添加对 json 的响应。
+</p>
+
+<pre class="example">
+def index
+  @posts = Post.all
+  respond_to do |format|
+    format.html
+    format.json
+  end
+end
+</pre>
+
+<p>
+format.json 会自动寻找 index.json 文件，我们可以用 jbuilder 写，创建
+index.json.jbuilder
+</p>
+
+<pre class="example">
+json.array! @posts do |post|
+  json.extract! post, :topic, :contact_person, :created_at
+end
+</pre>
+
+<p>
+这样就会返回如下结构的 json
+</p>
+
+<pre class="example">
+[{topic: xxx, contact_person: xxx, created_at: xxx},
+ {...},
+ {...}]
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org6022443" class="outline-2">
+<h2 id="org6022443"><span class="section-number-2">5</span> RESTful API 配置 CORS 实现跨域请求</h2>
+<div class="outline-text-2" id="text-5">
+<p>
+Rails
+框架为例。注意：这只是一个很简单的例子，为了展示其原理，建议只在安全要求不高的项目上使用这种方法。Rails
+有专门的 <a href="https://github.com/cyu/rack-cors">Rack CORS 中间件</a>
+可以处理这个问题。
+</p>
+
+<p>
+在一个 Controller 或者 application_controller.rb 中添加 before_filter 和
+after_filter。前者用来回应浏览器的"事前检查"，如果浏览器发来了 OPTIONS
+请求，则返回一些响应头，并结束处理；后者则用来给响应添加 CORS 的响应头：
+</p>
+
+<pre class="example">
+
+# file: some_controller.rb
+
+before_filter :cors_preflight_check
+after_filter :cors_set_headers
+
+# ...
+
+def cors_preflight_check
+  if request.method == 'OPTIONS'
+    headers['Access-Controll-Allow-Origin'] = '*'
+    headers['Access-Controll-Allow-Methods'] = 'POST, GET, OPTIONS'
+    headers['Access-Controll-Allow-Headers'] = 'X-Requested-With, Content-Type, Accept'
+    headers['Access-Controll-Max-Age'] = '1728000'
+    render :text =&gt; '', :content-type =&gt; 'text/plain'
+  end
+end
+
+def cors_set_headers
+  headers['Access-Controll-Allow-Origin'] = '*'
+  headers['Access-Controll-Allow-Methods'] = 'POST, GET, OPTIONS'
+  headers['Access-Controll-Max-Age'] = '1728000'
+end
+</pre>
+
+<p>
+最后，别忘了在 routes.rb 中允许 OPTIONS 请求：
+</p>
+
+<pre class="example">
+match 'controller', to: 'controller#action', via: [:options] ＃ 添加此行
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgeda7134" class="outline-2">
+<h2 id="orgeda7134"><span class="section-number-2">6</span> Turoblinks 导致 action 执行两次</h2>
+<div class="outline-text-2" id="text-6">
+<p>
+Turoblinks 导致 action 的某些内容被执行两次，如：=redirct_to 外部网址=。
+和 <code>application.html.erb</code> 中的下列语句相关:
+</p>
+
+<pre class="example">
+&lt;%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %&gt;
+</pre>
+</div>
+
+<div id="outline-container-org92c1fd8" class="outline-3">
+<h3 id="org92c1fd8"><span class="section-number-3">6.1</span> 在项目的指定视图禁用 turbolinks</h3>
+<div class="outline-text-3" id="text-6-1">
+<p>
+编辑 <code>/app/views/layouts/application.html.erb=， 替换标签 =&lt;body&gt;</code>
+为以下内容：
+</p>
+
+<pre class="example">
+&lt;body
+  &lt;% if content_for?(:body_attributes) %&gt;
+    &lt;%= yield(:body_attributes) %&gt;
+  &lt;% end %&gt;
+&gt;
+</pre>
+
+<p>
+现在，如果需要在指定视图中禁用
+turbolinks，可以将以下内容增加到视图文件中：
+</p>
+
+<p>
+for Rails 4
+</p>
+
+<pre class="example">
+&lt;% content_for(:body_attributes) do %&gt;
+  data-no-turbolink="true"
+&lt;% end %&gt;
+</pre>
+
+<p>
+实际会展现为：
+</p>
+
+<pre class="example">
+&lt;body data-no-turbolink="true"&gt;
+</pre>
+
+<p>
+for Rails 5
+</p>
+
+<pre class="example">
+&lt;% content_for(:body_attributes) do %&gt;
+  data-turbolinks="false"
+&lt;% end %&gt;
+</pre>
+
+<p>
+实际会展现为：
+</p>
+
+<pre class="example">
+&lt;body data-turbolinks="false"&gt;
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orgb2df8f3" class="outline-3">
+<h3 id="orgb2df8f3"><span class="section-number-3">6.2</span> 在指定链接中禁用 turbolinks</h3>
+<div class="outline-text-3" id="text-6-2">
+<p>
+可以禁用单独的链接或者批量禁用某个区块内部所有链接的 Turbolinks 功能。
+</p>
+
+<pre class="example">
+&lt;a href="/" data-turbolinks="false"&gt;Disabled&lt;/a&gt;
+
+&lt;div data-turbolinks="false"&gt;
+  &lt;a href="/"&gt;Disabled&lt;/a&gt;
+&lt;/div&gt;
+
+ &lt;%= link_to 'Disabled', dis_path(@dis),
+             data: { turbolinks: false } %&gt;
+</pre>
+
+<p>
+被禁用的区块中，可以为单独链接启用 Turbolinks。
+</p>
+
+<pre class="example">
+&lt;div data-turbolinks="false"&gt;
+  &lt;a href="/" data-turbolinks="true"&gt;Enabled&lt;/a&gt;
+&lt;/div&gt;
+</pre>
+
+<p>
+注意：=redirct_to=
+重复调用的问题受调用重定向的链接元素影响，而不是重定向本身。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga25a6c9" class="outline-3">
+<h3 id="orga25a6c9"><span class="section-number-3">6.3</span> 从项目中删除 turbolinks</h3>
+<div class="outline-text-3" id="text-6-3">
+<ul class="org-ul">
+<li>从 Gemfile 中删除 gem 'turbolinks'行。</li>
+<li>从 app/assets/javascripts/application.js 中删除//= require
+turbolinks。</li>
+<li>从 app/views/layouts/application.html.erb
+中删除两个"data-turbolinks-track" =&gt; true 哈希键/值对。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org02bf1ad" class="outline-3">
+<h3 id="org02bf1ad"><span class="section-number-3">6.4</span> 新建项目时跳过 turbolinks</h3>
+<div class="outline-text-3" id="text-6-4">
+<div class="org-src-container">
+<pre class="src src-sh">rails new my_app --skip-turbolinks
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org85b6d19" class="outline-3">
+<h3 id="org85b6d19"><span class="section-number-3">6.5</span> 错误</h3>
+<div class="outline-text-3" id="text-6-5">
+<ul class="org-ul">
+<li><code>ActionView::Template::Error (The asset "application.css" is not present in the asset pipeline.):</code></li>
+</ul>
+
+<p>
+回答：
+</p>
+
+<pre class="example">
+RAILS_ENV=production rails assets:precompile
+</pre>
+
+<p>
+编辑下面文件内容，或设置 <code>ENV['RAILS_SERVE_STATIC_FILES']</code> 为 true。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2d9574;">`# config/environments/production.rb</span>
+<span style="color: #2d9574;">config.public_file_server.enabled = true</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li><code>bin/rails server</code> 报错：=Could not find a JavaScript runtime=</li>
+</ul>
+
+<p>
+回答：
+</p>
+
+<p>
+安装 <code>nodejs</code> 或者在 Gemfile 中添加
+</p>
+
+<pre class="example">
+gem 'execjs'
+gem 'therubyracer'
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1f6f9b6" class="outline-2">
+<h2 id="org1f6f9b6"><span class="section-number-2">7</span> 利用文件夹的方式来管理本地语言包 locale</h2>
+<div class="outline-text-2" id="text-7">
+<div class="org-src-container">
+<pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">config/application.rb</span>
+config.i18n.load_path += <span style="color: #ce537a; font-weight: bold;">Dir</span><span style="color: #4f97d7;">[</span><span style="color: #ce537a; font-weight: bold;">Rails</span>.root.join<span style="color: #bc6ec5;">(</span><span style="color: #2d9574;">'config'</span>, <span style="color: #2d9574;">'locales'</span>, <span style="color: #2d9574;">'*'</span>,
+        <span style="color: #2d9574;">'*.{rb,yml}'</span><span style="color: #bc6ec5;">)</span>.to_s<span style="color: #4f97d7;">]</span>
+config.i18n.default_locale = :<span style="color: #2d9574;">"zh-CN"</span>
+</pre>
+</div>
+
+<p>
+按照 rails 风格，config/locales
+就是放置语言包的地方，不建议更改。然后我们就可以利用这样的风格来管理语言包了。
+</p>
+
+<pre class="example">
++locales--
+ |+zh-CN
+  |default.yml
+  |devise.yml
+  |..
+ |+en
+  |default.yml
+  |devise.yml
+  |..
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org763958d" class="outline-2">
+<h2 id="org763958d"><span class="section-number-2">8</span> References</h2>
+<div class="outline-text-2" id="text-8">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+</blockquote>
+</div>
+</div>

@@ -1,0 +1,757 @@
+---
+layout: post
+title: "CSS 学习"
+date: 2018-07-25
+categories: 程序设计
+tags:
+    - CSS
+---
+
+<div id="outline-container-orgf7fa406" class="outline-2">
+<h2 id="orgf7fa406"><span class="section-number-2">1</span> CSS 简介</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org89ed1e0" class="outline-3">
+<h3 id="org89ed1e0"><span class="section-number-3">1.1</span> CSS 盒子模型</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>Margin(外边距) - 清除边框外的区域，外边距是透明的。</li>
+<li>Border(边框) - 围绕在内边距和内容外的边框。</li>
+<li>Padding(内边距) - 清除内容周围的区域，内边距是透明的。</li>
+<li>Content(内容) - 盒子的内容，显示文本和图像。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org17a8d4a" class="outline-3">
+<h3 id="org17a8d4a"><span class="section-number-3">1.2</span> CSS 语法</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">&#36873;&#25321;&#22120; </span><span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">&#23646;&#24615;</span>:&#20540;;
+  <span style="color: #4f97d7; font-weight: bold;">&#23646;&#24615;</span>:&#20540;;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdb646c0" class="outline-3">
+<h3 id="orgdb646c0"><span class="section-number-3">1.3</span> 示例</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #2aa1ae; background-color: #292e34;">/* </span><span style="color: #2aa1ae; background-color: #292e34;">p &#20803;&#32032;&#30340;&#26679;&#24335;&#34920; </span><span style="color: #2aa1ae; background-color: #292e34;">*/</span>
+<span style="color: #bc6ec5; font-weight: bold;">p </span><span style="color: #4f97d7;">{</span> <span style="color: #4f97d7; font-weight: bold;">text-align</span>:center; <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #000000;">black</span>; <span style="color: #4f97d7;">}</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">/* </span><span style="color: #2aa1ae; background-color: #292e34;">&#20803;&#32032;&#23646;&#24615; id="para1" &#30340;&#26679;&#24335;&#34920;</span>
+<span style="color: #2aa1ae; background-color: #292e34;">#para1 { text-align:center; color:black; }</span>
+
+<span style="color: #2aa1ae; background-color: #292e34;">/* &#25317;&#26377; class &#21517;&#31216;&#20026; center &#30340;&#20803;&#32032;&#26679;&#24335;&#34920;</span>
+<span style="color: #2aa1ae; background-color: #292e34;">.center { text-align:center; }</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org22c4d42" class="outline-3">
+<h3 id="org22c4d42"><span class="section-number-3">1.4</span> CSS 分组和嵌套选择器</h3>
+</div>
+
+<div id="outline-container-org6a9c70f" class="outline-3">
+<h3 id="org6a9c70f"><span class="section-number-3">1.5</span> 分组选择器</h3>
+<div class="outline-text-3" id="text-1-5">
+<p>
+在样式表中有很多具有相同样式的元素，为了尽量减少代码，你可以使用分组选择器，每个选择器用逗号分隔。
+在下面的例子中，我们对以上代码使用分组选择器：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">h1,h2,p</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #008000;">green</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf20837d" class="outline-3">
+<h3 id="orgf20837d"><span class="section-number-3">1.6</span> 嵌套选择器</h3>
+<div class="outline-text-3" id="text-1-6">
+<p>
+它可能适用于选择器内部的选择器的样式。
+</p>
+
+<ul class="org-ul">
+<li>p{ }: 为所有 p 元素指定一个样式。</li>
+<li>.marked{ }: 为所有 class="marked" 的元素指定一个样式。</li>
+<li>.marked p{ }: 为所有 class="marked" 元素内的 p 元素指定一个样式。</li>
+<li>p.marked{ }: 为所有 class="marked" 的 p 元素指定一个样式。</li>
+</ul>
+
+<p>
+在下面的例子设置了三个样式：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">p</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #0000ff;">blue</span>;
+    <span style="color: #4f97d7; font-weight: bold;">text-align</span>:center;
+<span style="color: #4f97d7;">}</span>
+<span style="color: #bc6ec5; font-weight: bold;">.marked</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">background-color</span>:<span style="color: #ffffff; background-color: #ff0000;">red</span>;
+<span style="color: #4f97d7;">}</span>
+<span style="color: #bc6ec5; font-weight: bold;">.marked p</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #000000; background-color: #ffffff;">white</span>;
+<span style="color: #4f97d7;">}</span>
+<span style="color: #bc6ec5; font-weight: bold;">p.marked</span><span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">text-decoration</span>:underline;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge43c8bc" class="outline-3">
+<h3 id="orge43c8bc"><span class="section-number-3">1.7</span> CSS 组合选择符</h3>
+<div class="outline-text-3" id="text-1-7">
+<p>
+在 CSS3 中包含了四种组合方式:
+</p>
+
+<ul class="org-ul">
+<li>后代选择器(以空格分隔)</li>
+<li>子元素选择器(以大于号分隔）</li>
+<li>相邻兄弟选择器（以加号分隔）</li>
+<li>普通兄弟选择器（以破折号分隔）</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org70f8686" class="outline-3">
+<h3 id="org70f8686"><span class="section-number-3">1.8</span> 后代选择器</h3>
+<div class="outline-text-3" id="text-1-8">
+<p>
+后代选择器用于选取某元素的后代元素。 以下实例选取所有 <code>&lt;p&gt;</code> 元素插入到
+<code>&lt;div&gt;</code> 元素中:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">div p</span>
+<span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">background-color</span>:<span style="color: #000000; background-color: #ffff00;">yellow</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5b5ec7d" class="outline-3">
+<h3 id="org5b5ec7d"><span class="section-number-3">1.9</span> 子元素选择器</h3>
+<div class="outline-text-3" id="text-1-9">
+<p>
+与后代选择器相比，子元素选择器（Child
+selectors）只能选择作为某元素子元素的元素。 以下实例选择了 <code>&lt;div&gt;</code>
+元素中所有直接子元素 <code>&lt;p&gt;</code> ：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">div&gt;p</span>
+<span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">background-color</span>:<span style="color: #000000; background-color: #ffff00;">yellow</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org042a883" class="outline-3">
+<h3 id="org042a883"><span class="section-number-3">1.10</span> 相邻兄弟选择器</h3>
+<div class="outline-text-3" id="text-1-10">
+<p>
+相邻兄弟选择器（Adjacent sibling
+selector）可选择紧接在另一元素后的元素，且二者有相同父元素。
+如果需要选择紧接在另一个元素后的元素，而且二者有相同的父元素，可以使用相邻兄弟选择器（Adjacent
+sibling selector）。 以下实例选取了所有位于 <code>&lt;div&gt;</code> 元素后的第一个 <code>&lt;p&gt;</code>
+元素:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">div+p</span>
+<span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">background-color</span>:<span style="color: #000000; background-color: #ffff00;">yellow</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org873b2d4" class="outline-3">
+<h3 id="org873b2d4"><span class="section-number-3">1.11</span> 后续兄弟选择器</h3>
+<div class="outline-text-3" id="text-1-11">
+<p>
+后续兄弟选择器选取所有指定元素之后的相邻兄弟元素。 以下实例选取了所有
+<code>&lt;div&gt;</code> 元素之后的所有相邻兄弟元素 <code>&lt;p&gt;</code> :
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">div~p</span>
+<span style="color: #4f97d7;">{</span>
+  <span style="color: #4f97d7; font-weight: bold;">background-color</span>:<span style="color: #000000; background-color: #ffff00;">yellow</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf431771" class="outline-3">
+<h3 id="orgf431771"><span class="section-number-3">1.12</span> CSS 伪类</h3>
+<div class="outline-text-3" id="text-1-12">
+<p>
+CSS 伪类是用来添加一些选择器的特殊效果。
+</p>
+
+<p>
+伪类的语法：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #4f97d7; font-weight: bold;">selector</span>:pseudo-class <span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">property</span>:value;<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+
+<p>
+CSS 类也可以使用伪类：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css">selector.class:pseudo-class <span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">property</span>:value;<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf76a771" class="outline-3">
+<h3 id="orgf76a771"><span class="section-number-3">1.13</span> anchor 伪类</h3>
+<div class="outline-text-3" id="text-1-13">
+<p>
+在支持 CSS 的浏览器中，链接的不同状态都可以以不同的方式显示
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">a:link </span><span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #FF0000;">#FF0000</span>;<span style="color: #4f97d7;">}</span> <span style="color: #2aa1ae; background-color: #292e34;">/* </span><span style="color: #2aa1ae; background-color: #292e34;">&#26410;&#35775;&#38382;&#30340;&#38142;&#25509; </span><span style="color: #2aa1ae; background-color: #292e34;">*/</span>
+<span style="color: #bc6ec5; font-weight: bold;">a:visited </span><span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #00FF00;">#00FF00</span>;<span style="color: #4f97d7;">}</span> <span style="color: #2aa1ae; background-color: #292e34;">/* </span><span style="color: #2aa1ae; background-color: #292e34;">&#24050;&#35775;&#38382;&#30340;&#38142;&#25509; </span><span style="color: #2aa1ae; background-color: #292e34;">*/</span>
+<span style="color: #bc6ec5; font-weight: bold;">a:hover </span><span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #000000; background-color: #FF00FF;">#FF00FF</span>;<span style="color: #4f97d7;">}</span> <span style="color: #2aa1ae; background-color: #292e34;">/* </span><span style="color: #2aa1ae; background-color: #292e34;">&#40736;&#26631;&#21010;&#36807;&#38142;&#25509; </span><span style="color: #2aa1ae; background-color: #292e34;">*/</span>
+<span style="color: #bc6ec5; font-weight: bold;">a:active </span><span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #0000FF;">#0000FF</span>;<span style="color: #4f97d7;">}</span> <span style="color: #2aa1ae; background-color: #292e34;">/* </span><span style="color: #2aa1ae; background-color: #292e34;">&#24050;&#36873;&#20013;&#30340;&#38142;&#25509; </span><span style="color: #2aa1ae; background-color: #292e34;">*/</span>
+</pre>
+</div>
+
+<ul class="org-ul">
+<li>注意： 在 CSS 定义中，a:hover 必须被置于 a:link 和 a:visited
+之后，才是有效的。</li>
+<li>注意： 在 CSS 定义中，a:active 必须被置于 a:hover 之后，才是有效的。</li>
+<li>注意：伪类的名称不区分大小写。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org9f2e025" class="outline-3">
+<h3 id="org9f2e025"><span class="section-number-3">1.14</span> 伪类和 CSS 类</h3>
+<div class="outline-text-3" id="text-1-14">
+<p>
+伪类可以与 CSS 类配合使用：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">a.red:visited </span><span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #FF0000;">#FF0000</span>;<span style="color: #4f97d7;">}</span>
+
+&lt;a class=<span style="color: #2d9574;">"red"</span> href=<span style="color: #2d9574;">"css-syntax.html"</span>&gt;CSS &#35821;&#27861;&lt;/a&gt;
+</pre>
+</div>
+
+<p>
+如果在上面的例子的链接已被访问，它会显示为红色。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org59786fd" class="outline-3">
+<h3 id="org59786fd"><span class="section-number-3">1.15</span> CSS :first-child 伪类</h3>
+<div class="outline-text-3" id="text-1-15">
+<p>
+您可以使用 :first-child 伪类来选择父元素的第一个子元素。 注意：在 IE8
+的之前版本必须声明&lt;!DOCTYPE&gt; ，这样 :first-child 才能生效。
+</p>
+
+<p>
+匹配第一个 <code>&lt;p&gt;</code> 元素
+在下面的例子中，选择器匹配作为任何元素的第一个子元素的 <code>&lt;p&gt;</code> 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">p:first-child</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #0000ff;">blue</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+
+<p>
+匹配所有 <code>&lt;p&gt;</code> 元素中的第一个 <code>&lt;i&gt;</code> 元素
+在下面的例子中，选择相匹配的所有 <code>&lt;p&gt;</code> 元素的第一个 <code>&lt;i&gt;</code> 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">p &gt; i:first-child</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #0000ff;">blue</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+
+<p>
+匹配所有作为第一个子元素的 <code>&lt;p&gt;</code> 元素中的所有 <code>&lt;i&gt;</code> 元素
+在下面的例子中，选择器匹配所有作为元素的第一个子元素的 <code>&lt;p&gt;</code>
+元素中的所有 <code>&lt;i&gt;</code> 元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">p:first-child i</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #0000ff;">blue</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd11f674" class="outline-3">
+<h3 id="orgd11f674"><span class="section-number-3">1.16</span> CSS - :lang 伪类</h3>
+<div class="outline-text-3" id="text-1-16">
+<p>
+:lang 伪类使你有能力为不同的语言定义特殊的规则 注意：IE8
+必须声明&lt;!DOCTYPE&gt;才能支持;lang 伪类。 在下面的例子中，:lang
+类为属性值为 no 的 q 元素定义引号的类型：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">q:lang</span><span style="color: #4f97d7; font-weight: bold;">(</span><span style="color: #bc6ec5; font-weight: bold;">no</span><span style="color: #4f97d7; font-weight: bold;">)</span><span style="color: #bc6ec5; font-weight: bold;"> </span><span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">quotes</span>: <span style="color: #2d9574;">"~"</span> <span style="color: #2d9574;">"~"</span>;<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga7f952a" class="outline-3">
+<h3 id="orga7f952a"><span class="section-number-3">1.17</span> CSS 伪元素</h3>
+<div class="outline-text-3" id="text-1-17">
+<p>
+CSS 伪元素是用来添加一些选择器的特殊效果。
+</p>
+
+<p>
+伪元素的语法：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #4f97d7; font-weight: bold;">selector</span>:pseudo-element <span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">property</span>:value;<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+
+<p>
+CSS 类也可以使用伪元素：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css">selector.class:pseudo-element <span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">property</span>:value;<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5cbaf22" class="outline-3">
+<h3 id="org5cbaf22"><span class="section-number-3">1.18</span> :first-line 伪元素</h3>
+<div class="outline-text-3" id="text-1-18">
+<p>
+"first-line" 伪元素用于向文本的首行设置特殊样式。
+</p>
+
+<p>
+在下面的例子中，浏览器会根据 "first-line" 伪元素中的样式对 p
+元素的第一行文本进行格式化：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">p:first-line</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #ff0000;">#ff0000</span>;
+    <span style="color: #4f97d7; font-weight: bold;">font-variant</span>:small-caps;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+
+<p>
+注意："first-line" 伪元素只能用于块级元素。
+</p>
+
+<p>
+注意： 下面的属性可应用于 "first-line" 伪元素：
+</p>
+
+<ul class="org-ul">
+<li>font properties</li>
+<li>color properties</li>
+<li>background properties</li>
+<li>word-spacing</li>
+<li>letter-spacing</li>
+<li>text-decoration</li>
+<li>vertical-align</li>
+<li>text-transform</li>
+<li>line-height</li>
+<li>clear</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org91280de" class="outline-3">
+<h3 id="org91280de"><span class="section-number-3">1.19</span> :first-letter 伪元素</h3>
+<div class="outline-text-3" id="text-1-19">
+<p>
+"first-letter" 伪元素用于向文本的首字母设置特殊样式：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">p:first-letter</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #ff0000;">#ff0000</span>;
+    <span style="color: #4f97d7; font-weight: bold;">font-size</span>:xx-large;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+
+<p>
+注意： "first-letter" 伪元素只能用于块级元素。
+</p>
+
+<p>
+注意： 下面的属性可应用于 "first-letter" 伪元素：
+</p>
+
+<ul class="org-ul">
+<li>font properties</li>
+<li>color properties</li>
+<li>background properties</li>
+<li>margin properties</li>
+<li>padding properties</li>
+<li>border properties</li>
+<li>text-decoration</li>
+<li>vertical-align (only if "float" is "none")</li>
+<li>text-transform</li>
+<li>line-height</li>
+<li>float</li>
+<li>clear</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org66a672e" class="outline-3">
+<h3 id="org66a672e"><span class="section-number-3">1.20</span> 伪元素和 CSS 类</h3>
+<div class="outline-text-3" id="text-1-20">
+<p>
+伪元素可以结合 CSS 类：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">p.article:first-letter </span><span style="color: #4f97d7;">{</span><span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #ff0000;">#ff0000</span>;<span style="color: #4f97d7;">}</span>
+
+&lt;p class=<span style="color: #2d9574;">"article"</span>&gt;&#25991;&#31456;&#27573;&#33853;&lt;/p&gt;
+</pre>
+</div>
+
+<p>
+上面的例子会使所有 class 为 article 的段落的首字母变为红色。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9bcbb6f" class="outline-3">
+<h3 id="org9bcbb6f"><span class="section-number-3">1.21</span> 多个伪元素</h3>
+<div class="outline-text-3" id="text-1-21">
+<p>
+可以结合多个伪元素来使用。
+</p>
+
+<p>
+在下面的例子中，段落的第一个字母将显示为红色，其字体大小为
+xx-large。第一行中的其余文本将为蓝色，并以小型大写字母显示。
+</p>
+
+<p>
+段落中的其余文本将以默认字体大小和颜色来显示：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">p:first-letter</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #ff0000;">#ff0000</span>;
+    <span style="color: #4f97d7; font-weight: bold;">font-size</span>:xx-large;
+<span style="color: #4f97d7;">}</span>
+<span style="color: #bc6ec5; font-weight: bold;">p:first-line</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #0000ff;">#0000ff</span>;
+    <span style="color: #4f97d7; font-weight: bold;">font-variant</span>:small-caps;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge4d6e31" class="outline-3">
+<h3 id="orge4d6e31"><span class="section-number-3">1.22</span> CSS - :before 伪元素</h3>
+<div class="outline-text-3" id="text-1-22">
+<p>
+":before" 伪元素可以在元素的内容前面插入新内容。
+</p>
+
+<p>
+下面的例子在每个 <code>&lt;h1&gt;</code> 元素前面插入一幅图片：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">h1:before</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">content</span>:url<span style="color: #b2b2b2; background-color: #292b2e;">(</span><span style="color: #2d9574;">smiley.gif</span><span style="color: #b2b2b2; background-color: #292b2e;">)</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org64c082c" class="outline-3">
+<h3 id="org64c082c"><span class="section-number-3">1.23</span> CSS - :after 伪元素</h3>
+<div class="outline-text-3" id="text-1-23">
+<p>
+":after" 伪元素可以在元素的内容之后插入新内容。
+</p>
+
+<p>
+下面的例子在每个 <code>&lt;h1&gt;</code> 元素后面插入一幅图片：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">h1:after</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">content</span>:url<span style="color: #b2b2b2; background-color: #292b2e;">(</span><span style="color: #2d9574;">smiley.gif</span><span style="color: #b2b2b2; background-color: #292b2e;">)</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org1fd86b9" class="outline-3">
+<h3 id="org1fd86b9"><span class="section-number-3">1.24</span> 所有 CSS 伪类/元素</h3>
+<div class="outline-text-3" id="text-1-24">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">选择器</th>
+<th scope="col" class="org-left">示例</th>
+<th scope="col" class="org-left">示例说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">:link</td>
+<td class="org-left">a:link</td>
+<td class="org-left">选择所有未访问链接</td>
+</tr>
+
+<tr>
+<td class="org-left">:visited</td>
+<td class="org-left">a:visited</td>
+<td class="org-left">选择所有访问过的链接</td>
+</tr>
+
+<tr>
+<td class="org-left">:active</td>
+<td class="org-left">a:active</td>
+<td class="org-left">选择正在活动链接</td>
+</tr>
+
+<tr>
+<td class="org-left">:hover</td>
+<td class="org-left">a:hover</td>
+<td class="org-left">把鼠标放在链接上的状态</td>
+</tr>
+
+<tr>
+<td class="org-left">:focus</td>
+<td class="org-left">input:focus</td>
+<td class="org-left">选择元素输入后具有焦点</td>
+</tr>
+
+<tr>
+<td class="org-left">:first-letter</td>
+<td class="org-left">p:first-letter</td>
+<td class="org-left">选择每个 <code>&lt;p&gt;</code> 元素的第一个字母</td>
+</tr>
+
+<tr>
+<td class="org-left">:first-line</td>
+<td class="org-left">p:first-line</td>
+<td class="org-left">选择每个 <code>&lt;p&gt;</code> 元素的第一行</td>
+</tr>
+
+<tr>
+<td class="org-left">:first-child</td>
+<td class="org-left">p:first-child</td>
+<td class="org-left">选择器匹配属于任意元素的第一个子元素的 <code>&lt;p&gt;</code> 元素</td>
+</tr>
+
+<tr>
+<td class="org-left">:before</td>
+<td class="org-left">p:before</td>
+<td class="org-left">在每个 <code>&lt;p&gt;</code> 元素之前插入内容</td>
+</tr>
+
+<tr>
+<td class="org-left">:after</td>
+<td class="org-left">p:after</td>
+<td class="org-left">在每个 <code>&lt;p&gt;</code> 元素之后插入内容</td>
+</tr>
+
+<tr>
+<td class="org-left">:lang(language)</td>
+<td class="org-left">p:lang(it)</td>
+<td class="org-left">为 <code>&lt;p&gt;</code> 元素的 lang 属性选择一个开始值</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org62d3fd8" class="outline-3">
+<h3 id="org62d3fd8"><span class="section-number-3">1.25</span> CSS 属性选择器</h3>
+<div class="outline-text-3" id="text-1-25">
+<p>
+具有特定属性的 HTML 元素样式 具有特定属性的 HTML 元素样式不仅仅是 class
+和 id。
+</p>
+
+<p>
+注意：IE7 和 IE8 需声明!DOCTYPE 才支持属性选择器！IE6
+和更低的版本不支持属性选择器。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org46665c6" class="outline-3">
+<h3 id="org46665c6"><span class="section-number-3">1.26</span> 属性选择器</h3>
+<div class="outline-text-3" id="text-1-26">
+<p>
+下面的例子是把包含标题（title）的所有元素变为蓝色：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #4f97d7; font-weight: bold;">[</span><span style="color: #bc6ec5; font-weight: bold;">title</span><span style="color: #4f97d7; font-weight: bold;">]</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #0000ff;">blue</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga21e32c" class="outline-3">
+<h3 id="orga21e32c"><span class="section-number-3">1.27</span> 属性和值选择器</h3>
+<div class="outline-text-3" id="text-1-27">
+<p>
+下面的实例改变了标题 title='runoob'元素的边框样式:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #4f97d7; font-weight: bold;">[</span><span style="color: #bc6ec5; font-weight: bold;">title=runoob</span><span style="color: #4f97d7; font-weight: bold;">]</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">border</span>:<span style="color: #a45bad;">5px</span> solid <span style="color: #ffffff; background-color: #008000;">green</span>;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf733506" class="outline-3">
+<h3 id="orgf733506"><span class="section-number-3">1.28</span> 属性和值的选择器-多值</h3>
+<div class="outline-text-3" id="text-1-28">
+<p>
+下面是包含指定值的 title 属性的元素样式的例子，使用（~）分隔属性和值:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #4f97d7; font-weight: bold;">[</span><span style="color: #bc6ec5; font-weight: bold;">title~=hello</span><span style="color: #4f97d7; font-weight: bold;">]</span><span style="color: #bc6ec5; font-weight: bold;"> </span><span style="color: #4f97d7;">{</span> <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #0000ff;">blue</span>; <span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+
+<p>
+下面是包含指定值的 lang 属性的元素样式的例子，使用（|）分隔属性和值:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #4f97d7; font-weight: bold;">[</span><span style="color: #bc6ec5; font-weight: bold;">lang|=en</span><span style="color: #4f97d7; font-weight: bold;">]</span><span style="color: #bc6ec5; font-weight: bold;"> </span><span style="color: #4f97d7;">{</span> <span style="color: #4f97d7; font-weight: bold;">color</span>:<span style="color: #ffffff; background-color: #0000ff;">blue</span>; <span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc15279c" class="outline-3">
+<h3 id="orgc15279c"><span class="section-number-3">1.29</span> 表单样式</h3>
+<div class="outline-text-3" id="text-1-29">
+<p>
+属性选择器样式无需使用 class 或 id 的形式:
+</p>
+
+<div class="org-src-container">
+<pre class="src src-css"><span style="color: #bc6ec5; font-weight: bold;">input</span><span style="color: #4f97d7; font-weight: bold;">[</span><span style="color: #bc6ec5; font-weight: bold;">type=</span><span style="color: #2d9574;">"text"</span><span style="color: #4f97d7; font-weight: bold;">]</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">width</span>:<span style="color: #a45bad;">150px</span>;
+    <span style="color: #4f97d7; font-weight: bold;">display</span>:block;
+    <span style="color: #4f97d7; font-weight: bold;">margin-bottom</span>:<span style="color: #a45bad;">10px</span>;
+    <span style="color: #4f97d7; font-weight: bold;">background-color</span>:<span style="color: #000000; background-color: #ffff00;">yellow</span>;
+<span style="color: #4f97d7;">}</span>
+<span style="color: #bc6ec5; font-weight: bold;">input</span><span style="color: #4f97d7; font-weight: bold;">[</span><span style="color: #bc6ec5; font-weight: bold;">type=</span><span style="color: #2d9574;">"button"</span><span style="color: #4f97d7; font-weight: bold;">]</span>
+<span style="color: #4f97d7;">{</span>
+    <span style="color: #4f97d7; font-weight: bold;">width</span>:<span style="color: #a45bad;">120px</span>;
+    <span style="color: #4f97d7; font-weight: bold;">margin-left</span>:<span style="color: #a45bad;">35px</span>;
+    <span style="color: #4f97d7; font-weight: bold;">display</span>:block;
+<span style="color: #4f97d7;">}</span>
+</pre>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6199b41" class="outline-2">
+<h2 id="org6199b41"><span class="section-number-2">2</span> References</h2>
+<div class="outline-text-2" id="text-2">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li><a href="http://www.runoob.com/">http://www.runoob.com/</a></li>
+</ul>
+</div>
+</div>

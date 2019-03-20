@@ -6,8 +6,6 @@ date: 2018-07-13
 categories: 程序设计
 tags:
     - Bash
-excerpt:
-keywords: ""
 ---
 #+end_export
 
@@ -15,7 +13,7 @@ keywords: ""
 
 默认使用 Emacs 键位。
 
-#+begin_src shell
+#+begin_src sh
 CTRL+A              # 移动到行首，同 <Home>
 CTRL+B              # 向后移动，同 <Left>
 CTRL+C              # 结束当前命令
@@ -52,7 +50,7 @@ CTRL+X CTRL+E       # 用你指定的编辑器，编辑当前命令
 
 ** BASH 基本操作
 
-#+begin_src shell
+#+begin_src sh
 exit                # 退出当前登陆
 env                 # 显示环境变量
 echo $SHELL         # 显示你在使用什么 SHELL
@@ -68,7 +66,7 @@ reset               # 重置终端（当你不小心 cat 了一个二进制，�
 
 ** 目录操作
 
-#+begin_src shell
+#+begin_src sh
 cd                  # 返回自己 $HOME 目录
 cd {dirname}        # 进入目录
 pwd                 # 显示当前所在目录
@@ -83,7 +81,7 @@ cd -{N}             # 切换到目录栈中的第 N 个目录，比如 cd -2 将
 
 ** 文件操作
 
-#+begin_src shell
+#+begin_src sh
 ls                  # 显示当前目录内容，后面可接目录名：ls {dir} 显示指定目录
 ls -l               # 列表方式显示目录内容，包括文件日期，大小，权限等信息
 ls -a               # 显示所有文件和目录，包括隐藏文件（.开头的文件/目录名）
@@ -116,7 +114,7 @@ stat {fn}           # 显示文件的详细信息
 
 ** 用户管理
 
-#+begin_src shell
+#+begin_src sh
 whoami              # 显示我的用户名
 who                 # 显示已登陆用户信息，w / who / users 内容略有不同
 w                   # 显示已登陆用户信息，w / who / users 内容略有不同
@@ -143,7 +141,7 @@ sudo {command}      # 以 root 权限执行某命令
 
 ** 进程管理
 
-#+begin_src shell
+#+begin_src sh
 ps                        # 查看当前会话进程
 ps ax                     # 查看所有进程，类似 ps -e
 ps aux                    # 查看所有进程详细信息，类似 ps -ef
@@ -189,7 +187,7 @@ wait                      # 等待所有后台进程任务结束
 
 ** 常用命令-SSH/系统信息/网络
 
-#+begin_src shell
+#+begin_src sh
 ssh user@host             # 以用户 user 登陆到远程主机 host
 ssh -p {port} user@host   # 指定端口登陆主机
 ssh-copy-id user@host     # 拷贝你的 ssh key 到远程主机，避免重复输入密码
@@ -243,7 +241,7 @@ rz                        # 接收终端发送过来的文件
 
 ** 变量操作
 
-#+begin_src shell
+#+begin_src sh
 varname=value             # 定义变量
 varname=value command     # 定义子进程变量并执行子进程
 echo $varname             # 查看变量内容
@@ -311,7 +309,7 @@ num=$((1 + (2 + 3) * 2))  # 复杂计算
 
 ** 事件指示符
 
-#+begin_src shell
+#+begin_src sh
 !!                  # 上一条命令
 !^                  # 上一条命令的第一个单词
 !$                  # 上一条命令的最后一个单词
@@ -322,7 +320,7 @@ num=$((1 + (2 + 3) * 2))  # 复杂计算
 
 ** 函数
 
-#+begin_src shell
+#+begin_src sh
 # 定义一个新函数
 function myfunc() {
     # $1 代表第一个参数，$N 代表第 N 个参数
@@ -345,7 +343,7 @@ declare -f                # 列出函数定义
 
 man test
 
-#+begin_src shell
+#+begin_src sh
 statement1 && statement2  # and 操作符
 statement1 || statement2  # or 操作符
 
@@ -385,7 +383,7 @@ num1 -ge num2             # 数字判断：num1 >= num2
 
 ** 分支控制
 
-#+begin_src shell
+#+begin_src sh
 test {expression}         # 判断条件为真的话 test 程序返回 0 否则非零
 [ expression ]            # 判断条件为真的话返回 0 否则非零
 
@@ -452,7 +450,7 @@ https://www.ibm.com/developerworks/library/l-bash-test/index.html
 
 ** 流程控制
 
-#+begin_src shell
+#+begin_src sh
 while / for / case / until
 
 # while 循环
@@ -511,7 +509,7 @@ done
 
 ** 命令处理
 
-#+begin_src shell
+#+begin_src sh
 command ls                         # 忽略 alias 直接执行程序或者内建命令 ls
 builtin cd                         # 忽略 alias 直接运行内建的 cd 命令
 enable                             # 列出所有 bash 内置命令，或禁止某命令
@@ -522,7 +520,7 @@ eval $script                       # 对 script 变量中的字符串求值（�
 
 ** 输出/输入重定向
 
-#+begin_src shell
+#+begin_src sh
 cmd1 | cmd2                        # 管道，cmd1 的标准输出接到 cmd2 的标准输入
 < file                             # 将文件内容重定向为命令的标准输入
 > file                             # 将命令的标准输出重定向到文件，会覆盖文件
@@ -547,7 +545,7 @@ diff <(cmd1) <(cmd2)               # 比较两个命令的输出
 
 ** 文本处理-cut
 
-#+begin_src shell
+#+begin_src sh
 cut -c 1-16                        # 截取每行头 16 个字符
 cut -c 1-16 file                   # 截取指定文件中每行头 16 个字符
 cut -c3-                           # 截取每行从第三个字符开始到行末的内容
@@ -561,7 +559,7 @@ ps | tr -s " " | cut -d " " -f 2,3,4  # cut 搭配 tr 压缩字符
 
 ** 文本处理-awk/sed
 
-#+begin_src shell
+#+begin_src sh
 awk '{print $5}' file              # 打印文件中以空格分隔的第五列
 awk -F ',' '{print $5}' file       # 打印文件中以逗号分隔的第五列
 awk '/str/ {print $2}' file        # 打印文件中包含 str 的所有行的第二列
@@ -586,7 +584,7 @@ sed -n '2,5p' file                 # 打印文件第二到第五行
 
 ** 排序
 
-#+begin_src shell
+#+begin_src sh
 sort file                          # 排序文件
 sort -r file                       # 反向排序（降序）
 sort -n file                       # 使用数字而不是字符串进行比较
@@ -596,7 +594,7 @@ sort -u file                       # 去重排序
 
 ** 快速跳转
 
-#+begin_src shell
+#+begin_src sh
 source /path/to/z.sh               # .bashrc 中初始化 z.sh
 z                                  # 列出所有历史路径以及他们的权重
 z foo                              # 跳到历史路径中匹配 foo 的权重最大的目录
@@ -608,7 +606,7 @@ z -t foo                           # 按照最近访问优先进行匹配跳转
 
 ** 键盘绑定
 
-#+begin_src shell
+#+begin_src sh
 bind '"\eh":"\C-b"'                # 绑定 ALT+h 为光标左移，同 CTRL+b / <Left>
 bind '"\el":"\C-f"'                # 绑定 ALT+l 为光标右移，同 CTRL+f / <Right>
 bind '"\ej":"\C-n"'                # 绑定 ALT+j 为下条历史，同 CTRL+n / <Down>
@@ -622,7 +620,7 @@ bind '"\e;":"ls -l\n"'             # 绑定 ALT+; 为执行 ls -l 命令
 
 ** 网络管理
 
-#+begin_src shell
+#+begin_src sh
 ip a                               # 显示所有网络地址，同 ip address
 ip a show eth1                     # 显示网卡 IP 地址
 ip a add 172.16.1.23/24 dev eth1   # 添加网卡 IP 地址
@@ -653,7 +651,7 @@ nmap -O -sV 10.0.0.12              # 探测主机服务和操作系统版本
 
 ** 有趣的命令
 
-#+begin_src shell
+#+begin_src sh
 man hier                           # 查看文件系统的结构和含义
 man test                           # 查看 posix sh 的条件判断帮助
 man ascii                          # 显示 ascii 表
@@ -682,7 +680,7 @@ curl -L cheat.sh                   # 速查表大全
 
 ** 常用技巧
 
-#+begin_src shell
+#+begin_src sh
 # 列出最常使用的命令
 history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head
 
@@ -737,7 +735,7 @@ http://www.skywind.me/blog/archives/2021
 
 ** 有用的函数
 
-#+begin_src shell
+#+begin_src sh
 # 自动解压：判断文件后缀名并调用相应解压命令
 function q-extract() {
     if [ -f $1 ] ; then
@@ -799,21 +797,21 @@ function ccat() {
 
 **** 禁止标准输出
 
-#+begin_src shell
+#+begin_src sh
 # 文件内容丢失，而不会输出到标准输出.
 cat $filename >/dev/null
 #+end_src
 
 **** 禁止标准错误
 
-#+begin_src shell
+#+begin_src sh
 # 这样错误信息[标准错误]就被丢到太平洋去了.
 rm $badname 2>/dev/null
 #+end_src
 
 **** 禁止标准输出和标准错误的输出
 
-#+begin_src shell
+#+begin_src sh
 # 如果"$filename"不存在，将不会有任何错误信息提示.
 # 如果"$filename"存在, 文件的内容不会打印到标准输出.
 # 因此 Therefore, 上面的代码根本不会输出任何信息.
@@ -834,14 +832,14 @@ if which rbenv >/dev/null; then echo 'rbenv exists'; else echo 'rbenv not found'
 
 **** 清除日志文件内容
 
-#+begin_src shell
+#+begin_src sh
 # :>/var/log/messages 有同样的效果, 但不会产生新的进程.（因为:是内建的）
 cat /dev/null > /var/log/messages
 #+end_src
 
 ** 好玩的配置
 
-#+begin_src shell
+#+begin_src sh
 # 放到你的 ~/.bashrc 配置文件中，给 man 增加漂亮的色彩高亮
 export LESS_TERMCAP_mb=$'\E[1m\E[32m'
 export LESS_TERMCAP_mh=$'\E[2m'

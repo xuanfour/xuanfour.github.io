@@ -15,7 +15,7 @@ tags:
 
 进入 Git Bash，运行下列命令
 
-#+begin_src shell
+#+begin_src sh
 #配置 ID
 git config --global user.name "your_id"
 #配置 EMAIL
@@ -35,7 +35,7 @@ git config --global core.filemode false
 
 *** 2.2.1. 新建 SSH 证书：
 
-#+begin_src shell
+#+begin_src sh
 ssh-keygen -t rsa -C "your_name@email_address"
 #+end_src
 
@@ -46,7 +46,7 @@ ssh-keygen -t rsa -C "your_name@email_address"
 
 *** 2.2.3. 通过 github 测试 SSH 证书：
 
-#+begin_src shell
+#+begin_src sh
 ssh -T git@github.com
 #+end_src
 
@@ -54,7 +54,7 @@ ssh -T git@github.com
 
 ** 2.3. 修改或新建 `/etc/fstab`，增加以下内容：
 
-#+begin_src shell
+#+begin_src sh
 d:/LinuxHome /home
 d:/Works/Projects /projects
 d:/Works/Codes /codes
@@ -98,7 +98,7 @@ Windows Registry Editor Version 5.00
 
 *** 2.5.2. 修改 `git-bash.bat` 文件，增加设置路径变量 `set _T=%*`：
 
-#+begin_src shell
+#+begin_src sh
 @echo off
 set _T=%*
 ……
@@ -106,7 +106,7 @@ set _T=%*
 
 *** 2.5.3. 设置用户配置文件 `\home\${UserName}\.bash_profile`，在最后增加：
 
-#+begin_src shell
+#+begin_src sh
 # 右键菜单打开 Git 在当前目录
 export _T=${_T//\\//}   # replace backslash to fowardslash
 if [[ $_T == "" ]]; then
@@ -121,13 +121,13 @@ cd "$_T"
 
 *** 3.1.1. 初始化服务仓库，包括工作区，通常为本地仓库
 
-#+begin_src shell
+#+begin_src sh
 git init
 #+end_src
 
 *** 3.1.2. 初始化服务仓库，不包括工作区，通常为远程仓库
 
-#+begin_src shell
+#+begin_src sh
 git init  --bare
 git init  --bare --shared
 #+end_src
@@ -136,25 +136,25 @@ git init  --bare --shared
 
 *** 3.2.1. 增加所有文件快照到当前工作区
 
-#+begin_src shell
+#+begin_src sh
 git add .
 #+end_src
 
 *** 3.2.2. 增加所有文件快照到当前工作区并更新索引为当前文件状态，通常因本地文件未使用 Git 更新删除。
 
-#+begin_src shell
+#+begin_src sh
 git add -A .
 #+end_src
 
 ** 3.3. 删除文件从当前工作区和索引
 
-#+begin_src shell
+#+begin_src sh
 git rm app/user.rb
 #+end_src
 
 ** 3.4. 重命名文件从当前工作区和索引
 
-#+begin_src shell
+#+begin_src sh
 git mv app/oldName.rb app/newName.rb
 #+end_src
 
@@ -162,25 +162,25 @@ git mv app/oldName.rb app/newName.rb
 
 *** 3.5.1. 提交到本地仓库，已进行了文件快照
 
-#+begin_src shell
+#+begin_src sh
 git commit -m "commit information"
 #+end_src
 
 *** 3.5.2. 提交到本地仓库，未进行了文件快照（仓库已经存在文件）
 
-#+begin_src shell
+#+begin_src sh
 git commit -a -m 'commit information'
 #+end_src
 
 ** 3.6. 查询当前工作区状态
 
-#+begin_src shell
+#+begin_src sh
 git status
 #+end_src
 
 ** 3.7. 查询提交历史
 
-#+begin_src shell
+#+begin_src sh
 git log
 #+end_src
 
@@ -190,7 +190,7 @@ git log
 
 `git clone` 默认会把远程仓库整个给 `clone` 下来，但只会在本地默认创建一个 `master` 分支。
 
-#+begin_src shell
+#+begin_src sh
 git clone ssh://git@github.com/idxuan/GitTest
 #+end_src
 
@@ -198,7 +198,7 @@ git clone ssh://git@github.com/idxuan/GitTest
 
 放弃本地版本，获取远程仓库最新版本
 
-#+begin_src shell
+#+begin_src sh
 git reset --hard
 git pull
 #+end_src
@@ -207,7 +207,7 @@ git pull
 
 在远程仓库已经修改的情况下，本地也已经修改，那么需要通过一些方法避免同步更新错误，例如可以通过指定合并策略来接受远程修改，丢弃本地的所有修改：
 
-#+begin_src shell
+#+begin_src sh
 git pull -X theirs
 #+end_src
 
@@ -217,25 +217,25 @@ git pull -X theirs
 
 查看远程分支信息。
 
-#+begin_src shell
+#+begin_src sh
 git branch –r
 #+end_src
 
 查看本地和远程分支信息。
 
-#+begin_src shell
+#+begin_src sh
 git branch –a
 #+end_src
 
 获取远程分支到本地，参数 `-t` 设置为本地当前分支。
 
-#+begin_src shell
+#+begin_src sh
 git checkout -t origin/other_branch
 #+end_src
 
 ** 3.9. 增加远程仓库配置
 
-#+begin_src shell
+#+begin_src sh
 git remote add github git@github.com:idxuan/GitTest.git (推荐)
 git remote add github https://github.com/idxuan/GitTest.git
 git remote add local file://f:/Repositories/git/conv_dict
@@ -243,38 +243,38 @@ git remote add local file://f:/Repositories/git/conv_dict
 
 ** 3.10. 删除远程仓库配置
 
-#+begin_src shell
+#+begin_src sh
 git remote rm github
 #+end_src
 
 ** 3.11. 远程仓库重命名
 
-#+begin_src shell
+#+begin_src sh
 git remote rename oldname newname
 #+end_src
 
 ** 3.12. 修改远程仓库路径
 
-#+begin_src shell
+#+begin_src sh
 git remote set-url github git@github.com:idxuan/GitTest.git
 #+end_src
 
 ** 3.13. 查询远程仓库配置
 
-#+begin_src shell
+#+begin_src sh
 git remote -v
 #+end_src
 
 ** 3.14. 获取远程仓库
 
-#+begin_src shell
+#+begin_src sh
 git pull 远端仓库名 远端分支名:本地分支名
 git pull github master
 #+end_src
 
 ** 3.15. 提交到远程仓库
 
-#+begin_src shell
+#+begin_src sh
 git push 远端仓库名 本地分支名:远端分支名
 git push github master
 git push -u github master
@@ -282,7 +282,7 @@ git push -u github master
 
 ** 3.16. 创建一个没有父节点的分支（github 规定，只有该分支中的页面，才会生成网页文件）
 
-#+begin_src shell
+#+begin_src sh
 git checkout --orphan gh-pages
 #+end_src
 
@@ -290,13 +290,13 @@ git checkout --orphan gh-pages
 
 重置回滚本地
 
-#+begin_src shell
+#+begin_src sh
 git reset --hard 版本号
 #+end_src
 
 重置回滚远程
 
-#+begin_src shell
+#+begin_src sh
 git push -f
 #+end_src
 
@@ -307,7 +307,7 @@ git push -f
 
 1. `git fetch` 下载远程最新的，但不尝试或修改任何东西。 然后 `git reset master` 分支重置到刚才。
 
-#+begin_src shell
+#+begin_src sh
 git fetch --all
 git reset --hard origin/master
 #+end_src
@@ -315,7 +315,7 @@ git reset --hard origin/master
 
 2. 试试这个。
 
-#+begin_src shell
+#+begin_src sh
 git reset --hard HEAD
 git pull
 #+end_src
@@ -323,7 +323,7 @@ git pull
 
 3. clean -f 如果您有未跟踪目录，还需要-d 选项。
 
-#+begin_src shell
+#+begin_src sh
 git reset --hard HEAD
 git clean -f -d
 git pull
@@ -333,7 +333,7 @@ git pull
 
 ** 4.1 Create a new repository on the command line
 
-#+begin_src shell
+#+begin_src sh
 touch README.md
 git init
 git add README.md
@@ -344,7 +344,7 @@ git push -u origin master
 
 ** 4.2 Push an existing repository from the command line
 
-#+begin_src shell
+#+begin_src sh
 git remote add origin https://github.com/idxuan/vimim_dict.git
 git push -u origin master
 #+end_src
@@ -387,7 +387,7 @@ foo/
 
 ** 6.1 默认远程仓库
 
-#+begin_src shell
+#+begin_src sh
 git config branch.master.remote origin
 #+end_src
 
@@ -409,19 +409,19 @@ git config branch.master.remote origin
 
 删除生成的.git 文件（删除 Git 仓库）
 
-#+begin_src shell
+#+begin_src sh
 rm -rf .git
 #+end_src
 
 全局配置 Git 不会进行换行符的转换
 
-#+begin_src shell
+#+begin_src sh
 git config --global core.autocrlf false
 #+end_src
 
 最后重新执行
 
-#+begin_src shell
+#+begin_src sh
 git init
 git add .
 #+end_src
@@ -448,7 +448,7 @@ git add .
 
 *** 7.2.1 放弃本地版本，获取远程仓库最新版本
 
-#+begin_src shell
+#+begin_src sh
 git reset --hard
 git pull
 #+end_src
@@ -461,7 +461,7 @@ git checkout HEAD file/to/restore
 
 *** 7.2.2 使用 `git stash` 保留生产服务器上所做的改动,仅仅并入新配置项。
 
-#+begin_src shell
+#+begin_src sh
 git stash
 git pull
 git stash pop
@@ -481,7 +481,7 @@ Git 的历史记录是不可修改的，也就是不能更改任何已经发生�
 
 样例：
 
-#+begin_src shell
+#+begin_src sh
 $ git init
 $ touch foo.txt
 $ git add foo.txt
@@ -493,7 +493,7 @@ $ git commit -a -m "more stuff added to foo"
 
 现在看 Git 的历史记录，可以看到两次提交：
 
-#+begin_src shell
+#+begin_src sh
 $ git log
 98abc5a (HEAD, master) more stuff added to foo
 b7057a9 initial commit
@@ -501,7 +501,7 @@ b7057a9 initial commit
 
 现在重置回第一次提交的状态：
 
-#+begin_src shell
+#+begin_src sh
 $ git reset --hard b7057a9
 $ git log
 b7057a9 (HEAD, master) initial commit
@@ -509,7 +509,7 @@ b7057a9 (HEAD, master) initial commit
 
 这看起来是丢掉了第二次的提交，没有办法找回来了。但是 `reflog` 就是用来解决这个问题的。简单的说，它会记录所有 `HEAD` 的历史，也就是说当做 `reset`，`checkout`等操作的时候，这些操作会被记录在 `reflog` 中。
 
-#+begin_src shell
+#+begin_src sh
 $ git reflog
 b7057a9 HEAD@{0}: reset: moving to b7057a9
 98abc5a HEAD@{1}: commit: more stuff added to foo
@@ -518,13 +518,13 @@ b7057a9 HEAD@{2}: commit (initial): initial commit
 
 所以要找回第二次 `commit`，只需要做如下操作：
 
-#+begin_src shell
+#+begin_src sh
 $ git reset --hard 98abc5a
 #+end_src
 
 再来看一下 Git 记录：
 
-#+begin_src shell
+#+begin_src sh
 $ git log
 98abc5a (HEAD, master) more stuff added to foo
 b7057a9 initial commit

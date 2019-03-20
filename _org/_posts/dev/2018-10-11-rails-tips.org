@@ -324,29 +324,6 @@ for Rails 5
       |..
 #+END_EXAMPLE
 
-#+BEGIN_QUOTE
-
-  #+BEGIN_QUOTE
-
-    #+BEGIN_QUOTE
-
-      #+BEGIN_QUOTE
-
-        #+BEGIN_QUOTE
-
-          #+BEGIN_QUOTE
-
-            #+BEGIN_QUOTE
-              246057b41feb2511b092cb1c49e04f52acb65cbd
-              [[#目录][返回目录]]
-            #+END_QUOTE
-          #+END_QUOTE
-        #+END_QUOTE
-      #+END_QUOTE
-    #+END_QUOTE
-  #+END_QUOTE
-#+END_QUOTE
-
 * References
 
 #+BEGIN_QUOTE
