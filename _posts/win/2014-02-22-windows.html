@@ -7,12 +7,12 @@ tags:
     - Windows
 ---
 
-<div id="outline-container-org11bade7" class="outline-2">
-<h2 id="org11bade7"><span class="section-number-2">1</span> 1. 概述</h2>
+<div id="outline-container-org14ec415" class="outline-2">
+<h2 id="org14ec415"><span class="section-number-2">1</span> 1. 概述</h2>
 </div>
 
-<div id="outline-container-orgcc15f88" class="outline-2">
-<h2 id="orgcc15f88"><span class="section-number-2">2</span> 2. 设置库</h2>
+<div id="outline-container-org0597359" class="outline-2">
+<h2 id="org0597359"><span class="section-number-2">2</span> 2. 设置库</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 使用"mlink"建立链接目录，避开系统盘。
@@ -24,8 +24,8 @@ mlink /j link_dir original_dir
 </div>
 </div>
 
-<div id="outline-container-org69e9316" class="outline-2">
-<h2 id="org69e9316"><span class="section-number-2">3</span> 3. 特殊文件处理</h2>
+<div id="outline-container-orgb09ab3c" class="outline-2">
+<h2 id="orgb09ab3c"><span class="section-number-2">3</span> 3. 特殊文件处理</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 通过文件的"隐藏属性"和"自定义属性"中"恢复默认图标"来处理系统链接文件。
@@ -33,12 +33,12 @@ mlink /j link_dir original_dir
 </div>
 </div>
 
-<div id="outline-container-orgdb5a649" class="outline-2">
-<h2 id="orgdb5a649"><span class="section-number-2">4</span> 4. 自定义字体</h2>
+<div id="outline-container-org693036c" class="outline-2">
+<h2 id="org693036c"><span class="section-number-2">4</span> 4. 自定义字体</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orge6e38ff" class="outline-3">
-<h3 id="orge6e38ff"><span class="section-number-3">4.1</span> 4.1. 字体 <code>Consolas</code> 链接到中文字体</h3>
+<div id="outline-container-org71170f2" class="outline-3">
+<h3 id="org71170f2"><span class="section-number-3">4.1</span> 4.1. 字体 <code>Consolas</code> 链接到中文字体</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 如果字体 <code>Consolas</code> 中文字体链接到雅微软黑，中文字体会略扁，编辑注册表
@@ -90,12 +90,12 @@ Monaco = SIMYOU.TTF         //略窄
 </div>
 </div>
 
-<div id="outline-container-org4f1f296" class="outline-2">
-<h2 id="org4f1f296"><span class="section-number-2">5</span> 5. 修改 Windows 7 控制台（CMD）的字体</h2>
+<div id="outline-container-org68f1891" class="outline-2">
+<h2 id="org68f1891"><span class="section-number-2">5</span> 5. 修改 Windows 7 控制台（CMD）的字体</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-org1fe0cd2" class="outline-3">
-<h3 id="org1fe0cd2"><span class="section-number-3">5.1</span> 5.1. 检查注册表，系统里存在的"TrueType"字体</h3>
+<div id="outline-container-org1e9d81d" class="outline-3">
+<h3 id="org1e9d81d"><span class="section-number-3">5.1</span> 5.1. 检查注册表，系统里存在的"TrueType"字体</h3>
 <div class="outline-text-3" id="text-5-1">
 <pre class="example">
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\fonts]
@@ -103,8 +103,8 @@ Monaco = SIMYOU.TTF         //略窄
 </div>
 </div>
 
-<div id="outline-container-org08f6fb9" class="outline-3">
-<h3 id="org08f6fb9"><span class="section-number-3">5.2</span> 5.2. 打开注册表并备份</h3>
+<div id="outline-container-org61efadf" class="outline-3">
+<h3 id="org61efadf"><span class="section-number-3">5.2</span> 5.2. 打开注册表并备份</h3>
 <div class="outline-text-3" id="text-5-2">
 <pre class="example">
 [HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\WindowsNT\CurrentVersion\Console\TrueTypeFont]
@@ -112,8 +112,8 @@ Monaco = SIMYOU.TTF         //略窄
 </div>
 </div>
 
-<div id="outline-container-org7908c42" class="outline-3">
-<h3 id="org7908c42"><span class="section-number-3">5.3</span> 5.3.</h3>
+<div id="outline-container-org907d0c5" class="outline-3">
+<h3 id="org907d0c5"><span class="section-number-3">5.3</span> 5.3.</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 增加子项名为"0936"的控制台"简体中文代码页"字体，值为系统里存在的"TrueType"字体名称。也可以新增子项名为"000"的控制台"美国代码页"字体
@@ -121,12 +121,12 @@ Monaco = SIMYOU.TTF         //略窄
 </div>
 </div>
 
-<div id="outline-container-org3d5658a" class="outline-3">
-<h3 id="org3d5658a"><span class="section-number-3">5.4</span> 5.4. 修改控制台（CMD）默认值的字体</h3>
+<div id="outline-container-org7a9d122" class="outline-3">
+<h3 id="org7a9d122"><span class="section-number-3">5.4</span> 5.4. 修改控制台（CMD）默认值的字体</h3>
 </div>
 
-<div id="outline-container-orgc353ae4" class="outline-3">
-<h3 id="orgc353ae4"><span class="section-number-3">5.5</span> 5.4.1 方式一：修改注册表：</h3>
+<div id="outline-container-org6a813fc" class="outline-3">
+<h3 id="org6a813fc"><span class="section-number-3">5.5</span> 5.4.1 方式一：修改注册表：</h3>
 <div class="outline-text-3" id="text-5-5">
 <pre class="example">
 Windows Registry Editor Version 5.00
@@ -137,8 +137,8 @@ Windows Registry Editor Version 5.00
 </div>
 </div>
 
-<div id="outline-container-orga446231" class="outline-3">
-<h3 id="orga446231"><span class="section-number-3">5.6</span> 5.4.2</h3>
+<div id="outline-container-org06c80da" class="outline-3">
+<h3 id="org06c80da"><span class="section-number-3">5.6</span> 5.4.2</h3>
 <div class="outline-text-3" id="text-5-6">
 <p>
 方式二：增加控制台（CMD）快捷键，修改快捷键属性及默认值的字体名称和大小
@@ -146,13 +146,13 @@ Windows Registry Editor Version 5.00
 </div>
 </div>
 
-<div id="outline-container-orgf56ec4a" class="outline-3">
-<h3 id="orgf56ec4a"><span class="section-number-3">5.7</span> 5.5. 重新启动完成控制台的字体的修改</h3>
+<div id="outline-container-org18e09ba" class="outline-3">
+<h3 id="org18e09ba"><span class="section-number-3">5.7</span> 5.5. 重新启动完成控制台的字体的修改</h3>
 </div>
 </div>
 
-<div id="outline-container-org3629f33" class="outline-2">
-<h2 id="org3629f33"><span class="section-number-2">6</span> 6. 通过增加注册表项，使右键菜单打开控制台（CMD）在当前目录</h2>
+<div id="outline-container-orgbe4341b" class="outline-2">
+<h2 id="orgbe4341b"><span class="section-number-2">6</span> 6. 通过增加注册表项，使右键菜单打开控制台（CMD）在当前目录</h2>
 <div class="outline-text-2" id="text-6">
 <pre class="example">
 Windows Registry Editor Version 5.00

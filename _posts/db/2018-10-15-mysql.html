@@ -9,8 +9,8 @@ excerpt:
 keywords: ""
 ---
 
-<div id="outline-container-org66b90c0" class="outline-2">
-<h2 id="org66b90c0"><span class="section-number-2">1</span> 数据库安装</h2>
+<div id="outline-container-org05b8266" class="outline-2">
+<h2 id="org05b8266"><span class="section-number-2">1</span> 数据库安装</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 安装前，我们可以检测系统是否自带安装 MySQL:
@@ -140,8 +140,8 @@ Mysql 安装成功后，默认的 root 用户密码为空，你可以使用以�
 </div>
 </div>
 
-<div id="outline-container-org6702747" class="outline-2">
-<h2 id="org6702747"><span class="section-number-2">2</span> CentOS7 下安装 MySQL 完整示例</h2>
+<div id="outline-container-orgd53efce" class="outline-2">
+<h2 id="orgd53efce"><span class="section-number-2">2</span> CentOS7 下安装 MySQL 完整示例</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23433;&#35013;&#21069;&#30475;&#26159;&#21542;&#23433;&#35013;&#36807; mysql&#65292;</span>
@@ -222,12 +222,12 @@ sudo yum -y remove mysql80-community-release-el7-1.noarch.rpm
 </div>
 </div>
 
-<div id="outline-container-org287f712" class="outline-2">
-<h2 id="org287f712"><span class="section-number-2">3</span> 启动及关闭 MySQL 服务器</h2>
+<div id="outline-container-org6d922d3" class="outline-2">
+<h2 id="org6d922d3"><span class="section-number-2">3</span> 启动及关闭 MySQL 服务器</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org9ad691a" class="outline-3">
-<h3 id="org9ad691a"><span class="section-number-3">3.1</span> Windows 系统下</h3>
+<div id="outline-container-orgf7f189d" class="outline-3">
+<h3 id="orgf7f189d"><span class="section-number-3">3.1</span> Windows 系统下</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 在 Windows 系统下，打开命令窗口(cmd)，进入 MySQL 安装目录的 bin 目录。
@@ -255,8 +255,8 @@ mysqladmin -uroot shutdown
 </div>
 </div>
 
-<div id="outline-container-orgd9ae254" class="outline-3">
-<h3 id="orgd9ae254"><span class="section-number-3">3.2</span> Linux 系统下</h3>
+<div id="outline-container-org3246033" class="outline-3">
+<h3 id="org3246033"><span class="section-number-3">3.2</span> Linux 系统下</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 首先，我们需要通过以下命令来检查 MySQL 服务器是否启动：
@@ -287,8 +287,8 @@ mysqladmin -uroot shutdown
 </div>
 </div>
 
-<div id="outline-container-org0d483d2" class="outline-3">
-<h3 id="org0d483d2"><span class="section-number-3">3.3</span> 打开客户端</h3>
+<div id="outline-container-org2c18a0c" class="outline-3">
+<h3 id="org2c18a0c"><span class="section-number-3">3.3</span> 打开客户端</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-sh">mysql -u root -p
@@ -298,8 +298,8 @@ mysqladmin -uroot shutdown
 </div>
 </div>
 
-<div id="outline-container-org3d15bca" class="outline-2">
-<h2 id="org3d15bca"><span class="section-number-2">4</span> 用户设置</h2>
+<div id="outline-container-org6ee6d2e" class="outline-2">
+<h2 id="org6ee6d2e"><span class="section-number-2">4</span> 用户设置</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 如果你需要添加 MySQL 用户，你只需要在 mysql 数据库中的 user 表添加新用户即可。
@@ -386,8 +386,8 @@ Alter_priv
 </div>
 </div>
 
-<div id="outline-container-org2859b92" class="outline-2">
-<h2 id="org2859b92"><span class="section-number-2">5</span> MySQL 8.0 用户管理</h2>
+<div id="outline-container-org983c658" class="outline-2">
+<h2 id="org983c658"><span class="section-number-2">5</span> MySQL 8.0 用户管理</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-sql"># &#21019;&#24314;&#36134;&#21495;&#23494;&#30721;
@@ -407,8 +407,8 @@ show grants <span style="color: #4f97d7; font-weight: bold;">for</span> <span st
 </div>
 </div>
 
-<div id="outline-container-org4e2707f" class="outline-3">
-<h3 id="org4e2707f"><span class="section-number-3">5.1</span> MySQL 8.0 中带过期时间用户的创建：</h3>
+<div id="outline-container-org02582e0" class="outline-3">
+<h3 id="org02582e0"><span class="section-number-3">5.1</span> MySQL 8.0 中带过期时间用户的创建：</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-sql"><span style="color: #4f97d7; font-weight: bold;">CREATE</span> <span style="color: #4f97d7;">USER</span> `wangwei`@`<span style="color: #a45bad;">127</span>.<span style="color: #a45bad;">0</span>.<span style="color: #a45bad;">0</span>.<span style="color: #a45bad;">1</span>` IDENTIFIED <span style="color: #4f97d7; font-weight: bold;">BY</span> <span style="color: #2d9574;">'wangwei'</span> PASSWORD EXPIRE <span style="color: #ce537a; font-weight: bold;">INTERVAL</span> <span style="color: #a45bad;">90</span> <span style="color: #4f97d7; font-weight: bold;">DAY</span>;
@@ -418,12 +418,12 @@ show grants <span style="color: #4f97d7; font-weight: bold;">for</span> <span st
 </div>
 </div>
 
-<div id="outline-container-org1ed411e" class="outline-3">
-<h3 id="org1ed411e"><span class="section-number-3">5.2</span> MySQL 8.0 修改用户密码：</h3>
+<div id="outline-container-org1aef392" class="outline-3">
+<h3 id="org1aef392"><span class="section-number-3">5.2</span> MySQL 8.0 修改用户密码：</h3>
 <div class="outline-text-3" id="text-5-2">
 </div>
-<div id="outline-container-org60a0eb8" class="outline-4">
-<h4 id="org60a0eb8"><span class="section-number-4">5.2.1</span> 密码过期时间管理</h4>
+<div id="outline-container-org1416889" class="outline-4">
+<h4 id="org1416889"><span class="section-number-4">5.2.1</span> 密码过期时间管理</h4>
 <div class="outline-text-4" id="text-5-2-1">
 <p>
 要全局建立自动密码到期策略，请使用 default_password_lifetime 系统变量。其默认值为 0，禁用自动密码过期。
@@ -542,8 +542,8 @@ MySQL 可以限制从此历史记录中选择新密码：
 </div>
 </div>
 
-<div id="outline-container-org5c95e72" class="outline-3">
-<h3 id="org5c95e72"><span class="section-number-3">5.3</span> MySQL8.0 的角色管理</h3>
+<div id="outline-container-orga721b2f" class="outline-3">
+<h3 id="orga721b2f"><span class="section-number-3">5.3</span> MySQL8.0 的角色管理</h3>
 <div class="outline-text-3" id="text-5-3">
 <p>
 MySQL 角色是指定的权限集合。像用户帐户一样，角色可以拥有授予和撤消的权限。
@@ -567,8 +567,8 @@ MySQL 角色是指定的权限集合。像用户帐户一样，角色可以拥�
 </ul>
 </div>
 
-<div id="outline-container-org21ab17a" class="outline-4">
-<h4 id="org21ab17a"><span class="section-number-4">5.3.1</span> 创建角色并授予用户角色权限</h4>
+<div id="outline-container-orgc76dad3" class="outline-4">
+<h4 id="orgc76dad3"><span class="section-number-4">5.3.1</span> 创建角色并授予用户角色权限</h4>
 <div class="outline-text-4" id="text-5-3-1">
 <p>
 考虑如下几种场景：
@@ -647,8 +647,8 @@ MySQL 角色是指定的权限集合。像用户帐户一样，角色可以拥�
 </div>
 </div>
 
-<div id="outline-container-orgcdfe12f" class="outline-4">
-<h4 id="orgcdfe12f"><span class="section-number-4">5.3.2</span> 检查角色权限</h4>
+<div id="outline-container-orga7cc70b" class="outline-4">
+<h4 id="orga7cc70b"><span class="section-number-4">5.3.2</span> 检查角色权限</h4>
 <div class="outline-text-4" id="text-5-3-2">
 <p>
 要验证分配给用户的权限，使用 SHOW GRANTS。例如：
@@ -809,8 +809,8 @@ MySQL8.0 的用户和角色管理也越来越像 Oracle 了，8.0 中有不少�
 </div>
 </div>
 
-<div id="outline-container-org651ece6" class="outline-2">
-<h2 id="org651ece6"><span class="section-number-2">6</span> /etc/my.cnf 文件配置</h2>
+<div id="outline-container-org27e2ce1" class="outline-2">
+<h2 id="org27e2ce1"><span class="section-number-2">6</span> /etc/my.cnf 文件配置</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 一般情况下，你不需要修改该配置文件，该文件默认配置如下：
@@ -842,8 +842,8 @@ pid-file=/var/run/mysqld/mysqld.pid
 </div>
 </div>
 
-<div id="outline-container-orgbafe47b" class="outline-2">
-<h2 id="orgbafe47b"><span class="section-number-2">7</span> MySQL 常见命令</h2>
+<div id="outline-container-orgbfc177d" class="outline-2">
+<h2 id="orgbfc177d"><span class="section-number-2">7</span> MySQL 常见命令</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 以下列出了使用 Mysql 数据库过程中常用的命令：
@@ -883,8 +883,8 @@ crate database dbname;
 </div>
 </div>
 
-<div id="outline-container-org9392b14" class="outline-2">
-<h2 id="org9392b14"><span class="section-number-2">8</span> References</h2>
+<div id="outline-container-org54af43a" class="outline-2">
+<h2 id="org54af43a"><span class="section-number-2">8</span> References</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 &gt; 本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。

@@ -15,16 +15,16 @@ tags:
 #+end_export
 </p>
 
-<div id="outline-container-orgd0eab04" class="outline-2">
-<h2 id="orgd0eab04"><span class="section-number-2">1</span> 数据类型</h2>
+<div id="outline-container-org458cb89" class="outline-2">
+<h2 id="org458cb89"><span class="section-number-2">1</span> 数据类型</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgc131691" class="outline-3">
-<h3 id="orgc131691"><span class="section-number-3">1.1</span> 字符串 String</h3>
+<div id="outline-container-orgc5a95f2" class="outline-3">
+<h3 id="orgc5a95f2"><span class="section-number-3">1.1</span> 字符串 String</h3>
 </div>
 
-<div id="outline-container-org5d1b845" class="outline-3">
-<h3 id="org5d1b845"><span class="section-number-3">1.2</span> 字符串拼接</h3>
+<div id="outline-container-org5e2b6b1" class="outline-3">
+<h3 id="org5e2b6b1"><span class="section-number-3">1.2</span> 字符串拼接</h3>
 <div class="outline-text-3" id="text-1-2">
 <ul class="org-ul">
 <li>可以使用字符串插值 <code>"#{a} and #{b}"</code> 或 <code>String#concat</code> 或 <code>&lt;&lt;=、=+</code>
@@ -38,8 +38,8 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-org29bde65" class="outline-3">
-<h3 id="org29bde65"><span class="section-number-3">1.3</span> 符号 Symbol</h3>
+<div id="outline-container-orgaf81e3e" class="outline-3">
+<h3 id="orgaf81e3e"><span class="section-number-3">1.3</span> 符号 Symbol</h3>
 <div class="outline-text-3" id="text-1-3">
 <ul class="org-ul">
 <li>符号可以简单看作没有约束的字符串，符号是整体的，比较的时候只比较一次，不像字符串需要每个字符去比较。</li>
@@ -52,8 +52,8 @@ symb = :symbol
 </div>
 </div>
 
-<div id="outline-container-orge202676" class="outline-3">
-<h3 id="orge202676"><span class="section-number-3">1.4</span> 数组 Array</h3>
+<div id="outline-container-org10c7494" class="outline-3">
+<h3 id="org10c7494"><span class="section-number-3">1.4</span> 数组 Array</h3>
 <div class="outline-text-3" id="text-1-4">
 <pre class="example">
 arr = [0, 1, 2]
@@ -67,8 +67,8 @@ chs = %w[a b c]
 </div>
 </div>
 
-<div id="outline-container-org642b46c" class="outline-3">
-<h3 id="org642b46c"><span class="section-number-3">1.5</span> 值域 Range</h3>
+<div id="outline-container-org40ff753" class="outline-3">
+<h3 id="org40ff753"><span class="section-number-3">1.5</span> 值域 Range</h3>
 <div class="outline-text-3" id="text-1-5">
 <pre class="example">
 val = 0..3
@@ -78,8 +78,8 @@ av = arr[val]
 </div>
 </div>
 
-<div id="outline-container-orgfa8213f" class="outline-3">
-<h3 id="orgfa8213f"><span class="section-number-3">1.6</span> 散列 Hash</h3>
+<div id="outline-container-orgaab16d0" class="outline-3">
+<h3 id="orgaab16d0"><span class="section-number-3">1.6</span> 散列 Hash</h3>
 <div class="outline-text-3" id="text-1-6">
 <ul class="org-ul">
 <li>散列（Hash）本质上就是数组，只不过它的索引不局限于只能使用数字。三列的索引几乎可以使用任何对象，一般我们称之为"键值"。</li>
@@ -105,8 +105,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-org8404e46" class="outline-3">
-<h3 id="org8404e46"><span class="section-number-3">1.7</span> 块</h3>
+<div id="outline-container-orgc0c28ff" class="outline-3">
+<h3 id="orgc0c28ff"><span class="section-number-3">1.7</span> 块</h3>
 <div class="outline-text-3" id="text-1-7">
 <pre class="example">
 (1..5).each { |i| puts 2 * i }
@@ -118,12 +118,12 @@ end
 </div>
 </div>
 
-<div id="outline-container-org52cf7e4" class="outline-3">
-<h3 id="org52cf7e4"><span class="section-number-3">1.8</span> 类</h3>
+<div id="outline-container-org2d55ff9" class="outline-3">
+<h3 id="org2d55ff9"><span class="section-number-3">1.8</span> 类</h3>
 </div>
 
-<div id="outline-container-org79786b5" class="outline-3">
-<h3 id="org79786b5"><span class="section-number-3">1.9</span> 具名构造方法</h3>
+<div id="outline-container-orgffc311f" class="outline-3">
+<h3 id="orgffc311f"><span class="section-number-3">1.9</span> 具名构造方法</h3>
 <div class="outline-text-3" id="text-1-9">
 <pre class="example">
 Object.new
@@ -135,8 +135,8 @@ Hash.new
 </div>
 </div>
 
-<div id="outline-container-orge4e8761" class="outline-3">
-<h3 id="orge4e8761"><span class="section-number-3">1.10</span> 类的初始化</h3>
+<div id="outline-container-org4c3dafc" class="outline-3">
+<h3 id="org4c3dafc"><span class="section-number-3">1.10</span> 类的初始化</h3>
 <div class="outline-text-3" id="text-1-10">
 <pre class="example">
 class User
@@ -151,8 +151,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-org66b580f" class="outline-3">
-<h3 id="org66b580f"><span class="section-number-3">1.11</span> 类的继承</h3>
+<div id="outline-container-orgafaea32" class="outline-3">
+<h3 id="orgafaea32"><span class="section-number-3">1.11</span> 类的继承</h3>
 <div class="outline-text-3" id="text-1-11">
 <ul class="org-ul">
 <li>Ruby 的类继承：=String-&gt;Object-&gt;BasicObject=。</li>
@@ -166,8 +166,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-orgcdd8e93" class="outline-3">
-<h3 id="orgcdd8e93"><span class="section-number-3">1.12</span> 修改类</h3>
+<div id="outline-container-org2dc6bd9" class="outline-3">
+<h3 id="org2dc6bd9"><span class="section-number-3">1.12</span> 修改类</h3>
 <div class="outline-text-3" id="text-1-12">
 <pre class="example">
 class String
@@ -181,8 +181,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-orgaa90350" class="outline-2">
-<h2 id="orgaa90350"><span class="section-number-2">2</span> 伪变量</h2>
+<div id="outline-container-org049f2ff" class="outline-2">
+<h2 id="org049f2ff"><span class="section-number-2">2</span> 伪变量</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 伪变量是特殊的变量，有着局部变量的外观，但行为却像常量。您不能给这些变量赋任何值。
@@ -199,8 +199,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-orge4a1f86" class="outline-2">
-<h2 id="orge4a1f86"><span class="section-number-2">3</span> 变量作用域</h2>
+<div id="outline-container-orgfec6ae6" class="outline-2">
+<h2 id="orgfec6ae6"><span class="section-number-2">3</span> 变量作用域</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li>常量
@@ -221,8 +221,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-org39a2101" class="outline-2">
-<h2 id="org39a2101"><span class="section-number-2">4</span> module and class</h2>
+<div id="outline-container-orgad0301e" class="outline-2">
+<h2 id="orgad0301e"><span class="section-number-2">4</span> module and class</h2>
 <div class="outline-text-2" id="text-4">
 <ol class="org-ol">
 <li>module
@@ -288,8 +288,8 @@ ruby 又不支持多继承。 所以，这个时候， 就可以考虑使用 mod
 </div>
 </div>
 
-<div id="outline-container-org2b0c8c7" class="outline-2">
-<h2 id="org2b0c8c7"><span class="section-number-2">5</span> 单例 singleton</h2>
+<div id="outline-container-org617f7b3" class="outline-2">
+<h2 id="org617f7b3"><span class="section-number-2">5</span> 单例 singleton</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 instance 方法定义在 Singleton
@@ -308,8 +308,8 @@ instance 方法定义在 Singleton
 </div>
 </div>
 
-<div id="outline-container-org98d5ea8" class="outline-2">
-<h2 id="org98d5ea8"><span class="section-number-2">6</span> <code>self</code> 说明</h2>
+<div id="outline-container-org3fafe29" class="outline-2">
+<h2 id="org3fafe29"><span class="section-number-2">6</span> <code>self</code> 说明</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><code>self</code> 在 <code>class</code> 内, 代表当前类。</li>
@@ -323,8 +323,8 @@ instance 方法定义在 Singleton
 </ul>
 </div>
 
-<div id="outline-container-org5fee5b6" class="outline-3">
-<h3 id="org5fee5b6"><span class="section-number-3">6.1</span> <code>self</code> 和 <code>@</code> 使用区别</h3>
+<div id="outline-container-orge3d23bb" class="outline-3">
+<h3 id="orge3d23bb"><span class="section-number-3">6.1</span> <code>self</code> 和 <code>@</code> 使用区别</h3>
 <div class="outline-text-3" id="text-6-1">
 <ul class="org-ul">
 <li>通过 <code>attr_accessor :val</code> 定义实例变量，会创建实例变量
@@ -340,8 +340,8 @@ instance 方法定义在 Singleton
 </div>
 </div>
 
-<div id="outline-container-orgef2678b" class="outline-3">
-<h3 id="orgef2678b"><span class="section-number-3">6.2</span> 注意</h3>
+<div id="outline-container-org02fb320" class="outline-3">
+<h3 id="org02fb320"><span class="section-number-3">6.2</span> 注意</h3>
 <div class="outline-text-3" id="text-6-2">
 <ul class="org-ul">
 <li>左值不要省略 <code>self</code> 或 =@=。</li>
@@ -353,20 +353,20 @@ instance 方法定义在 Singleton
 </div>
 </div>
 
-<div id="outline-container-orge746f66" class="outline-2">
-<h2 id="orge746f66"><span class="section-number-2">7</span> 方法</h2>
+<div id="outline-container-org80609e8" class="outline-2">
+<h2 id="org80609e8"><span class="section-number-2">7</span> 方法</h2>
 <div class="outline-text-2" id="text-7">
 <ul class="org-ul">
 <li>方法后缀感叹号，表示会修改对象的值。</li>
 </ul>
 </div>
 
-<div id="outline-container-org24f6edc" class="outline-3">
-<h3 id="org24f6edc"><span class="section-number-3">7.1</span> 方法参数</h3>
+<div id="outline-container-org41efb8a" class="outline-3">
+<h3 id="org41efb8a"><span class="section-number-3">7.1</span> 方法参数</h3>
 </div>
 
-<div id="outline-container-orgd926eef" class="outline-3">
-<h3 id="orgd926eef"><span class="section-number-3">7.2</span> 可变参数数组</h3>
+<div id="outline-container-org4efc724" class="outline-3">
+<h3 id="org4efc724"><span class="section-number-3">7.2</span> 可变参数数组</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 所有不确定的参数都被作为数组赋值给变量 <code>args=，=*args</code>
@@ -384,8 +384,8 @@ instance 方法定义在 Singleton
 </div>
 </div>
 
-<div id="outline-container-org4210d9b" class="outline-3">
-<h3 id="org4210d9b"><span class="section-number-3">7.3</span> 符号散列参数</h3>
+<div id="outline-container-org22d68c9" class="outline-3">
+<h3 id="org22d68c9"><span class="section-number-3">7.3</span> 符号散列参数</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 符号参数在 Ruby 2.0
@@ -401,8 +401,8 @@ instance 方法定义在 Singleton
 </div>
 </div>
 
-<div id="outline-container-org2353037" class="outline-3">
-<h3 id="org2353037"><span class="section-number-3">7.4</span> 可变参数符号散列</h3>
+<div id="outline-container-org139bc67" class="outline-3">
+<h3 id="org139bc67"><span class="section-number-3">7.4</span> 可变参数符号散列</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 可以使用 <code>options = {}</code> 的形式定义不确定的散列参数，但更推荐采用 Ruby
@@ -428,12 +428,12 @@ bar<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">z:</span>
 </div>
 </div>
 
-<div id="outline-container-orgd60df17" class="outline-3">
-<h3 id="orgd60df17"><span class="section-number-3">7.5</span> 方法调用</h3>
+<div id="outline-container-org659fcd8" class="outline-3">
+<h3 id="org659fcd8"><span class="section-number-3">7.5</span> 方法调用</h3>
 </div>
 
-<div id="outline-container-org7656ea7" class="outline-3">
-<h3 id="org7656ea7"><span class="section-number-3">7.6</span> 数组分解为参数</h3>
+<div id="outline-container-org5ec6a39" class="outline-3">
+<h3 id="org5ec6a39"><span class="section-number-3">7.6</span> 数组分解为参数</h3>
 <div class="outline-text-3" id="text-7-6">
 <p>
 调用方法是，如果以 <code>*数组</code>
@@ -452,8 +452,8 @@ args = <span style="color: #4f97d7;">[</span><span style="color: #a45bad;">2</sp
 </div>
 </div>
 
-<div id="outline-container-orgdfea2ef" class="outline-3">
-<h3 id="orgdfea2ef"><span class="section-number-3">7.7</span> 把散列作为参数传递</h3>
+<div id="outline-container-org9a6630c" class="outline-3">
+<h3 id="org9a6630c"><span class="section-number-3">7.7</span> 把散列作为参数传递</h3>
 <div class="outline-text-3" id="text-7-7">
 <p>
 散列的字面量是 <code>{}=，将散列的字面量作为最后一个参数传递给方法时可以省略
@@ -473,12 +473,12 @@ args = <span style="color: #4f97d7;">[</span><span style="color: #a45bad;">2</sp
 </div>
 </div>
 
-<div id="outline-container-org09f5d25" class="outline-2">
-<h2 id="org09f5d25"><span class="section-number-2">8</span> Include、Extend、ClassMethods、Load、Require 的使用区别</h2>
+<div id="outline-container-org15e344b" class="outline-2">
+<h2 id="org15e344b"><span class="section-number-2">8</span> Include、Extend、ClassMethods、Load、Require 的使用区别</h2>
 <div class="outline-text-2" id="text-8">
 </div>
-<div id="outline-container-org2982986" class="outline-3">
-<h3 id="org2982986"><span class="section-number-3">8.1</span> Include</h3>
+<div id="outline-container-orge90456e" class="outline-3">
+<h3 id="orge90456e"><span class="section-number-3">8.1</span> Include</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 当你 Include 一个模块到某个类时,
@@ -507,8 +507,8 @@ tc = <span style="color: #ce537a; font-weight: bold;">TestClass</span>.new.class
 </div>
 </div>
 
-<div id="outline-container-org838aa1c" class="outline-3">
-<h3 id="org838aa1c"><span class="section-number-3">8.2</span> Extend</h3>
+<div id="outline-container-orge9c4d0a" class="outline-3">
+<h3 id="orge9c4d0a"><span class="section-number-3">8.2</span> Extend</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 当你使用 Extend 来替换 Include 的时候, 在类定义中使用的 extend Log
@@ -571,8 +571,8 @@ class_type 方法时，你将会得到 NoMethodError。再一次强调, 使用 E
 </div>
 </div>
 
-<div id="outline-container-orgcbdfb0b" class="outline-3">
-<h3 id="orgcbdfb0b"><span class="section-number-3">8.3</span> 混入时回调</h3>
+<div id="outline-container-orgc156522" class="outline-3">
+<h3 id="orgc156522"><span class="section-number-3">8.3</span> 混入时回调</h3>
 <div class="outline-text-3" id="text-8-3">
 <ul class="org-ul">
 <li><code>append_features=在执行 =include</code> 或 <code>extend</code>
@@ -599,8 +599,8 @@ class_type 方法时，你将会得到 NoMethodError。再一次强调, 使用 E
 </div>
 </div>
 
-<div id="outline-container-org927281a" class="outline-3">
-<h3 id="org927281a"><span class="section-number-3">8.4</span> ClassMethods</h3>
+<div id="outline-container-org32ea553" class="outline-3">
+<h3 id="org32ea553"><span class="section-number-3">8.4</span> ClassMethods</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 为了将代码更好的模块化，Ruby 的提供了不同类型的混入(include 和
@@ -751,8 +751,8 @@ Macro)，可以传入一个块(Block)，从而实现回调。</li>
 </div>
 </div>
 
-<div id="outline-container-org66424c7" class="outline-3">
-<h3 id="org66424c7"><span class="section-number-3">8.5</span> Require</h3>
+<div id="outline-container-org5ae6954" class="outline-3">
+<h3 id="org5ae6954"><span class="section-number-3">8.5</span> Require</h3>
 <div class="outline-text-3" id="text-8-5">
 <p>
 Require 方法允许你载入一个库并且会阻止你加载多次。当你使用 require
@@ -787,8 +787,8 @@ require 的使用方式。
 </div>
 </div>
 
-<div id="outline-container-org3700be6" class="outline-3">
-<h3 id="org3700be6"><span class="section-number-3">8.6</span> Load</h3>
+<div id="outline-container-orga9836f1" class="outline-3">
+<h3 id="orga9836f1"><span class="section-number-3">8.6</span> Load</h3>
 <div class="outline-text-3" id="text-8-6">
 <p>
 Load 方法基本和 require
@@ -815,8 +815,8 @@ load。但当你需要每次都要加载时候你才会使用 load,
 </div>
 </div>
 
-<div id="outline-container-org614d3b0" class="outline-3">
-<h3 id="org614d3b0"><span class="section-number-3">8.7</span> 综述</h3>
+<div id="outline-container-org2583130" class="outline-3">
+<h3 id="org2583130"><span class="section-number-3">8.7</span> 综述</h3>
 <div class="outline-text-3" id="text-8-7">
 <ul class="org-ul">
 <li>模块方法 self.module 在混入的时候仍然被忽略。</li>
@@ -828,8 +828,8 @@ load。但当你需要每次都要加载时候你才会使用 load,
 </div>
 </div>
 
-<div id="outline-container-orgfa2e557" class="outline-2">
-<h2 id="orgfa2e557"><span class="section-number-2">9</span> autoload</h2>
+<div id="outline-container-org783dc77" class="outline-2">
+<h2 id="org783dc77"><span class="section-number-2">9</span> autoload</h2>
 <div class="outline-text-2" id="text-9">
 <p>
 使用
@@ -844,12 +844,12 @@ require 是直接加载，不管你是否会用到。
 </div>
 </div>
 
-<div id="outline-container-org4f36a81" class="outline-2">
-<h2 id="org4f36a81"><span class="section-number-2">10</span> map(collect)、each、select、find(detect)、inject、reject</h2>
+<div id="outline-container-org08668e8" class="outline-2">
+<h2 id="org08668e8"><span class="section-number-2">10</span> map(collect)、each、select、find(detect)、inject、reject</h2>
 <div class="outline-text-2" id="text-10">
 </div>
-<div id="outline-container-orgee0af1e" class="outline-3">
-<h3 id="orgee0af1e"><span class="section-number-3">10.1</span> map（别名函数 collect）</h3>
+<div id="outline-container-org241dda4" class="outline-3">
+<h3 id="org241dda4"><span class="section-number-3">10.1</span> map（别名函数 collect）</h3>
 <div class="outline-text-3" id="text-10-1">
 <p>
 对数组中每个元素进行表达式操作，原始数组不会被改变，返回执行表达式结果的新数组
@@ -866,8 +866,8 @@ require 是直接加载，不管你是否会用到。
 </div>
 </div>
 
-<div id="outline-container-orgd7977d2" class="outline-3">
-<h3 id="orgd7977d2"><span class="section-number-3">10.2</span> each</h3>
+<div id="outline-container-org65451fe" class="outline-3">
+<h3 id="org65451fe"><span class="section-number-3">10.2</span> each</h3>
 <div class="outline-text-3" id="text-10-2">
 <p>
 常用作数组的循环操作，对循环的参数做表达式操作，原数组不会被改变，返回原始数组
@@ -881,8 +881,8 @@ require 是直接加载，不管你是否会用到。
 </div>
 </div>
 
-<div id="outline-container-orgff40631" class="outline-3">
-<h3 id="orgff40631"><span class="section-number-3">10.3</span> select</h3>
+<div id="outline-container-orgb8e0670" class="outline-3">
+<h3 id="orgb8e0670"><span class="section-number-3">10.3</span> select</h3>
 <div class="outline-text-3" id="text-10-3">
 <p>
 相当于过滤器，返回符合表达式元素的新数组，如果所有都不符合表达式则返回空数组
@@ -899,8 +899,8 @@ require 是直接加载，不管你是否会用到。
 </div>
 </div>
 
-<div id="outline-container-orgbc50c4e" class="outline-3">
-<h3 id="orgbc50c4e"><span class="section-number-3">10.4</span> find（别名函数 detect）</h3>
+<div id="outline-container-orgb2dae28" class="outline-3">
+<h3 id="orgb2dae28"><span class="section-number-3">10.4</span> find（别名函数 detect）</h3>
 <div class="outline-text-3" id="text-10-4">
 <p>
 返回列表中第一个符合条件的元素
@@ -914,8 +914,8 @@ require 是直接加载，不管你是否会用到。
 </div>
 </div>
 
-<div id="outline-container-org1d2d732" class="outline-3">
-<h3 id="org1d2d732"><span class="section-number-3">10.5</span> inject</h3>
+<div id="outline-container-org7e6c178" class="outline-3">
+<h3 id="org7e6c178"><span class="section-number-3">10.5</span> inject</h3>
 <div class="outline-text-3" id="text-10-5">
 <p>
 在所声明的容器中注入符合条件的元素，通常为累加器作用
@@ -937,8 +937,8 @@ require 是直接加载，不管你是否会用到。
 </div>
 </div>
 
-<div id="outline-container-org253ec42" class="outline-3">
-<h3 id="org253ec42"><span class="section-number-3">10.6</span> reject</h3>
+<div id="outline-container-orgaf589d8" class="outline-3">
+<h3 id="orgaf589d8"><span class="section-number-3">10.6</span> reject</h3>
 <div class="outline-text-3" id="text-10-6">
 <p>
 去除列表中符合条件的元素
@@ -953,12 +953,12 @@ require 是直接加载，不管你是否会用到。
 </div>
 </div>
 
-<div id="outline-container-orgacf5780" class="outline-2">
-<h2 id="orgacf5780"><span class="section-number-2">11</span> 符号</h2>
+<div id="outline-container-orgc29d098" class="outline-2">
+<h2 id="orgc29d098"><span class="section-number-2">11</span> 符号</h2>
 <div class="outline-text-2" id="text-11">
 </div>
-<div id="outline-container-orgdc10134" class="outline-3">
-<h3 id="orgdc10134"><span class="section-number-3">11.1</span> <code>*</code> 号的作用</h3>
+<div id="outline-container-org7a0e055" class="outline-3">
+<h3 id="org7a0e055"><span class="section-number-3">11.1</span> <code>*</code> 号的作用</h3>
 <div class="outline-text-3" id="text-11-1">
 <p>
 星号有乘和取元素两种含义。
@@ -966,8 +966,8 @@ require 是直接加载，不管你是否会用到。
 </div>
 </div>
 
-<div id="outline-container-orgf690ff9" class="outline-3">
-<h3 id="orgf690ff9"><span class="section-number-3">11.2</span> 1. 有正常的算数功能</h3>
+<div id="outline-container-org623cdcb" class="outline-3">
+<h3 id="org623cdcb"><span class="section-number-3">11.2</span> 1. 有正常的算数功能</h3>
 <div class="outline-text-3" id="text-11-2">
 <ul class="org-ul">
 <li>一个星号表示乘法。</li>
@@ -982,8 +982,8 @@ require 是直接加载，不管你是否会用到。
 </div>
 </div>
 
-<div id="outline-container-orge9ff189" class="outline-3">
-<h3 id="orge9ff189"><span class="section-number-3">11.3</span> 2. 数组 * integer</h3>
+<div id="outline-container-org4bb41b5" class="outline-3">
+<h3 id="org4bb41b5"><span class="section-number-3">11.3</span> 2. 数组 * integer</h3>
 <div class="outline-text-3" id="text-11-3">
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #4f97d7;">[</span><span style="color: #a45bad;">1</span>,<span style="color: #a45bad;">2</span> ,<span style="color: #bc6ec5;">[</span><span style="color: #a45bad;">3</span> , <span style="color: #2d9574;">[</span><span style="color: #a45bad;">4</span> ,<span style="color: #a45bad;">5</span><span style="color: #2d9574;">]</span><span style="color: #bc6ec5;">]</span><span style="color: #4f97d7;">]</span> * <span style="color: #a45bad;">2</span> <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [1,2 ,[3 , [4 ,5]] , 1,2 ,[3 , [4 ,5]]]</span>
@@ -992,8 +992,8 @@ require 是直接加载，不管你是否会用到。
 </div>
 </div>
 
-<div id="outline-container-orgd0de27b" class="outline-3">
-<h3 id="orgd0de27b"><span class="section-number-3">11.4</span> 3. 字符串 * integer</h3>
+<div id="outline-container-org99d8b66" class="outline-3">
+<h3 id="org99d8b66"><span class="section-number-3">11.4</span> 3. 字符串 * integer</h3>
 <div class="outline-text-3" id="text-11-4">
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #2d9574;">"hello"</span> * <span style="color: #a45bad;">2</span>   <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; "hellohello"</span>
@@ -1002,8 +1002,8 @@ require 是直接加载，不管你是否会用到。
 </div>
 </div>
 
-<div id="outline-container-org8f33a88" class="outline-3">
-<h3 id="org8f33a88"><span class="section-number-3">11.5</span> 4. 创建数组</h3>
+<div id="outline-container-orgffc165f" class="outline-3">
+<h3 id="orgffc165f"><span class="section-number-3">11.5</span> 4. 创建数组</h3>
 <div class="outline-text-3" id="text-11-5">
 <div class="org-src-container">
 <pre class="src src-ruby">*a = <span style="color: #a45bad;">1</span>, <span style="color: #a45bad;">3</span>, <span style="color: #2d9574;">"as"</span> <span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">=&gt; [1, 3, "as"]</span>
@@ -1012,8 +1012,8 @@ require 是直接加载，不管你是否会用到。
 </div>
 </div>
 
-<div id="outline-container-orgcdc2b8b" class="outline-3">
-<h3 id="orgcdc2b8b"><span class="section-number-3">11.6</span> 5. 可变参数</h3>
+<div id="outline-container-org3e1c53c" class="outline-3">
+<h3 id="org3e1c53c"><span class="section-number-3">11.6</span> 5. 可变参数</h3>
 <div class="outline-text-3" id="text-11-6">
 <p>
 一个星号表示数组元素迭代，在方法参数定义中可变参数数组。
@@ -1065,8 +1065,8 @@ h4 = <span style="color: #4f97d7;">{</span>*h3, <span style="color: #2d9574;">'c
 </div>
 </div>
 
-<div id="outline-container-org7a06b06" class="outline-3">
-<h3 id="org7a06b06"><span class="section-number-3">11.7</span> <code>#</code> 号的作用</h3>
+<div id="outline-container-orgbdd9f2c" class="outline-3">
+<h3 id="orgbdd9f2c"><span class="section-number-3">11.7</span> <code>#</code> 号的作用</h3>
 <div class="outline-text-3" id="text-11-7">
 <p>
 <code>#</code> 号用来调用一个方法。
@@ -1074,8 +1074,8 @@ h4 = <span style="color: #4f97d7;">{</span>*h3, <span style="color: #2d9574;">'c
 </div>
 </div>
 
-<div id="outline-container-orga724e2d" class="outline-3">
-<h3 id="orga724e2d"><span class="section-number-3">11.8</span> <code>%</code> 号的作用</h3>
+<div id="outline-container-orgf4a4fac" class="outline-3">
+<h3 id="orgf4a4fac"><span class="section-number-3">11.8</span> <code>%</code> 号的作用</h3>
 <div class="outline-text-3" id="text-11-8">
 <p>
 百分号表示法：
@@ -1105,8 +1105,8 @@ h4 = <span style="color: #4f97d7;">{</span>*h3, <span style="color: #2d9574;">'c
 </div>
 </div>
 
-<div id="outline-container-org870d116" class="outline-3">
-<h3 id="org870d116"><span class="section-number-3">11.9</span> <code>+</code> 号的作用</h3>
+<div id="outline-container-org3b86c4c" class="outline-3">
+<h3 id="org3b86c4c"><span class="section-number-3">11.9</span> <code>+</code> 号的作用</h3>
 <div class="outline-text-3" id="text-11-9">
 <p>
 <code>+</code>
@@ -1116,8 +1116,8 @@ h4 = <span style="color: #4f97d7;">{</span>*h3, <span style="color: #2d9574;">'c
 </div>
 </div>
 
-<div id="outline-container-org4025a0a" class="outline-3">
-<h3 id="org4025a0a"><span class="section-number-3">11.10</span> <code>=&gt;</code> 号的作用</h3>
+<div id="outline-container-orga349411" class="outline-3">
+<h3 id="orga349411"><span class="section-number-3">11.10</span> <code>=&gt;</code> 号的作用</h3>
 <div class="outline-text-3" id="text-11-10">
 <p>
 <code>=&gt;</code> 是 Hash 字面量的键与值的分隔符。
@@ -1132,8 +1132,8 @@ h3 = <span style="color: #4f97d7;">{</span><span style="color: #2d9574;">'s'</sp
 </div>
 </div>
 
-<div id="outline-container-org38c2805" class="outline-3">
-<h3 id="org38c2805"><span class="section-number-3">11.11</span> <code>-&gt;</code> 号的作用</h3>
+<div id="outline-container-org25057cb" class="outline-3">
+<h3 id="org25057cb"><span class="section-number-3">11.11</span> <code>-&gt;</code> 号的作用</h3>
 <div class="outline-text-3" id="text-11-11">
 <p>
 <code>-&gt;</code> 定义一个 lambda 字面量。
@@ -1151,12 +1151,12 @@ succ.call<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2</
 </div>
 </div>
 
-<div id="outline-container-orged4e8e8" class="outline-2">
-<h2 id="orged4e8e8"><span class="section-number-2">12</span> Tips</h2>
+<div id="outline-container-org51e06e4" class="outline-2">
+<h2 id="org51e06e4"><span class="section-number-2">12</span> Tips</h2>
 <div class="outline-text-2" id="text-12">
 </div>
-<div id="outline-container-org255878b" class="outline-3">
-<h3 id="org255878b"><span class="section-number-3">12.1</span> and or not 的优先级</h3>
+<div id="outline-container-org404e698" class="outline-3">
+<h3 id="org404e698"><span class="section-number-3">12.1</span> and or not 的优先级</h3>
 <div class="outline-text-3" id="text-12-1">
 <p>
 <code>and or not</code> 的优先级较低，而 <code>&amp;&amp; || !</code>
@@ -1166,8 +1166,8 @@ succ.call<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">2</
 </div>
 </div>
 
-<div id="outline-container-org564c114" class="outline-3">
-<h3 id="org564c114"><span class="section-number-3">12.2</span> <code>$LOAD_PATH</code></h3>
+<div id="outline-container-org5ac978b" class="outline-3">
+<h3 id="org5ac978b"><span class="section-number-3">12.2</span> <code>$LOAD_PATH</code></h3>
 <div class="outline-text-3" id="text-12-2">
 <ul class="org-ul">
 <li><code>$LOAD_PATH</code> 和 <code>$:</code> 的含义是一样的，指的是 Ruby
@@ -1185,8 +1185,8 @@ libdir = <span style="color: #ce537a; font-weight: bold;">File</span>.dirname<sp
 </div>
 </div>
 
-<div id="outline-container-orgdbce65b" class="outline-3">
-<h3 id="orgdbce65b"><span class="section-number-3">12.3</span> 类型判断</h3>
+<div id="outline-container-org6f56bb6" class="outline-3">
+<h3 id="org6f56bb6"><span class="section-number-3">12.3</span> 类型判断</h3>
 <div class="outline-text-3" id="text-12-3">
 <ul class="org-ul">
 <li>is_a? 判断某个对象是否是某类或其子类的实例。</li>
@@ -1198,8 +1198,8 @@ true。</li>
 </div>
 </div>
 
-<div id="outline-container-orgca44dbe" class="outline-3">
-<h3 id="orgca44dbe"><span class="section-number-3">12.4</span> <code>==</code> <code>eql?</code> <code>equal?</code> <code>===</code> 逻辑判断区别</h3>
+<div id="outline-container-orgef3b2be" class="outline-3">
+<h3 id="orgef3b2be"><span class="section-number-3">12.4</span> <code>==</code> <code>eql?</code> <code>equal?</code> <code>===</code> 逻辑判断区别</h3>
 <div class="outline-text-3" id="text-12-4">
 <ul class="org-ul">
 <li><code>==</code> ：比较两个对象的值是否相等。</li>
@@ -1237,8 +1237,8 @@ val.equal?<span style="color: #4f97d7;">(</span><span style="color: #a45bad;">17
 </div>
 </div>
 
-<div id="outline-container-org7ba9218" class="outline-3">
-<h3 id="org7ba9218"><span class="section-number-3">12.5</span> 魔法注释 <code># frozen_string_literal: true</code></h3>
+<div id="outline-container-org23c7243" class="outline-3">
+<h3 id="org23c7243"><span class="section-number-3">12.5</span> 魔法注释 <code># frozen_string_literal: true</code></h3>
 <div class="outline-text-3" id="text-12-5">
 <p>
 Ruby
@@ -1312,8 +1312,8 @@ dup 方法来对其进行复制：
 </div>
 </div>
 
-<div id="outline-container-orge57ba56" class="outline-2">
-<h2 id="orge57ba56"><span class="section-number-2">13</span> References</h2>
+<div id="outline-container-orgd9a7be6" class="outline-2">
+<h2 id="orgd9a7be6"><span class="section-number-2">13</span> References</h2>
 <div class="outline-text-2" id="text-13">
 <blockquote>
 <p>

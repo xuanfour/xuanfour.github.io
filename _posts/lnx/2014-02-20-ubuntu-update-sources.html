@@ -7,8 +7,8 @@ tags:
     - Ubuntu
 ---
 
-<div id="outline-container-orgfebb7da" class="outline-2">
-<h2 id="orgfebb7da"><span class="section-number-2">1</span> 1. 概述</h2>
+<div id="outline-container-org116ab24" class="outline-2">
+<h2 id="org116ab24"><span class="section-number-2">1</span> 1. 概述</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 本文参考了 <a href="http://wiki.ubuntu.org.cn/Qref/Source">Ubuntu 中文 Wiki</a>。
@@ -16,12 +16,12 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-org425f13e" class="outline-2">
-<h2 id="org425f13e"><span class="section-number-2">2</span> 2. 更新步骤</h2>
+<div id="outline-container-orgdf94e5a" class="outline-2">
+<h2 id="orgdf94e5a"><span class="section-number-2">2</span> 2. 更新步骤</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgbe33e13" class="outline-3">
-<h3 id="orgbe33e13"><span class="section-number-3">2.1</span> 2.1. 首先备份源列表：</h3>
+<div id="outline-container-orgcf9dc49" class="outline-3">
+<h3 id="orgcf9dc49"><span class="section-number-3">2.1</span> 2.1. 首先备份源列表：</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-sh">sudo cp /etc/apt/sources.list /etc/apt/sources.list_backup
@@ -30,8 +30,8 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-orgddc1a19" class="outline-3">
-<h3 id="orgddc1a19"><span class="section-number-3">2.2</span> 2.2. 而后用 gedit 或其他编辑器打开：</h3>
+<div id="outline-container-orgeeea274" class="outline-3">
+<h3 id="orgeeea274"><span class="section-number-3">2.2</span> 2.2. 而后用 gedit 或其他编辑器打开：</h3>
 <div class="outline-text-3" id="text-2-2">
 <div class="org-src-container">
 <pre class="src src-sh">gksu gedit /etc/apt/sources.lis
@@ -40,8 +40,8 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-org7e2c101" class="outline-3">
-<h3 id="org7e2c101"><span class="section-number-3">2.3</span> 2.3.</h3>
+<div id="outline-container-org1eef983" class="outline-3">
+<h3 id="org1eef983"><span class="section-number-3">2.3</span> 2.3.</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 从下面"Ubuntu13.10 源列表"中选择合适的源，替换掉文件中所有的内容，保存编辑好的文件，注意一定要选对版本：
@@ -49,8 +49,8 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-orgcca151d" class="outline-3">
-<h3 id="orgcca151d"><span class="section-number-3">2.4</span> 2.4. 刷新列表，注意：一定要执行刷新：</h3>
+<div id="outline-container-org8a35b8d" class="outline-3">
+<h3 id="org8a35b8d"><span class="section-number-3">2.4</span> 2.4. 刷新列表，注意：一定要执行刷新：</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt-get update
@@ -59,8 +59,8 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-org2670393" class="outline-3">
-<h3 id="org2670393"><span class="section-number-3">2.5</span> 2.5. 更新系统（可选）：</h3>
+<div id="outline-container-org5bdb60c" class="outline-3">
+<h3 id="org5bdb60c"><span class="section-number-3">2.5</span> 2.5. 更新系统（可选）：</h3>
 <div class="outline-text-3" id="text-2-5">
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt-get upgrade
@@ -70,12 +70,12 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-org13c4d8f" class="outline-2">
-<h2 id="org13c4d8f"><span class="section-number-2">3</span> 3. 使用 "apt-fast" 更新提速</h2>
+<div id="outline-container-org03fdf4b" class="outline-2">
+<h2 id="org03fdf4b"><span class="section-number-2">3</span> 3. 使用 "apt-fast" 更新提速</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org239e083" class="outline-3">
-<h3 id="org239e083"><span class="section-number-3">3.1</span> 3.1. 安装 "apt-fast"：</h3>
+<div id="outline-container-org72dc996" class="outline-3">
+<h3 id="org72dc996"><span class="section-number-3">3.1</span> 3.1. 安装 "apt-fast"：</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt-get install axel aria2
@@ -87,8 +87,8 @@ sudo apt-get install apt-fast
 </div>
 </div>
 
-<div id="outline-container-org70e40d9" class="outline-3">
-<h3 id="org70e40d9"><span class="section-number-3">3.2</span> 3.2. 对 "apt-fast" 进行设置（新版本安装完成后会显示设置窗口）：</h3>
+<div id="outline-container-org3b6d863" class="outline-3">
+<h3 id="org3b6d863"><span class="section-number-3">3.2</span> 3.2. 对 "apt-fast" 进行设置（新版本安装完成后会显示设置窗口）：</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-sh">sudo gedit /etc/axelrc
@@ -100,8 +100,8 @@ sudo apt-get install apt-fast
 </div>
 </div>
 
-<div id="outline-container-org7e75bed" class="outline-3">
-<h3 id="org7e75bed"><span class="section-number-3">3.3</span> 3.3. 用 "apt-fast" 代替 "apt-get" 使用：</h3>
+<div id="outline-container-org16bae4e" class="outline-3">
+<h3 id="org16bae4e"><span class="section-number-3">3.3</span> 3.3. 用 "apt-fast" 代替 "apt-get" 使用：</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-sh">sudo apt-fast update
@@ -113,8 +113,8 @@ sudo apt-fast upgrade
 </div>
 </div>
 
-<div id="outline-container-orgcc54f9d" class="outline-2">
-<h2 id="orgcc54f9d"><span class="section-number-2">4</span> 4. Ubuntu13.10 源列表</h2>
+<div id="outline-container-org2af4385" class="outline-2">
+<h2 id="org2af4385"><span class="section-number-2">4</span> 4. Ubuntu13.10 源列表</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 *注意： <code>deb</code> 是软件源，=deb-src=

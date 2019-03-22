@@ -7,16 +7,16 @@ tags:
     - Rails
 ---
 
-<div id="outline-container-orgc05a5b0" class="outline-2">
-<h2 id="orgc05a5b0"><span class="section-number-2">1</span> Model</h2>
+<div id="outline-container-org89440c7" class="outline-2">
+<h2 id="org89440c7"><span class="section-number-2">1</span> Model</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org3f37c6a" class="outline-3">
-<h3 id="org3f37c6a"><span class="section-number-3">1.1</span> 业务逻辑组织</h3>
+<div id="outline-container-org1a5e743" class="outline-3">
+<h3 id="org1a5e743"><span class="section-number-3">1.1</span> 业务逻辑组织</h3>
 <div class="outline-text-3" id="text-1-1">
 </div>
-<div id="outline-container-org3d2da8c" class="outline-4">
-<h4 id="org3d2da8c"><span class="section-number-4">1.1.1</span> 重构 service</h4>
+<div id="outline-container-orgac25011" class="outline-4">
+<h4 id="orgac25011"><span class="section-number-4">1.1.1</span> 重构 service</h4>
 <div class="outline-text-4" id="text-1-1-1">
 <p>
 是否需要重构 service？
@@ -40,8 +40,8 @@ service。</li>
 </div>
 </div>
 
-<div id="outline-container-org2175416" class="outline-3">
-<h3 id="org2175416"><span class="section-number-3">1.2</span> 常见模型操作样例</h3>
+<div id="outline-container-org0f76500" class="outline-3">
+<h3 id="org0f76500"><span class="section-number-3">1.2</span> 常见模型操作样例</h3>
 <div class="outline-text-3" id="text-1-2">
 <pre class="example">
 # 新建模型对象
@@ -95,12 +95,12 @@ user.authenticate(userpassword)
 </div>
 
 
-<div id="outline-container-org8950bcb" class="outline-3">
-<h3 id="org8950bcb"><span class="section-number-3">1.3</span> Model 常见操作</h3>
+<div id="outline-container-org1f335a5" class="outline-3">
+<h3 id="org1f335a5"><span class="section-number-3">1.3</span> Model 常见操作</h3>
 <div class="outline-text-3" id="text-1-3">
 </div>
-<div id="outline-container-org775f4db" class="outline-4">
-<h4 id="org775f4db"><span class="section-number-4">1.3.1</span> 持久化</h4>
+<div id="outline-container-orgfd37aae" class="outline-4">
+<h4 id="orgfd37aae"><span class="section-number-4">1.3.1</span> 持久化</h4>
 <div class="outline-text-4" id="text-1-3-1">
 <p>
 如何更新已经持久化的对象并将修改更新到数据库。与保存对象类似，更新对象也有两种方法。
@@ -130,12 +130,12 @@ user.save
 </div>
 </div>
 
-<div id="outline-container-org6fa46f9" class="outline-4">
-<h4 id="org6fa46f9"><span class="section-number-4">1.3.2</span> 查找</h4>
+<div id="outline-container-orga39db9f" class="outline-4">
+<h4 id="orga39db9f"><span class="section-number-4">1.3.2</span> 查找</h4>
 <div class="outline-text-4" id="text-1-3-2">
 </div>
-<div id="outline-container-org0186da0" class="outline-5">
-<h5 id="org0186da0"><span class="section-number-5">1.3.2.1</span> find</h5>
+<div id="outline-container-org2e5c3bc" class="outline-5">
+<h5 id="org2e5c3bc"><span class="section-number-5">1.3.2.1</span> find</h5>
 <div class="outline-text-5" id="text-1-3-2-1">
 <ul class="org-ul">
 <li>根据 id 进行查询。会把传过去的 model 对象的 id 进行查询。</li>
@@ -144,8 +144,8 @@ user.save
 </div>
 </div>
 
-<div id="outline-container-orgb430a4c" class="outline-5">
-<h5 id="orgb430a4c"><span class="section-number-5">1.3.2.2</span> find_by</h5>
+<div id="outline-container-org8be88a5" class="outline-5">
+<h5 id="org8be88a5"><span class="section-number-5">1.3.2.2</span> find_by</h5>
 <div class="outline-text-5" id="text-1-3-2-2">
 <ul class="org-ul">
 <li>需要传递一个 hash 作为参数。</li>
@@ -154,8 +154,8 @@ user.save
 </div>
 </div>
 
-<div id="outline-container-org388ddf5" class="outline-5">
-<h5 id="org388ddf5"><span class="section-number-5">1.3.2.3</span> where</h5>
+<div id="outline-container-org8fa8a3f" class="outline-5">
+<h5 id="org8fa8a3f"><span class="section-number-5">1.3.2.3</span> where</h5>
 <div class="outline-text-5" id="text-1-3-2-3">
 <ul class="org-ul">
 <li>where 返回的是一个 ActiveRecord_Relation 集合，并不是一个 model
@@ -166,8 +166,8 @@ user.save
 </div>
 </div>
 
-<div id="outline-container-org9ae67a1" class="outline-4">
-<h4 id="org9ae67a1"><span class="section-number-4">1.3.3</span> 更新</h4>
+<div id="outline-container-org603b4b9" class="outline-4">
+<h4 id="org603b4b9"><span class="section-number-4">1.3.3</span> 更新</h4>
 <div class="outline-text-4" id="text-1-3-3">
 <ul class="org-ul">
 <li><code>update_attributes</code> 更新记录，不能用于 <code>where</code> 得到的
@@ -181,8 +181,8 @@ user.save
 </div>
 </div>
 
-<div id="outline-container-org6668a05" class="outline-4">
-<h4 id="org6668a05"><span class="section-number-4">1.3.4</span> 删除</h4>
+<div id="outline-container-org822d529" class="outline-4">
+<h4 id="org822d529"><span class="section-number-4">1.3.4</span> 删除</h4>
 <div class="outline-text-4" id="text-1-3-4">
 <ul class="org-ul">
 <li>delete 直接在数据库执行一条 sql 语句;</li>
@@ -198,8 +198,8 @@ user.save
 </div>
 
 
-<div id="outline-container-orgee6d69f" class="outline-3">
-<h3 id="orgee6d69f"><span class="section-number-3">1.4</span> 无数据库模型</h3>
+<div id="outline-container-orgb73099d" class="outline-3">
+<h3 id="orgb73099d"><span class="section-number-3">1.4</span> 无数据库模型</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 在 rails
@@ -234,8 +234,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-org2db8435" class="outline-3">
-<h3 id="org2db8435"><span class="section-number-3">1.5</span> rails 中的 form_for 表单</h3>
+<div id="outline-container-org01448cd" class="outline-3">
+<h3 id="org01448cd"><span class="section-number-3">1.5</span> rails 中的 form_for 表单</h3>
 <div class="outline-text-3" id="text-1-5">
 <p>
 在 rails 中，表单有两种，form_tag 和 form_for，由于 form_tag
@@ -256,8 +256,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-org9d8a6b4" class="outline-3">
-<h3 id="org9d8a6b4"><span class="section-number-3">1.6</span> ActiveModel 应用于 form_for</h3>
+<div id="outline-container-org58e29b1" class="outline-3">
+<h3 id="org58e29b1"><span class="section-number-3">1.6</span> ActiveModel 应用于 form_for</h3>
 <div class="outline-text-3" id="text-1-6">
 <p>
 由于 ActiveModel
@@ -272,16 +272,16 @@ false，代表的是新数据。
 </div>
 </div>
 
-<div id="outline-container-orgcb9cc78" class="outline-3">
-<h3 id="orgcb9cc78"><span class="section-number-3">1.7</span> 例子</h3>
+<div id="outline-container-org4387b1a" class="outline-3">
+<h3 id="org4387b1a"><span class="section-number-3">1.7</span> 例子</h3>
 <div class="outline-text-3" id="text-1-7">
 <p>
 我们以上传文件管理为例。为了管理上传的文件，假设每个文件都对应一个唯一的名字，如果上传了一个同名字的文件，那么代表更新这个文件。由于这个任务和数据库无关，数据以文件形式存储，所以可以用无数据库模型。
 </p>
 </div>
 
-<div id="outline-container-org75b23d9" class="outline-4">
-<h4 id="org75b23d9"><span class="section-number-4">1.7.1</span> 1. 定义模型</h4>
+<div id="outline-container-org18eeea0" class="outline-4">
+<h4 id="org18eeea0"><span class="section-number-4">1.7.1</span> 1. 定义模型</h4>
 <div class="outline-text-4" id="text-1-7-1">
 <pre class="example">
 class Upload
@@ -300,8 +300,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-orgd2ec8dd" class="outline-4">
-<h4 id="orgd2ec8dd"><span class="section-number-4">1.7.2</span> 2. 控制器的 new 活动</h4>
+<div id="outline-container-org38d90f9" class="outline-4">
+<h4 id="org38d90f9"><span class="section-number-4">1.7.2</span> 2. 控制器的 new 活动</h4>
 <div class="outline-text-4" id="text-1-7-2">
 <pre class="example">
 def new
@@ -311,8 +311,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-orgad7583b" class="outline-4">
-<h4 id="orgad7583b"><span class="section-number-4">1.7.3</span> 3. new.html.erb</h4>
+<div id="outline-container-orgde16a6c" class="outline-4">
+<h4 id="orgde16a6c"><span class="section-number-4">1.7.3</span> 3. new.html.erb</h4>
 <div class="outline-text-4" id="text-1-7-3">
 <pre class="example">
 &lt;%= form_for @u do |f| %&gt;
@@ -330,8 +330,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-orgec57f6b" class="outline-4">
-<h4 id="orgec57f6b"><span class="section-number-4">1.7.4</span> 4. 控制器的 edit 活动</h4>
+<div id="outline-container-org1019ae0" class="outline-4">
+<h4 id="org1019ae0"><span class="section-number-4">1.7.4</span> 4. 控制器的 edit 活动</h4>
 <div class="outline-text-4" id="text-1-7-4">
 <pre class="example">
 def edit
@@ -346,8 +346,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-org3b116a3" class="outline-4">
-<h4 id="org3b116a3"><span class="section-number-4">1.7.5</span> 5. edit.html.erb</h4>
+<div id="outline-container-org1506c85" class="outline-4">
+<h4 id="org1506c85"><span class="section-number-4">1.7.5</span> 5. edit.html.erb</h4>
 <div class="outline-text-4" id="text-1-7-5">
 <p>
 由于 edit.html.erb 的内容和 new.html.erb 一样，所以就不再重复。
@@ -363,12 +363,12 @@ persisted？为真，所以这个表单会转向 update 活动。
 </div>
 
 
-<div id="outline-container-org15f4b0e" class="outline-2">
-<h2 id="org15f4b0e"><span class="section-number-2">2</span> View</h2>
+<div id="outline-container-orge457b38" class="outline-2">
+<h2 id="orge457b38"><span class="section-number-2">2</span> View</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org59eca30" class="outline-3">
-<h3 id="org59eca30"><span class="section-number-3">2.1</span> Rails 的常用前端技术</h3>
+<div id="outline-container-org9994725" class="outline-3">
+<h3 id="org9994725"><span class="section-number-3">2.1</span> Rails 的常用前端技术</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>jQuery</li>
@@ -380,8 +380,8 @@ persisted？为真，所以这个表单会转向 update 活动。
 </div>
 </div>
 
-<div id="outline-container-orgc4888ae" class="outline-3">
-<h3 id="orgc4888ae"><span class="section-number-3">2.2</span> 参数传递</h3>
+<div id="outline-container-orgd71f0fa" class="outline-3">
+<h3 id="orgd71f0fa"><span class="section-number-3">2.2</span> 参数传递</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 params 是一个嵌套散列，包含每次请求的信息。 不能直接使用 params
@@ -394,8 +394,8 @@ params.require(:user)permit(:name, :email, ...)
 </div>
 </div>
 
-<div id="outline-container-orgdf73ba6" class="outline-3">
-<h3 id="orgdf73ba6"><span class="section-number-3">2.3</span> 调试</h3>
+<div id="outline-container-orgf483f6b" class="outline-3">
+<h3 id="orgf483f6b"><span class="section-number-3">2.3</span> 调试</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 通过在 <code>application.html.erb</code> 里增加下列语句在页面展示调试信息：
@@ -414,8 +414,8 @@ params.require(:user)permit(:name, :email, ...)
 </div>
 
 
-<div id="outline-container-org3a57828" class="outline-3">
-<h3 id="org3a57828"><span class="section-number-3">2.4</span> Flash 闪现消息</h3>
+<div id="outline-container-orgcb971eb" class="outline-3">
+<h3 id="orgcb971eb"><span class="section-number-3">2.4</span> Flash 闪现消息</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 在 rails 中，短暂显示一个消息使用闪现消息实现。按照约定，flash
@@ -505,21 +505,21 @@ view 中只需添加：
 </div>
 
 
-<div id="outline-container-org51fc20f" class="outline-2">
-<h2 id="org51fc20f"><span class="section-number-2">3</span> Controller</h2>
+<div id="outline-container-org2ebef33" class="outline-2">
+<h2 id="org2ebef33"><span class="section-number-2">3</span> Controller</h2>
 </div>
 
 
-<div id="outline-container-org64fc5ad" class="outline-2">
-<h2 id="org64fc5ad"><span class="section-number-2">4</span> Route</h2>
+<div id="outline-container-orgb9e0614" class="outline-2">
+<h2 id="orgb9e0614"><span class="section-number-2">4</span> Route</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Rails 路由按照声明顺序进行匹配。
 </p>
 </div>
 
-<div id="outline-container-orgec7c3ab" class="outline-3">
-<h3 id="orgec7c3ab"><span class="section-number-3">4.1</span> REST 具名路由</h3>
+<div id="outline-container-org6d8926b" class="outline-3">
+<h3 id="org6d8926b"><span class="section-number-3">4.1</span> REST 具名路由</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 将 RESTful 带入 Rails 路由系统的点子，出自它对应了 HTTP 动词
@@ -561,8 +561,8 @@ DELETE 请求了。
 </div>
 </div>
 
-<div id="outline-container-orgea0eb8a" class="outline-3">
-<h3 id="orgea0eb8a"><span class="section-number-3">4.2</span> resources 资源路由表：</h3>
+<div id="outline-container-org27ce34f" class="outline-3">
+<h3 id="org27ce34f"><span class="section-number-3">4.2</span> resources 资源路由表：</h3>
 <div class="outline-text-3" id="text-4-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -653,8 +653,8 @@ DELETE 请求了。
 </div>
 </div>
 
-<div id="outline-container-org5675f38" class="outline-3">
-<h3 id="org5675f38"><span class="section-number-3">4.3</span> 辅助方法</h3>
+<div id="outline-container-orgcab6697" class="outline-3">
+<h3 id="orgcab6697"><span class="section-number-3">4.3</span> 辅助方法</h3>
 <div class="outline-text-3" id="text-4-3">
 <ul class="org-ul">
 <li>在使用辅助方法时，数字 id 参数可以使用对象实例。</li>
@@ -666,8 +666,8 @@ DELETE 请求了。
 </div>
 </div>
 
-<div id="outline-container-orgcf5d3c3" class="outline-3">
-<h3 id="orgcf5d3c3"><span class="section-number-3">4.4</span> route 路由表</h3>
+<div id="outline-container-org16abd2d" class="outline-3">
+<h3 id="org16abd2d"><span class="section-number-3">4.4</span> route 路由表</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 在 route.rb 文件中定义路径会产生具名路由，一般有两种形式：
@@ -750,8 +750,8 @@ match '/blog', to: redirect("http://example.com/blog"), via: [:get, post]
 
 
 
-<div id="outline-container-orgbfc49e8" class="outline-2">
-<h2 id="orgbfc49e8"><span class="section-number-2">5</span> References</h2>
+<div id="outline-container-orga28a421" class="outline-2">
+<h2 id="orga28a421"><span class="section-number-2">5</span> References</h2>
 <div class="outline-text-2" id="text-5">
 <blockquote>
 <p>

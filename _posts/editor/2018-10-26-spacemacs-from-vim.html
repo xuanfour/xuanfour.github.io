@@ -9,8 +9,8 @@ excerpt:
 keywords: ""
 ---
 
-<div id="outline-container-org0647241" class="outline-2">
-<h2 id="org0647241"><span class="section-number-2">1</span> 本文档的目的</h2>
+<div id="outline-container-org43a9af9" class="outline-2">
+<h2 id="org43a9af9"><span class="section-number-2">1</span> 本文档的目的</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 本文旨在通过跨越 vim 和 Spacemacs 之间的差距，以补充 Spacemacs 文档。虽然有些信息可能被复制，但这并不能代替 Spacemacs 文档。建议您阅读这两个文件，充分认识 Spacemacs。
@@ -18,8 +18,8 @@ keywords: ""
 </div>
 </div>
 
-<div id="outline-container-orgc2d3596" class="outline-2">
-<h2 id="orgc2d3596"><span class="section-number-2">2</span> 哲学</h2>
+<div id="outline-container-org450f81b" class="outline-2">
+<h2 id="org450f81b"><span class="section-number-2">2</span> 哲学</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 很多 vim 都有的误解是，Spacemacs 是 vim 的 Emacs 克隆。Spacemacs 没有完全模仿 vim 的行为，它只有在编辑的时候才这样。你不能指望每个 vim 指令都可用，尽管很多都是可用的。你不能用 Vimscript 配置 Spacemacs，反正没人喜欢 Vimscript。重要的是，Spacemacs 旨在使用 vim 高级编辑模式以及 Emacs 更好的配置语言来改善 vim 和 Emacs 两者。
@@ -27,12 +27,12 @@ keywords: ""
 </div>
 </div>
 
-<div id="outline-container-orgee7c19c" class="outline-2">
-<h2 id="orgee7c19c"><span class="section-number-2">3</span> 基本介绍</h2>
+<div id="outline-container-org8f5ebc9" class="outline-2">
+<h2 id="org8f5ebc9"><span class="section-number-2">3</span> 基本介绍</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org8176913" class="outline-3">
-<h3 id="org8176913"><span class="section-number-3">3.1</span> 术语</h3>
+<div id="outline-container-orgc98e2ef" class="outline-3">
+<h3 id="orgc98e2ef"><span class="section-number-3">3.1</span> 术语</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 Spacemacs 使用与 vim 不同的术语，可能会使新用户感到困惑。本节试图厘清这些困惑。
@@ -40,8 +40,8 @@ Spacemacs 使用与 vim 不同的术语，可能会使新用户感到困惑。�
 </div>
 </div>
 
-<div id="outline-container-org517a656" class="outline-3">
-<h3 id="org517a656"><span class="section-number-3">3.2</span> 模式和状态</h3>
+<div id="outline-container-org5771722" class="outline-3">
+<h3 id="org5771722"><span class="section-number-3">3.2</span> 模式和状态</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 在 vim 中，你具有多种编辑模式如插入模式和可视模式来处理文本。在 Emacs 中，我们使用的是状态。它们等同于 vim 的模式。例如 evil-insert-state 与 vim 中的 insert-mode 相同。
@@ -53,8 +53,8 @@ Emacs 中的 minor-mode 就像是激活一项功能。例如：aggressive-indent
 </div>
 </div>
 
-<div id="outline-container-orgaa8ccce" class="outline-3">
-<h3 id="orgaa8ccce"><span class="section-number-3">3.3</span> 层</h3>
+<div id="outline-container-org337750a" class="outline-3">
+<h3 id="org337750a"><span class="section-number-3">3.3</span> 层</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 Spacemacs 具有层的概念。层类似于 vim 中的插件。它们提供可以在 Spacemacs 中使用的新功能。但是层通常是由数个相互整合良好的包组成。例如，python 层包括自动补齐支持，文档查找，测试和其它由不同的包提供的功能。这使你不需要考虑安装什么包，只需要考虑你想要什么功能。关于层的更多内容可以参考自定义章节和官方文档。同时还有一个关于编写层的更深入的指南。
@@ -62,8 +62,8 @@ Spacemacs 具有层的概念。层类似于 vim 中的插件。它们提供可�
 </div>
 </div>
 
-<div id="outline-container-orgf33ec72" class="outline-3">
-<h3 id="orgf33ec72"><span class="section-number-3">3.4</span> 微状态</h3>
+<div id="outline-container-orgd577533" class="outline-3">
+<h3 id="orgd577533"><span class="section-number-3">3.4</span> 微状态</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 Spacemacs 提供一个称为微状态的特殊功能。微状态允许相似的命令连续执行，不需要重复按键。微状态通常由使用如下模式的键位绑定触发：~&lt;Leader&gt; &lt;group&gt;~ 这里的 group 是微状态从属的目录。当处于一个微状态时，你将会在窗口的底部看到说明文档。要退出微状态，按 q 键。
@@ -71,8 +71,8 @@ Spacemacs 提供一个称为微状态的特殊功能。微状态允许相似的�
 </div>
 </div>
 
-<div id="outline-container-org1a8d50a" class="outline-3">
-<h3 id="org1a8d50a"><span class="section-number-3">3.5</span> 键位绑定约定</h3>
+<div id="outline-container-orgca64041" class="outline-3">
+<h3 id="orgca64041"><span class="section-number-3">3.5</span> 键位绑定约定</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 Spacemacs 使用 SPC 作为它的 <code>&lt;Leader&gt;</code> 键。本文档也使用 SPC 作为 <code>&lt;Leader&gt;</code> 键。所有的键位绑定都采用助记方式，并由 <code>&lt;Leader&gt;</code> 键组织。例如，语言指定命令的键位绑定通常使用 SPC m 前缀。Spacemacs 使用的约定如下 表. 注意所有的键位绑定都可以更改。
@@ -84,8 +84,8 @@ Spacemacs 在一个延迟之后使用 which-key 来显示可用的键位绑定�
 </div>
 </div>
 
-<div id="outline-container-orge9f46f3" class="outline-3">
-<h3 id="orge9f46f3"><span class="section-number-3">3.6</span> 运行命令</h3>
+<div id="outline-container-org4454a55" class="outline-3">
+<h3 id="org4454a55"><span class="section-number-3">3.6</span> 运行命令</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 可以使用 SPC：运行 Emacs 命令。这将会弹出一个使用 Helm 的缓冲区。这个缓冲区中可以运行任意的 Emacs 命令。你同样可以使用：运行许多外部命令，就跟 vim 中一样。
@@ -97,12 +97,12 @@ Spacemacs 在一个延迟之后使用 which-key 来显示可用的键位绑定�
 </div>
 </div>
 
-<div id="outline-container-orgf7202ff" class="outline-3">
-<h3 id="orgf7202ff"><span class="section-number-3">3.7</span> 缓冲区和窗口管理</h3>
+<div id="outline-container-orgab71d0f" class="outline-3">
+<h3 id="orgab71d0f"><span class="section-number-3">3.7</span> 缓冲区和窗口管理</h3>
 <div class="outline-text-3" id="text-3-7">
 </div>
-<div id="outline-container-org0a70556" class="outline-4">
-<h4 id="org0a70556"><span class="section-number-4">3.7.1</span> 缓冲区</h4>
+<div id="outline-container-orgaba7a15" class="outline-4">
+<h4 id="orgaba7a15"><span class="section-number-4">3.7.1</span> 缓冲区</h4>
 <div class="outline-text-4" id="text-3-7-1">
 <p>
 在 Emacs 和 vim 中缓冲区本质上是相同的。缓冲区的快捷键都具有 SPC b 前缀。
@@ -167,8 +167,8 @@ Spacemacs 在一个延迟之后使用 which-key 来显示可用的键位绑定�
 </div>
 </div>
 
-<div id="outline-container-orga4bd975" class="outline-4">
-<h4 id="orga4bd975"><span class="section-number-4">3.7.2</span> 特殊缓冲区</h4>
+<div id="outline-container-org8f0c8bb" class="outline-4">
+<h4 id="org8f0c8bb"><span class="section-number-4">3.7.2</span> 特殊缓冲区</h4>
 <div class="outline-text-4" id="text-3-7-2">
 <p>
 Emacs 默认会创建大量缓冲区，这些缓冲区很多人从来都不会使用到，就像 *Messages*。Spacemacs 会在使用这些快捷键时自动忽略这些缓冲区。可以在这里找到更多相关信息。
@@ -176,8 +176,8 @@ Emacs 默认会创建大量缓冲区，这些缓冲区很多人从来都不会�
 </div>
 </div>
 
-<div id="outline-container-org65d887d" class="outline-4">
-<h4 id="org65d887d"><span class="section-number-4">3.7.3</span> 窗口</h4>
+<div id="outline-container-org4dd2dbe" class="outline-4">
+<h4 id="org4dd2dbe"><span class="section-number-4">3.7.3</span> 窗口</h4>
 <div class="outline-text-4" id="text-3-7-3">
 <p>
 窗口就像 vim 中的分割。它们在一次编辑多个文件时相当有用。所有的快捷键都有 SPC w 前缀。
@@ -228,8 +228,8 @@ Emacs 默认会创建大量缓冲区，这些缓冲区很多人从来都不会�
 </div>
 </div>
 
-<div id="outline-container-org5ce3e4b" class="outline-3">
-<h3 id="org5ce3e4b"><span class="section-number-3">3.8</span> 文件</h3>
+<div id="outline-container-orgbf299a5" class="outline-3">
+<h3 id="orgbf299a5"><span class="section-number-3">3.8</span> 文件</h3>
 <div class="outline-text-3" id="text-3-8">
 <p>
 Spacemacs 中所有文件命令都有 SPC f 前缀。
@@ -279,8 +279,8 @@ Spacemacs 中所有文件命令都有 SPC f 前缀。
 </div>
 </div>
 
-<div id="outline-container-org517740a" class="outline-3">
-<h3 id="org517740a"><span class="section-number-3">3.9</span> 帮助系统</h3>
+<div id="outline-container-org3153dc9" class="outline-3">
+<h3 id="org3153dc9"><span class="section-number-3">3.9</span> 帮助系统</h3>
 <div class="outline-text-3" id="text-3-9">
 <p>
 Emacs 具有一个可扩展的帮助系统。所有的快捷键都有 SPC h d 前缀，以允许便捷地访问帮助系统。最重要的快捷键是 SPC h d f, SPC h d k, 和 SPC h d v。同样还有 <code>SPC &lt;f1&gt;</code> 允许用户搜索文档。
@@ -329,8 +329,8 @@ Emacs 具有一个可扩展的帮助系统。所有的快捷键都有 SPC h d �
 </div>
 </div>
 
-<div id="outline-container-orgbb2bfd7" class="outline-3">
-<h3 id="orgbb2bfd7"><span class="section-number-3">3.10</span> 探索</h3>
+<div id="outline-container-org988438b" class="outline-3">
+<h3 id="org988438b"><span class="section-number-3">3.10</span> 探索</h3>
 <div class="outline-text-3" id="text-3-10">
 <p>
 有几种方式可以探索 Spacemacs 的功能。一个是阅读 Github 上的源代码。你可以开始了解 Emacs Lisp，并能知道 Spacemacs 是怎样工作的。你还能通过如下快捷键来探索：
@@ -366,12 +366,12 @@ Emacs 具有一个可扩展的帮助系统。所有的快捷键都有 SPC h d �
 </div>
 </div>
 
-<div id="outline-container-orgf5e0197" class="outline-2">
-<h2 id="orgf5e0197"><span class="section-number-2">4</span> 自定义</h2>
+<div id="outline-container-org4af0d71" class="outline-2">
+<h2 id="org4af0d71"><span class="section-number-2">4</span> 自定义</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org9d6cefe" class="outline-3">
-<h3 id="org9d6cefe"><span class="section-number-3">4.1</span> .spacemacs 文件</h3>
+<div id="outline-container-orgf50ca6c" class="outline-3">
+<h3 id="orgf50ca6c"><span class="section-number-3">4.1</span> .spacemacs 文件</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 首次启动 spacemacs 时，会提示你选择编辑样式。如果你现在正读到这里，你可能会选择 vim 样式。这样将会使用选择的相应样式创建一个  .spacemacs   文件。大多数琐碎的配置都在这个文件中。

@@ -16,8 +16,8 @@ keywords: ""
 </p>
 </blockquote>
 
-<div id="outline-container-orge71548b" class="outline-2">
-<h2 id="orge71548b"><span class="section-number-2">1</span> 增加用户</h2>
+<div id="outline-container-org8d3eace" class="outline-2">
+<h2 id="org8d3eace"><span class="section-number-2">1</span> 增加用户</h2>
 <div class="outline-text-2" id="text-1">
 <div class="org-src-container">
 <pre class="src src-sh">adduser xuanfour
@@ -27,8 +27,8 @@ passwd xuanfour
 </div>
 </div>
 
-<div id="outline-container-orge9ae208" class="outline-2">
-<h2 id="orge9ae208"><span class="section-number-2">2</span> 设置 sudo</h2>
+<div id="outline-container-orgb44726c" class="outline-2">
+<h2 id="orgb44726c"><span class="section-number-2">2</span> 设置 sudo</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20999;&#25442;&#21040;&#36229;&#32423;&#29992;&#25143;</span>
@@ -41,8 +41,8 @@ xuanfour <span style="color: #7590db;">ALL</span>=<span style="color: #4f97d7;">
 </div>
 </div>
 
-<div id="outline-container-org6cece9b" class="outline-2">
-<h2 id="org6cece9b"><span class="section-number-2">3</span> 修改主机名称</h2>
+<div id="outline-container-org99e64c5" class="outline-2">
+<h2 id="org99e64c5"><span class="section-number-2">3</span> 修改主机名称</h2>
 <div class="outline-text-2" id="text-3">
 <div class="org-src-container">
 <pre class="src src-sh">sudo hostnamectl set-hostname newhostname
@@ -56,8 +56,8 @@ sudo reboot
 </div>
 </div>
 
-<div id="outline-container-orga80afcf" class="outline-2">
-<h2 id="orga80afcf"><span class="section-number-2">4</span> ssh key 登录</h2>
+<div id="outline-container-org2f6527b" class="outline-2">
+<h2 id="org2f6527b"><span class="section-number-2">4</span> ssh key 登录</h2>
 <div class="outline-text-2" id="text-4">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26412;&#22320;</span>
@@ -77,8 +77,8 @@ ssh xuanfour@wozouwokan.com
 </div>
 </div>
 
-<div id="outline-container-orgd78e04d" class="outline-2">
-<h2 id="orgd78e04d"><span class="section-number-2">5</span> 配置国内 yum 源</h2>
+<div id="outline-container-org7c095f0" class="outline-2">
+<h2 id="org7c095f0"><span class="section-number-2">5</span> 配置国内 yum 源</h2>
 <div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36827;&#20837; /etc/yum.repos.d/ &#30446;&#24405;&#19979;&#65292;&#26032;&#24314;&#19968;&#20010; repo_bak &#30446;&#24405;&#65292;&#29992;&#20110;&#20445;&#23384;&#31995;&#32479;&#20013;&#21407;&#26469;&#30340; repo &#25991;&#20214;</span>
@@ -96,8 +96,8 @@ sudo yum makecache
 </div>
 </div>
 
-<div id="outline-container-org4ebba81" class="outline-2">
-<h2 id="org4ebba81"><span class="section-number-2">6</span> 配置国内 epel 源</h2>
+<div id="outline-container-org38472a0" class="outline-2">
+<h2 id="org38472a0"><span class="section-number-2">6</span> 配置国内 epel 源</h2>
 <div class="outline-text-2" id="text-6">
 <div class="org-src-container">
 <pre class="src src-sh">yum list | grep epel-release
@@ -118,8 +118,8 @@ sudo yum makecache
 </div>
 </div>
 
-<div id="outline-container-org889beb5" class="outline-2">
-<h2 id="org889beb5"><span class="section-number-2">7</span> 更新源</h2>
+<div id="outline-container-orgf3d6a41" class="outline-2">
+<h2 id="orgf3d6a41"><span class="section-number-2">7</span> 更新源</h2>
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 <pre class="src src-sh">sudo yum update -y
@@ -128,8 +128,8 @@ sudo yum makecache
 </div>
 </div>
 
-<div id="outline-container-orgfe0db04" class="outline-2">
-<h2 id="orgfe0db04"><span class="section-number-2">8</span> 安装 git</h2>
+<div id="outline-container-org9772e3a" class="outline-2">
+<h2 id="org9772e3a"><span class="section-number-2">8</span> 安装 git</h2>
 <div class="outline-text-2" id="text-8">
 <div class="org-src-container">
 <pre class="src src-sh">sudo yum install -y git
@@ -138,8 +138,8 @@ sudo yum makecache
 </div>
 </div>
 
-<div id="outline-container-org99c7419" class="outline-2">
-<h2 id="org99c7419"><span class="section-number-2">9</span> 下载配置文件</h2>
+<div id="outline-container-orgc5c0a64" class="outline-2">
+<h2 id="orgc5c0a64"><span class="section-number-2">9</span> 下载配置文件</h2>
 <div class="outline-text-2" id="text-9">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#36828;&#31243;</span>
@@ -158,8 +158,8 @@ $<span style="color: #7590db;">XCFG</span>/devkit/git/linkgit.sh
 </div>
 </div>
 
-<div id="outline-container-org54fae33" class="outline-2">
-<h2 id="org54fae33"><span class="section-number-2">10</span> 安装 zsh</h2>
+<div id="outline-container-org829376a" class="outline-2">
+<h2 id="org829376a"><span class="section-number-2">10</span> 安装 zsh</h2>
 <div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23433;&#35013; zsh</span>
@@ -181,8 +181,8 @@ sed -i <span style="color: #2d9574;">'s/--add/-a/g'</span> /etc/profile.d/autoju
 </div>
 </div>
 
-<div id="outline-container-org287c10e" class="outline-2">
-<h2 id="org287c10e"><span class="section-number-2">11</span> 初始化系统启动文件</h2>
+<div id="outline-container-org1118c5b" class="outline-2">
+<h2 id="org1118c5b"><span class="section-number-2">11</span> 初始化系统启动文件</h2>
 <div class="outline-text-2" id="text-11">
 <div class="org-src-container">
 <pre class="src src-sh">$<span style="color: #7590db;">XCFG</span>/os/linketc.sh
@@ -192,8 +192,8 @@ sudo reboot
 </div>
 </div>
 
-<div id="outline-container-orgd6b39ed" class="outline-2">
-<h2 id="orgd6b39ed"><span class="section-number-2">12</span> 安装 lrzsz</h2>
+<div id="outline-container-org2a60a92" class="outline-2">
+<h2 id="org2a60a92"><span class="section-number-2">12</span> 安装 lrzsz</h2>
 <div class="outline-text-2" id="text-12">
 <div class="org-src-container">
 <pre class="src src-sh">sudo yum install -y lrzsz
@@ -202,8 +202,8 @@ sudo reboot
 </div>
 </div>
 
-<div id="outline-container-orgf55b498" class="outline-2">
-<h2 id="orgf55b498"><span class="section-number-2">13</span> 安装 tmux</h2>
+<div id="outline-container-org41085c5" class="outline-2">
+<h2 id="org41085c5"><span class="section-number-2">13</span> 安装 tmux</h2>
 <div class="outline-text-2" id="text-13">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23433;&#35013;&#20381;&#36182;&#21253;</span>
@@ -243,8 +243,8 @@ prefix r
 </div>
 </div>
 
-<div id="outline-container-org0b7b55a" class="outline-2">
-<h2 id="org0b7b55a"><span class="section-number-2">14</span> 安装 rbenv ruby rails</h2>
+<div id="outline-container-orgdb7b667" class="outline-2">
+<h2 id="orgdb7b667"><span class="section-number-2">14</span> 安装 rbenv ruby rails</h2>
 <div class="outline-text-2" id="text-14">
 <div class="org-src-container">
 <pre class="src src-sh">sudo yum update -y
@@ -259,8 +259,8 @@ sudo yum install -y git bzip2 openssl-devel readline-devel zlib-devel sqlite sql
 </div>
 </div>
 
-<div id="outline-container-org2568587" class="outline-2">
-<h2 id="org2568587"><span class="section-number-2">15</span> 安装 node</h2>
+<div id="outline-container-org93d58bf" class="outline-2">
+<h2 id="org93d58bf"><span class="section-number-2">15</span> 安装 node</h2>
 <div class="outline-text-2" id="text-15">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23433;&#35013; nvm</span>
@@ -299,12 +299,12 @@ npm install -g js-hint
 </div>
 </div>
 
-<div id="outline-container-org4807389" class="outline-2">
-<h2 id="org4807389"><span class="section-number-2">16</span> 安装 pyenv 和 python</h2>
+<div id="outline-container-orgd73a030" class="outline-2">
+<h2 id="orgd73a030"><span class="section-number-2">16</span> 安装 pyenv 和 python</h2>
 <div class="outline-text-2" id="text-16">
 </div>
-<div id="outline-container-orge9afe0b" class="outline-3">
-<h3 id="orge9afe0b"><span class="section-number-3">16.1</span> 安装 pyenv</h3>
+<div id="outline-container-org465b4cb" class="outline-3">
+<h3 id="org465b4cb"><span class="section-number-3">16.1</span> 安装 pyenv</h3>
 <div class="outline-text-3" id="text-16-1">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#23433;&#35013;&#20381;&#36182;</span>
@@ -334,8 +334,8 @@ pyenv help
 </div>
 </div>
 
-<div id="outline-container-orge95c87e" class="outline-3">
-<h3 id="orge95c87e"><span class="section-number-3">16.2</span> 不使用 pyenv 安装 python</h3>
+<div id="outline-container-org9cdb191" class="outline-3">
+<h3 id="org9cdb191"><span class="section-number-3">16.2</span> 不使用 pyenv 安装 python</h3>
 <div class="outline-text-3" id="text-16-2">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#19981;&#20351;&#29992; pyenv &#23433;&#35013; python3</span>
@@ -348,8 +348,8 @@ sudo ln -sf /usr/bin/python3.6m /usr/bin/python3m
 </div>
 </div>
 
-<div id="outline-container-orgbc4a955" class="outline-3">
-<h3 id="orgbc4a955"><span class="section-number-3">16.3</span> 安装 python 时报错</h3>
+<div id="outline-container-org5bb5651" class="outline-3">
+<h3 id="org5bb5651"><span class="section-number-3">16.3</span> 安装 python 时报错</h3>
 <div class="outline-text-3" id="text-16-3">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#38169;&#35823;&#65306;ModuleNotFoundError: No module named &#8216;_ctypes&#8217;</span>
@@ -365,8 +365,8 @@ sudo yum install -y libffi-devel
 </div>
 </div>
 
-<div id="outline-container-org1d48568" class="outline-2">
-<h2 id="org1d48568"><span class="section-number-2">17</span> 安装 redis</h2>
+<div id="outline-container-orgb0565d3" class="outline-2">
+<h2 id="orgb0565d3"><span class="section-number-2">17</span> 安装 redis</h2>
 <div class="outline-text-2" id="text-17">
 <p>
 安装 redis。
@@ -446,8 +446,8 @@ yes，即开启。解决方法分为两种：
 </div>
 </div>
 
-<div id="outline-container-orgf154242" class="outline-2">
-<h2 id="orgf154242"><span class="section-number-2">18</span> 安装 vim</h2>
+<div id="outline-container-orgd80b998" class="outline-2">
+<h2 id="orgd80b998"><span class="section-number-2">18</span> 安装 vim</h2>
 <div class="outline-text-2" id="text-18">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26412;&#22320;</span>
@@ -481,8 +481,8 @@ yum install -y vim-enhanced
 </div>
 </div>
 
-<div id="outline-container-orgd83ee9e" class="outline-2">
-<h2 id="orgd83ee9e"><span class="section-number-2">19</span> 安装 mysql</h2>
+<div id="outline-container-orge409e6f" class="outline-2">
+<h2 id="orge409e6f"><span class="section-number-2">19</span> 安装 mysql</h2>
 <div class="outline-text-2" id="text-19">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;">#</span><span style="color: #2aa1ae; background-color: #292e34;">Library not loaded &#23433;&#35013;&#21069;&#30475;&#26159;&#21542;&#23433;&#35013;&#36807; mysql&#65292;</span>
@@ -563,8 +563,8 @@ sudo yum -y remove mysql80-community-release-el7-1.noarch.rpm
 </div>
 </div>
 
-<div id="outline-container-org4ad27c1" class="outline-2">
-<h2 id="org4ad27c1"><span class="section-number-2">20</span> 检查磁盘空间</h2>
+<div id="outline-container-org3dd1de5" class="outline-2">
+<h2 id="org3dd1de5"><span class="section-number-2">20</span> 检查磁盘空间</h2>
 <div class="outline-text-2" id="text-20">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26174;&#31034;&#25152;&#26377;&#23384;&#20648;&#31995;&#32479;&#31354;&#38388;&#20351;&#29992;&#24773;&#20917;,&#21516;&#26102;&#26174;&#31034;&#23384;&#20648;&#31995;&#32479;&#30340;&#25991;&#20214;&#31995;&#32479;&#31867;&#22411;</span>
@@ -582,8 +582,8 @@ df -h /dev/cdrom
 </div>
 </div>
 
-<div id="outline-container-orgdf6ce18" class="outline-2">
-<h2 id="orgdf6ce18"><span class="section-number-2">21</span> 检查目录空间</h2>
+<div id="outline-container-orge8c1f41" class="outline-2">
+<h2 id="orge8c1f41"><span class="section-number-2">21</span> 检查目录空间</h2>
 <div class="outline-text-2" id="text-21">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#24403;&#21069;&#25991;&#20214;&#22841;&#22823;&#23567;</span>
@@ -599,6 +599,6 @@ du -h test1.txt test2.txt
 </div>
 </div>
 
-<div id="outline-container-org2f50b85" class="outline-2">
-<h2 id="org2f50b85"><span class="section-number-2">22</span> References</h2>
+<div id="outline-container-orga75f69d" class="outline-2">
+<h2 id="orga75f69d"><span class="section-number-2">22</span> References</h2>
 </div>

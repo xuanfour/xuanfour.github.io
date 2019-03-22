@@ -7,8 +7,8 @@ tags:
     - Rails
 ---
 
-<div id="outline-container-orgd076fc0" class="outline-2">
-<h2 id="orgd076fc0"><span class="section-number-2">1</span> logger</h2>
+<div id="outline-container-org673f9b2" class="outline-2">
+<h2 id="org673f9b2"><span class="section-number-2">1</span> logger</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 日志的层级：
@@ -68,8 +68,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-org3950305" class="outline-2">
-<h2 id="org3950305"><span class="section-number-2">2</span> Puma 服务器支持 SSL</h2>
+<div id="outline-container-org273bd6a" class="outline-2">
+<h2 id="org273bd6a"><span class="section-number-2">2</span> Puma 服务器支持 SSL</h2>
 <div class="outline-text-2" id="text-2">
 <div class="org-src-container">
 <pre class="src src-sh">puma -b <span style="color: #2d9574;">'ssl://0.0.0.0:3000?key=/home/xuanfour/.ssh/</span><span style="color: #dc752f;">XXX</span><span style="color: #2d9574;">.key&amp;cert=/home/xuanfour/.ssh/</span><span style="color: #dc752f;">XXX</span><span style="color: #2d9574;">.pem'</span>
@@ -78,8 +78,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-orgc0938b8" class="outline-2">
-<h2 id="orgc0938b8"><span class="section-number-2">3</span> require 引用文件路径方法与问题总结</h2>
+<div id="outline-container-org607ac7c" class="outline-2">
+<h2 id="org607ac7c"><span class="section-number-2">3</span> require 引用文件路径方法与问题总结</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 同一目录下的文件，如/usr/local/ruby/foo.rb 与/usr/local/ruby/bar.rb
@@ -95,8 +95,8 @@ end
 </p>
 </div>
 
-<div id="outline-container-org27a201b" class="outline-3">
-<h3 id="org27a201b"><span class="section-number-3">3.1</span> 引用一个文件</h3>
+<div id="outline-container-org7b2db3d" class="outline-3">
+<h3 id="org7b2db3d"><span class="section-number-3">3.1</span> 引用一个文件</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 例: 引用当前 rb 同目录下的 file_to_require.rb
@@ -124,8 +124,8 @@ require 'bar'
 </div>
 </div>
 
-<div id="outline-container-orge73a16d" class="outline-3">
-<h3 id="orge73a16d"><span class="section-number-3">3.2</span> 引用一个目录下所有文件</h3>
+<div id="outline-container-orge003a3d" class="outline-3">
+<h3 id="orge003a3d"><span class="section-number-3">3.2</span> 引用一个目录下所有文件</h3>
 <div class="outline-text-3" id="text-3-2">
 <p>
 Ruby 没有 Java 中的 import java.io.*;
@@ -151,8 +151,8 @@ Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
 </div>
 </div>
 
-<div id="outline-container-org691b01c" class="outline-2">
-<h2 id="org691b01c"><span class="section-number-2">4</span> format.json</h2>
+<div id="outline-container-org9489df7" class="outline-2">
+<h2 id="org9489df7"><span class="section-number-2">4</span> format.json</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 首先在 controller#action 中添加对 json 的响应。
@@ -191,8 +191,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-org6022443" class="outline-2">
-<h2 id="org6022443"><span class="section-number-2">5</span> RESTful API 配置 CORS 实现跨域请求</h2>
+<div id="outline-container-orgc1b5a6b" class="outline-2">
+<h2 id="orgc1b5a6b"><span class="section-number-2">5</span> RESTful API 配置 CORS 实现跨域请求</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 Rails
@@ -243,8 +243,8 @@ match 'controller', to: 'controller#action', via: [:options] ＃ 添加此行
 </div>
 </div>
 
-<div id="outline-container-orgeda7134" class="outline-2">
-<h2 id="orgeda7134"><span class="section-number-2">6</span> Turoblinks 导致 action 执行两次</h2>
+<div id="outline-container-org709fb7e" class="outline-2">
+<h2 id="org709fb7e"><span class="section-number-2">6</span> Turoblinks 导致 action 执行两次</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Turoblinks 导致 action 的某些内容被执行两次，如：=redirct_to 外部网址=。
@@ -256,8 +256,8 @@ Turoblinks 导致 action 的某些内容被执行两次，如：=redirct_to 外�
 </pre>
 </div>
 
-<div id="outline-container-org92c1fd8" class="outline-3">
-<h3 id="org92c1fd8"><span class="section-number-3">6.1</span> 在项目的指定视图禁用 turbolinks</h3>
+<div id="outline-container-org2ecb86a" class="outline-3">
+<h3 id="org2ecb86a"><span class="section-number-3">6.1</span> 在项目的指定视图禁用 turbolinks</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 编辑 <code>/app/views/layouts/application.html.erb=， 替换标签 =&lt;body&gt;</code>
@@ -315,8 +315,8 @@ for Rails 5
 </div>
 </div>
 
-<div id="outline-container-orgb2df8f3" class="outline-3">
-<h3 id="orgb2df8f3"><span class="section-number-3">6.2</span> 在指定链接中禁用 turbolinks</h3>
+<div id="outline-container-orgc72b39a" class="outline-3">
+<h3 id="orgc72b39a"><span class="section-number-3">6.2</span> 在指定链接中禁用 turbolinks</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 可以禁用单独的链接或者批量禁用某个区块内部所有链接的 Turbolinks 功能。
@@ -350,8 +350,8 @@ for Rails 5
 </div>
 </div>
 
-<div id="outline-container-orga25a6c9" class="outline-3">
-<h3 id="orga25a6c9"><span class="section-number-3">6.3</span> 从项目中删除 turbolinks</h3>
+<div id="outline-container-org61e93db" class="outline-3">
+<h3 id="org61e93db"><span class="section-number-3">6.3</span> 从项目中删除 turbolinks</h3>
 <div class="outline-text-3" id="text-6-3">
 <ul class="org-ul">
 <li>从 Gemfile 中删除 gem 'turbolinks'行。</li>
@@ -363,8 +363,8 @@ turbolinks。</li>
 </div>
 </div>
 
-<div id="outline-container-org02bf1ad" class="outline-3">
-<h3 id="org02bf1ad"><span class="section-number-3">6.4</span> 新建项目时跳过 turbolinks</h3>
+<div id="outline-container-org24e3151" class="outline-3">
+<h3 id="org24e3151"><span class="section-number-3">6.4</span> 新建项目时跳过 turbolinks</h3>
 <div class="outline-text-3" id="text-6-4">
 <div class="org-src-container">
 <pre class="src src-sh">rails new my_app --skip-turbolinks
@@ -373,8 +373,8 @@ turbolinks。</li>
 </div>
 </div>
 
-<div id="outline-container-org85b6d19" class="outline-3">
-<h3 id="org85b6d19"><span class="section-number-3">6.5</span> 错误</h3>
+<div id="outline-container-org2943db7" class="outline-3">
+<h3 id="org2943db7"><span class="section-number-3">6.5</span> 错误</h3>
 <div class="outline-text-3" id="text-6-5">
 <ul class="org-ul">
 <li><code>ActionView::Template::Error (The asset "application.css" is not present in the asset pipeline.):</code></li>
@@ -418,8 +418,8 @@ gem 'therubyracer'
 </div>
 </div>
 
-<div id="outline-container-org1f6f9b6" class="outline-2">
-<h2 id="org1f6f9b6"><span class="section-number-2">7</span> 利用文件夹的方式来管理本地语言包 locale</h2>
+<div id="outline-container-orgd718c5c" class="outline-2">
+<h2 id="orgd718c5c"><span class="section-number-2">7</span> 利用文件夹的方式来管理本地语言包 locale</h2>
 <div class="outline-text-2" id="text-7">
 <div class="org-src-container">
 <pre class="src src-ruby"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">config/application.rb</span>
@@ -448,8 +448,8 @@ config.i18n.default_locale = :<span style="color: #2d9574;">"zh-CN"</span>
 </div>
 </div>
 
-<div id="outline-container-org763958d" class="outline-2">
-<h2 id="org763958d"><span class="section-number-2">8</span> References</h2>
+<div id="outline-container-org2447291" class="outline-2">
+<h2 id="org2447291"><span class="section-number-2">8</span> References</h2>
 <div class="outline-text-2" id="text-8">
 <blockquote>
 <p>

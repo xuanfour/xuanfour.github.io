@@ -8,8 +8,8 @@ tags:
 ---
 
 
-<div id="outline-container-org26328aa" class="outline-2">
-<h2 id="org26328aa"><span class="section-number-2">1</span> 命令缩写</h2>
+<div id="outline-container-org86b391f" class="outline-2">
+<h2 id="org86b391f"><span class="section-number-2">1</span> 命令缩写</h2>
 <div class="outline-text-2" id="text-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -55,16 +55,16 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-org74c2c61" class="outline-2">
-<h2 id="org74c2c61"><span class="section-number-2">2</span> Rails 指令</h2>
+<div id="outline-container-org8b6e328" class="outline-2">
+<h2 id="org8b6e328"><span class="section-number-2">2</span> Rails 指令</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 我们已经陆续使用过一些指令了，让我们看看全部的指令吧：
 </p>
 </div>
 
-<div id="outline-container-orgd170046" class="outline-3">
-<h3 id="orgd170046"><span class="section-number-3">2.1</span> generate 可缩写为 g</h3>
+<div id="outline-container-org1298189" class="outline-3">
+<h3 id="org1298189"><span class="section-number-3">2.1</span> generate 可缩写为 g</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 产生各种不同类型的档案，例如
@@ -77,8 +77,8 @@ bin/rails g controller people
 </div>
 </div>
 
-<div id="outline-container-orgd02fe7b" class="outline-3">
-<h3 id="orgd02fe7b"><span class="section-number-3">2.2</span> console 可缩写为 c</h3>
+<div id="outline-container-orga254f47" class="outline-3">
+<h3 id="orga254f47"><span class="section-number-3">2.2</span> console 可缩写为 c</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 开启一个 Rails 主控台
@@ -114,8 +114,8 @@ bin/rails c --sandbox
 </div>
 </div>
 
-<div id="outline-container-org7116b15" class="outline-3">
-<h3 id="org7116b15"><span class="section-number-3">2.3</span> server 可缩写为 s</h3>
+<div id="outline-container-orgc401c8d" class="outline-3">
+<h3 id="orgc401c8d"><span class="section-number-3">2.3</span> server 可缩写为 s</h3>
 <div class="outline-text-3" id="text-2-3">
 <p>
 开启一个 Rails 服务器
@@ -135,8 +135,8 @@ bin/rails s -p 4000 -e production
 </div>
 </div>
 
-<div id="outline-container-org3c19b99" class="outline-3">
-<h3 id="org3c19b99"><span class="section-number-3">2.4</span> new</h3>
+<div id="outline-container-org3ee347f" class="outline-3">
+<h3 id="org3ee347f"><span class="section-number-3">2.4</span> new</h3>
 <div class="outline-text-3" id="text-2-4">
 <p>
 建立一个新 Rails 专案
@@ -161,8 +161,8 @@ bin/rails new my_app --database=mysql
 </div>
 </div>
 
-<div id="outline-container-orgab64ed4" class="outline-3">
-<h3 id="orgab64ed4"><span class="section-number-3">2.5</span> 其他指令</h3>
+<div id="outline-container-orgea43eb4" class="outline-3">
+<h3 id="orgea43eb4"><span class="section-number-3">2.5</span> 其他指令</h3>
 <div class="outline-text-3" id="text-2-5">
 <ul class="org-ul">
 <li>dbconsole 开起一个数据库主控台 (可简写为 rails db)，让你直接输入 SQL
@@ -175,8 +175,8 @@ Person.count"</li>
 </div>
 </div>
 
-<div id="outline-container-org2a34266" class="outline-2">
-<h2 id="org2a34266"><span class="section-number-2">3</span> Rails 启动与应用程式设定</h2>
+<div id="outline-container-orgc84073f" class="outline-2">
+<h2 id="orgc84073f"><span class="section-number-2">3</span> Rails 启动与应用程式设定</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 不同的 Rails 版本产生的设定档可能会略有差异，这些设定档也没有列出所有
@@ -214,8 +214,8 @@ Rails 设定才会生效。
 </p>
 </div>
 
-<div id="outline-container-org865f126" class="outline-3">
-<h3 id="org865f126"><span class="section-number-3">3.1</span> 其他初始设定档(initialzers)</h3>
+<div id="outline-container-orga15f397" class="outline-3">
+<h3 id="orga15f397"><span class="section-number-3">3.1</span> 其他初始设定档(initialzers)</h3>
 <div class="outline-text-3" id="text-3-1">
 <p>
 如果将所有的设定都放到 application.rb 就太混乱了，所以非 Rails
@@ -225,8 +225,8 @@ Rails 设定才会生效。
 </div>
 </div>
 
-<div id="outline-container-org9884355" class="outline-3">
-<h3 id="org9884355"><span class="section-number-3">3.2</span> filter_parameter_logging</h3>
+<div id="outline-container-orgb6212ca" class="outline-3">
+<h3 id="orgb6212ca"><span class="section-number-3">3.2</span> filter_parameter_logging</h3>
 <div class="outline-text-3" id="text-3-2">
 <pre class="example">
 # Configure sensitive parameters which will be filtered from the log file.
@@ -240,8 +240,8 @@ Rails.application.config.filter_parameters += [:password]
 </div>
 </div>
 
-<div id="outline-container-org5a67f37" class="outline-3">
-<h3 id="org5a67f37"><span class="section-number-3">3.3</span> backtrace silencers</h3>
+<div id="outline-container-orga77cca8" class="outline-3">
+<h3 id="orga77cca8"><span class="section-number-3">3.3</span> backtrace silencers</h3>
 <div class="outline-text-3" id="text-3-3">
 <p>
 可以让你选择性地移除例外追踪(exception
@@ -250,8 +250,8 @@ backtrace)讯息，例如有些套件可能会很吵，妨碍你除错。
 </div>
 </div>
 
-<div id="outline-container-org8f92663" class="outline-3">
-<h3 id="org8f92663"><span class="section-number-3">3.4</span> inflections</h3>
+<div id="outline-container-orgdb5a8c4" class="outline-3">
+<h3 id="orgdb5a8c4"><span class="section-number-3">3.4</span> inflections</h3>
 <div class="outline-text-3" id="text-3-4">
 <p>
 Rails 的命名惯例十分倚赖英文的单复数，例如将单数的类别名称 Person
@@ -278,8 +278,8 @@ Rails 核心不接受有关单复数转换的单字错误回报，毕竟它不�
 </div>
 </div>
 
-<div id="outline-container-org270244a" class="outline-3">
-<h3 id="org270244a"><span class="section-number-3">3.5</span> mime_types</h3>
+<div id="outline-container-org8b9e242" class="outline-3">
+<h3 id="org8b9e242"><span class="section-number-3">3.5</span> mime_types</h3>
 <div class="outline-text-3" id="text-3-5">
 <p>
 Rails 默认支援了如下常见的标准 MIME(Multipurpose Internet Mail
@@ -314,8 +314,8 @@ application/json | :json | text/x-json application/jsonrequest |<br />
 </div>
 </div>
 
-<div id="outline-container-org4fd280c" class="outline-3">
-<h3 id="org4fd280c"><span class="section-number-3">3.6</span> sesssion_store</h3>
+<div id="outline-container-orgf79ec68" class="outline-3">
+<h3 id="orgf79ec68"><span class="section-number-3">3.6</span> sesssion_store</h3>
 <div class="outline-text-3" id="text-3-6">
 <p>
 Rails 默认使用了 Cookie 来储存 Session 讯息。它会用上述的 key
@@ -326,8 +326,8 @@ Session，我们也可以使用 ActiveRecord 储存在数据库中。我们会�
 </div>
 </div>
 
-<div id="outline-container-org3d1a8e5" class="outline-3">
-<h3 id="org3d1a8e5"><span class="section-number-3">3.7</span> config/secrets.yml</h3>
+<div id="outline-container-orgf519dbd" class="outline-3">
+<h3 id="orgf519dbd"><span class="section-number-3">3.7</span> config/secrets.yml</h3>
 <div class="outline-text-3" id="text-3-7">
 <p>
 这个设定档包括了乱数产生的一组 secret_key_base 用来编码需要保护的 Cookie
@@ -369,8 +369,8 @@ Token。上述的例子透过 Rails.application.secrets.some_api_key
 </div>
 </div>
 
-<div id="outline-container-org1519286" class="outline-2">
-<h2 id="org1519286"><span class="section-number-2">4</span> 环境设定档</h2>
+<div id="outline-container-org1e0b96e" class="outline-2">
+<h2 id="org1e0b96e"><span class="section-number-2">4</span> 环境设定档</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 我们在上一节”多重环境设定”曾经介绍不同环境会有不同的设定档，让我们来更深入看看有哪些设定值，以及这些值是如果影响
@@ -378,8 +378,8 @@ Development、Production 和 Test 环境的不同：
 </p>
 </div>
 
-<div id="outline-container-orgf76b584" class="outline-3">
-<h3 id="orgf76b584"><span class="section-number-3">4.1</span> 多重环境</h3>
+<div id="outline-container-orgb607237" class="outline-3">
+<h3 id="orgb607237"><span class="section-number-3">4.1</span> 多重环境</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 Rails 应用程式默认提供了三种不同的执行模式：
@@ -434,8 +434,8 @@ bin/rails server -e production
 </div>
 </div>
 
-<div id="outline-container-org5f9cae5" class="outline-3">
-<h3 id="org5f9cae5"><span class="section-number-3">4.2</span> 环境判断</h3>
+<div id="outline-container-org7192172" class="outline-3">
+<h3 id="org7192172"><span class="section-number-3">4.2</span> 环境判断</h3>
 <div class="outline-text-3" id="text-4-2">
 <pre class="example">
 Rails.env.development?
@@ -445,8 +445,8 @@ Rails.env.production?
 </div>
 </div>
 
-<div id="outline-container-org5a38e08" class="outline-3">
-<h3 id="org5a38e08"><span class="section-number-3">4.3</span> 生成生产环境数据库</h3>
+<div id="outline-container-org2874924" class="outline-3">
+<h3 id="org2874924"><span class="section-number-3">4.3</span> 生成生产环境数据库</h3>
 <div class="outline-text-3" id="text-4-3">
 <div class="org-src-container">
 <pre class="src src-sh">rails db:migrate <span style="color: #7590db;">RAILS_ENV</span>=production
@@ -455,8 +455,8 @@ Rails.env.production?
 </div>
 </div>
 
-<div id="outline-container-org5a1ea05" class="outline-3">
-<h3 id="org5a1ea05"><span class="section-number-3">4.4</span> 启动生产环境</h3>
+<div id="outline-container-org1f106ed" class="outline-3">
+<h3 id="org1f106ed"><span class="section-number-3">4.4</span> 启动生产环境</h3>
 <div class="outline-text-3" id="text-4-4">
 <div class="org-src-container">
 <pre class="src src-sh">rails server -- environment production
@@ -465,8 +465,8 @@ Rails.env.production?
 </div>
 </div>
 
-<div id="outline-container-orgb8a6aec" class="outline-3">
-<h3 id="orgb8a6aec"><span class="section-number-3">4.5</span> Development 模式</h3>
+<div id="outline-container-org6ca5431" class="outline-3">
+<h3 id="org6ca5431"><span class="section-number-3">4.5</span> Development 模式</h3>
 <div class="outline-text-3" id="text-4-5">
 <pre class="example">
 # In the development environment your application's code is reloaded on
@@ -533,8 +533,8 @@ config.active_support.deprecation = :log
 </div>
 </div>
 
-<div id="outline-container-org9ea29e3" class="outline-3">
-<h3 id="org9ea29e3"><span class="section-number-3">4.6</span> Production 模式</h3>
+<div id="outline-container-orgd2b8894" class="outline-3">
+<h3 id="orgd2b8894"><span class="section-number-3">4.6</span> Production 模式</h3>
 <div class="outline-text-3" id="text-4-6">
 <pre class="example">
 # The production environment is meant for finished, "live" apps.
@@ -663,8 +663,8 @@ end
 </div>
 </div>
 
-<div id="outline-container-orgb03b09c" class="outline-3">
-<h3 id="orgb03b09c"><span class="section-number-3">4.7</span> Test 模式</h3>
+<div id="outline-container-org9956e48" class="outline-3">
+<h3 id="org9956e48"><span class="section-number-3">4.7</span> Test 模式</h3>
 <div class="outline-text-3" id="text-4-7">
 <pre class="example">
 # Show full error reports and disable caching
@@ -704,8 +704,8 @@ config.active_support.deprecation = :stderr
 </div>
 </div>
 
-<div id="outline-container-org3a4ffb7" class="outline-2">
-<h2 id="org3a4ffb7"><span class="section-number-2">5</span> 数据库设定档 database.yml</h2>
+<div id="outline-container-orgef668ae" class="outline-2">
+<h2 id="orgef668ae"><span class="section-number-2">5</span> 数据库设定档 database.yml</h2>
 <div class="outline-text-2" id="text-5">
 <p>
 几乎每一个 Rails 应用程式都会与数据库互动。而数据库需要一个设定档是
@@ -740,8 +740,8 @@ test:
 </div>
 </div>
 
-<div id="outline-container-org98b6093" class="outline-2">
-<h2 id="org98b6093"><span class="section-number-2">6</span> Bundler 与 Gemfile 设定档</h2>
+<div id="outline-container-org7316d43" class="outline-2">
+<h2 id="org7316d43"><span class="section-number-2">6</span> Bundler 与 Gemfile 设定档</h2>
 <div class="outline-text-2" id="text-6">
 <p>
 Bundler <a href="http://gembundler.com/">http://gembundler.com/</a> 是管理应用程式 Gem
@@ -803,8 +803,8 @@ Semantic Versioning。
 </p>
 </div>
 
-<div id="outline-container-orgdadf3b5" class="outline-3">
-<h3 id="orgdadf3b5"><span class="section-number-3">6.1</span> 安装及更新 Gems</h3>
+<div id="outline-container-orgdd4653c" class="outline-3">
+<h3 id="orgdd4653c"><span class="section-number-3">6.1</span> 安装及更新 Gems</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 如果你修改了这个档案，请执行 bundle install，这样 Bundler
@@ -860,8 +860,8 @@ bundle open GEM_NAME
 </div>
 </div>
 
-<div id="outline-container-orgeac407e" class="outline-3">
-<h3 id="orgeac407e"><span class="section-number-3">6.2</span> 打包 Gems</h3>
+<div id="outline-container-orga19ea77" class="outline-3">
+<h3 id="orga19ea77"><span class="section-number-3">6.2</span> 打包 Gems</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 执行以下指令，会将所有用到的 Gems 打包进 vendor/cache 目录。如此执行
@@ -886,16 +886,16 @@ gems 不会上传到 <a href="http://rubygems.org">http://rubygems.org</a> 网�
 </div>
 </div>
 
-<div id="outline-container-org6e171e2" class="outline-2">
-<h2 id="org6e171e2"><span class="section-number-2">7</span> 名称惯例</h2>
+<div id="outline-container-orge5c323c" class="outline-2">
+<h2 id="orge5c323c"><span class="section-number-2">7</span> 名称惯例</h2>
 <div class="outline-text-2" id="text-7">
 <p>
 在 Rails 中有一些命名上的惯例：
 </p>
 </div>
 
-<div id="outline-container-orgf74661c" class="outline-3">
-<h3 id="orgf74661c"><span class="section-number-3">7.1</span> 类别命名与自动加载</h3>
+<div id="outline-container-orgfa7a2c2" class="outline-3">
+<h3 id="orgfa7a2c2"><span class="section-number-3">7.1</span> 类别命名与自动加载</h3>
 <div class="outline-text-3" id="text-7-1">
 <p>
 档名使用小写、单数，用底线区隔。例如当 Rails 看到一个 OrderItem
@@ -932,8 +932,8 @@ $LOAD_PATH 常数则是 require 时会寻找的目录。像 lib 这个目录 Rai
 </div>
 </div>
 
-<div id="outline-container-org180c455" class="outline-3">
-<h3 id="org180c455"><span class="section-number-3">7.2</span> Model 命名</h3>
+<div id="outline-container-orgd831112" class="outline-3">
+<h3 id="orgd831112"><span class="section-number-3">7.2</span> Model 命名</h3>
 <div class="outline-text-3" id="text-7-2">
 <p>
 类别名称使用大写、单数，没有底线。而档名使用小写、单数，用底线。数据库表格名称用小写且为复数。例如：
@@ -947,8 +947,8 @@ $LOAD_PATH 常数则是 require 时会寻找的目录。像 lib 这个目录 Rai
 </div>
 </div>
 
-<div id="outline-container-orga008e7b" class="outline-3">
-<h3 id="orga008e7b"><span class="section-number-3">7.3</span> Controller 命名</h3>
+<div id="outline-container-org1c99b59" class="outline-3">
+<h3 id="org1c99b59"><span class="section-number-3">7.3</span> Controller 命名</h3>
 <div class="outline-text-3" id="text-7-3">
 <p>
 假设有一个 stores controller 的话：
@@ -971,8 +971,8 @@ Module，将档案放在子目录下，例如后台专用的 controllers：
 </div>
 </div>
 
-<div id="outline-container-org4c42e6b" class="outline-3">
-<h3 id="org4c42e6b"><span class="section-number-3">7.4</span> View 命名</h3>
+<div id="outline-container-org92fef0f" class="outline-3">
+<h3 id="org92fef0f"><span class="section-number-3">7.4</span> View 命名</h3>
 <div class="outline-text-3" id="text-7-4">
 <p>
 例如一个叫做 People 的 controller，其中的 index action：
@@ -987,8 +987,8 @@ Module，将档案放在子目录下，例如后台专用的 controllers：
 </div>
 </div>
 
-<div id="outline-container-org5311d0c" class="outline-2">
-<h2 id="org5311d0c"><span class="section-number-2">8</span> Rails 元件导览</h2>
+<div id="outline-container-orgc407577" class="outline-2">
+<h2 id="orgc407577"><span class="section-number-2">8</span> Rails 元件导览</h2>
 <div class="outline-text-2" id="text-8">
 <p>
 Rails 包含许多个别的函式库元件：
@@ -1007,8 +1007,8 @@ Rails 包含许多个别的函式库元件：
 </ul>
 </div>
 
-<div id="outline-container-org924b9f0" class="outline-3">
-<h3 id="org924b9f0"><span class="section-number-3">8.1</span> Action Pack</h3>
+<div id="outline-container-org7a5927a" class="outline-3">
+<h3 id="org7a5927a"><span class="section-number-3">8.1</span> Action Pack</h3>
 <div class="outline-text-3" id="text-8-1">
 <p>
 Action Pack 是个包含 Action Controller、Action View 和 Action Dispatch
@@ -1017,8 +1017,8 @@ Action Pack 是个包含 Action Controller、Action View 和 Action Dispatch
 </div>
 </div>
 
-<div id="outline-container-org137c7fb" class="outline-3">
-<h3 id="org137c7fb"><span class="section-number-3">8.2</span> Action Controller</h3>
+<div id="outline-container-orgde17829" class="outline-3">
+<h3 id="orgde17829"><span class="section-number-3">8.2</span> Action Controller</h3>
 <div class="outline-text-3" id="text-8-2">
 <p>
 Action Controller 是 Rails 应用程式中，管理 Controllers 的元件。Action
@@ -1029,8 +1029,8 @@ rendering) 和 redirect 功能。
 </div>
 </div>
 
-<div id="outline-container-org357154e" class="outline-3">
-<h3 id="org357154e"><span class="section-number-3">8.3</span> Action View</h3>
+<div id="outline-container-org8e7fce6" class="outline-3">
+<h3 id="org8e7fce6"><span class="section-number-3">8.3</span> Action View</h3>
 <div class="outline-text-3" id="text-8-3">
 <p>
 Action View 负责 Rails 应用程式中的 Views。它默认可以产生 HTML 或 XML
@@ -1041,8 +1041,8 @@ Ajax。
 </div>
 </div>
 
-<div id="outline-container-orgda74a01" class="outline-3">
-<h3 id="orgda74a01"><span class="section-number-3">8.4</span> Action Dispatch</h3>
+<div id="outline-container-org7b7a6d5" class="outline-3">
+<h3 id="org7b7a6d5"><span class="section-number-3">8.4</span> Action Dispatch</h3>
 <div class="outline-text-3" id="text-8-4">
 <p>
 Action Dispatch 处理 HTTP 请求的路由(routing)，它把 HTTP
@@ -1051,8 +1051,8 @@ Action Dispatch 处理 HTTP 请求的路由(routing)，它把 HTTP
 </div>
 </div>
 
-<div id="outline-container-orgc955cee" class="outline-3">
-<h3 id="orgc955cee"><span class="section-number-3">8.5</span> Action Mailer</h3>
+<div id="outline-container-org2d89520" class="outline-3">
+<h3 id="org2d89520"><span class="section-number-3">8.5</span> Action Mailer</h3>
 <div class="outline-text-3" id="text-8-5">
 <p>
 Action Mailer 是个建构 E-mail 功能的框架。你可以使用 Action Mailer
@@ -1061,8 +1061,8 @@ Action Mailer 是个建构 E-mail 功能的框架。你可以使用 Action Maile
 </div>
 </div>
 
-<div id="outline-container-org15deda4" class="outline-3">
-<h3 id="org15deda4"><span class="section-number-3">8.6</span> Active Model</h3>
+<div id="outline-container-orga078bac" class="outline-3">
+<h3 id="orga078bac"><span class="section-number-3">8.6</span> Active Model</h3>
 <div class="outline-text-3" id="text-8-6">
 <p>
 Active Model 在 Action Pack gem 和 ORM gem (例如 Active Record)
@@ -1073,8 +1073,8 @@ Record 换成其他 ORM 框架。Active Model 通常应用在无数据库的模�
 </div>
 </div>
 
-<div id="outline-container-orgb870eed" class="outline-3">
-<h3 id="orgb870eed"><span class="section-number-3">8.7</span> Active Record</h3>
+<div id="outline-container-orgf9c83d8" class="outline-3">
+<h3 id="orgf9c83d8"><span class="section-number-3">8.7</span> Active Record</h3>
 <div class="outline-text-3" id="text-8-7">
 <p>
 Active Record 是 Rails 应用程式中的 Models
@@ -1084,8 +1084,8 @@ Active Record 是 Rails 应用程式中的 Models
 </div>
 </div>
 
-<div id="outline-container-org88e3c77" class="outline-3">
-<h3 id="org88e3c77"><span class="section-number-3">8.8</span> Active Support</h3>
+<div id="outline-container-orga6e504a" class="outline-3">
+<h3 id="orga6e504a"><span class="section-number-3">8.8</span> Active Support</h3>
 <div class="outline-text-3" id="text-8-8">
 <p>
 Active Support 是 Rails 里的工具函式库，它也扩充了一些 Ruby
@@ -1094,8 +1094,8 @@ Active Support 是 Rails 里的工具函式库，它也扩充了一些 Ruby
 </div>
 </div>
 
-<div id="outline-container-orgbb26de9" class="outline-3">
-<h3 id="orgbb26de9"><span class="section-number-3">8.9</span> Railties</h3>
+<div id="outline-container-org17e9719" class="outline-3">
+<h3 id="org17e9719"><span class="section-number-3">8.9</span> Railties</h3>
 <div class="outline-text-3" id="text-8-9">
 <p>
 Railties 是 Rails 的核心程式码，用来把以上各种的框架函式库以及 Plugin
@@ -1105,12 +1105,12 @@ Railties 是 Rails 的核心程式码，用来把以上各种的框架函式库�
 </div>
 </div>
 
-<div id="outline-container-orgca7cb54" class="outline-2">
-<h2 id="orgca7cb54"><span class="section-number-2">9</span> 国际化 i18</h2>
+<div id="outline-container-org99fa3b3" class="outline-2">
+<h2 id="org99fa3b3"><span class="section-number-2">9</span> 国际化 i18</h2>
 <div class="outline-text-2" id="text-9">
 </div>
-<div id="outline-container-org10eb18e" class="outline-3">
-<h3 id="org10eb18e"><span class="section-number-3">9.1</span> 普通信息国际化</h3>
+<div id="outline-container-orge718a26" class="outline-3">
+<h3 id="orge718a26"><span class="section-number-3">9.1</span> 普通信息国际化</h3>
 <div class="outline-text-3" id="text-9-1">
 <p>
 到 application.rb 中添加
@@ -1152,8 +1152,8 @@ zh-CN:
 </div>
 </div>
 
-<div id="outline-container-orgd0735d1" class="outline-3">
-<h3 id="orgd0735d1"><span class="section-number-3">9.2</span> 表单报错信息国际化</h3>
+<div id="outline-container-org4660022" class="outline-3">
+<h3 id="org4660022"><span class="section-number-3">9.2</span> 表单报错信息国际化</h3>
 <div class="outline-text-3" id="text-9-2">
 <p>
 再来到 signup 页面。点击注册按钮，看到如下的报错信息：
@@ -1191,8 +1191,8 @@ zh-CN:
 </div>
 </div>
 
-<div id="outline-container-org74b9711" class="outline-3">
-<h3 id="org74b9711"><span class="section-number-3">9.3</span> 更改 local 设置</h3>
+<div id="outline-container-org05eb63c" class="outline-3">
+<h3 id="org05eb63c"><span class="section-number-3">9.3</span> 更改 local 设置</h3>
 <div class="outline-text-3" id="text-9-3">
 <p>
 刚才咱们是用手动修改 application.rb
@@ -1206,8 +1206,8 @@ zh-CN:
 </div>
 </div>
 
-<div id="outline-container-orga1f9b5a" class="outline-2">
-<h2 id="orga1f9b5a"><span class="section-number-2">10</span> References</h2>
+<div id="outline-container-org88d4408" class="outline-2">
+<h2 id="org88d4408"><span class="section-number-2">10</span> References</h2>
 <div class="outline-text-2" id="text-10">
 <blockquote>
 <p>

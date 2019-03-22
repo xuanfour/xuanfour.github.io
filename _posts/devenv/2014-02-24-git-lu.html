@@ -7,12 +7,12 @@ tags:
     - Git
 ---
 
-<div id="outline-container-org1764c42" class="outline-2">
-<h2 id="org1764c42"><span class="section-number-2">1</span> 2. MSysGit 设置</h2>
+<div id="outline-container-org9d9e644" class="outline-2">
+<h2 id="org9d9e644"><span class="section-number-2">1</span> 2. MSysGit 设置</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-orgf213ca7" class="outline-3">
-<h3 id="orgf213ca7"><span class="section-number-3">1.1</span> 2.1. 初始化配置：</h3>
+<div id="outline-container-orgf3b4d2d" class="outline-3">
+<h3 id="orgf3b4d2d"><span class="section-number-3">1.1</span> 2.1. 初始化配置：</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 进入 Git Bash，运行下列命令
@@ -37,12 +37,12 @@ git config --global core.filemode false
 </div>
 </div>
 
-<div id="outline-container-org8555e86" class="outline-3">
-<h3 id="org8555e86"><span class="section-number-3">1.2</span> 2.2. 配置 SSH 证书：</h3>
+<div id="outline-container-org629187b" class="outline-3">
+<h3 id="org629187b"><span class="section-number-3">1.2</span> 2.2. 配置 SSH 证书：</h3>
 <div class="outline-text-3" id="text-1-2">
 </div>
-<div id="outline-container-org9206a8b" class="outline-4">
-<h4 id="org9206a8b"><span class="section-number-4">1.2.1</span> 2.2.1. 新建 SSH 证书：</h4>
+<div id="outline-container-org5f83a62" class="outline-4">
+<h4 id="org5f83a62"><span class="section-number-4">1.2.1</span> 2.2.1. 新建 SSH 证书：</h4>
 <div class="outline-text-4" id="text-1-2-1">
 <div class="org-src-container">
 <pre class="src src-sh">ssh-keygen -t rsa -C <span style="color: #2d9574;">"your_name@email_address"</span>
@@ -51,8 +51,8 @@ git config --global core.filemode false
 </div>
 </div>
 
-<div id="outline-container-org652d9b1" class="outline-4">
-<h4 id="org652d9b1"><span class="section-number-4">1.2.2</span> 2.2.2. 恢复备份 SSH 证书：</h4>
+<div id="outline-container-org6ada8a8" class="outline-4">
+<h4 id="org6ada8a8"><span class="section-number-4">1.2.2</span> 2.2.2. 恢复备份 SSH 证书：</h4>
 <div class="outline-text-4" id="text-1-2-2">
 <ol class="org-ol">
 <li>建立目录“~/.ssh“；</li>
@@ -61,8 +61,8 @@ git config --global core.filemode false
 </div>
 </div>
 
-<div id="outline-container-org555c203" class="outline-4">
-<h4 id="org555c203"><span class="section-number-4">1.2.3</span> 2.2.3. 通过 github 测试 SSH 证书：</h4>
+<div id="outline-container-org21705c4" class="outline-4">
+<h4 id="org21705c4"><span class="section-number-4">1.2.3</span> 2.2.3. 通过 github 测试 SSH 证书：</h4>
 <div class="outline-text-4" id="text-1-2-3">
 <div class="org-src-container">
 <pre class="src src-sh">ssh -T git@github.com
@@ -76,8 +76,8 @@ git config --global core.filemode false
 </div>
 </div>
 
-<div id="outline-container-org5e4929c" class="outline-3">
-<h3 id="org5e4929c"><span class="section-number-3">1.3</span> 2.3. 修改或新建 `/etc/fstab`，增加以下内容：</h3>
+<div id="outline-container-org80f7df1" class="outline-3">
+<h3 id="org80f7df1"><span class="section-number-3">1.3</span> 2.3. 修改或新建 `/etc/fstab`，增加以下内容：</h3>
 <div class="outline-text-3" id="text-1-3">
 <div class="org-src-container">
 <pre class="src src-sh">d:/LinuxHome /home
@@ -90,8 +90,8 @@ f:/Repositories/git /local_git
 </div>
 </div>
 
-<div id="outline-container-org9372380" class="outline-3">
-<h3 id="org9372380"><span class="section-number-3">1.4</span> 2.4. 设置全局配置文件 `/etc/profile`：</h3>
+<div id="outline-container-orgce2fcfb" class="outline-3">
+<h3 id="orgce2fcfb"><span class="section-number-3">1.4</span> 2.4. 设置全局配置文件 `/etc/profile`：</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 #+end_begin_src conf
@@ -120,12 +120,12 @@ alias l='ls -CF'                              #
 </div>
 </div>
 
-<div id="outline-container-org7103a19" class="outline-3">
-<h3 id="org7103a19"><span class="section-number-3">1.5</span> 2.5. 右键菜单打开 Cygwin 在当前目录</h3>
+<div id="outline-container-orgab18056" class="outline-3">
+<h3 id="orgab18056"><span class="section-number-3">1.5</span> 2.5. 右键菜单打开 Cygwin 在当前目录</h3>
 <div class="outline-text-3" id="text-1-5">
 </div>
-<div id="outline-container-org8367c2b" class="outline-4">
-<h4 id="org8367c2b"><span class="section-number-4">1.5.1</span> 2.5.1. 增加注册表项：</h4>
+<div id="outline-container-orge6a96f2" class="outline-4">
+<h4 id="orge6a96f2"><span class="section-number-4">1.5.1</span> 2.5.1. 增加注册表项：</h4>
 <div class="outline-text-4" id="text-1-5-1">
 <p>
 #+end_begin_src conf
@@ -142,8 +142,8 @@ Windows Registry Editor Version 5.00
 </div>
 </div>
 
-<div id="outline-container-orgcb73618" class="outline-4">
-<h4 id="orgcb73618"><span class="section-number-4">1.5.2</span> 2.5.2. 修改 `git-bash.bat` 文件，增加设置路径变量 `set _T=%*`：</h4>
+<div id="outline-container-orgfb485ba" class="outline-4">
+<h4 id="orgfb485ba"><span class="section-number-4">1.5.2</span> 2.5.2. 修改 `git-bash.bat` 文件，增加设置路径变量 `set _T=%*`：</h4>
 <div class="outline-text-4" id="text-1-5-2">
 <div class="org-src-container">
 <pre class="src src-sh">@echo off
@@ -154,8 +154,8 @@ Windows Registry Editor Version 5.00
 </div>
 </div>
 
-<div id="outline-container-org6ea6e1f" class="outline-4">
-<h4 id="org6ea6e1f"><span class="section-number-4">1.5.3</span> 2.5.3. 设置用户配置文件 `\home\${UserName}\.bash_profile`，在最后增加：</h4>
+<div id="outline-container-org759cc5e" class="outline-4">
+<h4 id="org759cc5e"><span class="section-number-4">1.5.3</span> 2.5.3. 设置用户配置文件 `\home\${UserName}\.bash_profile`，在最后增加：</h4>
 <div class="outline-text-4" id="text-1-5-3">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21491;&#38190;&#33756;&#21333;&#25171;&#24320; Git &#22312;&#24403;&#21069;&#30446;&#24405;</span>
@@ -171,16 +171,16 @@ Windows Registry Editor Version 5.00
 </div>
 </div>
 
-<div id="outline-container-org1ef8f52" class="outline-2">
-<h2 id="org1ef8f52"><span class="section-number-2">2</span> 3. Git 常用操作</h2>
+<div id="outline-container-orgcfda724" class="outline-2">
+<h2 id="orgcfda724"><span class="section-number-2">2</span> 3. Git 常用操作</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org5af683a" class="outline-3">
-<h3 id="org5af683a"><span class="section-number-3">2.1</span> 3.1. 初始化服务仓库</h3>
+<div id="outline-container-org6a5be9c" class="outline-3">
+<h3 id="org6a5be9c"><span class="section-number-3">2.1</span> 3.1. 初始化服务仓库</h3>
 <div class="outline-text-3" id="text-2-1">
 </div>
-<div id="outline-container-org1a5c0f7" class="outline-4">
-<h4 id="org1a5c0f7"><span class="section-number-4">2.1.1</span> 3.1.1. 初始化服务仓库，包括工作区，通常为本地仓库</h4>
+<div id="outline-container-org97ec8a5" class="outline-4">
+<h4 id="org97ec8a5"><span class="section-number-4">2.1.1</span> 3.1.1. 初始化服务仓库，包括工作区，通常为本地仓库</h4>
 <div class="outline-text-4" id="text-2-1-1">
 <div class="org-src-container">
 <pre class="src src-sh">git init
@@ -189,8 +189,8 @@ Windows Registry Editor Version 5.00
 </div>
 </div>
 
-<div id="outline-container-org49fd500" class="outline-4">
-<h4 id="org49fd500"><span class="section-number-4">2.1.2</span> 3.1.2. 初始化服务仓库，不包括工作区，通常为远程仓库</h4>
+<div id="outline-container-org2a36275" class="outline-4">
+<h4 id="org2a36275"><span class="section-number-4">2.1.2</span> 3.1.2. 初始化服务仓库，不包括工作区，通常为远程仓库</h4>
 <div class="outline-text-4" id="text-2-1-2">
 <div class="org-src-container">
 <pre class="src src-sh">git init  --bare
@@ -201,12 +201,12 @@ git init  --bare --shared
 </div>
 </div>
 
-<div id="outline-container-orgb33945e" class="outline-3">
-<h3 id="orgb33945e"><span class="section-number-3">2.2</span> 3.2. 增加文件快照到当前工作区</h3>
+<div id="outline-container-org6726d0b" class="outline-3">
+<h3 id="org6726d0b"><span class="section-number-3">2.2</span> 3.2. 增加文件快照到当前工作区</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-org6d9bf30" class="outline-4">
-<h4 id="org6d9bf30"><span class="section-number-4">2.2.1</span> 3.2.1. 增加所有文件快照到当前工作区</h4>
+<div id="outline-container-org99985d4" class="outline-4">
+<h4 id="org99985d4"><span class="section-number-4">2.2.1</span> 3.2.1. 增加所有文件快照到当前工作区</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
 <pre class="src src-sh">git add .
@@ -215,8 +215,8 @@ git init  --bare --shared
 </div>
 </div>
 
-<div id="outline-container-org454826e" class="outline-4">
-<h4 id="org454826e"><span class="section-number-4">2.2.2</span> 3.2.2. 增加所有文件快照到当前工作区并更新索引为当前文件状态，通常因本地文件未使用 Git 更新删除。</h4>
+<div id="outline-container-org2ffb308" class="outline-4">
+<h4 id="org2ffb308"><span class="section-number-4">2.2.2</span> 3.2.2. 增加所有文件快照到当前工作区并更新索引为当前文件状态，通常因本地文件未使用 Git 更新删除。</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <div class="org-src-container">
 <pre class="src src-sh">git add -A .
@@ -226,8 +226,8 @@ git init  --bare --shared
 </div>
 </div>
 
-<div id="outline-container-orgac8f53c" class="outline-3">
-<h3 id="orgac8f53c"><span class="section-number-3">2.3</span> 3.3. 删除文件从当前工作区和索引</h3>
+<div id="outline-container-org3869830" class="outline-3">
+<h3 id="org3869830"><span class="section-number-3">2.3</span> 3.3. 删除文件从当前工作区和索引</h3>
 <div class="outline-text-3" id="text-2-3">
 <div class="org-src-container">
 <pre class="src src-sh">git rm app/user.rb
@@ -236,8 +236,8 @@ git init  --bare --shared
 </div>
 </div>
 
-<div id="outline-container-org6d16b98" class="outline-3">
-<h3 id="org6d16b98"><span class="section-number-3">2.4</span> 3.4. 重命名文件从当前工作区和索引</h3>
+<div id="outline-container-org5e0a40a" class="outline-3">
+<h3 id="org5e0a40a"><span class="section-number-3">2.4</span> 3.4. 重命名文件从当前工作区和索引</h3>
 <div class="outline-text-3" id="text-2-4">
 <div class="org-src-container">
 <pre class="src src-sh">git mv app/oldName.rb app/newName.rb
@@ -246,12 +246,12 @@ git init  --bare --shared
 </div>
 </div>
 
-<div id="outline-container-orgba28b25" class="outline-3">
-<h3 id="orgba28b25"><span class="section-number-3">2.5</span> 3.5. 提交文件快照到本地仓库</h3>
+<div id="outline-container-org351793b" class="outline-3">
+<h3 id="org351793b"><span class="section-number-3">2.5</span> 3.5. 提交文件快照到本地仓库</h3>
 <div class="outline-text-3" id="text-2-5">
 </div>
-<div id="outline-container-org5148d82" class="outline-4">
-<h4 id="org5148d82"><span class="section-number-4">2.5.1</span> 3.5.1. 提交到本地仓库，已进行了文件快照</h4>
+<div id="outline-container-orgc0111d4" class="outline-4">
+<h4 id="orgc0111d4"><span class="section-number-4">2.5.1</span> 3.5.1. 提交到本地仓库，已进行了文件快照</h4>
 <div class="outline-text-4" id="text-2-5-1">
 <div class="org-src-container">
 <pre class="src src-sh">git commit -m <span style="color: #2d9574;">"commit information"</span>
@@ -260,8 +260,8 @@ git init  --bare --shared
 </div>
 </div>
 
-<div id="outline-container-org90b758a" class="outline-4">
-<h4 id="org90b758a"><span class="section-number-4">2.5.2</span> 3.5.2. 提交到本地仓库，未进行了文件快照（仓库已经存在文件）</h4>
+<div id="outline-container-org696704c" class="outline-4">
+<h4 id="org696704c"><span class="section-number-4">2.5.2</span> 3.5.2. 提交到本地仓库，未进行了文件快照（仓库已经存在文件）</h4>
 <div class="outline-text-4" id="text-2-5-2">
 <div class="org-src-container">
 <pre class="src src-sh">git commit -a -m <span style="color: #2d9574;">'commit information'</span>
@@ -271,8 +271,8 @@ git init  --bare --shared
 </div>
 </div>
 
-<div id="outline-container-org89f4551" class="outline-3">
-<h3 id="org89f4551"><span class="section-number-3">2.6</span> 3.6. 查询当前工作区状态</h3>
+<div id="outline-container-orge1e05b1" class="outline-3">
+<h3 id="orge1e05b1"><span class="section-number-3">2.6</span> 3.6. 查询当前工作区状态</h3>
 <div class="outline-text-3" id="text-2-6">
 <div class="org-src-container">
 <pre class="src src-sh">git status
@@ -281,8 +281,8 @@ git init  --bare --shared
 </div>
 </div>
 
-<div id="outline-container-org90d4f50" class="outline-3">
-<h3 id="org90d4f50"><span class="section-number-3">2.7</span> 3.7. 查询提交历史</h3>
+<div id="outline-container-orgc27e7c4" class="outline-3">
+<h3 id="orgc27e7c4"><span class="section-number-3">2.7</span> 3.7. 查询提交历史</h3>
 <div class="outline-text-3" id="text-2-7">
 <div class="org-src-container">
 <pre class="src src-sh">git log
@@ -291,12 +291,12 @@ git init  --bare --shared
 </div>
 </div>
 
-<div id="outline-container-orgddbb43a" class="outline-3">
-<h3 id="orgddbb43a"><span class="section-number-3">2.8</span> 3.8. 获取远程仓库克隆</h3>
+<div id="outline-container-org66d7b0e" class="outline-3">
+<h3 id="org66d7b0e"><span class="section-number-3">2.8</span> 3.8. 获取远程仓库克隆</h3>
 <div class="outline-text-3" id="text-2-8">
 </div>
-<div id="outline-container-orgc05b580" class="outline-4">
-<h4 id="orgc05b580"><span class="section-number-4">2.8.1</span> 3.8.1. 获取远程仓库主库克隆</h4>
+<div id="outline-container-orgdf07f42" class="outline-4">
+<h4 id="orgdf07f42"><span class="section-number-4">2.8.1</span> 3.8.1. 获取远程仓库主库克隆</h4>
 <div class="outline-text-4" id="text-2-8-1">
 <p>
 `git clone` 默认会把远程仓库整个给 `clone` 下来，但只会在本地默认创建一个 `master` 分支。
@@ -309,8 +309,8 @@ git init  --bare --shared
 </div>
 </div>
 
-<div id="outline-container-orga193e7a" class="outline-4">
-<h4 id="orga193e7a"><span class="section-number-4">2.8.2</span> 3.8.2. 从远程仓库更新克隆</h4>
+<div id="outline-container-org2f53cc2" class="outline-4">
+<h4 id="org2f53cc2"><span class="section-number-4">2.8.2</span> 3.8.2. 从远程仓库更新克隆</h4>
 <div class="outline-text-4" id="text-2-8-2">
 <p>
 放弃本地版本，获取远程仓库最新版本
@@ -341,8 +341,8 @@ git pull
 </div>
 </div>
 
-<div id="outline-container-org3a994e2" class="outline-4">
-<h4 id="org3a994e2"><span class="section-number-4">2.8.3</span> 3.8.3. 获取远程仓库分支克隆</h4>
+<div id="outline-container-org37f0ea4" class="outline-4">
+<h4 id="org37f0ea4"><span class="section-number-4">2.8.3</span> 3.8.3. 获取远程仓库分支克隆</h4>
 <div class="outline-text-4" id="text-2-8-3">
 <p>
 查看远程分支信息。
@@ -374,8 +374,8 @@ git pull
 </div>
 </div>
 
-<div id="outline-container-orgec61c4a" class="outline-3">
-<h3 id="orgec61c4a"><span class="section-number-3">2.9</span> 3.9. 增加远程仓库配置</h3>
+<div id="outline-container-orge741e42" class="outline-3">
+<h3 id="orge741e42"><span class="section-number-3">2.9</span> 3.9. 增加远程仓库配置</h3>
 <div class="outline-text-3" id="text-2-9">
 <div class="org-src-container">
 <pre class="src src-sh">git remote add github git@github.com:idxuan/GitTest.git <span style="color: #4f97d7;">(</span>&#25512;&#33616;<span style="color: #4f97d7;">)</span>
@@ -386,8 +386,8 @@ git remote add local file://f:/Repositories/git/conv_dict
 </div>
 </div>
 
-<div id="outline-container-orgf799156" class="outline-3">
-<h3 id="orgf799156"><span class="section-number-3">2.10</span> 3.10. 删除远程仓库配置</h3>
+<div id="outline-container-org90a3b1c" class="outline-3">
+<h3 id="org90a3b1c"><span class="section-number-3">2.10</span> 3.10. 删除远程仓库配置</h3>
 <div class="outline-text-3" id="text-2-10">
 <div class="org-src-container">
 <pre class="src src-sh">git remote rm github
@@ -396,8 +396,8 @@ git remote add local file://f:/Repositories/git/conv_dict
 </div>
 </div>
 
-<div id="outline-container-orge0bc163" class="outline-3">
-<h3 id="orge0bc163"><span class="section-number-3">2.11</span> 3.11. 远程仓库重命名</h3>
+<div id="outline-container-org0fda774" class="outline-3">
+<h3 id="org0fda774"><span class="section-number-3">2.11</span> 3.11. 远程仓库重命名</h3>
 <div class="outline-text-3" id="text-2-11">
 <div class="org-src-container">
 <pre class="src src-sh">git remote rename oldname newname
@@ -406,8 +406,8 @@ git remote add local file://f:/Repositories/git/conv_dict
 </div>
 </div>
 
-<div id="outline-container-orgf7d379e" class="outline-3">
-<h3 id="orgf7d379e"><span class="section-number-3">2.12</span> 3.12. 修改远程仓库路径</h3>
+<div id="outline-container-orgc190148" class="outline-3">
+<h3 id="orgc190148"><span class="section-number-3">2.12</span> 3.12. 修改远程仓库路径</h3>
 <div class="outline-text-3" id="text-2-12">
 <div class="org-src-container">
 <pre class="src src-sh">git remote set-url github git@github.com:idxuan/GitTest.git
@@ -416,8 +416,8 @@ git remote add local file://f:/Repositories/git/conv_dict
 </div>
 </div>
 
-<div id="outline-container-orge83c58e" class="outline-3">
-<h3 id="orge83c58e"><span class="section-number-3">2.13</span> 3.13. 查询远程仓库配置</h3>
+<div id="outline-container-org10405ae" class="outline-3">
+<h3 id="org10405ae"><span class="section-number-3">2.13</span> 3.13. 查询远程仓库配置</h3>
 <div class="outline-text-3" id="text-2-13">
 <div class="org-src-container">
 <pre class="src src-sh">git remote -v
@@ -426,8 +426,8 @@ git remote add local file://f:/Repositories/git/conv_dict
 </div>
 </div>
 
-<div id="outline-container-orgfb91a5f" class="outline-3">
-<h3 id="orgfb91a5f"><span class="section-number-3">2.14</span> 3.14. 获取远程仓库</h3>
+<div id="outline-container-orge7cd641" class="outline-3">
+<h3 id="orge7cd641"><span class="section-number-3">2.14</span> 3.14. 获取远程仓库</h3>
 <div class="outline-text-3" id="text-2-14">
 <div class="org-src-container">
 <pre class="src src-sh">git pull &#36828;&#31471;&#20179;&#24211;&#21517; &#36828;&#31471;&#20998;&#25903;&#21517;:&#26412;&#22320;&#20998;&#25903;&#21517;
@@ -437,8 +437,8 @@ git pull github master
 </div>
 </div>
 
-<div id="outline-container-org468a438" class="outline-3">
-<h3 id="org468a438"><span class="section-number-3">2.15</span> 3.15. 提交到远程仓库</h3>
+<div id="outline-container-orgb1d7964" class="outline-3">
+<h3 id="orgb1d7964"><span class="section-number-3">2.15</span> 3.15. 提交到远程仓库</h3>
 <div class="outline-text-3" id="text-2-15">
 <div class="org-src-container">
 <pre class="src src-sh">git push &#36828;&#31471;&#20179;&#24211;&#21517; &#26412;&#22320;&#20998;&#25903;&#21517;:&#36828;&#31471;&#20998;&#25903;&#21517;
@@ -449,8 +449,8 @@ git push -u github master
 </div>
 </div>
 
-<div id="outline-container-org209ff15" class="outline-3">
-<h3 id="org209ff15"><span class="section-number-3">2.16</span> 3.16. 创建一个没有父节点的分支（github 规定，只有该分支中的页面，才会生成网页文件）</h3>
+<div id="outline-container-org541d0ea" class="outline-3">
+<h3 id="org541d0ea"><span class="section-number-3">2.16</span> 3.16. 创建一个没有父节点的分支（github 规定，只有该分支中的页面，才会生成网页文件）</h3>
 <div class="outline-text-3" id="text-2-16">
 <div class="org-src-container">
 <pre class="src src-sh">git checkout --orphan gh-pages
@@ -459,8 +459,8 @@ git push -u github master
 </div>
 </div>
 
-<div id="outline-container-org49d13d0" class="outline-3">
-<h3 id="org49d13d0"><span class="section-number-3">2.17</span> 3.17. 重置回滚</h3>
+<div id="outline-container-orga47cae5" class="outline-3">
+<h3 id="orga47cae5"><span class="section-number-3">2.17</span> 3.17. 重置回滚</h3>
 <div class="outline-text-3" id="text-2-17">
 <p>
 重置回滚本地
@@ -487,8 +487,8 @@ git push -u github master
 </div>
 </div>
 
-<div id="outline-container-orgabd514c" class="outline-3">
-<h3 id="orgabd514c"><span class="section-number-3">2.18</span> 3.18. 强制覆盖本地文件</h3>
+<div id="outline-container-org433c90b" class="outline-3">
+<h3 id="org433c90b"><span class="section-number-3">2.18</span> 3.18. 强制覆盖本地文件</h3>
 <div class="outline-text-3" id="text-2-18">
 <ol class="org-ol">
 <li>`git fetch` 下载远程最新的，但不尝试或修改任何东西。 然后 `git reset master` 分支重置到刚才。</li>
@@ -526,12 +526,12 @@ git pull
 </div>
 </div>
 
-<div id="outline-container-orge32a9f4" class="outline-2">
-<h2 id="orge32a9f4"><span class="section-number-2">3</span> 4. GitHub 创建步骤</h2>
+<div id="outline-container-orge3ea965" class="outline-2">
+<h2 id="orge3ea965"><span class="section-number-2">3</span> 4. GitHub 创建步骤</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org523fdc8" class="outline-3">
-<h3 id="org523fdc8"><span class="section-number-3">3.1</span> 4.1 Create a new repository on the command line</h3>
+<div id="outline-container-orgc908d16" class="outline-3">
+<h3 id="orgc908d16"><span class="section-number-3">3.1</span> 4.1 Create a new repository on the command line</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-sh">touch README.md
@@ -545,8 +545,8 @@ git push -u origin master
 </div>
 </div>
 
-<div id="outline-container-org69661da" class="outline-3">
-<h3 id="org69661da"><span class="section-number-3">3.2</span> 4.2 Push an existing repository from the command line</h3>
+<div id="outline-container-orgb65847b" class="outline-3">
+<h3 id="orgb65847b"><span class="section-number-3">3.2</span> 4.2 Push an existing repository from the command line</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-sh">git remote add origin https://github.com/idxuan/vimim_dict.git
@@ -557,16 +557,16 @@ git push -u origin master
 </div>
 </div>
 
-<div id="outline-container-orgf40183c" class="outline-2">
-<h2 id="orgf40183c"><span class="section-number-2">4</span> 5. Git 忽略文件</h2>
+<div id="outline-container-orga5a0e3d" class="outline-2">
+<h2 id="orga5a0e3d"><span class="section-number-2">4</span> 5. Git 忽略文件</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Git 忽略文件有 3 种设置方式：
 </p>
 </div>
 
-<div id="outline-container-org63043a4" class="outline-3">
-<h3 id="org63043a4"><span class="section-number-3">4.1</span> 5.1. 方式一</h3>
+<div id="outline-container-org85b7d36" class="outline-3">
+<h3 id="org85b7d36"><span class="section-number-3">4.1</span> 5.1. 方式一</h3>
 <div class="outline-text-3" id="text-4-1">
 <p>
 在仓库目录下新建一个名为.gitignore 的文件（因为是点开头，可能没办法直接在 windows 目录下直接创建，必须通过右键 Git Bash，按照 linux 的方式来新建.gitignore 文件）。
@@ -575,8 +575,8 @@ Git 忽略文件有 3 种设置方式：
 </div>
 </div>
 
-<div id="outline-container-org3c48dfe" class="outline-3">
-<h3 id="org3c48dfe"><span class="section-number-3">4.2</span> 5.2. 方式二</h3>
+<div id="outline-container-orge335576" class="outline-3">
+<h3 id="orge335576"><span class="section-number-3">4.2</span> 5.2. 方式二</h3>
 <div class="outline-text-3" id="text-4-2">
 <p>
 通过配置.git/info/exclude 文件来忽略文件。这种方式对仓库全局有效，只能对自己本地仓库有作用，其他人没办法通过这种方式来共享忽略规则，除非他人也修改其本地仓库的该文件。
@@ -584,8 +584,8 @@ Git 忽略文件有 3 种设置方式：
 </div>
 </div>
 
-<div id="outline-container-org60a4832" class="outline-3">
-<h3 id="org60a4832"><span class="section-number-3">4.3</span> 5.3. 方式三</h3>
+<div id="outline-container-org43c971c" class="outline-3">
+<h3 id="org43c971c"><span class="section-number-3">4.3</span> 5.3. 方式三</h3>
 <div class="outline-text-3" id="text-4-3">
 <p>
 通过.git/config 配置文件的 core. Excludesfile 选项，指定一个忽略规则文件（完整路径）。忽略规则在文件中（当然该文件名可以任意取），该方式的作用域是也全局的。
@@ -593,8 +593,8 @@ Git 忽略文件有 3 种设置方式：
 </div>
 </div>
 
-<div id="outline-container-orgf631000" class="outline-3">
-<h3 id="orgf631000"><span class="section-number-3">4.4</span> 5.4. 忽略样例</h3>
+<div id="outline-container-org496c4c6" class="outline-3">
+<h3 id="org496c4c6"><span class="section-number-3">4.4</span> 5.4. 忽略样例</h3>
 <div class="outline-text-3" id="text-4-4">
 <p>
 #+end_begin_src conf
@@ -616,12 +616,12 @@ foo/
 </div>
 </div>
 
-<div id="outline-container-org3837e50" class="outline-2">
-<h2 id="org3837e50"><span class="section-number-2">5</span> 6. Git Config 配置项</h2>
+<div id="outline-container-org95a6d01" class="outline-2">
+<h2 id="org95a6d01"><span class="section-number-2">5</span> 6. Git Config 配置项</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgf6cc506" class="outline-3">
-<h3 id="orgf6cc506"><span class="section-number-3">5.1</span> 6.1 默认远程仓库</h3>
+<div id="outline-container-org7cda0fc" class="outline-3">
+<h3 id="org7cda0fc"><span class="section-number-3">5.1</span> 6.1 默认远程仓库</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-sh">git config branch.master.remote origin
@@ -631,12 +631,12 @@ foo/
 </div>
 </div>
 
-<div id="outline-container-org3de0370" class="outline-2">
-<h2 id="org3de0370"><span class="section-number-2">6</span> 7. Git 使用点滴</h2>
+<div id="outline-container-orga73b5c7" class="outline-2">
+<h2 id="orga73b5c7"><span class="section-number-2">6</span> 7. Git 使用点滴</h2>
 <div class="outline-text-2" id="text-6">
 </div>
-<div id="outline-container-orgc969f70" class="outline-3">
-<h3 id="orgc969f70"><span class="section-number-3">6.1</span> 7.1 系统警告：`LF will be replaced by CRLF`</h3>
+<div id="outline-container-orgdd294d5" class="outline-3">
+<h3 id="orgdd294d5"><span class="section-number-3">6.1</span> 7.1 系统警告：`LF will be replaced by CRLF`</h3>
 <div class="outline-text-3" id="text-6-1">
 <p>
 <b><b>原因分析：</b></b>
@@ -690,8 +690,8 @@ git add .
 </div>
 </div>
 
-<div id="outline-container-org3f92eeb" class="outline-3">
-<h3 id="org3f92eeb"><span class="section-number-3">6.2</span> 7.2 系统错误：`failed to push some refs to`</h3>
+<div id="outline-container-org9807c07" class="outline-3">
+<h3 id="org9807c07"><span class="section-number-3">6.2</span> 7.2 系统错误：`failed to push some refs to`</h3>
 <div class="outline-text-3" id="text-6-2">
 <p>
 <b><b>原因分析：</b></b>
@@ -713,8 +713,8 @@ git add .
 </div>
 </div>
 
-<div id="outline-container-orge14bc1b" class="outline-3">
-<h3 id="orge14bc1b"><span class="section-number-3">6.3</span> 7.2 系统错误：`commit your changes or stash them before you can merge`</h3>
+<div id="outline-container-org30fceab" class="outline-3">
+<h3 id="org30fceab"><span class="section-number-3">6.3</span> 7.2 系统错误：`commit your changes or stash them before you can merge`</h3>
 <div class="outline-text-3" id="text-6-3">
 <p>
 <b><b>原因分析：</b></b>
@@ -729,8 +729,8 @@ git add .
 </p>
 </div>
 
-<div id="outline-container-org3e9720a" class="outline-4">
-<h4 id="org3e9720a"><span class="section-number-4">6.3.1</span> 7.2.1 放弃本地版本，获取远程仓库最新版本</h4>
+<div id="outline-container-orgec6fa94" class="outline-4">
+<h4 id="orgec6fa94"><span class="section-number-4">6.3.1</span> 7.2.1 放弃本地版本，获取远程仓库最新版本</h4>
 <div class="outline-text-4" id="text-6-3-1">
 <div class="org-src-container">
 <pre class="src src-sh">git reset --hard
@@ -750,8 +750,8 @@ git checkout HEAD file/to/restore
 </div>
 </div>
 
-<div id="outline-container-org26d407e" class="outline-4">
-<h4 id="org26d407e"><span class="section-number-4">6.3.2</span> 7.2.2 使用 `git stash` 保留生产服务器上所做的改动,仅仅并入新配置项。</h4>
+<div id="outline-container-org507ba3a" class="outline-4">
+<h4 id="org507ba3a"><span class="section-number-4">6.3.2</span> 7.2.2 使用 `git stash` 保留生产服务器上所做的改动,仅仅并入新配置项。</h4>
 <div class="outline-text-4" id="text-6-3-2">
 <div class="org-src-container">
 <pre class="src src-sh">git stash
@@ -774,8 +774,8 @@ git stash pop
 </div>
 </div>
 
-<div id="outline-container-orgb1913f1" class="outline-3">
-<h3 id="orgb1913f1"><span class="section-number-3">6.4</span> 7.3 关于回滚</h3>
+<div id="outline-container-org1c6cf4a" class="outline-3">
+<h3 id="org1c6cf4a"><span class="section-number-3">6.4</span> 7.3 关于回滚</h3>
 <div class="outline-text-3" id="text-6-4">
 <p>
 Git 的历史记录是不可修改的，也就是不能更改任何已经发生的事情。
@@ -857,8 +857,8 @@ b7057a9 initial commit
 </div>
 </div>
 
-<div id="outline-container-orgcecbe45" class="outline-3">
-<h3 id="orgcecbe45"><span class="section-number-3">6.5</span> 7.4 Clone 错误 `does not appear to be a git repository`</h3>
+<div id="outline-container-org11813b4" class="outline-3">
+<h3 id="org11813b4"><span class="section-number-3">6.5</span> 7.4 Clone 错误 `does not appear to be a git repository`</h3>
 <div class="outline-text-3" id="text-6-5">
 <p>
 Clone 用绝对路径，不要使用相对路径
@@ -869,8 +869,8 @@ Clone 用绝对路径，不要使用相对路径
 </div>
 </div>
 
-<div id="outline-container-org3576945" class="outline-2">
-<h2 id="org3576945"><span class="section-number-2">7</span> References</h2>
+<div id="outline-container-org52c40ed" class="outline-2">
+<h2 id="org52c40ed"><span class="section-number-2">7</span> References</h2>
 <div class="outline-text-2" id="text-7">
 <blockquote>
 <p>
