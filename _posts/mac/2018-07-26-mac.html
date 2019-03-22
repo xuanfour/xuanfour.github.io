@@ -4,7 +4,7 @@ title:  "Mac 安装使用"
 date:   2017-07-26
 categories: MacOS
 tags:
-    - MacOS
+  - MacOS
 ---
 
 <div id="outline-container-org2e6ae6c" class="outline-2">
@@ -22,17 +22,132 @@ tags:
 </div>
 </div>
 
-<div id="outline-container-org30f9f6d" class="outline-2">
-<h2 id="org30f9f6d"><span class="section-number-2">2</span> Tips</h2>
+<div id="outline-container-org01e78cd" class="outline-2">
+<h2 id="org01e78cd"><span class="section-number-2">2</span> MacOS 路径</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org1995f0c" class="outline-3">
-<h3 id="org1995f0c"><span class="section-number-3">2.1</span> 应用管理</h3>
+<div id="outline-container-orgc2962a9" class="outline-3">
+<h3 id="orgc2962a9"><span class="section-number-3">2.1</span> 常见命令路径</h3>
 <div class="outline-text-3" id="text-2-1">
+<dl class="org-dl">
+<dt><code>/bin</code></dt><dd>是系统的一些指令。bin 为 binary 的简写，主要放置一些系统的必备执行档例如： <code>cat、cp、chmod df、dmesg、gzip、kill、ls、mkdir、more、mount、rm、su、tar</code> 等。</dd>
+<dt><code>/sbin</code></dt><dd>一般是指超级用户指令。主要放置一些系统管理的必备程式例如： <code>cfdisk、dhcpcd、dump、e2fsck、fdisk、halt、ifconfig、ifup、ifdown、init、insmod、lilo、lsmod、mke2fs、modprobe、quotacheck、reboot、rmmod、runlevel、shutdown</code> 等。</dd>
+<dt><code>/usr/bin</code></dt><dd>用户安装的一些软件的运行脚本。主要放置一些应用软体工具的必备执行档例如： <code>c++、g++、gcc、chdrv、diff、dig、du、eject、elm、free、gnome*、gzip、htpasswd、kfm、ktop、last、less、locale、m4、make、man、mcopy、ncftp、newaliases、nslookup passwd、quota、smb*、wget</code> 等。</dd>
+<dt><code>/usr/sbin</code></dt><dd>用户安装的系统管理的必备程式。例如： <code>dhcpd、httpd、imap、in.*d、inetd、lpd、named、netconfig、nmbd、samba、sendmail、squid、swap、tcpd、tcpdump</code> 等。如果新装的系统，运行一些很正常的诸如： <code>shutdown、fdisk</code> 的命令时，悍然提示： <code>bash:command not found</code> 。那么首先就要考虑 root 的 <code>$PATH</code> 里是否已经包含了这些环境变量。可以查看 <code>PATH</code> ，如果是： <code>PATH=$PATH:$HOME/bin</code> 则需要添加成如下： <code>PATH=$PATH:$HOME/bin:/sbin:/usr/bin:/usr/sbin</code> 。</dd>
+</dl>
+</div>
+</div>
+
+<div id="outline-container-orgafb4493" class="outline-3">
+<h3 id="orgafb4493"><span class="section-number-3">2.2</span> 环境变量配置文件</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+MacOS 默认的是 Bourne Shell，其环境变量配置文件及加载顺序如下：
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">/etc/profile
+/etc/bashrc
+/etc/paths
+~/.bash_profile <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">MacOS</span>
+~/.bash_login
+~/.profile
+~/.bashrc <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">Linux</span>
+</pre>
+</div>
+
+<p>
+其中 <code>/etc/profile、/etc/bashrc</code> 和 <code>/etc/paths</code> 是系统级环境变量，对所有用户都有效。但它们的加载时机有所区别：
+</p>
+
+<dl class="org-dl">
+<dt><code>/etc/profile</code></dt><dd>任何用户登陆时都会读取该文件</dd>
+<dt><code>/etc/bashrc</code></dt><dd>bash shell 执行时，不管是何种方式，读取此文件</dd>
+<dt><code>/etc/paths</code></dt><dd>任何用户登陆时都会读取该文件</dd>
+</dl>
+
+<p>
+后面几个是当前用户级的环境变量。MacOS 默认用户环境变量配置文件为 <code>~/.bash_profile</code> ，Linux 为 <code>~/.bashrc</code> 。
+</p>
+
+<p>
+如果不存在 <code>~/.bash_profile</code> ，则可以自己创建一个 <code>~/.bash_profile</code> 。
+</p>
+
+<ul class="org-ul">
+<li>如果 <code>~/.bash_profile</code> 文件存在，则后面的几个文件就会被忽略</li>
+<li>如果 <code>~/.bash_profile</code> 文件不存在，才会以此类推读取后面的文件</li>
+<li>如果使用的是 SHELL 类型是 zsh，则还可能存在对应的 <code>/etc/zshrc</code> 和 <code>~/.zshrc</code> 。任何用户登录 zsh 的时候，都会读取该文件。某个用户登录的时候，会读取其对应的 <code>~/.zshrc</code> 。</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6de3db9" class="outline-3">
+<h3 id="org6de3db9"><span class="section-number-3">2.3</span> PATH 配置</h3>
+<div class="outline-text-3" id="text-2-3">
+</div>
+<div id="outline-container-orga5fd2e5" class="outline-4">
+<h4 id="orga5fd2e5"><span class="section-number-4">2.3.1</span> 设置 PATH 的语法</h4>
+<div class="outline-text-4" id="text-2-3-1">
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#20013;&#38388;&#29992; ':' &#38548;&#24320;</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">PATH</span>=$<span style="color: #7590db;">PATH</span>:&lt;PATH <span style="color: #a45bad;">1</span>&gt;:&lt;PATH <span style="color: #a45bad;">2</span>&gt;:&lt;PATH <span style="color: #a45bad;">3</span>&gt;:...:&lt;PATH n&gt;
+</pre>
+</div>
+
+<p>
+路径顺序相关的配置文件： <code>/etc/paths、/etc/paths.d、/etc/manpaths、/etc/manpaths.d</code> 。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgbb27e69" class="outline-4">
+<h4 id="orgbb27e69"><span class="section-number-4">2.3.2</span> 系统环境变量文件 <code>/etc/paths</code> 中的内容</h4>
+<div class="outline-text-4" id="text-2-3-2">
+<p>
+一般添加系统环境变量，建议通过修改 <i>etc/paths 的方式进行添加。一般不建议直接修改 /etc/paths 文件，而是将路径写在 /etc/paths.d</i> 目录下的一个文件里，系统会逐一读取 <i>etc/paths.d</i> 下的每个文件。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">/usr/local/bin
+/usr/bin
+/bin
+/usr/sbin
+/sbin
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc2e35d8" class="outline-4">
+<h4 id="orgc2e35d8"><span class="section-number-4">2.3.3</span> 系统环境变量文件 <code>/etc/manpaths</code> 中的内容</h4>
+<div class="outline-text-4" id="text-2-3-3">
+<div class="org-src-container">
+<pre class="src src-sh">/usr/share/man
+/usr/local/share/man
+</pre>
+</div>
+
+<p>
+Homebrew 安装的软件，其二进制执行文件都放在 /usr/local/bin 中，bin 在使用时的查找不是覆盖原则，而是优先查找，所以例如 mac 已经自带了 sqlite3，如果 brew 安装后，最新版的 sqlite3 是不会被调用的，因此可以将顺序修改一下以达到目的。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org30f9f6d" class="outline-2">
+<h2 id="org30f9f6d"><span class="section-number-2">3</span> Tips</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org1995f0c" class="outline-3">
+<h3 id="org1995f0c"><span class="section-number-3">3.1</span> 应用管理</h3>
+<div class="outline-text-3" id="text-3-1">
 </div>
 <div id="outline-container-orgc3c47fd" class="outline-4">
-<h4 id="orgc3c47fd"><span class="section-number-4">2.1.1</span> 取消下载应用</h4>
-<div class="outline-text-4" id="text-2-1-1">
+<h4 id="orgc3c47fd"><span class="section-number-4">3.1.1</span> 取消下载应用</h4>
+<div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
 <li>在启动台按住 option 键，点击应用图标上端的叉号删除 App Store 正在下载的应用。</li>
 </ul>
@@ -40,8 +155,8 @@ tags:
 </div>
 
 <div id="outline-container-orgf213a85" class="outline-4">
-<h4 id="orgf213a85"><span class="section-number-4">2.1.2</span> 删除应用</h4>
-<div class="outline-text-4" id="text-2-1-2">
+<h4 id="orgf213a85"><span class="section-number-4">3.1.2</span> 删除应用</h4>
+<div class="outline-text-4" id="text-3-1-2">
 <ul class="org-ul">
 <li>在应用程序文件夹中直接删除应用。</li>
 <li>在启动台按住 option 键，点击应用图标上端的叉号删除 App Store 下载的应用。</li>

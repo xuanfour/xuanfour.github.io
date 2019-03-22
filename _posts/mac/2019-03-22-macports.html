@@ -1,0 +1,235 @@
+---
+layout: post
+title: "MacPorts 学习"
+date: 2019-03-22
+categories: MacOS
+tags:
+    - MacOS
+    - Homebrew
+-
+excerpt:
+keywords: ""
+---
+
+<div id="outline-container-orge7bff32" class="outline-2">
+<h2 id="orge7bff32"><span class="section-number-2">1</span> 安装 MacPorts</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orge1d63af" class="outline-3">
+<h3 id="orge1d63af"><span class="section-number-3">1.1</span> 安装 XCode</h3>
+<div class="outline-text-3" id="text-1-1">
+<p>
+XCode 是由苹果公司提供的开发包，它包含了编译器、代码库和其他用于开发 Mac OS X 应用的工具。
+</p>
+
+<p>
+可以通过 Mac App Store 或 Apple developer website 下载 XCode，你也可以在网上搜索相关资源。
+注意：请确保你的 Mac OS X 版本安装了和它匹配的最新的 XCode，使用过期版本会造成 port 安装失败。
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9de746f" class="outline-3">
+<h3 id="org9de746f"><span class="section-number-3">1.2</span> 安装 XCode 命令行工具</h3>
+<div class="outline-text-3" id="text-1-2">
+<div class="org-src-container">
+<pre class="src src-sh">xcode-select --install
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#24050;&#32463;&#23433;&#35013;&#21629;&#20196;&#34892;&#24037;&#20855;&#30340;&#21487;&#20197;&#36873;&#25321;&#36335;&#24452;</span>
+sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org968e706" class="outline-3">
+<h3 id="org968e706"><span class="section-number-3">1.3</span> 许可 XCode</h3>
+<div class="outline-text-3" id="text-1-3">
+<div class="org-src-container">
+<pre class="src src-sh">sudo xcodebuild -license
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgf30e18b" class="outline-3">
+<h3 id="orgf30e18b"><span class="section-number-3">1.4</span> 安装 MacPorts</h3>
+<div class="outline-text-3" id="text-1-4">
+<p>
+如果你使用的是 Mac OS X，你最好使用 Mac OS X Package Installer 来安装 MacPorts，除非你不想将 MacPorts 安装到它的默认目录（/opt/local/）。
+</p>
+</div>
+
+<div id="outline-container-orga1b095c" class="outline-4">
+<h4 id="orga1b095c"><span class="section-number-4">1.4.1</span> Mac OS X Package Installer</h4>
+<div class="outline-text-4" id="text-1-4-1">
+<p>
+Mac OS X Package Installer 能自动安装 MacPorts，设置 shell environment，并且运行 selfupdate 命令来更新 ports tree 和 MacPorts base。
+</p>
+
+<p>
+你可以从 <a href="https://www.macports.org/install.php">MacPorts Download</a> 下载最新的 MacPorts Installer。
+</p>
+
+<p>
+下载完成后，直接双击 Package Installer 执行默认安装即可，安装完毕后，设置环境变量 <code>export PATH=/opt/local/bin:/opt/local/sbin:$PATH</code> 。
+</p>
+
+<p>
+打开一个新的终端，执行： <code>port version</code> ，如果安装成功，则可以看见版本号，如果出现 command not found，可以尝试在这里 <a href="https://guide.macports.org/#installing.shell">MacPorts and the Shell</a> 查找原因。
+</p>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgbcad46b" class="outline-2">
+<h2 id="orgbcad46b"><span class="section-number-2">2</span> 使用 MacPorts</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+MacPorts port 命令是与 MacPorts 交互的主要手段。它用于更新 Portfiles、MacPorts 基础部件，安装和管理 ports。
+</p>
+
+<dl class="org-dl">
+<dt>help</dt><dd>帮助命令。如果给出操作名称，则显示该操作的简要说明，如果没有给出操作名称，则显示 port 命令使用方法的基本说明。</dd>
+
+<dt>selfupdate</dt><dd>该操作用于更新 MacPorts，该操作应该经常执行，来将本地的 ports tree 和全球 MacPorts ports 仓库同步以便你保持最新的 port 版本。同时它也会检查 MacPorts base，并及时更新它。</dd>
+</dl>
+
+<p>
+注意：selfupdate 操作只适用于 Mac OS X。如果你在其他平台运行 MacPorts，你需要通过 sync 操作来更新 ports tree，安装最新的 MarPorts 来更新当前 MarPorts base。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo port selfupdate &#65293; &#26356;&#26032;&#24403;&#21069; ports tree &#21644; MacPorts base&#12290;
+sudo port -d selfupdate &#65293; Debug &#27169;&#24335;&#26356;&#26032;&#65292;&#20250;&#26174;&#31034;&#26356;&#26032;&#35814;&#24773;&#12290;
+</pre>
+</div>
+
+<dl class="org-dl">
+<dt>sync</dt><dd>同步 ports tree，但不检查 MacPorts base。</dd>
+
+<dt>list</dt><dd>列出给定的 ports 的当前有效版本，如果未给定 ports，则列出全部有效 ports。因为全部的列表很长，如果你知道某个 port 名称，最好使用 search 操作。</dd>
+
+<dt>search</dt><dd>该操作会搜索与给定名称或描述相匹配的结果。</dd>
+
+<dt>info</dt><dd>获取 port 详细信息：描述，维护者等等。</dd>
+
+<dt>deps</dt><dd>显示 port 的依赖包，这些依赖包需要在 Portfile 中明确列出才行。</dd>
+
+<dt>variants</dt><dd>该操作让你可以在安装 port 前检查它的不同变体。Variants 是 port 的作者提供一些参数，让 MacPorts 在安装过程中使用。</dd>
+</dl>
+
+<pre class="example">
+port variants nmap
+nmap has the variants:
+  no_pcre: build without pcre support
+  no_ssl: build without ssl support
+  universal: Build for multiple architectures
+  zenmap: build zenmap in addition to nmap
+</pre>
+
+<dl class="org-dl">
+<dt>install</dt><dd>安装 port，如果该 port 有 variants，可以通过增加 variants 或者去除默认 variants 来进行安装。</dd>
+</dl>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26222;&#36890;&#23433;&#35013;</span>
+sudo port install nmap
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#28155;&#21152; variant &#23433;&#35013;</span>
+sudo port install nmap +no_ssl
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21435;&#38500; variant &#23433;&#35013;</span>
+sudo port install fetchmail -ssl
+</pre>
+</div>
+
+<dl class="org-dl">
+<dt>clean</dt><dd>清理操作，用于删除 MacPorts 在 build 一个 port 时产生的临时文件。它还经常用于 fetch 操作失败后的清理崩溃了的文件。</dd>
+
+<dt>uninstall</dt><dd>卸载操作，卸载 port。</dd>
+</dl>
+
+<p>
+注意：要同时递归删除 port 所依赖的开发包，使用&#x2013;follow-dependencies 标记。如果该开发包有其他开发包依赖于它，它将不会被删除。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo port uninstall --follow-dependencies vile
+</pre>
+</div>
+
+<p>
+要在删除当前 port 前删除所有依赖于它的开发包，使用&#x2013;follow-dependents。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo port uninstall --follow-dependents ncurses
+</pre>
+</div>
+
+<p>
+如果要删除一个 port，但这个 port 又是其他 ports 所依赖的对象，那么 MacPorts 不会删除它，除非你先删除那些依赖于此包的开发包。你可以使用-f 参数来强制执行删除。但谨慎使用，除非你真的很确定你在做什么。
+</p>
+
+<dl class="org-dl">
+<dt>contents</dt><dd>内容操作，显示某个 port 安装过的文件。</dd>
+
+<dt>installed</dt><dd>列出已安装 port。显示已安装的版本、变体和激活状态。使用 -v 参数显示该 port 是在哪个平台哪个 cpu 结构下 build 的。</dd>
+
+<dt>outdated</dt><dd>列出过期 port。使用该操作前先 selfupdate 或者 sync 一下，以便对比当前已安装 port 是否都是最新版本。</dd>
+
+<dt>upgrade</dt><dd>更新操作。当一个 Portfile 发生更新时，使用该命令来更新它对应的 port 及其依赖包。如果你只想更新 port，不想更新它的依赖包，那么可以使用 -n 参数，但记住，这样往往会有故障发生。</dd>
+</dl>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26222;&#36890;&#26356;&#26032;</span>
+sudo port upgrade gnome
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#21482;&#26356;&#26032; port&#65292;&#19981;&#26356;&#23427;&#30340;&#20381;&#36182;&#21253;</span>
+sudo port -n upgrade gnome
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26356;&#26032;&#25152;&#26377;&#36807;&#26399; port</span>
+sudo port upgrade outdated
+</pre>
+</div>
+
+<p>
+upgrade 默认更新行为是下载新的版本并启用它，但不会删除旧的版本。如果你要更新新版本同时卸载旧版本，使用 -u 参数。
+</p>
+
+<div class="org-src-container">
+<pre class="src src-sh">sudo port -u upgrade vile
+</pre>
+</div>
+
+<dl class="org-dl">
+<dt>dependents</dt><dd>列出所有依赖本包的开发包。</dd>
+
+<dt>livecheck</dt><dd>检查远程仓库该 port 是否有更新。</dd>
+
+<dt>lint</dt><dd>检查 Portfile 是否符合规范。</dd>
+
+<dt>select</dt><dd>在指定的分组，选择一个默认版本并创建链接。例如，python 可能被链接到 python 2.6。可用的 select 分组被安装在 ${prefix}/etc/select/ 的子目录中，使用 &#x2013;summary 参数列出所有分组。要列出分组中的可用版本，使用 &#x2013;list。查看当前分组选择的版本，使用 &#x2013;show。要变更分组中选择的版本使用 &#x2013;set。</dd>
+</dl>
+
+<pre class="example">
+port select --summary
+port select --show python
+port select --list python
+port select --set python python34
+</pre>
+</div>
+</div>
+
+<div id="outline-container-orga2b3de9" class="outline-2">
+<h2 id="orga2b3de9"><span class="section-number-2">3</span> References</h2>
+<div class="outline-text-2" id="text-3">
+<blockquote>
+<p>
+本文是我的学习笔记，内容参考了网上资源，为了方便自己查询使用，做了一些修改整理。
+笔记内容摘录于下列文章，相应权利归属原作者，如有未列出的或有不妥，请联系我立即增补或删除。
+</p>
+</blockquote>
+
+<ul class="org-ul">
+<li><a href="http://www.cnblogs.com/ifantastic/p/3677066.html">http://www.cnblogs.com/ifantastic/p/3677066.html</a></li>
+</ul>
+</div>
+</div>
