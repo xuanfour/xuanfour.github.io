@@ -9,9 +9,23 @@ excerpt:
 keywords: ""
 ---
 
-<div id="outline-container-org744c7df" class="outline-2">
-<h2 id="org744c7df"><span class="section-number-2">1</span> 重要命令</h2>
+<div id="outline-container-org57f0f27" class="outline-2">
+<h2 id="org57f0f27"><span class="section-number-2">1</span> M-x 命令</h2>
 <div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org9a753c4" class="outline-3">
+<h3 id="org9a753c4"><span class="section-number-3">1.1</span> 进入命令的快捷键</h3>
+<div class="outline-text-3" id="text-1-1">
+<ul class="org-ul">
+<li>M-x</li>
+<li>L-Spc</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org6a9a972" class="outline-3">
+<h3 id="org6a9a972"><span class="section-number-3">1.2</span> 常用命令</h3>
+<div class="outline-text-3" id="text-1-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -41,8 +55,21 @@ keywords: ""
 <td class="org-left">begin-of-func</td>
 <td class="org-left">跳转到函数开头</td>
 </tr>
+
+<tr>
+<td class="org-left">cd</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">选择当前路径</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
 </tbody>
 </table>
+</div>
 </div>
 </div>
 
@@ -277,51 +304,9 @@ keywords: ""
 </div>
 </div>
 
-<div id="outline-container-org8a3bca6" class="outline-3">
-<h3 id="org8a3bca6"><span class="section-number-3">3.5</span> shell 快捷键</h3>
-<div class="outline-text-3" id="text-3-5">
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="org-left" />
-
-<col  class="org-left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="org-left">快捷键</th>
-<th scope="col" class="org-left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="org-left">:! command</td>
-<td class="org-left">执行 shell 命令，backspace 最小化 shell 窗格</td>
-</tr>
-
-<tr>
-<td class="org-left">:r! command</td>
-<td class="org-left">执行 shell 命令，同时将结果粘贴到光标处</td>
-</tr>
-
-<tr>
-<td class="org-left">L-!</td>
-<td class="org-left">执行 shell 命令，结果在小窗显示</td>
-</tr>
-
-<tr>
-<td class="org-left">L-'</td>
-<td class="org-left">打开 shell 窗口</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-
 <div id="outline-container-org08ffc92" class="outline-3">
-<h3 id="org08ffc92"><span class="section-number-3">3.6</span> help 快捷键</h3>
-<div class="outline-text-3" id="text-3-6">
+<h3 id="org08ffc92"><span class="section-number-3">3.5</span> help 快捷键</h3>
+<div class="outline-text-3" id="text-3-5">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -343,6 +328,27 @@ keywords: ""
 </tr>
 </thead>
 <tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">F1</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示帮助菜单</td>
+</tr>
+
+<tr>
+<td class="org-left">L-? keyword</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示关键字的帮助</td>
+</tr>
+
+<tr>
+<td class="org-left">L-h-SPC keyword</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示关键字的帮助</td>
+</tr>
+
 <tr>
 <td class="org-left">&#xa0;</td>
 <td class="org-left">C-h c</td>
@@ -431,9 +437,177 @@ keywords: ""
 </div>
 </div>
 
-<div id="outline-container-org31fa8d4" class="outline-3">
-<h3 id="org31fa8d4"><span class="section-number-3">3.7</span> text 快捷键</h3>
+<div id="outline-container-orgb17b5ad" class="outline-3">
+<h3 id="orgb17b5ad"><span class="section-number-3">3.6</span> helm buffer 快捷键</h3>
+<div class="outline-text-3" id="text-3-6">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c ?</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示帮助信息</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-o</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在不同的候选源之间切换</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-p C-n</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在候选项 buffer 里上下导航</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-v M-v</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在候选项 buffer 里上下翻页</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M-&lt; M-&gt;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在候选项 buffer 里移动到顶/底端</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-k</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">清空 Minibuf 中的内容</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Tab</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">显示候选项内容</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-l</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">返回上一级</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">(C-u) C-s</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">(递归)grep 当前文档/目录</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-!</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">暂停/开始 helm 更新</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c h</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换到文件名历史</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M-p</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换到其他目录</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c i</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在当前位置插入匹配文件的路径</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c C-k kill</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">当前选项并退出 Minibuf</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org8a3bca6" class="outline-3">
+<h3 id="org8a3bca6"><span class="section-number-3">3.7</span> shell 快捷键</h3>
 <div class="outline-text-3" id="text-3-7">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">快捷键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">:! command</td>
+<td class="org-left">执行 shell 命令，backspace 最小化 shell 窗格</td>
+</tr>
+
+<tr>
+<td class="org-left">:r! command</td>
+<td class="org-left">执行 shell 命令，同时将结果粘贴到光标处</td>
+</tr>
+
+<tr>
+<td class="org-left">L-!</td>
+<td class="org-left">执行 shell 命令，结果在小窗显示</td>
+</tr>
+
+<tr>
+<td class="org-left">L-'</td>
+<td class="org-left">打开 shell 窗口</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org31fa8d4" class="outline-3">
+<h3 id="org31fa8d4"><span class="section-number-3">3.8</span> text 快捷键</h3>
+<div class="outline-text-3" id="text-3-8">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -474,8 +648,8 @@ keywords: ""
 </div>
 
 <div id="outline-container-orge4e2acd" class="outline-3">
-<h3 id="orge4e2acd"><span class="section-number-3">3.8</span> projects 快捷键</h3>
-<div class="outline-text-3" id="text-3-8">
+<h3 id="orge4e2acd"><span class="section-number-3">3.9</span> projects 快捷键</h3>
+<div class="outline-text-3" id="text-3-9">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -530,8 +704,8 @@ keywords: ""
 </div>
 
 <div id="outline-container-orgb7254f9" class="outline-3">
-<h3 id="orgb7254f9"><span class="section-number-3">3.9</span> expand region 快捷键</h3>
-<div class="outline-text-3" id="text-3-9">
+<h3 id="orgb7254f9"><span class="section-number-3">3.10</span> expand region 快捷键</h3>
+<div class="outline-text-3" id="text-3-10">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -607,12 +781,12 @@ keywords: ""
 </div>
 
 <div id="outline-container-orga5ba2c9" class="outline-3">
-<h3 id="orga5ba2c9"><span class="section-number-3">3.10</span> search/symbol 快捷键</h3>
-<div class="outline-text-3" id="text-3-10">
+<h3 id="orga5ba2c9"><span class="section-number-3">3.11</span> search/symbol 快捷键</h3>
+<div class="outline-text-3" id="text-3-11">
 </div>
 <div id="outline-container-org079d9c7" class="outline-4">
-<h4 id="org079d9c7"><span class="section-number-4">3.10.1</span> 搜索#</h4>
-<div class="outline-text-4" id="text-3-10-1">
+<h4 id="org079d9c7"><span class="section-number-4">3.11.1</span> 搜索#</h4>
+<div class="outline-text-4" id="text-3-11-1">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -688,8 +862,8 @@ keywords: ""
 </div>
 
 <div id="outline-container-org0ddc61e" class="outline-4">
-<h4 id="org0ddc61e"><span class="section-number-4">3.10.2</span> 默认输入#</h4>
-<div class="outline-text-4" id="text-3-10-2">
+<h4 id="org0ddc61e"><span class="section-number-4">3.11.2</span> 默认输入#</h4>
+<div class="outline-text-4" id="text-3-11-2">
 <p>
 默认输入指当前缓存的选择区域或光标下的关键字。
 </p>
@@ -697,8 +871,8 @@ keywords: ""
 </div>
 
 <div id="outline-container-org65952fd" class="outline-4">
-<h4 id="org65952fd"><span class="section-number-4">3.10.3</span> 命令#</h4>
-<div class="outline-text-4" id="text-3-10-3">
+<h4 id="org65952fd"><span class="section-number-4">3.11.3</span> 命令#</h4>
+<div class="outline-text-4" id="text-3-11-3">
 <p>
 Leader s 检索工具 作用域
 </p>
@@ -706,8 +880,8 @@ Leader s 检索工具 作用域
 </div>
 
 <div id="outline-container-org96f5e61" class="outline-4">
-<h4 id="org96f5e61"><span class="section-number-4">3.10.4</span> 检索工具#</h4>
-<div class="outline-text-4" id="text-3-10-4">
+<h4 id="org96f5e61"><span class="section-number-4">3.11.4</span> 检索工具#</h4>
+<div class="outline-text-4" id="text-3-11-4">
 <p>
 如果省略检索工具，则自动选择默认工具进行搜索。列表定义 `dotspacemacs-search-tools`，默认顺序是 ag、pt、ack、grep。
 </p>
@@ -722,8 +896,8 @@ Leader s 检索工具 作用域
 </div>
 
 <div id="outline-container-org2968863" class="outline-4">
-<h4 id="org2968863"><span class="section-number-4">3.10.5</span> 作用域#</h4>
-<div class="outline-text-4" id="text-3-10-5">
+<h4 id="org2968863"><span class="section-number-4">3.11.5</span> 作用域#</h4>
+<div class="outline-text-4" id="text-3-11-5">
 <p>
 大写作用域键用默认输入来搜索。重复作用域键用来搜索当前文件。
 </p>
@@ -739,8 +913,8 @@ Leader s 检索工具 作用域
 </div>
 
 <div id="outline-container-org20b6b91" class="outline-4">
-<h4 id="org20b6b91"><span class="section-number-4">3.10.6</span> 在当前项目中搜索#</h4>
-<div class="outline-text-4" id="text-3-10-6">
+<h4 id="org20b6b91"><span class="section-number-4">3.11.6</span> 在当前项目中搜索#</h4>
+<div class="outline-text-4" id="text-3-11-6">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -863,15 +1037,14 @@ Leader s 检索工具 作用域
 
 <p>
 常见操作：
-`L-sp` 在项目中搜索，显示搜索结果后按键 `&lt;F4&gt;` 编辑搜索结果列表，然后按键 `C-c C-c` 提交修改，或者按键 `C-c C-k`，然后回答 `y` 放弃修改。
-也可以按键 `&lt;F3&gt;` 将搜索结果列表保存到临时缓冲后逐一修改。
+`L-sp` 在项目中搜索，显示搜索结果后按键 `&lt;F4&gt;` 编辑搜索结果列表，然后按键 `C-c C-c` 提交修改，或者按键 `C-c C-k`，然后回答 `y` 放弃修改。也可以按键 `&lt;F3&gt;` 将搜索结果列表保存到临时缓冲后逐一修改。
 </p>
 </div>
 </div>
 
 <div id="outline-container-org50f959f" class="outline-4">
-<h4 id="org50f959f"><span class="section-number-4">3.10.7</span> 在当前文件中搜索#</h4>
-<div class="outline-text-4" id="text-3-10-7">
+<h4 id="org50f959f"><span class="section-number-4">3.11.7</span> 在当前文件中搜索#</h4>
+<div class="outline-text-4" id="text-3-11-7">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -941,8 +1114,8 @@ Leader s 检索工具 作用域
 </div>
 
 <div id="outline-container-org039c3f3" class="outline-3">
-<h3 id="org039c3f3"><span class="section-number-3">3.11</span> jump/join/split 快捷键</h3>
-<div class="outline-text-3" id="text-3-11">
+<h3 id="org039c3f3"><span class="section-number-3">3.12</span> jump/join/split 快捷键</h3>
+<div class="outline-text-3" id="text-3-12">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -997,8 +1170,8 @@ Leader s 检索工具 作用域
 </div>
 
 <div id="outline-container-org95bdc82" class="outline-3">
-<h3 id="org95bdc82"><span class="section-number-3">3.12</span> narrow/numbers</h3>
-<div class="outline-text-3" id="text-3-12">
+<h3 id="org95bdc82"><span class="section-number-3">3.13</span> narrow/numbers</h3>
+<div class="outline-text-3" id="text-3-13">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1067,8 +1240,8 @@ Leader s 检索工具 作用域
 </div>
 
 <div id="outline-container-orgd28ea9c" class="outline-3">
-<h3 id="orgd28ea9c"><span class="section-number-3">3.13</span> files 快捷键</h3>
-<div class="outline-text-3" id="text-3-13">
+<h3 id="orgd28ea9c"><span class="section-number-3">3.14</span> files 快捷键</h3>
+<div class="outline-text-3" id="text-3-14">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1106,8 +1279,8 @@ Leader s 检索工具 作用域
 </div>
 
 <div id="outline-container-org11d42ee" class="outline-3">
-<h3 id="org11d42ee"><span class="section-number-3">3.14</span> window 快捷键</h3>
-<div class="outline-text-3" id="text-3-14">
+<h3 id="org11d42ee"><span class="section-number-3">3.15</span> window 快捷键</h3>
+<div class="outline-text-3" id="text-3-15">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1193,8 +1366,8 @@ Leader s 检索工具 作用域
 </div>
 
 <div id="outline-container-org52bf2a7" class="outline-3">
-<h3 id="org52bf2a7"><span class="section-number-3">3.15</span> toggles 快捷键</h3>
-<div class="outline-text-3" id="text-3-15">
+<h3 id="org52bf2a7"><span class="section-number-3">3.16</span> toggles 快捷键</h3>
+<div class="outline-text-3" id="text-3-16">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1291,8 +1464,8 @@ Leader s 检索工具 作用域
 </div>
 
 <div id="outline-container-orgfa5db4c" class="outline-3">
-<h3 id="orgfa5db4c"><span class="section-number-3">3.16</span> major-mode-cmd 快捷键</h3>
-<div class="outline-text-3" id="text-3-16">
+<h3 id="orgfa5db4c"><span class="section-number-3">3.17</span> major-mode-cmd 快捷键</h3>
+<div class="outline-text-3" id="text-3-17">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1320,7 +1493,34 @@ Leader s 检索工具 作用域
 <td class="org-left">,</td>
 <td class="org-left">major mode</td>
 </tr>
+</tbody>
+</table>
+</div>
 
+<div id="outline-container-org1b2ccce" class="outline-4">
+<h4 id="org1b2ccce"><span class="section-number-4">3.17.1</span> elisp</h4>
+<div class="outline-text-4" id="text-3-17-1">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td class="org-left">L-meb</td>
 <td class="org-left">&#xa0;</td>
@@ -1352,10 +1552,487 @@ Leader s 检索工具 作用域
 </table>
 </div>
 </div>
+</div>
+
+<div id="outline-container-org418097b" class="outline-3">
+<h3 id="org418097b"><span class="section-number-3">3.18</span> treemacs 快捷键</h3>
+<div class="outline-text-3" id="text-3-18">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M-0</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换 treemacs</td>
+</tr>
+
+<tr>
+<td class="org-left">L-0</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换 treemacs</td>
+</tr>
+
+<tr>
+<td class="org-left">L-fb</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">查找并选择书签。如果找不到，则以书签的位置为根</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">重新生成视图。同时打开前缀为 arg 的书签。</td>
+</tr>
+
+<tr>
+<td class="org-left">L-ft</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换 treemacs buffer，如果不存在就用当前目录新建</td>
+</tr>
+
+<tr>
+<td class="org-left">L-fT</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">手工以当前文件跟随模式切换 treemacs buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">L-f M-t</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">手工以当前文件和标记切换 treemacs buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">L-pt</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在项目中切换 treemacs</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">?</td>
+<td class="org-left">treemacs 中显示帮助</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">q</td>
+<td class="org-left">切换 treemacs buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Q</td>
+<td class="org-left">删除 treemacs buffer</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">j/n</td>
+<td class="org-left">移动到下一节点</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">k/p</td>
+<td class="org-left">移动到上一节点</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M-j/M-n</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">移动到下一同层次相邻节点</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M-k/M-p</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">移动到上一同层次相邻节点</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M-S-j/M-S-n</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">向下移动另外窗口内容</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M-S-k/M-S-p</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">向上移动另外窗口内容</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Tab</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">可配置，默认展开节点</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Ret</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">可配置，默认访问节点</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">cf</td>
+<td class="org-left">新建文件</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">cd</td>
+<td class="org-left">新建目录</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">R</td>
+<td class="org-left">重命名当前选定的节点。重新加载缓冲区。</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">oo</td>
+<td class="org-left">打开文件或标签，不执行拆分在另外窗口直接使用</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">oh</td>
+<td class="org-left">横向分割窗口打开文件或标签</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ov</td>
+<td class="org-left">纵向分割窗口打开文件或标签</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">oaa</td>
+<td class="org-left">打开文件或标签，使用 ace-window 决定打开文件的窗口</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">oah</td>
+<td class="org-left">横向分割 ace-window 窗口打开文件或标签</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">oav</td>
+<td class="org-left">纵向分割 ace-window 窗口打开文件或标签</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">ox</td>
+<td class="org-left">外部应用打开文件</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">u</td>
+<td class="org-left">移动到父节点</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">tf</td>
+<td class="org-left">切换跟随模式</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">th</td>
+<td class="org-left">切换显示隐藏文件</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c C-p a</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">treemacs 中增加项目</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c C-p d</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">treemacs 中删除项目</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-c C-p r</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">treemacs 中更改项目名称</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">gr</td>
+<td class="org-left">刷新</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">w</td>
+<td class="org-left">设置窗口宽度</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">yy</td>
+<td class="org-left">拷贝节点的绝对路径</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">yr</td>
+<td class="org-left">拷贝最近节点的绝对路径</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">s</td>
+<td class="org-left">重新排序</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">b</td>
+<td class="org-left">书签</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<div id="outline-container-org55d035b" class="outline-3">
+<h3 id="org55d035b"><span class="section-number-3">3.19</span> dired 快捷键</h3>
+<div class="outline-text-3" id="text-3-19">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Leader</th>
+<th scope="col" class="org-left">控制键</th>
+<th scope="col" class="org-left">其他键</th>
+<th scope="col" class="org-left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">L-ad</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换 dired</td>
+</tr>
+
+<tr>
+<td class="org-left">L-fj</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换 dired</td>
+</tr>
+
+<tr>
+<td class="org-left">L-jd</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">切换 dired</td>
+</tr>
+
+<tr>
+<td class="org-left">L-jD</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在另外的窗口切换 dired</td>
+</tr>
+
+<tr>
+<td class="org-left">L-pD</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">项目中切换 dired</td>
+</tr>
+
+<tr>
+<td class="org-left">L-FO</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">在另外的 frame 切换 dired</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">Ret</td>
+<td class="org-left">f</td>
+<td class="org-left">打开文件或目录</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">O</td>
+<td class="org-left">在单独的窗口打开文件</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">^</td>
+<td class="org-left">上级目录</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">+</td>
+<td class="org-left">新建目录</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C-x C-f</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">新建文件</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">R</td>
+<td class="org-left">重命名/移动</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">C</td>
+<td class="org-left">复制</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">M</td>
+<td class="org-left">更改文件/目录模式（unix 文件/目录权限）</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">d</td>
+<td class="org-left">删除所有区域</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">m</td>
+<td class="org-left">标记</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">u</td>
+<td class="org-left">取消标记/取消删除</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">x</td>
+<td class="org-left">实际删除标记为删除的文件或目录</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 
 <div id="outline-container-org3683c22" class="outline-3">
-<h3 id="org3683c22"><span class="section-number-3">3.17</span> other 快捷键</h3>
-<div class="outline-text-3" id="text-3-17">
+<h3 id="org3683c22"><span class="section-number-3">3.20</span> other 快捷键</h3>
+<div class="outline-text-3" id="text-3-20">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
 
@@ -1381,7 +2058,7 @@ Leader s 检索工具 作用域
 <td class="org-left">`L-&lt;Space&gt;`</td>
 <td class="org-left">M-x</td>
 <td class="org-left">&#xa0;</td>
-<td class="org-left">M-x</td>
+<td class="org-left">M-x 命令</td>
 </tr>
 
 <tr>
@@ -1466,29 +2143,11 @@ Leader s 检索工具 作用域
 </div>
 </div>
 
-<div id="outline-container-org57f0f27" class="outline-2">
-<h2 id="org57f0f27"><span class="section-number-2">4</span> M-x 命令</h2>
-<div class="outline-text-2" id="text-4">
-</div>
-<div id="outline-container-org9a753c4" class="outline-3">
-<h3 id="org9a753c4"><span class="section-number-3">4.1</span> 进入命令的快捷键</h3>
-<div class="outline-text-3" id="text-4-1">
-<ul class="org-ul">
-<li>M-x</li>
-<li>LL</li>
-
-<li>cd: 选择当前路径</li>
-</ul>
-</div>
-</div>
-</div>
-
 <div id="outline-container-orgcd1228e" class="outline-2">
-<h2 id="orgcd1228e"><span class="section-number-2">5</span> Project 设置</h2>
-<div class="outline-text-2" id="text-5">
+<h2 id="orgcd1228e"><span class="section-number-2">4</span> Project 设置</h2>
+<div class="outline-text-2" id="text-4">
 <p>
-如果是 git 项目，spacemacs 发现有 .git 目录，就会认为是一个 spacemacs project。
-如果没有 .git 目录，就需要手动创建一个 .projectile 空文件，告诉 spacmeacs 此处是 project 根目录。
+如果是 git 项目，spacemacs 发现有 .git 目录，就会认为是一个 spacemacs project。如果没有 .git 目录，就需要手动创建一个 .projectile 空文件，告诉 spacmeacs 此处是 project 根目录。
 </p>
 
 <div class="org-src-container">
@@ -1499,8 +2158,8 @@ Leader s 检索工具 作用域
 </div>
 
 <div id="outline-container-org2b66290" class="outline-2">
-<h2 id="org2b66290"><span class="section-number-2">6</span> iedit</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org2b66290"><span class="section-number-2">5</span> iedit</h2>
+<div class="outline-text-2" id="text-5">
 <p>
 Spacemacs 使用强大的 iedit 模式通过 evil-iedit-state 多点位编辑语法关键字和选择区域。
 evil-iedit-state 定义了两个新的 evil 状态：
@@ -1639,6 +2298,36 @@ evil-iedit-state 定义了两个新的 evil 状态：
 </div>
 </div>
 
+<div id="outline-container-org1a4774b" class="outline-2">
+<h2 id="org1a4774b"><span class="section-number-2">6</span> 中文输入法和字体设置</h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-orgd6d9db8" class="outline-3">
+<h3 id="orgd6d9db8"><span class="section-number-3">6.1</span> Mac 下自动切换中文输入法</h3>
+<div class="outline-text-3" id="text-6-1">
+<ol class="org-ol">
+<li>增加 chinese layer</li>
+</ol>
+<pre class="example">
+(setq-default dotspacemacs-configuration-layers '((chinese :variables
+                                                           chinese-enable-fcitx t)))
+</pre>
+
+<ol class="org-ol">
+<li>安装 fcitx 工具</li>
+</ol>
+<div class="org-src-container">
+<pre class="src src-sh">brew install fcitx-remote-for-osx <span style="color: #4f97d7;">[</span>--with-input-method=baidu-pinyin<span style="color: #4f97d7;">]</span>
+</pre>
+</div>
+
+<p>
+<b><b>注意：</b></b> 如果没有对应的输入法选项，可以不使用参数，但是要在“系统偏好设置”里，将“下一个输入法”快捷键设置为 <code>C-S-z</code> ，并且将非中文输入法设置为“美国英文”。
+</p>
+</div>
+</div>
+</div>
+
 <div id="outline-container-orgec57a8d" class="outline-2">
 <h2 id="orgec57a8d"><span class="section-number-2">7</span> 中英文混排空格 PanGu-Spacing</h2>
 <div class="outline-text-2" id="text-7">
@@ -1767,8 +2456,7 @@ die;
 <div class="outline-text-3" id="text-8-2">
 <p>
 打开一个 buffer
-M-/ spacemacs 的 TAB 按键被自动补全使用了，所以这里使用了 M-/ 来触发。
-如果有多个 tab stop 可以使用 TAB 进行跳转
+M-/ spacemacs 的 TAB 按键被自动补全使用了，所以这里使用了 M-/ 来触发。如果有多个 tab stop 可以使用 TAB 进行跳转
 </p>
 </div>
 </div>

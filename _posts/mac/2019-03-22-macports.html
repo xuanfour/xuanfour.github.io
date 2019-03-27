@@ -8,8 +8,8 @@ tags:
     - MacPorts
 ---
 
-<div id="outline-container-org893a85e" class="outline-2">
-<h2 id="org893a85e"><span class="section-number-2">1</span> 安装 MacPorts</h2>
+<div id="outline-container-org4b32b91" class="outline-2">
+<h2 id="org4b32b91"><span class="section-number-2">1</span> 安装 MacPorts</h2>
 <div class="outline-text-2" id="text-1">
 </div>
 <div id="outline-container-orge1d63af" class="outline-3">
@@ -48,8 +48,8 @@ sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
 </div>
 </div>
 
-<div id="outline-container-org6ebfa7a" class="outline-3">
-<h3 id="org6ebfa7a"><span class="section-number-3">1.4</span> 安装 MacPorts</h3>
+<div id="outline-container-org893a85e" class="outline-3">
+<h3 id="org893a85e"><span class="section-number-3">1.4</span> 安装 MacPorts</h3>
 <div class="outline-text-3" id="text-1-4">
 <p>
 如果你使用的是 Mac OS X，你最好使用 Mac OS X Package Installer 来安装 MacPorts，除非你不想将 MacPorts 安装到它的默认目录（/opt/local/）。
@@ -68,8 +68,14 @@ Mac OS X Package Installer 能自动安装 MacPorts，设置 shell environment�
 </p>
 
 <p>
-下载完成后，直接双击 Package Installer 执行默认安装即可，安装完毕后，设置环境变量 <code>export PATH=/opt/local/bin:/opt/local/sbin:$PATH</code> 。
+下载完成后，直接双击 Package Installer 执行默认安装即可，安装完毕后，设置环境变量
 </p>
+
+<div class="org-src-container">
+<pre class="src src-sh"><span style="color: #4f97d7;">export</span> <span style="color: #7590db;">PATH</span>=/opt/local/bin:/opt/local/sbin:$<span style="color: #7590db;">PATH</span>
+<span style="color: #4f97d7;">export</span> <span style="color: #7590db;">MANPATH</span>=/opt/local/share/man:$<span style="color: #7590db;">MANPATH</span>
+</pre>
+</div>
 
 <p>
 打开一个新的终端，执行： <code>port version</code> ，如果安装成功，则可以看见版本号，如果出现 command not found，可以尝试在这里 <a href="https://guide.macports.org/#installing.shell">MacPorts and the Shell</a> 查找原因。
@@ -99,6 +105,8 @@ MacPorts port 命令是与 MacPorts 交互的主要手段。它用于更新 Port
 <div class="org-src-container">
 <pre class="src src-sh">sudo port selfupdate &#65293; &#26356;&#26032;&#24403;&#21069; ports tree &#21644; MacPorts base&#12290;
 sudo port -d selfupdate &#65293; Debug &#27169;&#24335;&#26356;&#26032;&#65292;&#20250;&#26174;&#31034;&#26356;&#26032;&#35814;&#24773;&#12290;
+<span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#25512;&#33616;&#31532;&#19968;&#27425;&#36816;&#34892;&#30340;&#26102;&#20505;&#20351;&#29992;-v &#21442;&#25968;&#65292;&#26174;&#31034;&#35814;&#32454;&#30340;&#26356;&#26032;&#36807;&#31243;&#12290;</span>
+sudo port -v selfupdate
 </pre>
 </div>
 

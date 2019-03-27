@@ -77,8 +77,9 @@ rm -rf ~/Library/Caches/Homebrew
 </div>
 </div>
 </div>
-<div id="outline-container-org73d7694" class="outline-2">
-<h2 id="org73d7694"><span class="section-number-2">4</span> brew 更新</h2>
+
+<div id="outline-container-org28fe40e" class="outline-2">
+<h2 id="org28fe40e"><span class="section-number-2">4</span> brew 更新本身</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 要获取最新的包的列表，首先得更新 Homebrew 自己。这可以用 <code>brew update</code> 办到。
@@ -91,19 +92,9 @@ rm -rf ~/Library/Caches/Homebrew
 </div>
 </div>
 
-<div id="outline-container-org28fe40e" class="outline-2">
-<h2 id="org28fe40e"><span class="section-number-2">5</span> brew 更新本身</h2>
-<div class="outline-text-2" id="text-5">
-<div class="org-src-container">
-<pre class="src src-sh">brew update
-</pre>
-</div>
-</div>
-</div>
-
 <div id="outline-container-org7c5b8dc" class="outline-2">
-<h2 id="org7c5b8dc"><span class="section-number-2">6</span> brew 更新软件</h2>
-<div class="outline-text-2" id="text-6">
+<h2 id="org7c5b8dc"><span class="section-number-2">5</span> brew 更新软件</h2>
+<div class="outline-text-2" id="text-5">
 <div class="org-src-container">
 <pre class="src src-sh">brew outdated            <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26597;&#30475;&#38656;&#35201;&#26356;&#26032;&#30340;&#36719;&#20214;</span>
 brew upgrade             <span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26356;&#26032;&#25152;&#26377;&#30340;&#36719;&#20214;</span>
@@ -114,8 +105,8 @@ brew upgrade package     <span style="color: #2aa1ae; background-color: #292e34;
 </div>
 
 <div id="outline-container-org721f9fe" class="outline-2">
-<h2 id="org721f9fe"><span class="section-number-2">7</span> brew 删除软件及依赖</h2>
-<div class="outline-text-2" id="text-7">
+<h2 id="org721f9fe"><span class="section-number-2">6</span> brew 删除软件及依赖</h2>
+<div class="outline-text-2" id="text-6">
 <p>
 brew rmtree 是用于 Homebrew 的外部命令插件，提供新的命令，rmtree 卸载软件及任何依赖项。
 </p>
@@ -129,8 +120,8 @@ brew rmtree package
 </div>
 
 <div id="outline-container-org76a9623" class="outline-2">
-<h2 id="org76a9623"><span class="section-number-2">8</span> brew 清理旧版本</h2>
-<div class="outline-text-2" id="text-8">
+<h2 id="org76a9623"><span class="section-number-2">7</span> brew 清理旧版本</h2>
+<div class="outline-text-2" id="text-7">
 <p>
 一般情况下，新版本安装了，旧版本就不需要了。我会用 <code>brew cleanup</code> 清理旧版本和缓存文件。Homebrew 只会清除比当前安装的包更老的版本，所以不用担心有些包没更新但被删了。
 </p>
@@ -145,8 +136,8 @@ brew cleanup -n          <span style="color: #2aa1ae; background-color: #292e34;
 </div>
 
 <div id="outline-container-org69cc79c" class="outline-2">
-<h2 id="org69cc79c"><span class="section-number-2">9</span> brew 锁定不想更新的包</h2>
-<div class="outline-text-2" id="text-9">
+<h2 id="org69cc79c"><span class="section-number-2">8</span> brew 锁定不想更新的包</h2>
+<div class="outline-text-2" id="text-8">
 <p>
 如果经常更新的话， <code>brew update</code> 一次更新所有的包是非常方便的。但我们有时候会担心自动升级把一些不希望更新的包更新了。数据库就属于这一类，尤其是 PostgreSQL 跨 minor 版本升级都要迁移数据库的。我们更希望找个时间单独处理它。这时可用 <code>brew pin</code> 去锁定这个包，然后 <code>brew update</code> 就会略过它了。
 </p>
@@ -160,8 +151,8 @@ brew unpin package     <span style="color: #2aa1ae; background-color: #292e34;">
 </div>
 
 <div id="outline-container-orgd95d9fb" class="outline-2">
-<h2 id="orgd95d9fb"><span class="section-number-2">10</span> brew 切换到国内源</h2>
-<div class="outline-text-2" id="text-10">
+<h2 id="orgd95d9fb"><span class="section-number-2">9</span> brew 切换到国内源</h2>
+<div class="outline-text-2" id="text-9">
 <p>
 因为 Homebrew 默认的源是 GitHub 源，在国内因为你懂的原因，下载速度堪忧，顾考虑更换国内源，幸好中科大和清华都提供了 brew 源，因此我们考虑更换为这两个学校的 brew 源
 </p>
@@ -186,8 +177,8 @@ git remote set-url origin https://mirrors.ustc.edu.cn/homebrew-core.git
 </div>
 
 <div id="outline-container-org8fc9f20" class="outline-2">
-<h2 id="org8fc9f20"><span class="section-number-2">11</span> brew 切换回官方源</h2>
-<div class="outline-text-2" id="text-11">
+<h2 id="org8fc9f20"><span class="section-number-2">10</span> brew 切换回官方源</h2>
+<div class="outline-text-2" id="text-10">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#37325;&#32622; brew.git</span>
 <span style="color: #4f97d7;">cd</span> <span style="color: #2d9574;">"$(brew --repo)"</span>
@@ -205,8 +196,8 @@ git remote set-url origin https://github.com/Homebrew/homebrew-core.git
 </div>
 
 <div id="outline-container-org8898f05" class="outline-2">
-<h2 id="org8898f05"><span class="section-number-2">12</span> brew cask 常用命令</h2>
-<div class="outline-text-2" id="text-12">
+<h2 id="org8898f05"><span class="section-number-2">11</span> brew cask 常用命令</h2>
+<div class="outline-text-2" id="text-11">
 <p>
 <code>brew cask</code> 可以看作是苹果官方 app store 的补充，是一个众多贡献者们维护的非苹果官方软件商店，你也可以在这里下 mac 软件用。主要用来下载一些带界面的应用软件，下载好后会自动安装，并能在 mac 中直接运行使用。
 </p>
@@ -220,8 +211,8 @@ git remote set-url origin https://github.com/Homebrew/homebrew-core.git
 </div>
 
 <div id="outline-container-org1ad74d6" class="outline-2">
-<h2 id="org1ad74d6"><span class="section-number-2">13</span> brew cask 更换国内源</h2>
-<div class="outline-text-2" id="text-13">
+<h2 id="org1ad74d6"><span class="section-number-2">12</span> brew cask 更换国内源</h2>
+<div class="outline-text-2" id="text-12">
 <div class="org-src-container">
 <pre class="src src-sh"><span style="color: #2aa1ae; background-color: #292e34;"># </span><span style="color: #2aa1ae; background-color: #292e34;">&#26367;&#25442;&#20026; USTC &#38236;&#20687;&#65306;</span>
 <span style="color: #4f97d7;">cd</span> <span style="color: #2d9574;">"$(brew --repo)"</span>/Library/Taps/homebrew/homebrew-cask
@@ -239,8 +230,8 @@ git remote set-url origin https://github.com/Homebrew/homebrew-cask
 </div>
 
 <div id="outline-container-org6224992" class="outline-2">
-<h2 id="org6224992"><span class="section-number-2">14</span> brew cask 使用指定本地安装包</h2>
-<div class="outline-text-2" id="text-14">
+<h2 id="org6224992"><span class="section-number-2">13</span> brew cask 使用指定本地安装包</h2>
+<div class="outline-text-2" id="text-13">
 <ul class="org-ul">
 <li>执行 <code>brew cask doctor</code> 命令，查看缓存目录位置。</li>
 <li>执行 <code>brew cask install xxx</code> 命令。</li>
